@@ -1,0 +1,313 @@
+
+Lembranças sobre os números complexos antes de começar a análise.
+
+Números complexos $\C$ são munidos com as operações binárias
+de soma e produto $+,\cdot : \C \times \C \to \C$,
+e com as funções de 
+conjugação $\bar{\cdot} : \C \to \C$,
+parte real e parte imaginária $\Re,\Im : \C \to \R$,
+norma e valor absoluto $N,|\cdot| : \C \to \R_{\geq 0}$,
+argumento $\arg : \C \to \R/2\pi\Z$,
+valor principal de argumento $Arg : \C \to [0,2\pi)$.
+
+\begin{gather}
+z = x + y i \\
+z = r (\cos \phi + i \sin \phi) = r e^{i\phi}\\
+\bar{z} = x - y i = r e^{-i\phi} \\
+x = r \cos \phi \\
+y = r \sin \phi \\
+N(z) = z \bar{z} = r^2 = x^2+y^2 \\
+|z| = \sqrt{N(z)} = r \\
+\arg z = \phi \mod 2\pi
+\end{gather}
+
+Podemos munir $\C$ com a função de distância $d(z,w) := |z-w|$.
+Ele é uma métrica, i.e. $d(z,w) \geq 0$, $d(z,w) = 0$ se e só se $z=w$,
+$d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).
+
+Pelo teorema de Pitágoras essa métrica coincide com a métrica euclidiana.
+
+Similarmente podemos munir $\C$ com uma orientação, declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
+
+Então geometricamente (Caspar Wessel 1799, e depois Gauss e Argand) 
+podemos identificar $\C$ com $\R^2$ e com um plano euclidiano.
+As transformações $z \to z + b$ são translações,
+as transformações $z \to (\cos \phi + i \sin \phi) \cdot z$ são rotações com centro em $0$,
+as transformações $z \to r \cdot z$ ($r\in\R_{>0}$) são dilatações. 
+Todas elas preservam a orientação e também são conformes, i.e. preservam os ângulos.
+Também todas $z \to (\cos \phi + i \sin \phi) \cdot z + b$ preservam as distâncias euclidianas.
+As transformações $z \to (\cos \phi + i \sin \phi) \cdot \bar{z} + b$ coincidem com as reflexões
+em diferentes retas, elas preservam as distâncias, mas trocam a orientação.
+
+O subconjunto $U \subset \C$ é chamado \emph{aberto}\footnote{com respeito de topologia euclidiana}
+se ele é uma união de bolas abertas $B(z,r) := \{w\in \C t.q. |w-z|<r\}$ ($z\in\C,r\in\R$), 
+i.e. $\forall z\in U \exists r>0 \textit{tal que} \forall w\in\C |w-z|<r \implies w\in U$,
+em palavras -- qualquer ponto de $U$ também tem uma vizinhança dele dentro de $U$.
+
+Na análise complexa as palavras \emph{região} ou \emph{domínio} significam um subconjunto aberto de $\C$.
+Também em seguida geralmente temos em mente subconjuntos \emph{conexos}, i.e. tais
+que não são uniões disjuntas de dois subconjuntos abertos não vazios.
+O propriedade que será mais útil para nós é \emph{conexidade em caminhos}:
+para qualquer par de pontos $P,Q\in U$ existe um caminho em $U$ entre eles,
+i.e. existe uma função contínua $\gamma: [0,1] \to U$ tal que $\gamma(0) = P$
+e $\gamma(1)=Q$. Se quiser pode se imaginar que essa função é linear em pedaços,
+ou ainda feita só de intervalos horizontais e verticais.
+
+Muitas definições e teoremas básicas sobre as funções de variável real
+podem ser promovidas para as funções de variável complexa usando
+a interpretação de $|z|$ acima.
+
+\section{Diferenciação complexa}
+
+\subsection{Funções de variável complexa}
+
+Sejam $D\subset \C$ uma região e $f : D \to \C$ uma função,
+$D\supset z = x + yi$, $f(z) = w = u + v i$ para $x,y,u,v\in \R$, $z\in D\subset \C$, $w\in \C$.
+Podemos também interpretar $f$ como uma função de 1 variável complexa com um valor complexo,
+ou como uma função $u(x,y) + v(x,y) i : \R^2\supset D \to \C$ de $2$ variáveis reais com um valor complexo,
+ou como um par de funções de $2$ variáveis reais
+$u,v : D \to \R$, $u(x,y), v(x,y) \in \R$,
+i.e. $(x,y) \mapsto (u(x,y),v(x,y)) : \R^2 \supset D \to \R^2$.
+
+Para $z$ complexo o limite $\lim_{z\to 0}$ significa $\lim_{|z|\to 0}$.
+Similarmente $\lim_{z\to z'}$ é mesmo que $\lim_{|z-z'|\to 0}$.
+
+\subsection{Derivada complexa}
+Em seguida definição $\cdot$ é multiplicação em $\C$,
+geralmente omitimos este símbolo, mas quero enfatizar que essa definição depende
+de multiplicação (resp. divisão) de números complexos.
+\begin{defin}
+Suponha que existe $a\in \C$ tal que
+$$ f(z) = f(z_0) + a \cdot (z-z_0) + g(z) \cdot (z-z_0) $$
+tal que $\lim_{z\to z_0} g(z) = 0$,
+i.e. $\lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0} = a$.
+Neste caso digamos que $f$ tem a derivada complexa em $z_0$ igual ao $a\in \C$
+e denotamos $f'(z) := a$.
+Em linguagem $\epsilon-\delta$:
+$\forall\epsilon>0\exists\delta>0$ t.q. $|z-z_0|<\delta$ implica
+$|f(z)-f(z_0)-a(z-z_0)| < \epsilon |z-z_0|$.
+\end{defin}
+
+\begin{lema}
+Se $f(z) = u(x,y) + iv(x,y)$ tem a derivada complexa em ponto $z_0$ neste ponto temos as equações de Cauchy--Riemann
+para derivadas parciais: 
+\begin{equation}
+u_x = v_y, \,\,\, u_y = - v_x
+\end{equation}
+onde $u_x = \frac{\partial u(x,y)}{\partial x} = \lim_{\epsilon\to 0} \frac{u(x+\epsilon,y)-u(x,y)}{\epsilon}$,etc
+são as derivadas parciais.
+\end{lema}
+
+Notações $\partial_z$ e $\partial_{\bar{z}}$.
+Equações de Cauchy--Riemann são equivalentes ao equação $\partial_{\bar{z}} f(z_0) = 0$,
+neste caso $\partial_z f(z_0) = f'(z_0)$.
+
+\begin{lema}
+Se $f$ tem derivada complexa $f'(z_0) = r (\cos\phi + i \sin \phi)$ em ponto $z_0$
+ela também tem derivada como aplicação
+de $D \subset \R^2$ para $R^2$, e ela é igual a
+$\begin{smallmatrix} u_x & -v_y & u_y & v_x \end{smallmatrix}
+= r \begin{smallmatrix} \cos\phi & -\sin\phi & \sin\phi & \cos\phi \end{smallmatrix} $.
+\end{lema}
+\begin{proof}
+Lembra que geralmente para aplicação $F: \R^n \to \R^m$ a derivada em ponto $P_0$
+é a melhor aproximação \emph{linear} de $f$, ela é uma aplicação linear $A: \R^n \to \R^m$
+tal que $F(P) = F(P_0) + A (P-P_0) + G(P-P_0)$ e $\lim_{P\to P_0} \frac{|G(P-P_0)|}{|P-P_0|} = 0$.
+Comparando as duas definições e tendo em visto que a aplicação $z \to az : \C \to \C$
+é linear sobre $\R$, vejamos que existência de derivada complexa implica existência de derivada real.
+\end{proof}
+
+\begin{teorema}
+Uma função $f(z)$ tem uma derivada complexa em ponto $z_0$ se e somente se
+ela é diferenciável como $R^2\supset D \to \R^2$ e as derivadas parciais
+satisfazem as equações de Cauchy--Riemann.
+\end{teorema}
+
+\begin{problema}
+Suponha $f$ e $g$ têm as derivadas complexas em ponto $z_0$.
+Provar que $f+g$, $f\cdot g$ tem as derivadas complexas em ponto $z_0$
+e eles são iguais $(f+g)'(z_0) = f'(z_0)+g'(z_0)$ e $(fg)'(z_0) = f(z_0) g'(z_0) + f'(z_0) g(z_0)$.
+\end{problema}
+
+\begin{problema}
+Suponha $f: D_0 \to D_1$ tem derivada complexa em $z_0$,
+e $g : D_1 \to D_2$ tem derivada complexa em $f(z_0)$.
+Provar que $g\circ f: D_0 \to D_2$ tem derivada complexa em $z_0$
+e ela é igual a $(g\circ f)'(z_0) = g'(f(z_0)) \cdot f'(z_0)$. 
+\end{problema}
+
+\section{Funções holomorfas}
+
+\subsection{Holomorficidade}
+
+\begin{defin} Uma função é \emph{holomorfa} em região $D$ se ela tem derivada complexa em cada ponto de região.
+Uma função é holomorfa em ponto, se ela é holomorfa em alguma vizinhança dele.
+\end{defin}
+
+\begin{exem}
+Constantes f(z) = a,
+identidade f(z) = z,
+funções lineares $z \mapsto a z$,
+todos os polinômios com coeficientes complexos.
+\end{exem}
+
+\begin{problema}
+Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
+i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.
+\end{problema}
+
+
+\subsection{Séries}
+
+Todas as definições e teoremas sobre séries reais funcionam em caso complexo
+se usar valor absoluto complexo em vez de valor absoluto real.
+
+\begin{problema}
+Suponha que $\sum_{n=0}^\infty a_n'(z)$ é uniformemente convergente.
+Provar que se a série $\sum_{n=0}^\infty a_n(z)$ é convergente ao menos em um ponto,
+então ela é convergente uniformemente e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}^\infty a_n'$.
+\end{problema}
+
+\begin{problema}[Fórmula de Cauchy--Hadamard]
+Seja $R = \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1}$. Provar que $f(z) = \sum_{n=0}^\infty c_n z^n$
+converge absolutamente em disco $D := \{z\in\C: |z|<R\}$ e diverge na $\{z\in\C: |z| >R\}$.
+Também provar que em qualquer compacto $K\subset D$ ele converge uniformemente.
+\end{problema}
+
+\begin{problema}
+Provar que séries para exponente $\exp(z) = \sum \frac{z^n}{n!}$,
+seno e cosseno convergem absolutamente no todo $\C$ e são holomorfas.
+
+\end{problema}
+
+\section{Integração complexa}
+
+\begin{defin}
+\end{defin}
+
+\begin{exem}
+\end{exem}
+
+\begin{teorema}
+\end{teorema}
+
+\section{Teorema de integral de Goursat--Cauchy.}
+
+\begin{remark}
+Usando a fórmula de Green\footnote{
+A fórmula de Green é um caso particular da fórmula de Stokes 
+$$\int_{\partial D} \omega = \int_D d\omega$$
+em qual $\omega = f(x,y) dx + g(x,y) dy$, e então
+$d\omega = (-\frac{\partial f(x,y)}{\partial y} + \frac{\partial g(x,y)}{\partial x}) dx\wedge dy$.}
+Cauchy provou que se $f(z)$ é uma função holomorfa em interior de uma região $D$
+tal que a derivada $f'(z)$ é contínua, então $\int_{\partial D} f(z) dz = 0$.
+Se $f(z) = u(x,y) + v(x,y) i$ então
+$\int_{\partial D} f(z) dz = \int_{\partial D} (u(x,y) + i v(x,y)) (dx + i dy)
+= \int_{\partial D} (u(x,y) dx - v(x,y) dy) + i \int_{\partial D} v(x,y) dx + u(x,y) dy =
+= \int_D (-u_y-v_x) dx dy + i \int_D (-v_y + u_x) dx dy = \int_D 0 + i \int_D 0 = 0$,
+onde usamos as equações de Cauchy--Riemann $u_x = v_y$ e $u_y = - v_x$.
+Depois em 1883 Goursat removeu a condição de continuidade de derivada ---
+a integral já é zero se somente suponhamos que $f$ é holomorfa
+(tem derivada complexa) no interior de região $D$ e contínua na fronteira $\partial D$.
+Nessa seção damos a demonstração essencialmente de Goursat.
+\end{remark}
+
+\begin{lema}
+Seja $f$ uma função continua no triângulo $\Delta$ e holomorfa no interior dele.
+Então $\int_{\partial\Delta} f(z) dz = 0$.
+\end{lema}
+\begin{proof}
+A demonstração segue a ideia de Goursat (1883).
+Suponha $|\int_{\partial\Delta} f(z) dz| = M > 0$.
+Decompomos um triangulo em $4$ triângulos de meio tamanho\footnote{
+Se $\Delta = ABC$ e $AD$, $BE$, $CF$ são as três medianas do triangulo,
+considerar os triângulos $DFE$, $AFD$, $FBE$, $ECD$.}
+Para um dos triângulos (chama ele $\Delta_1$) temos
+$|\int_{\partial\Delta} f(z) dz| \geq \frac{M}{4}$.
+Similarmente construímos $\Delta = \Delta_0 \supset \Delta_1 \supset \Delta_2 \supset ...$.
+Seja $z_0$ um ponto no interseção de todos $\Delta_k$.\footnote{
+Este ponto é único desde os diâmetros de triângulos vai ao zero,
+e existe e.g. toma o limite dos centros, ou usa compacidade.}
+Temos $f(z) - f(z_0) - f'(z_0) (z-z_0) = \alpha(z) (z-z_0)$ t.q.
+$\lim_{z\to z_0} \alpha(z) = 0$. Então $\forall \epsilon \exists \delta$ tal que
+$|z-z_0|<\delta \implies |\alpha(z)|<\epsilon$. Escolhemos $k$ tal que
+$\Delta_k$ é dentro de $\{z: |z-z_0|<\delta\}$.
+Temos
+$$\int_{\Delta_k} f(z) dz = (f(z_0)-f'(z_0)z_0) \int_{\Delta_k} dz + f'(z_0) \int_{\Delta_k} d\frac{z^2}{2}
++ \int_{\Delta_k} \alpha(z) (z-z_0) dz = 0 + 0 + \int_{\Delta_k} \alpha(z) (z-z_0) dz \leq \epsilon \cdot ...$$
+\end{proof}
+
+\begin{teorema}[Cauchy--Goursat 1883]
+Suponha que $C$ é uma curva fechada de cumprimento finito t.q. $C = \partial D$
+e uma função $f(z)$ é continua na $C$ e holomorfa no interior de $D$. Então
+$\int_C f(z) dz = 0$.
+\end{teorema}
+\begin{proof}
+Se $C$ é linear em pedaços, pela indução decompomos ela em soma de fronteiras orientadas de triângulos.
+Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
+\end{proof}
+
+\section{Primitiva.}
+
+
+\section{Fórmula integral de Cauchy.}
+
+\section{Decomposição em séries de Taylor.}
+
+\section{Teorema de Morera. Critério de holomorficidade.}
+
+\section{Teorema de Weierstrass.}
+
+\section{Funções holomorfas em um anel. Séries de Laurent.}
+
+\section{Pontos singulares isolados.}
+
+\section{Resíduos. Valor principal de Cauchy.}
+
+\section{Princípio do argumento.}
+\begin{defin}
+\end{defin}
+\begin{teorema}
+\end{teorema}
+\begin{teorema}[Rouché]
+\end{teorema}
+\begin{cor}[Teorema Fundamental de Álgebra]
+\end{cor}
+
+\section{Propriedades topológicas das funções meromorfas}
+
+\section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
+
+\section{Teorema de Hurwitz. Funções univalentes.}
+
+\section{Continuação analítica.}
+
+\section{Teorema de Riemann.}
+
+\section{Automorfismos de domínios simplesmente conexos.}
+
+\section{Superfícies de Riemann. Uniformização.}
+
+\begin{teorema}[Poincaré, Koebe 1907, foi 22o problema de Hilbert]
+Qualquer superfície de Riemann simplesmente conexa é biholomorfa ao uma de três superfícies padrão:
+esfera de Riemann $\C\P^1 = \bar{C}$, reta/plano complexo $\C$ ou disco $\D = \{z : |z|<1\}$.
+\end{teorema}
+Os métodos de demonstração deste teorema são fora deste curso - temos que construir alguns funções
+harmônicas, e para isso usamos EDP. Veja e.g. livro texto de Donaldson "Riemann Surfaces" (2011).
+
+\section{Grupos de Fuchs.}
+
+\begin{exem}[Grupo modular]
+$\Gamma = \{ z \mapsto \frac{az+b}{cz+d} \,|\, a,b,c,d\in\Z, \, ad-bc>0 \} = PSL(2,\Z)$
+\end{exem}
+
+\section{Espaço de módulos de toros complexos.}
+
+\begin{teorema}
+O espaço de módulos de toros complexos é identificado com o quociente $\H/\Gamma$
+do plano superior por grupo modular.
+\end{teorema}
+
+\section{Funções analíticas.}
+
+\section{Exemplos das superfícies de Riemann das funções analíticas.}
