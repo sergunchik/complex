@@ -21,6 +21,9 @@ N(z) = z \bar{z} = r^2 = x^2+y^2 \\
 \arg z = \phi \mod 2\pi
 \end{gather}
 
+A norma é multiplicativa:
+$$ N(zw) = N(z) N(w) $$
+
 Podemos munir $\C$ com a função de distância $d(z,w) := |z-w|$.
 Ele é uma métrica, i.e. $d(z,w) \geq 0$, $d(z,w) = 0$ se e só se $z=w$,
 $d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).
@@ -28,6 +31,9 @@ $d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).
 Pelo teorema de Pitágoras essa métrica coincide com a métrica euclidiana.
 
 Similarmente podemos munir $\C$ com uma orientação, declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
+
+Multiplicatividade de norma implica que $d(az+b,aw+b) = |a| d(z,w)$, i.e. se $|a|=1$ a transformação $z\mapsto az+b$
+é uma isometria (preserva as distâncias) euclidiana.
 
 Então geometricamente (Caspar Wessel 1799, e depois Gauss e Argand) 
 podemos identificar $\C$ com $\R^2$ e com um plano euclidiano.
@@ -82,7 +88,7 @@ $$ f(z) = f(z_0) + a \cdot (z-z_0) + g(z) \cdot (z-z_0) $$
 tal que $\lim_{z\to z_0} g(z) = 0$,
 i.e. $\lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0} = a$.
 Neste caso digamos que $f$ tem a derivada complexa em $z_0$ igual ao $a\in \C$
-e denotamos $f'(z) := a$.
+e denotamos $f'(z_0) := a$, alternativamente usamos notação $\frac{df}{dz}(z_0) = f'(z_0)$.
 Em linguagem $\epsilon-\delta$:
 $\forall\epsilon>0\exists\delta>0$ t.q. $|z-z_0|<\delta$ implica
 $|f(z)-f(z_0)-a(z-z_0)| < \epsilon |z-z_0|$.
@@ -97,6 +103,12 @@ u_x = v_y, \,\,\, u_y = - v_x
 onde $u_x = \frac{\partial u(x,y)}{\partial x} = \lim_{\epsilon\to 0} \frac{u(x+\epsilon,y)-u(x,y)}{\epsilon}$,etc
 são as derivadas parciais.
 \end{lema}
+
+\emph{Diferenciais complexas} (formas diferenciais complexas).
+Em notação-definição $\frac{df}{dz}(z_0) = f'(z_0)$ podemos formalmente multiplicar pelo denominador para obter
+uma equação $(df)(z_0) = f'(z_0) (dz)(z_0)$.
+Por enquanto podemos formalmente definir um espaço vetorial complexo $1$-dimensional com um vetor-base $(dz)(z_0)$ e para cada função $f(z)$ com derivada complexa em ponto $z_0$ associar outro vetor $(df)(z_0) := f'(z_0) (dz)(z_0)$. Essa notação (de Leibniz)
+será útil ao menos para escrever as fórmulas mais convenientes.
 
 Notações $\partial_z$ e $\partial_{\bar{z}}$.
 Equações de Cauchy--Riemann são equivalentes ao equação $\partial_{\bar{z}} f(z_0) = 0$,
