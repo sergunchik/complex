@@ -21,9 +21,9 @@ PDFDIR = pdf
 # -pdflatex="" tells latexmk to call a specific backend with specific options.
 # -interaction=nonstopmode keeps the pdflatex backend from stopping at a
 #   missing file reference and interactively asking you for an alternative.
-LMK_OPTIONS = -silent -time -outdir=$(D) -use-make -pdf
+LMK_OPTIONS = -silent -time -outdir=$(D) -use-make -lualatex
 # LMK_ENGINE = -lualatex
-LMK_ENGINE = -pdflatex="pdflatex -interaction=nonstopmode"
+LMK_ENGINE = -lualatex="lualatex -interaction=nonstopmode"
 LMK = $(LATEXMK) $(LMK_ENGINE) $(LMK_OPTIONS)
 
 # Important naming convention for this Makefile to work:

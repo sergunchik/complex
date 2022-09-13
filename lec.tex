@@ -166,15 +166,27 @@ todos os polinômios com coeficientes complexos.
 \end{exem}
 
 \begin{problema}
-Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
-i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.
+Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a função $f$ é constante na $D$.
+(NB: você usou que $D$ é conexa?)
 \end{problema}
 
+\begin{problema}
+Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
+i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.
+Dica: primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
+e translação por $b$, e então é conforme.
+Depois para $z \mapsto f(z)$ com $f(z) = 0$ e $f'(z)=1$ verifique que o ângulo entre um raio e a imagem dele
+é igual ao $0$ (se não saber a definição, use $\lim_{z\to 0} ang(z,0,f(z)) = \lim_{z\to 0} \arg \frac{f(z)}{z}$).
+\end{problema}
+
+Se $f'(0)=0$ o ângulo não é preservado, mas multiplicado por ordem de zero. Vamos provar (mas ainda não provamos) que $f$ tem todas as derivados. Para agora, verifique que $z\mapsto z^n$ multiplica os ângulos em $z=0$ em $n$ vezes
+(mas preserva os ângulos em outros pontos).
 
 \subsection{Séries}
 
 Todas as definições e teoremas sobre séries reais funcionam em caso complexo
-se usar valor absoluto complexo em vez de valor absoluto real.
+se usar valor absoluto complexo em vez de valor absoluto real:
+em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
 
 \begin{problema}
 Suponha que $\sum_{n=0}^\infty a_n'(z)$ é uniformemente convergente.
@@ -191,20 +203,105 @@ Para divergência prove que se séries $\sum c_n$ então converge o limite dos t
 \end{problema}
 
 \begin{problema}
-Provar que séries para exponente $\exp(z) = \sum \frac{z^n}{n!}$,
-seno e cosseno convergem absolutamente no todo $\C$ e são holomorfas.
-
+Provar que séries para exponente, seno e coseno
+\begin{multline}
+\exp(z) = \sum_{n=0}^\infty \frac{z^n}{n!}, \\
+\cos(z) = \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!} = \frac{\exp(iz) + \exp(-iz)}{2},
+\sin(z) = \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} = \frac{\exp(iz) - \exp(-iz)}{2i},
+\end{multline}
+convergem absolutamente no todo $\C$ e são holomorfas.
+Compute as derivadas delas:
+$\exp' = \exp$, $\cos' = -\sin$, $\sin' = \cos$.
 \end{problema}
+
+As séries $\sum a_n z^n$ e $\sum \bar{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
+$\overline{\sum a_n z^n} = \sum \bar{a_n} \bar{z}^n$.
+
+\begin{prop}
+Para todos $z,w\in \C$ temos
+\begin{equation}
+\exp(z+w) = \exp(z) \exp(w)
+\end{equation}
+\end{prop}
+\begin{proof}
+Para $w$ fixo a função em $z$ dada por
+$f(z) := \exp(z) \exp(w-z)$ é holomorfa (como o produto das composições de funções holomorfas).
+A derivada dela é igual $f'(z) = \exp'(z) \exp(w-z) + \exp(z) \exp'(w-z) = \exp(z) \exp(w-z) - \exp(z) \exp(w-z) = 0$
+(pela regra de Leibniz e regra de cadeias). Logo ela é constante e igual $f(0) = \exp(z)$.
+\end{proof}
+
+\begin{cor}[Fórmula de Euler]
+\begin{equation}
+\exp(u+iz) = \exp(u) \big( \cos(z) + i \sin(z) \big)
+\end{equation}
+\end{cor}
+\begin{proof}
+Se você já provou a relação entre funções $\cos$ e $\sin$ de origem geométrico e as séries acima,
+o corolário é óbvio. Senão agora podemos diretamente relacionar: veja que a derivada de
+$(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumento real e valor complexo
+onde as funções trigonométicas $\cos$ e $\sin$ são definidas geometricamente)
+existe e é igual $0$.
+\footnote{
+Outra demonstração mais geométrica é seguinte:
+desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \bar{i}$ temos
+$\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
+Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
+Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
+Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\bar{z}}2$
+e a parte imaginária é $\frac{z-\bar{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ and similarly for $\sin$.
+Ex - finish this proof.
+}
+\end{proof}
+
+\begin{remark}
+Acima são os casos do método geral:
+se as duas funções satisfazem a mesma equação diferencial ordinária sem singularidades,
+e tem as mesmas condições iniciais, elas são iguais.
+\end{remark}
+
+\begin{cor}[Fórmulas trigonométricas]
+\begin{multline}
+\cos(z+w) = \cos(z)\cos(w) - \sin(z)\sin(w) \\
+\sin(z+w) = \cos(z)\sin(w) - \sin(z)\cos(w) \\
+\end{multline}
+\end{cor}
 
 \section{Integração complexa}
 
+Se em soma integral $S = \sum f(\xi_k) \Delta z_k$ a variável e o valor são complexos
+obtemos uma definição de integral de Riemann de função sobre uma curva $\gamma \subset \C$
+(ou $\gamma \to \C$, não necessariamente injetora). Temos
+
+$$ S = \sum (u(\xi_k)+v(\xi_k)i) \Delta (x_k + y_k i) 
+= \sum (u(\xi_k) \Delta x_k - v(\xi_k) \Delta y_k) + (u(\xi_k) \Delta y_k + v(\xi_k) \Delta x_k)i $$
+
 \begin{defin}
+A integral de $f(z) = u(x,y) + v(x,y) i$ sobre a curva orientada $\gamma \subset D \subset \C$ é um número complexo
+\[ \int_\gamma f(z) dz := \int_\gamma (u dx - v dy) + i \int_\gamma (v dx + u dy) \]
 \end{defin}
 
+Se $w: [a,b] \to D$ é uma parametrização suave em pedaços da curva $\gamma \subset D$
+dada por $w(t) = x(t) + y(t) i$ temos
+\begin{equation}
+\int_\gamma f(z) dz = 
+\int_a^b (u(w(t)x'(t)-v(w(t))y'(t))dt + i \int_a^b (u(w(t)y'(t)+v(w(t))x'(t))dt
+= \int_a^b f(w(t)) w'(t) dt,
+\end{equation}
+em particular o valor do lado direito não depende da parametrização $w$.
+
 \begin{exem}
+Compute $\int_{|z-z_0|=r} (z-z_0)^n dz$ por qualquer $z_0\in\C$, $r\in\R$ e $n \in \Z$.
+$$ \int_{|z|=1} zˆn dz = \int_0^{2\pi} \exp(i(n+1)\phi) d\phi = 2\pi i \delta_{n,-1} $$
+i.e. a intgral é $0$ para $n\neq -1$ e é $2\pi i$ para $n=-1$.
 \end{exem}
 
 \begin{teorema}
+A aplicação $\int_\gamma \cdot dz : f \mapsto \int_\gamma f(z) dz$ é $\C$-linear em $f$:
+$$ \int_\gamma (a f + b g) dz = a \int_\gamma f(z) dz + b \int_\gamma g(z) dz $$
+e também linear em $\gamma$:
+$$ \int_{\gamma_1 \cup \gamma_2} f(z) dz = \int_{\gamma_1} f(z) dz + \int_{\gamma_2} f(z) dz.$$
+Aqui pensamos em $\gamma_i$ orientadas tais que o fim de $\gamma_1$ é o início de $\gamma_2$,
+mas também podemos extender a definição de integral sobre as cadeias (somas formais de curvas orientadas).
 \end{teorema}
 
 \section{Teorema de integral de Goursat--Cauchy.}
@@ -278,6 +375,15 @@ $\int_C f(z) dz = 0$.
 Se $C$ é linear em pedaços, pela indução decompomos ela em soma de fronteiras orientadas de triângulos.
 Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
 \end{proof}
+
+\begin{teorema}
+\label{t:cauchy-k}
+Suponha que $f$ é holomorfa em $D\subset \C$ e $K \subset D$ é um compacto t.q.
+a fronteira dele $\partial K$ é finito número de curvas fechadas. Então $\int_{\partial K} f(z) dz = 0$,
+onde as orientações das componentas da fronteira são induzidas pela orientação de $\C$ e $K$.
+\end{teorema}
+
+
 
 \subsection{Cadeias, fronteiras,  cíclos e número de Betti}
 
@@ -368,7 +474,6 @@ já podem ser escritas como combinações lineares (com coeficientes inteiros) d
 \[ \int_{a_1 C_1 + \dots + a_b C_b + \partial S} \omega = a_1 \int_{C_1} \omega + \dots + a_b \int_{C_b} \omega. \]
 Uma escolha padrão dessa base $C_1,\dots,C_b$ é escolher os cíclos que atravesam cada buraco em sentido antihorário com uma volta.
 
-
 \section{Primitiva.}
 
 
@@ -404,7 +509,7 @@ então por qualquer $z_0 \in D \setminus \partial G$
 $\frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0}$  é igual $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
 \end{teorema}
 \begin{proof}
-Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy}.
+Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy-k}.
 Se $z_0$ é dentro, consideremos uma bola fechada $\overline{B}(z_0,\rho)\subset G \setminus \partial G$.
 A diferença entre os cíclos $\partial \overline{B}(z_0,\rho)$ e $\partial G$ é uma fronteira,
 e.g. pode realizar a diferença como fronteira de compacto $K$ tais que $\frac{f(z)}{z-z_0}$ é holomorfa em $K$,
