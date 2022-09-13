@@ -1,4 +1,6 @@
 
+\section*{Números complexos e plano euclidiano}
+
 Lembranças sobre os números complexos antes de começar a análise.
 
 Números complexos $\C$ são munidos com as operações binárias
@@ -9,8 +11,8 @@ parte real e parte imaginária $\Re,\Im : \C \to \R$,
 norma e valor absoluto $N,|\cdot| : \C \to \R_{\geq 0}$,
 argumento $\arg : \C \to \R/2\pi\Z$,
 valor principal de argumento $Arg : \C \to [0,2\pi)$.
-
-\begin{gather}
+\marginnote{
+\begin{gather*}
 z = x + y i \\
 z = r (\cos \phi + i \sin \phi) = r e^{i\phi}\\
 \bar{z} = x - y i = r e^{-i\phi} \\
@@ -19,18 +21,18 @@ y = r \sin \phi \\
 N(z) = z \bar{z} = r^2 = x^2+y^2 \\
 |z| = \sqrt{N(z)} = r \\
 \arg z = \phi \mod 2\pi
-\end{gather}
+\end{gather*}
+}
 
 A norma é multiplicativa:
 $$ N(zw) = N(z) N(w) $$
 
-Podemos munir $\C$ com a função de distância $d(z,w) := |z-w|$.
-Ele é uma métrica, i.e. $d(z,w) \geq 0$, $d(z,w) = 0$ se e só se $z=w$,
-$d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).
-
+Podemos munir $\C$ com a função de \emph{distância} $d(z,w) := |z-w|$.
+Ele é uma métrica\footnote{Isso é: $d(z,w) \geq 0$, $d(z,w) = 0$ se e só se $z=w$,
+$d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).}
 Pelo teorema de Pitágoras essa métrica coincide com a métrica euclidiana.
 
-Similarmente podemos munir $\C$ com uma orientação, declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
+Similarmente podemos munir $\C$ com uma \emph{orientação}, declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
 
 Multiplicatividade de norma implica que $d(az+b,aw+b) = |a| d(z,w)$, i.e. se $|a|=1$ a transformação $z\mapsto az+b$
 é uma isometria (preserva as distâncias) euclidiana.
@@ -184,6 +186,8 @@ então ela é convergente uniformemente e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}
 Seja $R = \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1}$. Provar que $f(z) = \sum_{n=0}^\infty c_n z^n$
 converge absolutamente em disco $D := \{z\in\C: |z|<R\}$ e diverge na $\{z\in\C: |z| >R\}$.
 Também provar que em qualquer compacto $K\subset D$ ele converge uniformemente.
+\marginnote{Usa progressão geométrica para provar convergência.
+Para divergência prove que se séries $\sum c_n$ então converge o limite dos termos $c_n$ é igual ao $0$.}
 \end{problema}
 
 \begin{problema}
@@ -214,9 +218,11 @@ $d\omega = (-\frac{\partial f(x,y)}{\partial y} + \frac{\partial g(x,y)}{\partia
 Cauchy provou que se $f(z)$ é uma função holomorfa em interior de uma região $D$
 tal que a derivada $f'(z)$ é contínua, então $\int_{\partial D} f(z) dz = 0$.
 Se $f(z) = u(x,y) + v(x,y) i$ então
-$\int_{\partial D} f(z) dz = \int_{\partial D} (u(x,y) + i v(x,y)) (dx + i dy)
-= \int_{\partial D} (u(x,y) dx - v(x,y) dy) + i \int_{\partial D} v(x,y) dx + u(x,y) dy =
-= \int_D (-u_y-v_x) dx dy + i \int_D (-v_y + u_x) dx dy = \int_D 0 + i \int_D 0 = 0$,
+\begin{multline*}
+\int_{\partial D} f(z) dz = \int_{\partial D} (u(x,y) + i v(x,y)) (dx + i dy) \\
+= \int_{\partial D} (u(x,y) dx - v(x,y) dy) + i \int_{\partial D} v(x,y) dx + u(x,y) dy \\
+= \int_D (-u_y-v_x) dx dy + i \int_D (-v_y + u_x) dx dy = \int_D 0 + i \int_D 0 = 0,
+\end{multline*}
 onde usamos as equações de Cauchy--Riemann $u_x = v_y$ e $u_y = - v_x$.
 Depois em 1883 Goursat removeu a condição de continuidade de derivada ---
 a integral já é zero se somente suponhamos que $f$ é holomorfa
@@ -245,11 +251,25 @@ $\lim_{z\to z_0} \alpha(z) = 0$. Então $\forall \epsilon \exists \delta$ tal qu
 $|z-z_0|<\delta \implies |\alpha(z)|<\epsilon$. Escolhemos $k$ tal que
 $\Delta_k$ é dentro de $\{z: |z-z_0|<\delta\}$.
 Temos
-$$\int_{\Delta_k} f(z) dz = (f(z_0)-f'(z_0)z_0) \int_{\Delta_k} dz + f'(z_0) \int_{\Delta_k} d\frac{z^2}{2}
-+ \int_{\Delta_k} \alpha(z) (z-z_0) dz = 0 + 0 + \int_{\Delta_k} \alpha(z) (z-z_0) dz \leq \epsilon \cdot ...$$
+\begin{multline}
+\int_{\Delta_k} f(z) dz = \\
+(f(z_0)-f'(z_0)z_0) \int_{\Delta_k} dz + f'(z_0) \int_{\Delta_k} d\frac{z^2}{2}
++ \int_{\Delta_k} \alpha(z) (z-z_0) dz \\
+= 0 + 0 + \int_{\Delta_k} \alpha(z) (z-z_0) dz = \int_{\Delta_k} \alpha(z) (z-z_0) dz,
+\end{multline}
+Mas o último integral é pequeno: $|z-z_0|$ é limitado por diametro de $\Delta_k$,
+que é $C_1 2^{-k}$, e $\int_{\Delta_k} |dz|$ é o perimetro de $\Delta_k$, também igual a $C_2 2^{-k}$,
+onde $C_1,C_2$ são constantes absolutas
+logo
+\begin{multline*}
+M 4^{-k} \leq |\int_{\Delta_k} f(z) dz| = |\int_{\Delta_k} \alpha(z) (z-z_0) dz| \\
+\leq \int_{\Delta_k} |\alpha(z)| |z-z_0| |dz| \leq \epsilon C_1 C_2 4^{-k},
+\end{multline*}
+então $M \leq C_1 C_2 \epsilon$ por qualquer $\epsilon>0$, i.e. $M=0$.
 \end{proof}
 
 \begin{teorema}[Cauchy--Goursat 1883]
+\label{t:cauchy}
 Suponha que $C$ é uma curva fechada de cumprimento finito t.q. $C = \partial D$
 e uma função $f(z)$ é continua na $C$ e holomorfa no interior de $D$. Então
 $\int_C f(z) dz = 0$.
@@ -259,10 +279,139 @@ Se $C$ é linear em pedaços, pela indução decompomos ela em soma de fronteira
 Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
 \end{proof}
 
+\subsection{Cadeias, fronteiras,  cíclos e número de Betti}
+
+Mais geralmente podemos definir os grupos de \emph{cadeias} ($0$-cadeias, $1$-cadeias e $2$-cadeias)
+como os grupos de combinações lineares finitas com coeficientes inteiros de pontos, intervalos orientados e triângulos em $D$.
+
+Formalmente, o grupo de $2$-cadeias $C_2(D)$ é o conjunto de todas as somas finitas formais $\sum_{k=1}^n c_k \Delta_k$ de triângulos,
+o grupo de $1$-cadeias $C_1(D)$ é o conjunto de todas somas formais $\sum_{k=1}^n b_k P_kQ_k$ de arestas orientadas,
+e o grupo de $0$-cadeias $C_0(D)$ é o conjunto de todas somas formais $\sum a_k P_k$ de pontos
+com coeficientes $a_k,b_k,c_k \in \Z$ inteiros. Soma e diferença de cadeias é definida formalmente, e.g.
+\[ \sum c_k \Delta_k - \sum c_k' \Delta_k = \sum (c_k - c_k') \Delta_k. \]
+
+Pela qualquer função $f(z)$ podemos definir a ``integral'' (ou o ``valor'') dela no $0$-cadeia pela linearidade
+\[ \int_{\sum a_k P_k} f := \sum a_k f(P_k). \]
+
+Similarmente pelo qualquer diferencial $f(z) dz$ podemos definir a integral dele sobre $1$-cadeia pela linearidade
+\[ \int_{\sum b_k P_kQ_k} f(z) dz := \sum b_k \int_{P_kQ_k} f(z) dz \]
+onde 
+\[ \int_{P_k Q_k} f(z) dz := \int_0^1 f(P_k + t(Q_k-P_k)) (Q_k-P_k) dt. \]
+
+Podemos definir aplicação linear de \emph{fronteira}
+\[ \partial: C_2(D) \to C_1(D) \]
+pelo
+\[ \partial \sum c_k \Delta_k = \sum c_k \partial \Delta_k, \]
+onde a fronteira de um triangulo orientado $ABC$ é definida como 
+\[ \partial ABC := AB + BC + CA, \]
+i.e. a fronteira de triângulo é a soma de 3 arestas dele orientadas em sentido anti-horário.
+
+Então como corolário do lema de Goursat temos que
+\[ \int_{\partial S} f(z) dz = 0 \]
+por qualquer $2$-cadeia $S \in C_2(D)$.
+
+Também podemos definir aplicação de fronteira 
+\[ \partial : C_1(D) \to C_0(D) \]
+pela
+\[ \partial \sum b_k P_k Q_k = \sum b_k \partial  P_kQ_k = \sum b_k (Q_k - P_k). \]
+
+Uma $1$-cadeia $C = \sum b_k P_k Q_k$ é chamada \emph{$1$-cíclo} se a fronteira dela é zero, i.e. $\partial C = 0$.
+
+Para um triângulo $\Delta = ABC$ temos
+\[
+\partial \Delta = AB + BC + CA,
+\]
+então a fronteira de fronteira é igual ao zero:
+\[
+\partial \partial \Delta = \partial (AB + BC + CA)  = \partial AB + \partial BC + \partial CA = B-A + C-B + A-C = 0.
+\]
+
+Logo pela linearidade também temos que por qualquer $2$-cadeia $S = \sum c_k \Delta_k$
+\[ \partial \partial S = \sum c_k \partial \partial \Delta_k = \sum c_k \cdot 0 =  0. \]
+
+Isso implica que qualquer $1$-fronteira ($1$-cadeira que é uma fronteira de uma $2$-cadeia) é um $1$-cíclo.
+
+As vezes você pode encontrar as notações $Z_1(D)$ para o grupo de $1$-cíclos
+\[ Z_1(D) := \{ C \in C_1(D) \,|\, \partial C = 0 \} \subset C_1(D), \]
+e para o grupo de $1$-fronteiras
+\[ B_1(D) := \partial C_2(D) \subset C_1(D) \].
+Vejamos que há uma inclusão natural $B_1(D) \subset Z_1(D) \subset C_1(D)$,
+i.e. cada fronteira é um cíclo.
+
+Por algumas regiões acontece que todos os $1$-cíclos são $1$-fronteiras,
+por exemplo isso é o caso pelas regiões convexas.
+Similarmente podemos definir regiões \emph{estreladas} como regiões tais que existe um ponto $z_0 \in D$ tal que
+$\forall z\in D, \forall t \in [0,1] \implies z_0 + t (z-z_0) \in D$. Nas regiões estreladas também
+todos os $1$-cíclos são $1$-fronteiras.
+\marginnote{Mais geralmente isso é verdade em regiões \emph{simplesmente conexas},
+i.e. regiões em quais qualquer par de caminhos entre par de pontos $P$ e $Q$ pode ser deformados um doutro continuamente com fins fixos,
+i.e. $\forall w_0,w_1 : [0,1] \to D$ tais que $w_0(0) = w_1(0) = P$
+e $w_0(1) = w_1(1) = Q$ existe $w: [0,1]\times[0,1] \to D$ tal que
+$w(0,u) = w_0(u)$, $w(1,u) = w_1(u)$, $w(*,0) = P$, $w(*,1) = Q$, onde $w(*,0) = ...$ significa que valor de $*$ pode ser qualquer $t\in[0,1]$.}
+
+Por algumas outras regiões isso não é verdade, e.g. em disco perfurado ou num anel há mais cíclos de que fronteiras.
+
+
+Geralmente podemos medir essa diferença por grupo quociente
+\[ H_1(D) := Z_1(D) / B_1(D), \] 
+chamado o grupo de \emph{homologia}.
+Os elementos deste grupo são as classes de equivalência de $1$-cíclos:
+digamos que par de $1$-cíclos $C$ e $C'$ são equivalentes se a diferença deles é uma $1$-fronteira,
+i.e. $C \simeq C' \iff \exists S \,\|\, C-C' = \partial S$.
+
+O fato importante que podemos computar este grupo, por exemplo $H_1(anel) = \Z$.
+Número de geradores dele é chamado \emph{número de Betti} $b_1(D)$.
+Para $D$ o disco com $b$ buracos e furações o número de Betti é igual ao $b$,
+i.e. ao número de buracos e furações. Isso significa que se somos interessados em integrais de formas holomorfas sobre
+diferentes cíclos em $D$ temos que computar $b$ integrais independentes, e todos outros
+já podem ser escritas como combinações lineares (com coeficientes inteiros) de $b$ integrais básicos
+\[ \int_{a_1 C_1 + \dots + a_b C_b + \partial S} \omega = a_1 \int_{C_1} \omega + \dots + a_b \int_{C_b} \omega. \]
+Uma escolha padrão dessa base $C_1,\dots,C_b$ é escolher os cíclos que atravesam cada buraco em sentido antihorário com uma volta.
+
+
 \section{Primitiva.}
 
 
 \section{Fórmula integral de Cauchy.}
+
+\begin{teorema}
+Seja $f : D \to \C$ holomorfa em região $D$
+e $G = \{ z\in\C \,\|\, |z-z_0| \leq r \} \subset D$. Então
+\[ f(z_0) = \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} = \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi. \]
+\end{teorema}
+\begin{proof}
+Pela compacidade de $G$ temos que $f$ é uniformemente contínua em $G$, i.e.
+$\forall \epsilon > 0 \exists\delta >0 \,:\, \forall |z-z_0|\leq\delta \implies |f(z)-f(z_0)| < \epsilon$.
+Escolhemos um subdisco $G_\rho = \{ z\in\C \,\|\, |z-z_0| \leq \rho \} \subset G \subset D$.
+Pelo \Cref{t:cauchy} (de Cauchy) temos
+$\int_{\partial G} \frac{f(z) dz}{z-z_0} = \int_{\partial G_\rho} \frac{f(z) dz}{z-z_0}$.
+Então
+\begin{equation*}
+\frac1{2\pi i} \int_{\partial G} \frac{f(z)dz)}{z-z_0} - f(z_0) = \frac1{2\pi i} \int_{\partial G_\rho} \frac{f(z)-f(z_0)}{z-z_0} dz, 
+\end{equation*}
+e 
+\[|\frac1{2\pi i} \int_{\partial G_\rho} \frac{f(z)-f(z_0)}{z-z_0} dz| \leq \frac1{2\pi} \int_{\partial G_\rho} \frac{\epsilon}{\rho} |dz| = \epsilon. \]
+Substituindo $z = z_0 + r e^{i\phi}$ obtemos
+\[ f(z_0) = \frac{1}{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} = 
+\frac{1}{2\pi i} \int_0^{2\pi} \frac{f(z_0 + r e^{i\phi})}{r e^{i\phi}} \frac{d(z_0+re^{i\phi})}{d\phi} d\phi
+= \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi. \]
+\end{proof}
+
+\begin{teorema}[Cauchy]
+Se função $f$ é holomorfa em região $D$ e $G\subset D$ um compacto t.q. a fronteira dele $\partial G$ é o finito número de curvas retificáveis
+\footnote{E.g. poligonal ou arcos de círculos.},
+então por qualquer $z_0 \in D \setminus \partial G$
+$\frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0}$  é igual $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
+\end{teorema}
+\begin{proof}
+Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy}.
+Se $z_0$ é dentro, consideremos uma bola fechada $\overline{B}(z_0,\rho)\subset G \setminus \partial G$.
+A diferença entre os cíclos $\partial \overline{B}(z_0,\rho)$ e $\partial G$ é uma fronteira,
+e.g. pode realizar a diferença como fronteira de compacto $K$ tais que $\frac{f(z)}{z-z_0}$ é holomorfa em $K$,
+e $\partial G - \partial \overline{B}(z_0,\rho) = \partial K$.
+Logo 
+\[ 2\pi i f(z_0) = \int_{\partial \overline{B}(z_0,\rho)} \frac{f(z)dz}{z-z_0} = \int_{\partial G} \frac{f(z)dz}{z-z_0}. \]
+\end{proof}
 
 \section{Decomposição em séries de Taylor.}
 
@@ -271,6 +420,22 @@ Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
 \section{Teorema de Weierstrass.}
 
 \section{Funções holomorfas em um anel. Séries de Laurent.}
+% setembro 13
+
+\begin{teorema}
+Seja $f$ uma função holomorfa num anel $A = \{ 0\leq r < |z-a| < R \leq \infty \}$. Então em $A$ temos
+\[ f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n, \]
+onde
+\[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}} \]
+e
+\[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A. \]
+\end{teorema}
+\begin{proof}
+Para $z\in A$ escolha um subanel fechado $A' = \{ r < r'\leq |w-a| \leq R' < R \}$.
+Pela fórmula de Cauchy temos
+
+\end{proof}
+
 
 \section{Pontos singulares isolados.}
 
@@ -302,7 +467,7 @@ Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
 
 \begin{teorema}[Poincaré, Koebe 1907, foi 22o problema de Hilbert]
 Qualquer superfície de Riemann simplesmente conexa é biholomorfa ao uma de três superfícies padrão:
-esfera de Riemann $\C\P^1 = \bar{C}$, reta/plano complexo $\C$ ou disco $\D = \{z : |z|<1\}$.
+esfera de Riemann $\C\P^1 = \bar{C}$, reta/plano complexo $\C$ ou disco $D = \{z : |z|<1\}$.
 \end{teorema}
 Os métodos de demonstração deste teorema são fora deste curso - temos que construir alguns funções
 harmônicas, e para isso usamos EDP. Veja e.g. livro texto de Donaldson "Riemann Surfaces" (2011).
