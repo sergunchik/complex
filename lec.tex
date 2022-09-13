@@ -4,7 +4,7 @@ Lembranças sobre os números complexos antes de começar a análise.
 Números complexos $\C$ são munidos com as operações binárias
 de soma e produto $+,\cdot : \C \times \C \to \C$,
 e com as funções de 
-conjugação $\bar{\cdot} : \C \to \C$,
+conjugação $\ol{\cdot} : \C \to \C$,
 parte real e parte imaginária $\Re,\Im : \C \to \R$,
 norma e valor absoluto $N,|\cdot| : \C \to \R_{\geq 0}$,
 argumento $\arg : \C \to \R/2\pi\Z$,
@@ -13,10 +13,10 @@ valor principal de argumento $Arg : \C \to [0,2\pi)$.
 \begin{gather}
 z = x + y i \\
 z = r (\cos \phi + i \sin \phi) = r e^{i\phi}\\
-\bar{z} = x - y i = r e^{-i\phi} \\
+\ol{z} = x - y i = r e^{-i\phi} \\
 x = r \cos \phi \\
 y = r \sin \phi \\
-N(z) = z \bar{z} = r^2 = x^2+y^2 \\
+N(z) = z \ol{z} = r^2 = x^2+y^2 \\
 |z| = \sqrt{N(z)} = r \\
 \arg z = \phi \mod 2\pi
 \end{gather}
@@ -42,7 +42,7 @@ as transformações $z \to (\cos \phi + i \sin \phi) \cdot z$ são rotações co
 as transformações $z \to r \cdot z$ ($r\in\R_{>0}$) são dilatações. 
 Todas elas preservam a orientação e também são conformes, i.e. preservam os ângulos.
 Também todas $z \to (\cos \phi + i \sin \phi) \cdot z + b$ preservam as distâncias euclidianas.
-As transformações $z \to (\cos \phi + i \sin \phi) \cdot \bar{z} + b$ coincidem com as reflexões
+As transformações $z \to (\cos \phi + i \sin \phi) \cdot \ol{z} + b$ coincidem com as reflexões
 em diferentes retas, elas preservam as distâncias, mas trocam a orientação.
 
 O subconjunto $U \subset \C$ é chamado \emph{aberto}\footnote{com respeito de topologia euclidiana}
@@ -110,8 +110,8 @@ uma equação $(df)(z_0) = f'(z_0) (dz)(z_0)$.
 Por enquanto podemos formalmente definir um espaço vetorial complexo $1$-dimensional com um vetor-base $(dz)(z_0)$ e para cada função $f(z)$ com derivada complexa em ponto $z_0$ associar outro vetor $(df)(z_0) := f'(z_0) (dz)(z_0)$. Essa notação (de Leibniz)
 será útil ao menos para escrever as fórmulas mais convenientes.
 
-Notações $\partial_z$ e $\partial_{\bar{z}}$.
-Equações de Cauchy--Riemann são equivalentes ao equação $\partial_{\bar{z}} f(z_0) = 0$,
+Notações $\partial_z$ e $\partial_{\ol{z}}$.
+Equações de Cauchy--Riemann são equivalentes ao equação $\partial_{\ol{z}} f(z_0) = 0$,
 neste caso $\partial_z f(z_0) = f'(z_0)$.
 
 \begin{lema}
@@ -138,14 +138,21 @@ satisfazem as equações de Cauchy--Riemann.
 \begin{problema}
 Suponha $f$ e $g$ têm as derivadas complexas em ponto $z_0$.
 Provar que $f+g$, $f\cdot g$ tem as derivadas complexas em ponto $z_0$
-e eles são iguais $(f+g)'(z_0) = f'(z_0)+g'(z_0)$ e $(fg)'(z_0) = f(z_0) g'(z_0) + f'(z_0) g(z_0)$.
+e elas são
+\begin{gather}
+(f+g)'(z_0) = f'(z_0)+g'(z_0), \\
+(fg)'(z_0) = f(z_0) g'(z_0) + f'(z_0) g(z_0).
+\end{gather}
 \end{problema}
 
 \begin{problema}
 Suponha $f: D_0 \to D_1$ tem derivada complexa em $z_0$,
 e $g : D_1 \to D_2$ tem derivada complexa em $f(z_0)$.
 Provar que $g\circ f: D_0 \to D_2$ tem derivada complexa em $z_0$
-e ela é igual a $(g\circ f)'(z_0) = g'(f(z_0)) \cdot f'(z_0)$. 
+e
+\begin{equation}
+(g\circ f)'(z_0) = g'(f(z_0)) \cdot f'(z_0).
+\end{equation} 
 \end{problema}
 
 \section{Funções holomorfas}
@@ -160,7 +167,8 @@ Uma função é holomorfa em ponto, se ela é holomorfa em alguma vizinhança de
 Constantes f(z) = a,
 identidade f(z) = z,
 funções lineares $z \mapsto a z$,
-todos os polinômios com coeficientes complexos.
+todos os polinômios com coeficientes complexos $f \in \C[z]$
+são holomorfas no todo $\C$ (tais funções são chamadas inteiras).
 \end{exem}
 
 \begin{problema}
@@ -171,13 +179,15 @@ Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a funçã
 \begin{problema}
 Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
 i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.
+\footnote{
 Dica: primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
 e translação por $b$, e então é conforme.
 Depois para $z \mapsto f(z)$ com $f(z) = 0$ e $f'(z)=1$ verifique que o ângulo entre um raio e a imagem dele
 é igual ao $0$ (se não saber a definição, use $\lim_{z\to 0} ang(z,0,f(z)) = \lim_{z\to 0} \arg \frac{f(z)}{z}$).
+}
 \end{problema}
 
-Se $f'(0)=0$ o ângulo não é preservado, mas multiplicado por ordem de zero. Vamos provar (mas ainda não provamos) que $f$ tem todas as derivados. Para agora, verifique que $z\mapsto z^n$ multiplica os ângulos em $z=0$ em $n$ vezes
+Se $f'(0)=0$, o ângulo não é preservado, mas multiplicado por ordem de zero. Vamos provar (mas ainda não provamos) que $f$ tem todas as derivadas. Para agora, verifique que $z\mapsto z^n$ multiplica os ângulos em $z=0$ em $n$ vezes
 (mas preserva os ângulos em outros pontos).
 
 \subsection{Séries}
@@ -199,19 +209,19 @@ Também provar que em qualquer compacto $K\subset D$ ele converge uniformemente.
 \end{problema}
 
 \begin{problema}
-Provar que séries para exponente, seno e coseno
-\begin{multline}
-\exp(z) = \sum_{n=0}^\infty \frac{z^n}{n!}, \\
-\cos(z) = \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!} = \frac{\exp(iz) + \exp(-iz)}{2},
-\sin(z) = \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} = \frac{\exp(iz) - \exp(-iz)}{2i},
-\end{multline}
+Provar que séries para exponente, seno e cosseno
+\begin{align}
+\exp(z) &= \sum_{n=0}^\infty \frac{z^n}{n!}, \\
+\cos(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}     &= \frac{\exp(iz) + \exp(-iz)}{2}, \\
+\sin(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} &= \frac{\exp(iz) - \exp(-iz)}{2i},
+\end{align}
 convergem absolutamente no todo $\C$ e são holomorfas.
 Compute as derivadas delas:
 $\exp' = \exp$, $\cos' = -\sin$, $\sin' = \cos$.
 \end{problema}
 
-As séries $\sum a_n z^n$ e $\sum \bar{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
-$\overline{\sum a_n z^n} = \sum \bar{a_n} \bar{z}^n$.
+As séries $\sum a_n z^n$ e $\sum \ol{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
+$\overline{\sum a_n z^n} = \sum \ol{a_n} \cdot \ol{z}^n$.
 
 \begin{prop}
 Para todos $z,w\in \C$ temos
@@ -235,16 +245,16 @@ A derivada dela é igual $f'(z) = \exp'(z) \exp(w-z) + \exp(z) \exp'(w-z) = \exp
 Se você já provou a relação entre funções $\cos$ e $\sin$ de origem geométrico e as séries acima,
 o corolário é óbvio. Senão agora podemos diretamente relacionar: veja que a derivada de
 $(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumento real e valor complexo
-onde as funções trigonométicas $\cos$ e $\sin$ são definidas geometricamente)
+onde as funções trigonométricas $\cos$ e $\sin$ são definidas geometricamente)
 existe e é igual $0$.
 \footnote{
 Outra demonstração mais geométrica é seguinte:
-desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \bar{i}$ temos
+desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \ol{i}$ temos
 $\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
 Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
 Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
-Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\bar{z}}2$
-e a parte imaginária é $\frac{z-\bar{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ and similarly for $\sin$.
+Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
+e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
 Ex - finish this proof.
 }
 \end{proof}
@@ -288,7 +298,7 @@ em particular o valor do lado direito não depende da parametrização $w$.
 \begin{exem}
 Compute $\int_{|z-z_0|=r} (z-z_0)^n dz$ por qualquer $z_0\in\C$, $r\in\R$ e $n \in \Z$.
 $$ \int_{|z|=1} zˆn dz = \int_0^{2\pi} \exp(i(n+1)\phi) d\phi = 2\pi i \delta_{n,-1} $$
-i.e. a intgral é $0$ para $n\neq -1$ e é $2\pi i$ para $n=-1$.
+i.e. a integral é $0$ para $n\neq -1$ e é $2\pi i$ para $n=-1$.
 \end{exem}
 
 \begin{teorema}
@@ -297,7 +307,7 @@ $$ \int_\gamma (a f + b g) dz = a \int_\gamma f(z) dz + b \int_\gamma g(z) dz $$
 e também linear em $\gamma$:
 $$ \int_{\gamma_1 \cup \gamma_2} f(z) dz = \int_{\gamma_1} f(z) dz + \int_{\gamma_2} f(z) dz.$$
 Aqui pensamos em $\gamma_i$ orientadas tais que o fim de $\gamma_1$ é o início de $\gamma_2$,
-mas também podemos extender a definição de integral sobre as cadeias (somas formais de curvas orientadas).
+mas também podemos estender a definição de integral sobre as cadeias (somas formais de curvas orientadas).
 \end{teorema}
 
 \section{Teorema de integral de Goursat--Cauchy.}
@@ -359,7 +369,7 @@ Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
 \begin{teorema}
 Suponha que $f$ é holomorfa em $D\subset \C$ e $K \subset D$ é um compacto t.q.
 a fronteira dele $\partial K$ é finito número de curvas fechadas. Então $\int_{\partial K} f(z) dz = 0$,
-onde as orientações das componentas da fronteira são induzidas pela orientação de $\C$ e $K$.
+onde as orientações das componentes da fronteira são induzidas pela orientação de $\C$ e $K$.
 \end{teorema}
 
 \section{Primitiva.}
@@ -405,7 +415,7 @@ onde as orientações das componentas da fronteira são induzidas pela orientaç
 
 \begin{teorema}[Poincaré, Koebe 1907, foi 22o problema de Hilbert]
 Qualquer superfície de Riemann simplesmente conexa é biholomorfa ao uma de três superfícies padrão:
-esfera de Riemann $\C\P^1 = \bar{C}$, reta/plano complexo $\C$ ou disco $\D = \{z : |z|<1\}$.
+esfera de Riemann $\C\P^1 = \ol{C}$, reta/plano complexo $\C$ ou disco $\D = \{z : |z|<1\}$.
 \end{teorema}
 Os métodos de demonstração deste teorema são fora deste curso - temos que construir alguns funções
 harmônicas, e para isso usamos EDP. Veja e.g. livro texto de Donaldson "Riemann Surfaces" (2011).
