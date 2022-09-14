@@ -301,7 +301,7 @@ em particular o valor do lado direito não depende da parametrização $w$.
 
 \begin{exem}
 Compute $\int_{|z-z_0|=r} (z-z_0)^n dz$ por qualquer $z_0\in\C$, $r\in\R$ e $n \in \Z$.
-$$ \int_{|z|=1} zˆn dz = \int_0^{2\pi} \exp(i(n+1)\phi) d\phi = 2\pi i \delta_{n,-1} $$
+$$ \int_{|z|=1} z^n dz = \int_0^{2\pi} \exp(i(n+1)\phi) d\phi = 2\pi i \delta_{n,-1} $$
 i.e. a integral é $0$ para $n\neq -1$ e é $2\pi i$ para $n=-1$.
 \end{exem}
 
@@ -473,7 +473,7 @@ Geralmente podemos medir essa diferença por grupo quociente
 chamado o grupo de \emph{homologia}.
 Os elementos deste grupo são as classes de equivalência de $1$-cíclos:
 digamos que par de $1$-cíclos $C$ e $C'$ são equivalentes se a diferença deles é uma $1$-fronteira,
-i.e. $C \simeq C' \iff \exists S \,\|\, C-C' = \partial S$.
+i.e. $C \simeq C' \iff \exists S \,|\, C-C' = \partial S$.
 
 O fato importante que podemos computar este grupo, por exemplo $H_1(anel) = \Z$.
 Número de geradores dele é chamado \emph{número de Betti} $b_1(D)$.
@@ -491,13 +491,13 @@ Uma escolha padrão dessa base $C_1,\dots,C_b$ é escolher os cíclos que atrave
 
 \begin{teorema}
 Seja $f : D \to \C$ holomorfa em região $D$
-e $G = \{ z\in\C \,\|\, |z-z_0| \leq r \} \subset D$. Então
+e $G = \{ z\in\C \,|\, |z-z_0| \leq r \} \subset D$. Então
 \[ f(z_0) = \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} = \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi. \]
 \end{teorema}
 \begin{proof}
 Pela compacidade de $G$ temos que $f$ é uniformemente contínua em $G$, i.e.
 $\forall \epsilon > 0 \exists\delta >0 \,:\, \forall |z-z_0|\leq\delta \implies |f(z)-f(z_0)| < \epsilon$.
-Escolhemos um subdisco $G_\rho = \{ z\in\C \,\|\, |z-z_0| \leq \rho \} \subset G \subset D$.
+Escolhemos um subdisco $G_\rho = \{ z\in\C \,|\, |z-z_0| \leq \rho \} \subset G \subset D$.
 Pelo \Cref{t:cauchy} (de Cauchy) temos
 $\int_{\partial G} \frac{f(z) dz}{z-z_0} = \int_{\partial G_\rho} \frac{f(z) dz}{z-z_0}$.
 Então
@@ -529,6 +529,57 @@ Logo
 \end{proof}
 
 \section{Decomposição em séries de Taylor.}
+
+\begin{teorema}
+Seja $f : D \to \C$ uma função holomorfa em região $D$.
+Em qualquer bola $B = B(z_0,R) \subset D$ dentro de região de holomorficidade
+define números complexos $c_0,c_1,\dots\in\C$ como as integrais
+\[ c_n := \frac1{2\pi i} \int_{\gamma_r} \frac{f(z)dz}{(z-z_0)^n} \]
+sobre qualquer círculo com centro em $z_0$ dentro de $B$  
+\[ \gamma_r = \{ z\in \C \,|\, |z-z_0|< r < R \}. \]
+Então as séries
+\[ \sum_{n=0}^\infty c_n (z-z_0)^n \]
+convergem absolutamente para $z\in B$
+\footnote{E uniformemente nos compactos.}
+e a soma é igual à função $f(z)$:
+\[ f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n. \]
+\end{teorema}
+\begin{proof}
+\Cref{t:cauchy} de (Goursat-)Cauchy implica que as integrais sobre cíclos $\gamma_r$
+que definem os números $c_n$
+não dependem da escolha de raio $0<r<R$.\footnote{E em particular que os números $c_n$ são bem definidos.}
+
+Para um ponto $z\in B$ vamos escolher $r > |z-z_0|$, e denotamos $\rho = \frac{|z-z_0|}{r} < 1$.
+Lembra que a progressão geométrica $1 + u + u^2 + \dots$ converge a $\frac{1}{1-u}$ absolutamente para $0<u<1$,
+e as colas $u^k + u^{k+1} + \dots$ são majoradas por $\frac{u^k} \cdot C$ com constante $C = (1-u)^{-1}$.
+Logo 
+\begin{equation*}
+ \frac{1}{w-z} = \frac{1}{(w-z_0)-(z-z_0)} = (w-z_0)^{-1} \frac1{1-\frac{z-z_0}{w-z_0}}
+= \sum_{n\geq 0} \frac{(z-z_0)^n}{(w-z_0)^{n+1}}
+\end{equation*}
+converge absolutamente para todos $w\in\gamma_r$.
+\footnote{Para $w\in \gamma_r$ temos$|w-z_0| = r$ pela definição de $\gamma_r$.
+No outro lado $|z-z_0|<r$ pela escolha de raio $r$.}
+Temos as cotas
+\[ |\int_{\gamma_r} \sum_{n\geq k} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw|
+< 2\pi r \frac{\rho^k} C, \]
+onde $C = \max_{w\in\gamma_r} |f(z)| |w-z_0|^{-1} (1-\rho)^{-1}$ não depende de $k$.
+Logo o limite de
+\[ \int_{\gamma_r} \frac{f(w)dw}{w-z} - \sum_{n=0}^{k-1} \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw \]
+é igual ao $0$, i.e. a soma
+\[ \sum_{n=0}^\infty \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw \]
+converge absolutamente e é igual a $\int_{\gamma_r} \frac{f(w)dw}{w-z}$.
+Pela definição de $c_n$ temos que cado termo é igual
+\[ \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw 
+= (z-z_0)^n (2\pi i) \int_{\gamma_r} \frac{f(w)dw}{(w-z_0)^{n+1}}
+= (2\pi i) c_n (z-z_0)^n, \]
+então a soma $\sum_{n=0}^\infty c_n (z-z_0)^n$ converge absolutamente
+e é igual a $\frac{1}{2\pi i} \int_{\gamma_r} \frac{f(w)dw}{z-w}$,
+e o último integral é igual ao valor $f(z)$ pelo \Cref{t:cauchy}.
+\marginnote{$f(z) = \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{w-z}
+= \frac{1}{2\pi i}\int_\gamma \sum_{n=0}^\infty \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw
+= \sum_{n=0}^\infty (z-z_0)^n \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{(w-z_0)^{n+1}} = \sum c_n (z-z_0)^n$}
+\end{proof}
 
 \section{Teorema de Morera. Critério de holomorficidade.}
 
