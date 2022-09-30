@@ -1,11 +1,15 @@
 % arara: lualatex
 \RequirePackage{import}
-\documentclass[a4paper,nobib,sfsidenotes]{tufte-handout}
+% \documentclass[a4paper,nobib,sfsidenotes]{tufte-handout}
+\documentclass[a4paper]{scrartcl}
+\newcommand{\marginnote}{\footnote}
 % Turn on numbering for section and subsection headings
 \setcounter{secnumdepth}{2}
 \import{../}{p}  % packages + (night) + configuration + macros
 \author{Sergey}
+\title{Análise complexa}
 \date{\today}
 \begin{document} 
+\maketitle
 \input{lec}
 \end{document}
