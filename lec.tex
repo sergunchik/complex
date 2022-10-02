@@ -172,7 +172,7 @@ u_y &= - v_x.
 \end{cor}
 
 \emph{Diferenciais complexas} (formas diferenciais complexas).
-Em notação-definição $\frac{df}{dz}(z_0) = f'(z_0)$ podemos formalmente multiplicar pelo denominador para obter
+Em notação--definição $\frac{df}{dz}(z_0) = f'(z_0)$ podemos formalmente multiplicar pelo denominador para obter
 uma equação $(df)(z_0) = f'(z_0) (dz)(z_0)$.
 Por enquanto podemos formalmente definir um espaço vetorial complexo $1$-dimensional com um vetor-base $(dz)(z_0)$ e para cada função $f(z)$ com derivada complexa em ponto $z_0$ associar outro vetor $(df)(z_0) := f'(z_0) (dz)(z_0)$. Essa notação (de Leibniz)
 será útil ao menos para escrever as fórmulas mais convenientes.
@@ -415,7 +415,7 @@ Nessa seção damos a demonstração essencialmente de Goursat.
 
 A demonstração do seguinte lema segue a ideia de Goursat (1883) com a diferença que ele usou
 os quadrados em vez de triângulos.
-\begin{lema}[Lema de Goursat, 1883]
+\begin{lema}[Goursat, 1883]
 \label{l:goursat}
 Seja $f$ uma função continua no triângulo $\Delta$ e holomorfa no interior dele.
 Então $\int_{\partial\Delta} f(z) dz = 0$.
@@ -453,7 +453,7 @@ M 4^{-k} \leq |\int_{\Delta_k} f(z) dz| = |\int_{\Delta_k} \alpha(z) (z-z_0) dz|
 então $M \leq C_1 C_2 \epsilon$ por qualquer $\epsilon>0$, i.e. $M=0$.
 \end{proof}
 
-\begin{teorema}[Cauchy--Goursat 1883]
+\begin{teorema}[Cauchy(--Goursat, 1883)]
 \label{t:cauchy}
 Suponha que $C$ é uma curva fechada de cumprimento finito,
 \footnote{Goursat escreveu ``de cumprimento finito'', também está usada
@@ -695,13 +695,15 @@ $F'(z) = f(z)$ e $\int_\gamma f dz = F(w(b)) - F(w(a))$.
 Achar o limite $\lim_{\rho \to +0} \int_\alpha^\beta f(\rho e^{i\phi}) d\phi$.
 \end{problema}
 
-\begin{teorema}
+\begin{teorema}[sobre o médio]
 Seja $f : D \to \C$ holomorfa
 e $G = \{ z\in\C : |z-z_0| \leq r \} \subset D$. Então
 \begin{equation}
 f(z_0) = \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} 
-= \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi.
+= \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi,
 \end{equation}
+i.e. o valor de função holomorfa em um ponto é igual ao médio de valores dela
+no círculo ao redor do ponto em cujo fecho convexo a função é holomorfa.
 \end{teorema}
 \begin{proof}
 Escolhemos um subdisco $G_\rho = \{ z\in\C \,|\, |z-z_0| \leq \rho \} \subset G \subset D$.
@@ -723,6 +725,14 @@ Substituindo $z = z_0 + r e^{i\phi}$ obtemos
 = \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi. \]
 \end{proof}
 
+\begin{problema}
+Provar que para $B(z_0,r)\subset D$ o valor de função $f(z_0)$ é igual ao médio de valores dela
+em disco:\footnote{Este problema é facultativo para os quem sabe integrar sobre o disco bidimensional.}
+\begin{equation}
+f(z_0) = \frac{1}{\pi r^2} \int_{B(z_0,r)} f(z) dx dy.
+\end{equation}
+\end{problema}
+
 \begin{teorema}[Cauchy]
 Se função $f$ é holomorfa em região $D$ e $G\subset D$ um compacto t.q. a fronteira dele $\partial G$ é o finito número de curvas retificáveis
 \footnote{E.g. poligonal ou arcos de círculos.},
@@ -742,6 +752,7 @@ Logo
 \section{Decomposição em séries de Taylor.}
 
 \begin{teorema}
+\label{t:hol-series}
 Seja $f : D \to \C$ uma função holomorfa em região $D$.
 Em qualquer bola $B = B(z_0,R) \subset D$ dentro de região de holomorficidade
 defina os números complexos $c_0,c_1,\dots\in\C$ como as integrais
@@ -794,7 +805,8 @@ e a última integral é igual ao valor $f(z)$ pelo \Cref{t:cauchy}.
 = \sum_{n=0}^\infty (z-z_0)^n \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{(w-z_0)^{n+1}} = \sum c_n (z-z_0)^n$}
 \end{proof}
 
-\begin{teorema}
+\begin{teorema}[Séries e derivadas delas são holomorfas]
+\label{t:series-derhol}
 Suponha que $R = \big(\limsup |c_n|^{\frac1n}\big)^{-1} > 0$. Então a serie
 $f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n$ converge em disco
 $D = \{z\in\C : |z-z_0|<R\}$ de raio $R$ e a função $f(z)$ é holomorfa em $D$.
@@ -803,7 +815,7 @@ e é igual à série $g(z) = \sum_{n=1}^\infty n c_n (z-z_0)^{n-1}$.
 \end{teorema}
 \begin{proof}
 Desde que $\limsup \big(n|c_n|\big)^{\frac{1}{n-1}} = \limsup |c_n|^{\frac1n} = 1/R$,
-a função $g(z)$ é definida em $D$ e converge uniformemente em compatos lá,
+a função $g(z)$ é definida em $D$ e converge uniformemente em compactos lá,
 logo podemos trocar a ordem de soma e integral de séries $g$, e
 \begin{multline}
 F(z) := \int_{[z_0,z]} g(w) dw
@@ -827,6 +839,87 @@ Logo também existe a segunda derivada $f''(z)$, i.e. $f'(z)$ é holomorfa.
 \end{proof}
 
 \section{Teorema de Morera. Critério de holomorficidade.}
+
+\begin{teorema}
+\label{t:hol-bihol}
+Uma função holomorfa $f : D \to \C$ 
+tem as derivadas complexas das todas as ordens, eles são holomorfas e iguais às
+\begin{equation}
+f^{(k)}(z) = \frac{k!}{2\pi i} \int_{\partial \ol{B}(z,r)} \frac{f(w) dw}{(w-z)^{k+1}},
+\end{equation}
+para qualquer disco $\ol{B}(z,r) \subset D$ em qual a função é holomorfa.
+\end{teorema}
+\begin{proof}
+Por qualquer $\ol{B}(z_0,r) \subset D$ pelo \Cref{t:hol-series} temos a igualdade para 
+todos $z\in \ol{B}(z_0,r)$:
+\[ f(z) = \sum_{n=0}^\infty c_n(z_0) \cdot (z-z_0)^n \]
+com
+\[ c_n(z_0) = \frac{1}{2\pi i} \int_{\partial \ol{B}(z_0,r)} \frac{f(w) dw}{(w-z_0)^{n+1}}. \]
+Então pelo \Cref{t:series-derhol} a função $f'(z)$ é holomorfa em $B(z_0,r)$
+e é igual à série
+\[ f'(z) = \sum_{n\geq 1} n \cdot c_n(z_0) \cdot (z-z_0)^{n-1}. \]
+Logo a derivada $f'(z)$ é holomorfa em $D$.
+Aplicando o mesmo argumento para $f'(z)$ e a indução, obtemos que todas as derivadas complexas $f^{(k)}(z)$
+existem, são holomorfas em $D$ e por qualquer disco $\ol{B}(z_0,r) \subset D$ e $z\in B(z_0,r)$
+são iguais às séries
+\[ f^{(k)}(z) = \sum_{n\geq k} \big(\prod_{j=0}^{k-1} (n-j)\big) \cdot c_n(z_0) \cdot (z-z_0)^{n-k} .\]
+Logo substituindo $z=z_0$ obtemos
+\[ f^{(k)}(z_0) = k! \cdot c_k(z_0) = \frac{k!}{2\pi i} \int_{\partial \ol{B}(z_0,r)} \frac{f(w) dw}{(w-z_0)^{k+1}} \]
+por qualquer $\ol{B}(z_0,r) \subset D$.
+\end{proof}
+
+\begin{teorema}[Morera]
+\label{t:morera}
+Se uma função $f: D \to \C$ é contínua e as integrais de $f(z) dz$ sobre
+fronteiras de triângulos $\Delta \subset D$ em região são zeros
+\[ \int_{\partial \Delta} f(z) dz = 0, \]
+então ela é holomorfa em $D$, i.e. $f(z)$ tem uma derivada complexa $f'(z)$ para todos $z\in D$.
+\end{teorema}
+\begin{proof}
+Holomorficidade é uma propriedade local,\footnote{Digamos que uma propriedade $P$ das funções é \emph{local},
+se para qualquer $f : D \to \C$ e para qualquer cobrimento por abertos $D = \bigcup U_i$
+a veracidade de $P$ para todas as restrições $f : U_i \to \C$
+é equivalente à veracidade de $P$ para $f : D \to \C$.
+Todas as propriedades que são formuladas como ``pelo qualquer ponto $z\in D$
+existe uma vizinhança $z \in U \subset D$ tal que $f$ restringida para $U$
+satisfaz alguma coisa'' são locais pela definição.}
+então é suficiente provar o teorema para o caso
+quando $D$ é um disco aberto $D = B(a,r)$. Neste caso pelo \Cref{l:pre-morera}
+sabemos que $F(z) := \int_{[a,z]} f(z) dz$ é uma primitiva de $f(z)$ i.e.
+$F(z)$ é holomorfa em $B(a,r)$ e $F'(z) = f(z)$.
+Logo pelo \Cref{t:hol-bihol} derivamos que $f(z) = F'(z)$ também é holomorfa,
+sendo uma derivada de uma função holomorfa.
+\end{proof}
+
+\begin{teorema}[Critério de holomorficidade]
+\label{t:criterio}
+Seja $f: D \to \C$ uma função definida em uma região $D\subset \C$. 
+As seguintes propriedades são equivalentes:
+\begin{enumerate}
+\item \label{f:hol}
+a função $f$ é holomorfa em $D$, i.e. ela tem a derivada complexa $f' : D \to \C$:
+% \[ f(z) = f(z_0) + f'(z_0) (z-z_0) + o(z-z_0) , \]
+\[ \lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0} = f'(z_0), \]
+\item \label{f:intzero}
+a função $f$ é contínua e as integrais da forma diferencial $f dz$
+sobre a fronteira $\partial \Delta$
+de qualquer triângulo $\Delta \subset D$ são zeros: 
+\[ \int_{\partial \Delta} f(z) dz = 0 , \]
+\item \label{f:anal}
+a função $f$ é analítica, i.e. existem as funções $c_0,c_1,\dots: D\to\C$ tais que
+a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
+é igual à série absolutamente convergente ali:
+\[ f(z) = \sum_{n=0}^\infty c_n(z_0) \cdot (z-z_0)^n. \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+\begin{itemize}
+\item \eqref{f:hol} $\implies$ \eqref{f:intzero} é \Cref{l:goursat} de Goursat,
+\item \eqref{f:intzero} $\implies$ \eqref{f:hol} é \Cref{t:morera} de Morera,
+\item \eqref{f:hol} $\implies$ \eqref{f:anal} é \Cref{t:hol-series},
+\item \eqref{f:anal} $\implies$ \eqref{f:hol} é \Cref{t:series-derhol}.
+\end{itemize}
+\end{proof}
 
 \section{Teorema de Weierstrass.}
 
