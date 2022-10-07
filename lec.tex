@@ -459,8 +459,8 @@ então $M \leq C_1 C_2 \epsilon$ por qualquer $\epsilon>0$, i.e. $M=0$.
 Suponha que $C$ é uma curva fechada de cumprimento finito,
 \footnote{Goursat escreveu ``de cumprimento finito'', também está usada
 o término \emph{retificável}.}
-t.q. $C = \partial D$
-e uma função $f(z)$ é continua na $C$ e holomorfa no interior de $D$. Então
+tal que $C = \partial D$,
+e que uma função $f(z)$ é contínua na $C$ e holomorfa no interior de $D$. Então
 $\int_C f(z) dz = 0$.
 \end{teorema}
 \begin{proof}
@@ -697,6 +697,7 @@ Achar o limite $\lim_{\rho \to +0} \int_\alpha^\beta f(\rho e^{i\phi}) d\phi$.
 \end{problema}
 
 \begin{teorema}[sobre o médio]
+\label{t:medio}
 Seja $f : D \to \C$ holomorfa
 e $G = \{ z\in\C : |z-z_0| \leq r \} \subset D$. Então
 \begin{equation}
@@ -734,11 +735,13 @@ f(z_0) = \frac{1}{\pi r^2} \int_{B(z_0,r)} f(z) dx dy.
 \end{equation}
 \end{problema}
 
-\begin{teorema}[Cauchy]
+\begin{teorema}[Fórmula de Cauchy]
+\label{formula-cauchy}
 Se função $f$ é holomorfa em região $D$ e $G\subset D$ um compacto t.q. a fronteira dele $\partial G$ é o finito número de curvas retificáveis
 \footnote{E.g. poligonal ou arcos de círculos.},
-então por qualquer $z_0 \in D \setminus \partial G$
-$\frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0}$  é igual $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
+então por qualquer $z_0 \in D \setminus \partial G$ a integral
+\[ \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} \]
+é igual ao $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
 \end{teorema}
 \begin{proof}
 Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy-k}.
@@ -778,10 +781,11 @@ Para um ponto $z\in B$ vamos escolher $r > |z-z_0|$, e denotamos $\rho = \frac{|
 Lembra que a progressão geométrica $1 + u + u^2 + \dots$ converge a $\frac{1}{1-u}$ absolutamente para $0<u<1$,
 e as colas $u^k + u^{k+1} + \dots$ são majoradas por $\frac{u^k} \cdot C$ com constante $C = (1-u)^{-1}$.
 Logo 
-\begin{equation*}
+\begin{equation}
+\label{eq:series-geometrica}
  \frac{1}{w-z} = \frac{1}{(w-z_0)-(z-z_0)} = (w-z_0)^{-1} \frac1{1-\frac{z-z_0}{w-z_0}}
 = \sum_{n\geq 0} \frac{(z-z_0)^n}{(w-z_0)^{n+1}}
-\end{equation*}
+\end{equation}
 converge absolutamente para todos $w\in\gamma_r$.
 \footnote{Para $w\in \gamma_r$ temos $|w-z_0| = r$ pela definição de $\gamma_r$.
 No outro lado $|z-z_0|<r$ pela escolha de raio $r$.}
@@ -998,17 +1002,76 @@ e aplique \Cref{l:uniforme}.
 % setembro 13
 
 \begin{teorema}
-Seja $f$ uma função holomorfa num anel $A = \{ 0\leq r < |z-a| < R \leq \infty \}$. Então em $A$ temos
+Seja $f$ uma função holomorfa em um anel $A = A_{r,R}(a) := \{ 0\leq r < |z-a| < R \leq \infty \}$.
+Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
 \[ f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n, \]
 onde
-\[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}} \]
-e
-\[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A. \]
+\[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}, \]
+\[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A, \]
+e a série converge absolutamente.
 \end{teorema}
 \begin{proof}
-Para $z\in A$ escolha um subanel fechado $A' = \{ r < r'\leq |w-a| \leq R' < R \}$.
-Pela fórmula de Cauchy temos
+Pelo \Cref{t:cauchy-k} de Cauchy vejamos que a integral
+\[ \int_{\gamma_\rho} \frac{f(w)dw}{w-a}  \] 
+não depende da escolha de $r<\rho<R$.
+% Para $z\in A$ escolha um subanel fechado $A' = \{ r < r'\leq |w-a| \leq R' < R \}$.
+Por qualquer $r<\rho<R$ temos uma cota
+\[ \rho^n \cdot |c_n| = \big|\int_0^1 f(\rho e^{2\pi i t}) e^{-2\pi i t (n+1)} dt\big|
+\leq \max_{w\in\gamma_\rho} |f(w)| \]
+Então
+\begin{align*}
+\limsup_{n\to\infty} |c_n|^{\frac1n} \leq \inf_{r<\rho<R} \frac1\rho = \frac1{R}, \\
+\limsup_{n\to\infty} |c_{-n}|^{\frac1n} \leq \inf_{r<\rho<R} \rho = r.
+\end{align*}
+Isso significa que a séries
+\[ \sum_{n=0}^\infty c_n (z-a)^n  \]
+converge absolutamente em disco $\{ z\in\C : |z-a|<R \}$
+e a séries
+\[ \sum_{n=1}^\infty c_{-n} (z-a)^{-n}  \]
+converge absolutamente em ``disco'' \footnote{
+Formalmente é um disco perfurado em ponto $\infty$,
+mas é claro que a série e cado termo dela
+tem os limites $z\to\infty$ que são iguais ao zero,
+então podemos dizer que a série principal converge absolutamente
+em disco na esfera de Riemann.}
+$\{ z\in\C : |z-a| > r \}$,
+e logo a série
+\[ \sum_{n\in\Z} c_n (z-a)^n \]
+converge absolutamente na interseção deles, i.e. no anel $A = \{ z\in\C : r < |z-a| < R \}$.
 
+Agora vamos ver como a séries $\sum_{n\in\Z} c_n (z-a)^n$ é relacionada com a função original $f(z)$.
+Para $z\in A$ escolhemos $r<r'<|z-a|<R'<R$ e um subanel fechado
+$A':= \ol{A}_{r',R'}(a) \subset A$ tal que $z$ é dentro interior dele.
+Pela fórmula de Cauchy (\cref{formula-cauchy}) temos
+\[ f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} - \int_{\gamma_{r'}} \frac{f(w)dw}{w-z}. \]
+A partir disso, para $w\in\gamma_{R'}$
+temos $|w-a| = R' > |z-a|$, então $|\frac{z-a}{w-a}|<1$
+e a série geométrica \Cref{eq:series-geometrica}:\footnote{
+Essa parte é similar a demonstração de séries de Taylor em \Cref{t:hol-series}.}
+\begin{equation*}
+ \frac{1}{w-z} = \frac{1}{(w-a)-(z-a)} = (w-a)^{-1} \frac1{1-\frac{z-a}{w-a}}
+= \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}}
+\end{equation*}
+converge absolutamente e uniforme no círculo $\gamma_{R'}$.
+Similarmente para $w\in\gamma_{r'}$
+temos $|w-a| = r' < |z-a|$, então $|\frac{w-a}{z-a}|<1$
+e a série geométrica 
+\begin{equation*}
+ \frac{1}{w-z} = \frac{1}{(w-a)-(z-a)} = -(z-a)^{-1} \frac1{1-\frac{w-a}{z-a}}
+= - \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}}
+\end{equation*}
+converge absolutamente e uniforme no círculo $\gamma_{r'}$.
+Então, podemos trocar a orden de soma e integração nas integrais
+\[ \int_{\gamma_{R'}} \frac{f(w)dw}{w-z}
+  = \int_{\gamma_{R'}} \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
+  = \sum_{n\geq 0} (z-a)^n \int_{\gamma_{R'}} \frac{f(w)dw}{(w-a)^{n+1}}
+  = \sum_{n\geq 0} c_n (z-a)^n \]
+e
+\[ -\int_{\gamma_{r'}} \frac{f(w)dw}{w-z}
+  = \int_{\gamma_{r'}} \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
+  = \sum_{n<0} (z-a)^n \int_{\gamma_{r'}} \frac{f(w)dw}{(w-a)^{n+1}}
+  = \sum_{n<0} c_n (z-a)^n. \]
+% finish the proof
 \end{proof}
 
 
