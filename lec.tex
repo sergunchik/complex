@@ -923,6 +923,76 @@ a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
 
 \section{Teorema de Weierstrass.}
 
+Vamos dizer que o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{localmente uniforme}
+se ele é uniforme nos compactos. Similarmente vamos dizer que a série $\sum_{n=0}^\infty f_n(z)$
+converge localmente uniforme, se ela converge uniforme nos compactos.
+
+\begin{lema}
+\label{l:uniforme}
+\begin{enumerate}
+\item
+Sejam as funções $f_1(z),f_2(z),\dots$ holomorfas em disco fechado
+$D := \ol{B}(a,R)$ e a série $f(z) = \sum_{n=0}^\infty f_n(z)$ converge uniformemente lá.
+Então $f$ é holomorfa e $f'(z) = \sum f_n'(z)$.
+\item
+Sejam as funções $g_1(z),g_2(z),\dots$ holomorfas em disco fechado
+$D = \ol{B}(a,R)$ e o limite $g(z) = \lim_{n\to\infty} g_n(z)$ é uniforme lá.
+Então $g$ é holomorfa e $g'(z) = \lim_{n\to\infty} g_n'(z)$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+É claro que os dois itens são equivalentes pelas fórmulas
+$g_n = \sum_{k=0}^n f_k$ e $f_n = g_n - g_{n-1}$.
+
+Lembra que qualquer função contínua no compacto é uniformemente contínua,
+e qualquer limite (localmente) \emph{uniforme} das funções contínuas
+é uma função contínua.\footnote{
+As vezes é chamado \emph{teorema sobre o limite uniforme} da análise real, a demonstração é:
+\begin{align*}
+\forall \epsilon>0, \exists N, \forall n\geq N, \forall z, |g_n(z)-g(z)|\leq\epsilon; \\
+\forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, |g_n(z)-g_n(w)|\leq\epsilon; \\
+\implies \forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, \\
+|g(z)-g(w)|\leq |g(z)-g_N(z)| + |g_N(z)-g_N(w)| + |g_N(w)-g(w)| \leq 3\epsilon.
+\end{align*}
+O teorema que estamos provando agora também as vezes é chamado
+teorema sobre o limite uniforme (da análise complexa).  }
+Então as funções $f(z)$ (resp. $g(z)$) são uniformemente contínuas em $\ol{B}(a,z)$.
+
+Para qualquer triângulo $\Delta \subset D$ a convergência uniforme implica
+\[ \int_{\partial \Delta} f dz = \sum_{n=0}^\infty \int_{\partial \Delta} f_n dz, \]
+mas pelo \Cref{l:goursat} de Goursat $\int_{\partial \Delta} f_n dz = 0$,
+logo $\sum_{n=0}^\infty \int_{\partial \Delta} f_n dz = \sum 0 = 0$,
+então $\int_{\partial \Delta} f dz = 0$,
+e pelo \Cref{t:morera} de Morera $f$ é holomorfa.
+
+Pelo \Cref{t:hol-bihol} para $\gamma := \partial D$ obtemos
+
+\[ f'(a) = \frac1{2\pi i} \int_{\gamma} \frac{f(z)dz}{(z-a)^2}
+= \frac1{2\pi i} \int_{\gamma} \sum_{n=0}^\infty \frac{f_n(z)dz}{(z-a)^2}
+= \frac1{2\pi i} \sum_{n=0}^\infty \int_{\gamma} \frac{f_n(z)dz}{(z-a)^2}
+= \sum_{n=0}^\infty f_n'(a). \]
+\end{proof}
+
+\begin{teorema}[Weierstrass]
+\label{t:weierstrass}
+Sejam $f_1,f_2,\dots \in \O(D)$ as funções holomorfas em uma região $D\subset \C$.
+\begin{enumerate}
+\item
+Suponha que $f(z) := \sum_{n=0}^\infty f_n(z)$ converge uniformemente
+nos compactos em $D$. Então a função $f$ é holomorfa e
+\[ f'(z) = \sum_{n=0}^\infty f_n'(z). \]
+\item
+Suponha que o limite $f(z) := \lim_{n\to\infty} f_n(z)$ é localmente uniforme.
+Então a função $f$ é holomorfa e
+\[ f'(z) = \lim_{n\to\infty} f_n'(z). \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+O enunciado é a propriedade local.
+Então pelo qualquer ponto $a\in D$ escolha $R>0$ tal que $\ol{B}(a,R) \subset D$
+e aplique \Cref{l:uniforme}.
+\end{proof}
+
 \section{Funções holomorfas em um anel. Séries de Laurent.}
 % setembro 13
 
