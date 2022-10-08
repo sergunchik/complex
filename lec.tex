@@ -261,6 +261,7 @@ então ela é convergente uniformemente e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}
 \end{problema}
 
 \begin{problema}[Fórmula de Cauchy--Hadamard]
+\label{cauchy-hadamard}
 Para a série $c_1,c_2,\dots \in \C$ de números complexos defina
 \begin{equation}
 R := \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1} \in [0,+\infty]
@@ -1001,6 +1002,38 @@ e aplique \Cref{l:uniforme}.
 \section{Funções holomorfas em um anel. Séries de Laurent.}
 % setembro 13
 
+\begin{defin}
+A série $\sum_{n\in\Z} c_n (z-a)^n$ é chamada
+a \emph{série de Laurent},
+onde a subsérie $\sum_{n<0} c_n (z-a)^n = \sum_{n=1}^\infty c_{-n} (z-a)^{-n}$
+é a \emph{parte principal}
+e a subsérie $\sum_{n\geq 0} c_n (z-a)^n = \sum_{n=0}^\infty c_n (z-a)^n$
+é a \emph{parte regular}.
+\end{defin}
+
+\begin{teorema}
+A série $c_n$ dos números complexos indicados por $n\in\Z$
+defina uma série de Laurent
+\[ \sum_{n\in\Z} c_n (z-a)^n. \]
+Define $r$ e $R$ por
+\begin{align*}
+R = \frac1{\limsup_{n\to+\infty} |c_n|^{\frac1n}} \in [0,+\infty], \\
+r = \limsup_{n\to+\infty} |c_{-n}|^{\frac1n} \in [0,+\infty],
+\end{align*}
+e o anel $A\subset \C$ pelo
+\[ A = A_{r,R}(a) := \{ z\in\C : r < |z-a| < R \}. \]
+Então a série de Laurent $\sum_{n\in\Z} c_n (z-a)^n$
+converge absolutamente para qualquer $z\in A$.
+\end{teorema}
+\begin{proof}
+Por qualquer $z$ tal que $r < |z-a| < R$ as séries
+$\sum_{n\geq 0} c_n (z-a)^n$
+e $\sum_{n<0} c_n (z-a)^n$ convergem absolutamente
+pelo critério de Cauchy--Hadamard (cf. \cref{cauchy-hadamard}),
+então a série $\sum_{n\in\Z} c_n (z-a)^n$
+também converge absolutamente.
+\end{proof}
+
 \begin{teorema}
 Seja $f$ uma função holomorfa em um anel $A = A_{r,R}(a) := \{ 0\leq r < |z-a| < R \leq \infty \}$.
 Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
@@ -1072,6 +1105,7 @@ e
   = \sum_{n<0} (z-a)^n \int_{\gamma_{r'}} \frac{f(w)dw}{(w-a)^{n+1}}
   = \sum_{n<0} c_n (z-a)^n. \]
 % finish the proof
+
 \end{proof}
 
 
