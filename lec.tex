@@ -1001,6 +1001,9 @@ e aplique \Cref{l:uniforme}.
 \section{Funções holomorfas em um anel. Séries de Laurent.}
 % setembro 13
 
+Em seguida os símbolos de soma $\sum_{n=-\infty}^\infty$
+e $\sum_{n\in\Z}$ são sinônimos.
+
 \begin{teorema}
 Seja $f$ uma função holomorfa em um anel $A = A_{r,R}(a) := \{ 0\leq r < |z-a| < R \leq \infty \}$.
 Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
@@ -1008,7 +1011,15 @@ Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
 onde
 \[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}, \]
 \[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A, \]
-e a série converge absolutamente.
+e a série converge absolutamente.\footnote{
+Na verdade, um teorema de Riemann diz que
+se a série $\sum_{n=0}^\infty a_n$ real
+converge condicionalmente só (converge, mas não converge absolutamente),
+então rearranjando a ordem da somação podemos obter
+qualquer número real como a soma. Então para ter algum
+sentido de séries $\sum_{n\in\Z} a_n$ que convergem
+não absolutamente temos que dar alguma coleção padrão
+de somas parciais, i.e. $S_N := \sum_{n=-N}^N a_n$.}
 \end{teorema}
 \begin{proof}
 Pelo \Cref{t:cauchy-k} de Cauchy vejamos que a integral
@@ -1072,6 +1083,10 @@ e
   = \int_{\gamma_{r'}} \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
   = \sum_{n<0} (z-a)^n \int_{\gamma_{r'}} \frac{f(w)dw}{(w-a)^{n+1}}
   = \sum_{n<0} c_n (z-a)^n. \]
+Somando, obtemos
+\[ f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} 
+         -\int_{\gamma_{r'}} \frac{f(w)dw}{w-z}
+        = \sum_{n\in\Z} c_n (z-a)^n. \]
 % finish the proof
 \end{proof}
 
