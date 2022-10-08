@@ -1041,12 +1041,13 @@ converge absolutamente na interseção deles, i.e. no anel $A = \{ z\in\C : r < 
 
 Agora vamos ver como a séries $\sum_{n\in\Z} c_n (z-a)^n$ é relacionada com a função original $f(z)$.
 Para $z\in A$ escolhemos $r<r'<|z-a|<R'<R$ e um subanel fechado
-$A':= \ol{A}_{r',R'}(a) \subset A$ tal que $z$ é dentro interior dele.
+$A \supset A'= \ol{A}_{r',R'}(a) := \{ z\in\C : r'\leq|z-a|\leq R\}$
+tal que $z$ é dentro interior dele.
 Pela fórmula de Cauchy (\cref{formula-cauchy}) temos
 \[ f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} - \int_{\gamma_{r'}} \frac{f(w)dw}{w-z}. \]
 A partir disso, para $w\in\gamma_{R'}$
 temos $|w-a| = R' > |z-a|$, então $|\frac{z-a}{w-a}|<1$
-e a série geométrica \Cref{eq:series-geometrica}:\footnote{
+e a série geométrica \eqref{eq:series-geometrica}:\footnote{
 Essa parte é similar a demonstração de séries de Taylor em \Cref{t:hol-series}.}
 \begin{equation*}
  \frac{1}{w-z} = \frac{1}{(w-a)-(z-a)} = (w-a)^{-1} \frac1{1-\frac{z-a}{w-a}}
@@ -1061,7 +1062,7 @@ e a série geométrica
 = - \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}}
 \end{equation*}
 converge absolutamente e uniforme no círculo $\gamma_{r'}$.
-Então, podemos trocar a orden de soma e integração nas integrais
+Então, podemos trocar a ordem de soma e integração nas integrais
 \[ \int_{\gamma_{R'}} \frac{f(w)dw}{w-z}
   = \int_{\gamma_{R'}} \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
   = \sum_{n\geq 0} (z-a)^n \int_{\gamma_{R'}} \frac{f(w)dw}{(w-a)^{n+1}}
