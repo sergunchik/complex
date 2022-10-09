@@ -1036,7 +1036,8 @@ qualquer número real como a soma. Então para ter algum
 sentido de séries $\sum_{n\in\Z} a_n$ que convergem
 não absolutamente temos que dar alguma coleção padrão
 de somas parciais, i.e. $S_N := \sum_{n=-N}^N a_n$.}
-para qualquer $z\in A$.
+para qualquer $z\in A$ e uniforme nos compactos.
+A soma $\sum_{n=\infty}^\infty c_n (z-a)^n$ é uma função holomorfa em $A$.
 \end{teorema}
 \begin{proof}
 Por qualquer $z$ tal que $r < |z-a| < R$ as séries
@@ -1045,9 +1046,9 @@ e $\sum_{n<0} c_n (z-a)^n$ convergem absolutamente
 pelo critério de Cauchy--Hadamard (cf. \cref{cauchy-hadamard}),
 então a série $\sum_{n\in\Z} c_n (z-a)^n$
 também converge absolutamente.
-O teorema de Abel diz, que as partes principal e regular
-convergem no qualquer compacto em $A$.
-O \Cref{t:weierstrass} de Weierstrass diz que a soma é holomorfma.
+Pelo teorema de Abel as partes principal e regular
+convergem uniforme no qualquer compacto em $A$.
+Pelo \Cref{t:weierstrass} de Weierstrass a soma é holomorfma.
 \end{proof}
 
 
