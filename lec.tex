@@ -255,15 +255,17 @@ se usar valor absoluto complexo em vez de valor absoluto real:
 em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
 
 \begin{problema}
+\label{pre-weierstrass}
 Suponha que $\sum_{n=0}^\infty a_n'(z)$ é uniformemente convergente.
 Provar que se a série $\sum_{n=0}^\infty a_n(z)$ é convergente ao menos em um ponto,
 então ela é convergente uniformemente e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}^\infty a_n'$.
 \end{problema}
 
-\begin{problema}[Fórmula de Cauchy--Hadamard]
+\begin{problema}[Fórmula de (Cauchy--)Hadamard]
 \label{cauchy-hadamard}
-Para a série $c_1,c_2,\dots \in \C$ de números complexos defina
+Para a série $c_0,c_1,c_2,\dots \in \C$ de números complexos defina
 \begin{equation}
+\label{eq:hadamard}
 R := \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1} \in [0,+\infty]
 \end{equation}
 Provar que a série $f(z) = \sum_{n=0}^\infty c_n z^n$
@@ -271,9 +273,47 @@ converge absolutamente no interior do disco $D := \{z\in\C: |z|<R \}$,
 e diverge fora do fecho dele,
 i.e. na região $\{ z\in\C: |z| > R \}$.
 Também provar que em qualquer compacto $K\subset D$ ela converge uniformemente.
-\marginnote{Usa progressão geométrica para provar convergência.
+\marginnote{Use a progressão geométrica e teste $M$ de Weierstrass
+para provar convergência uniforme.
 Para divergência prove que se séries $\sum c_n$ então converge o limite dos termos $c_n$ é igual ao $0$.}
 \end{problema}
+
+\begin{problema}
+\label{raio-derivada}
+Provar que
+\[ \limsup |n c_n|^{\frac1{n-1}} = \limsup |c_n|^{\frac{1}n} . \]
+\end{problema}
+
+\begin{teorema}[Abel]
+\label{t:abel}
+Para qualquer série
+\[ c_0 + c_1 z + c_2 z^2 + \dots \]
+existe o número $0\leq R \leq \infty$,\footnote{
+E ele é explicitamente dado por fórmula \eqref{eq:hadamard} de Hadamard.}
+chamado o \emph{raio de convergência} de série tal que
+\begin{enumerate}
+\item \label{abel-1} a série converge absolutamente por qualquer $z$ em disco aberto $\{z\in \C : |z|<R\}$,
+e por qualquer $0\leq \rho < R$ a série converge uniforme em disco fechado
+$\{z\in\C : |z| \leq \rho \}$;
+\item \label{abel-2} para qualquer $|z|>R$ a série diverge desde que os termos dela não são limitados;
+\item \label{abel-3} a função $f(z) := \sum_{n=0}^\infty c_n z^n$ é holomorfa em disco aberto $\{z\in \C : |z|<R\}$,
+a derivada dela $f'(z)$ é igual a série $\sum_{n=1}^\infty n c_n z^{n-1}$
+e tem o mesmo raio de convergência.
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Os itens \eqref{abel-1} e \eqref{abel-2} é \Cref{cauchy-hadamard}.
+Agora pelo \Cref{raio-derivada} os raios de convergência
+de série e série de derivadas coincidem,
+então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
+\end{proof}
+
+O círculo $|z|=R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
+nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo.\footnote{Mas a gente vai provar
+e usar outros teoremas de Abel sobre estes assuntos.}
+
+
+\subsection{Exponente e funções trigonométricas}
 
 \begin{problema}
 Provar que as séries para exponente, seno e cosseno
@@ -322,7 +362,7 @@ Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i
 Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
 Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
 e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
-Ex - finish this proof.
+Exercício - terminar a demonstração.
 }
 \end{proof}
 
@@ -927,6 +967,30 @@ a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
 \end{itemize}
 \end{proof}
 
+\begin{remark}[Trindade e formul de Cauchy]
+Com uma função $f$ que satisfaz uma (então todas) das condições do \Cref{t:criterio}
+podemos associar três séries de funções:
+\begin{align*}
+f(w) =: \sum_{n\geq 0} c_n(z) (w-z)^n,\\
+d_n(z) := \frac{f^{(n)}(z)}{n!},\\
+i_n(z) := \frac{1}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}.
+\end{align*}
+Então
+\[ c_n(z) = d_n(z) = i_n(z), \]
+i.e. temos uma trindade, os três pontos de vista alternativas para $c_n$:
+\begin{enumerate}
+\item os coeficientes de Taylor,
+\item as derivadas,
+\item as integrais de Cauchy.
+\end{enumerate}
+A igualdade $d_n = i_n$, i.e.
+\begin{equation}
+\label{eq:formula-cauchy}
+f^{(n)}(z) = \frac{n!}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}
+\end{equation}
+é também as vezes conhecida como uma \emph{fórmula de Cauchy} para derivadas.
+\end{remark}
+
 \section{Teorema de Weierstrass.}
 
 Vamos dizer que o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{localmente uniforme}
@@ -1026,6 +1090,7 @@ e o anel $A\subset \C$ pelo
 \[ A = A_{r,R}(a) := \{ z\in\C : r < |z-a| < R \}. \]
 
 \begin{teorema}
+\label{t:laurent-anel}
 A série de Laurent $\sum_{n\in\Z} c_n (z-a)^n$
 converge absolutamente\footnote{
 Um dos teoremas de Riemann afirma que
@@ -1040,62 +1105,61 @@ para qualquer $z\in A$ e uniforme nos compactos.
 A soma $\sum_{n=\infty}^\infty c_n (z-a)^n$ é uma função holomorfa em $A$.
 \end{teorema}
 \begin{proof}
-Por qualquer $z$ tal que $r < |z-a| < R$ as séries
-$\sum_{n\geq 0} c_n (z-a)^n$
-e $\sum_{n<0} c_n (z-a)^n$ convergem absolutamente
-pelo critério de Cauchy--Hadamard (cf. \cref{cauchy-hadamard}),
+Pelo \Cref{t:abel} de Abel e a fórmula \eqref{eq:hadamard} de Cauchy--Hadamard (\Cref{cauchy-hadamard})
+a parte regular $\sum_{n\geq 0} c_n (z-a)^n$
+converge absolutamente e localmente uniforme 
+em um disco $\{z\in\C : |z-a| < R \}$,
+e a parte principal $\sum_{n<0} c_n (z-a)^n = \sum_{n=1}^\infty c_{-n} (z-a)^{-n}$
+converge absolutamente e localmente uniforme 
+em um ``disco'' $\{ z\in\C : |z-a| > r \}$,
+\footnote{Formalmente é um disco perfurado em ponto $\infty$,
+mas é claro que a série e cado termo dela
+tem os limites $z\to\infty$ que são iguais ao zero,
+então podemos dizer que a série principal converge absolutamente
+em um disco verdadeiro $\{z\in\widehat{\C} : |z-a| > r \}$,
+na esfera de Riemann $\widehat{\C}$.}
 então a série $\sum_{n\in\Z} c_n (z-a)^n$
-também converge absolutamente.
-Pelo teorema de Abel as partes principal e regular
-convergem uniforme no qualquer compacto em $A$.
-Pelo \Cref{t:weierstrass} de Weierstrass a soma é holomorfma.
+converge absolutamente e localmente uniforme 
+na interseção deles, i.e. no anel $A = \{ z\in\C : r < |z-a| < R \}$.
+
+Pelo \Cref{t:weierstrass} de Weierstrass a soma é holomorfa.
 \end{proof}
 
 
 \begin{teorema}
+\label{t:anel-laurent}
 Seja $f$ uma função holomorfa em um anel $A = A_{r,R}(a) := \{ 0\leq r < |z-a| < R \leq \infty \}$.
 Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
 \[ f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n, \]
 onde
 \[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}, \]
 \[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A, \]
-e a série converge absolutamente.
+e a série converge absolutamente e uniforme nos compactos.
 \end{teorema}
 \begin{proof}
 Pelo \Cref{t:cauchy-k} de Cauchy vejamos que a integral
 \[ \int_{\gamma_\rho} \frac{f(w)dw}{w-a}  \] 
 não depende da escolha de $r<\rho<R$.
 % Para $z\in A$ escolha um subanel fechado $A' = \{ r < r'\leq |w-a| \leq R' < R \}$.
-Por qualquer $r<\rho<R$ temos uma cota
+Por qualquer $r<\rho<R$ temos uma cota (chamada \emph{desigualdade de Cauchy})
 \[ \rho^n \cdot |c_n| = \big|\int_0^1 f(\rho e^{2\pi i t}) e^{-2\pi i t (n+1)} dt\big|
-\leq \max_{w\in\gamma_\rho} |f(w)| \]
+\leq \max_{w\in\gamma_\rho} |f(w)|. \]
 Então
 \begin{align*}
 \limsup_{n\to\infty} |c_n|^{\frac1n} \leq \inf_{r<\rho<R} \frac1\rho = \frac1{R}, \\
 \limsup_{n\to\infty} |c_{-n}|^{\frac1n} \leq \inf_{r<\rho<R} \rho = r.
 \end{align*}
-Isso significa que a séries
-\[ \sum_{n=0}^\infty c_n (z-a)^n  \]
-converge absolutamente em disco $\{ z\in\C : |z-a|<R \}$
-e a séries
-\[ \sum_{n=1}^\infty c_{-n} (z-a)^{-n}  \]
-converge absolutamente em ``disco'' \footnote{
-Formalmente é um disco perfurado em ponto $\infty$,
-mas é claro que a série e cado termo dela
-tem os limites $z\to\infty$ que são iguais ao zero,
-então podemos dizer que a série principal converge absolutamente
-em disco na esfera de Riemann.}
-$\{ z\in\C : |z-a| > r \}$,
-e logo a série
+Pelo \Cref{t:laurent-anel} a série de Laurent 
 \[ \sum_{n\in\Z} c_n (z-a)^n \]
-converge absolutamente na interseção deles, i.e. no anel $A = \{ z\in\C : r < |z-a| < R \}$.
+converge absolutamente e localmente uniforme em anel $A = \{ z\in\C : r < |z-a| < R \}$
+e a soma é uma função holomorfa lá.
 
-Agora vamos ver como a séries $\sum_{n\in\Z} c_n (z-a)^n$ é relacionada com a função original $f(z)$.
+Agora vamos ver como a série $g(z) = \sum_{n\in\Z} c_n (z-a)^n$ é relacionada com a função original $f(z)$.
 Para $z\in A$ escolhemos $r<r'<|z-a|<R'<R$ e um subanel fechado
 $A \supset A'= \ol{A}_{r',R'}(a) := \{ z\in\C : r'\leq|z-a|\leq R\}$
 tal que $z$ é dentro interior dele.
 Pela fórmula de Cauchy (\cref{formula-cauchy}) temos
-\[ f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} - \int_{\gamma_{r'}} \frac{f(w)dw}{w-z}. \]
+\[ 2\pi i f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} - \int_{\gamma_{r'}} \frac{f(w)dw}{w-z}. \]
 A partir disso, para $w\in\gamma_{R'}$
 temos $|w-a| = R' > |z-a|$, então $|\frac{z-a}{w-a}|<1$
 e a série geométrica \eqref{eq:series-geometrica}:\footnote{
@@ -1117,29 +1181,58 @@ Então, podemos trocar a ordem de soma e integração nas integrais
 \[ \int_{\gamma_{R'}} \frac{f(w)dw}{w-z}
   = \int_{\gamma_{R'}} \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
   = \sum_{n\geq 0} (z-a)^n \int_{\gamma_{R'}} \frac{f(w)dw}{(w-a)^{n+1}}
-  = \sum_{n\geq 0} c_n (z-a)^n \]
+  = 2\pi i \sum_{n\geq 0} c_n (z-a)^n \]
 e
 \[ -\int_{\gamma_{r'}} \frac{f(w)dw}{w-z}
   = \int_{\gamma_{r'}} \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
   = \sum_{n<0} (z-a)^n \int_{\gamma_{r'}} \frac{f(w)dw}{(w-a)^{n+1}}
-  = \sum_{n<0} c_n (z-a)^n. \]
+  = 2\pi i \sum_{n<0} c_n (z-a)^n. \]
 Somando, obtemos
-\[ f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} 
-         -\int_{\gamma_{r'}} \frac{f(w)dw}{w-z}
+\[ f(z) = \frac{1}{2\pi i} \int_{\gamma_{R'}-\gamma_{r'}} \frac{f(w)dw}{w-z} 
         = \sum_{n\in\Z} c_n (z-a)^n. \]
 % finish the proof
 
 \end{proof}
 
+\begin{teorema}[Unicidade de séries de Laurent e desigualdade de Cauchy]
+Seja $f(z) = \sum_{n\in\Z} c_n (z-a)^n$ holomorfa em anel
+$A = \{ z\in\C : r < |z-a| < R \}$ e $\gamma_\rho = \{ z\in\C : |z-a|=\rho \} \subset A$.
+Então os coeficientes são determinados pela função,
+\begin{equation}
+c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}},
+\end{equation}
+e respeitam a desigualdade
+\begin{equation}
+\label{eq:desigualdade-cauchy}
+|c_n| \leq \frac{\max_{z\in\gamma_\rho} |f(z)|}{\rho^n}.
+\end{equation}
+\end{teorema}
+\begin{proof}
+\[ \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}
+ = \frac1{2\pi i} \int_{\gamma_\rho} \sum_{m\in\Z} c_m (w-a)^{m-n-1} dw 
+ = c_n, 
+\]
+onde para a segunda igualdade trocamos $\gamma_\rho$ por $\gamma_{\rho+\epsilon}$ para
+$n>0$ ou por $\gamma_{\rho-\epsilon}$ para $n<0$ com $\epsilon$ positivo e suficientemente pequeno,
+e usamos a desigualdade de Cauchy já provada na demonstração de \Cref{t:anel-laurent}.
+\end{proof}
+
 \begin{teorema}[Liouville]
+\label{t:liouville}
 Uma função \emph{holomorfa} $f: \C \to \C$ que é limitada é constante.
 \end{teorema}
 \begin{proof}
 Se $f$ é holomorfa em $z=0$ ela tem a expansão de Taylor
 \[ f = \sum_{n=0}^\infty c_n z^n, \]
 mas pela desigualdade de Cauchy
-\[ |c_n| \leq  \frac{\sup_{z\in\gamma_\rho} f(z)}{\rho^n} \]
-por todos $\rho > 0$.
+\[ |c_n| \leq  \frac{\sup_{z\in\gamma_\rho} |f(z)|}{\rho^n} \leq \frac{\sup_{z\in\C} |f(z)|}{\rho^n} \]
+por todos $\rho > 0$, logo se $\sup_{z\in\C} |f(z)| = M < \infty$ temos $c_n = 0$ para qualquer $n>0$.
+\end{proof}
+\begin{proof}
+Outra demonstração: pela fórmula \eqref{eq:formula-cauchy} de Cauchy
+e desigualdade \eqref{eq:desigualdade-cauchy} de Cauchy
+\[ f'(a) = \frac{1}{2\pi i} \int_{|z-a|=R} \frac{f(w)dw}{(z-a)^2} \leq \frac{M}{R} \]
+para todos $a\in \C$ e $R>0$. Logo $f'(a) = 0$ para todos $a\in \C$, então $f$ é constante.
 \end{proof}
 
 \section{Pontos singulares isolados.}
