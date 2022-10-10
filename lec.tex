@@ -1,4 +1,4 @@
-\section*{Números complexos e plano euclidiano}
+\section{Números complexos e plano euclidiano}
 
 Lembranças sobre os números complexos antes de começar a análise.
 
@@ -80,6 +80,170 @@ ou ainda feita só de intervalos horizontais e verticais.}
 Muitas definições e teoremas básicas sobre as funções de variável real
 podem ser promovidas para as funções de variável complexa usando
 a interpretação de $|z|$ acima.
+
+
+\section{Limites, séries, convergência, uniformidade, sequências de Cauchy}
+
+Todas as definições e teoremas sobre a convergência,
+os limites e as séries reais funcionam em caso complexo
+se usar valor absoluto complexo em vez de valor absoluto real:
+em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
+
+\begin{defin}[Sequências de Cauchy e limites]
+\begin{enumerate}
+\item Uma sequência de números complexos $a_n\in\C$ é uma \emph{sequência de Cauchy} se
+\[ \forall \epsilon>0, \exists N, \forall n,m\geq N:\, |a_n-a_m| <\epsilon; \]
+\item Digamos que uma sequência $a_0,a_1,\dots$ tem o \emph{limite finito} $a\in\C$ se
+\[ \forall \epsilon> 0, \exists N, \forall n\geq N: \, |a_n-a| < \epsilon. \]
+\item Digamos que uma sequência $a_0,a_1,\dots$ tem o \emph{limite infinito} $\infty$ se
+\[ \forall \epsilon> 0, \exists N, \forall n\geq N: \, |a_n| > 1/\epsilon. \]
+\end{enumerate}
+\end{defin}
+
+\begin{prop}[Cauchy, critério de existência de limite]
+\label{cauchy-limite}
+\begin{enumerate}
+\item Qualquer sequência $a_n$ com o limite finito $a\in\C$ é uma sequência de Cauchy.
+\item Qualquer sequência de Cauchy $a_n\in\C$ de números complexos tem o limite finito $a\in \C$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+O primeiro item é uma propriedade geral dos espaços métricos e não depende da específica de números complexos.
+A existência de limite $a$ é
+\[ \forall \epsilon>0, \exists N(\epsilon), \forall n\geq N(\epsilon): \, |a_n-a| <\epsilon . \]
+Logo pelo desigualdade triangular
+\[ \forall n,m\geq N(\epsilon): \, |a_n-a_m| \leq |a_n-a| + |a-a_m| < 2\epsilon . \]
+O segundo item já depende da completude de números reais (e complexos)
+Uma sequência $a_n \in \C$ dos números complexos
+tem o limite se e só se as duas sequências $\Re(a_n)\in \R$ e $\Im(a_n)\in\R$
+dos números reais tem os limites, e neste caso $\lim a_n = (\lim \Re(a_n)) + i \cdot (\lim \Im(a_n))$.
+Similarmente uma sequência dos números complexos é uma sequência de Cauchy
+se e só se as partes reais e imaginárias dela são as sequências de Cauchy (de números reais). 
+A existência dos limites para as sequências de Cauchy de números reais
+é uma propriedade fundamental dos números reais, também as vezes usada como definição deles.
+\end{proof}
+
+\begin{defin}
+\begin{enumerate}
+\item Digamos que a série $\sum_{n=0}^\infty c_n = c_0 + c_1 + c_2 + \dots$ dos números complexos $c_n\in\C$
+\emph{converge} (condicionalmente) a um número complexo $c\in \C$ se a sequência de somas parciais
+$s_n := c_0 + c_1 + \dots + c_n$ converge ao $c$.
+\item Digamos que a série $c_0 + c_1 + c_2 + \dots$ dos números complexos
+\emph{converge ao infinito} $\infty$ se a sequência de somas parciais
+converge ao infinito.
+\item Digamos que a série $c_0 + c_1 + \dots$ \emph{converge absolutamente} se
+a série $|c_0| + |c_1| + \dots$ converge (tem a soma finita).
+\item Digamos que a série \emph{diverge absolutamente} se ela não converge absolutamente,
+e que a série \emph{diverge}, se ela não converge condicionalmente.
+\end{enumerate}
+\end{defin}
+
+\begin{prop}
+\label{p:convergencia}
+\begin{enumerate}
+\item \label{pc-1} Uma série $\sum_{n=0}^\infty c_n$ converge se e somente se
+\[ \forall \epsilon>0, \exists N, \forall n\geq m\geq \epsilon:\, |c_m + \dots + c_n| < \epsilon .\]
+\item \label{pc-2} Se uma série converge então $\lim_{n\to\infty} |c_n| = 0$.
+\item \label{pc-3} Se uma série converge absolutamente ela converge.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\eqref{pc-1} diz que a sequência das somas parciais $s_0,s_1,\dots$ é uma sequência de Cauchy,
+então é equivalente ao \Cref{cauchy-limite}. Tomando $n=m$ obtemos \eqref{2}.
+Para provar o terceiro item use a desigualdade triangular
+$|c_m + \dots + c_n| \leq |c_m| + \dots + |c_n|$
+e \eqref{pc-1} aplicado a série $|c_0| + |c_1| + \dots$.
+\end{proof}
+
+\begin{defin}
+Digamos que 
+\begin{enumerate}
+\item uma função $g(z)$ é \emph{uniformemente contínua} se
+\[ \forall \epsilon>0, \exists \delta>0, \forall z,w: \, |z-w|<\delta \implies |g(z)-g(w)|<\epsilon; \]
+\item o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{uniforme} no conjunto $E$ se
+\[ \forall \epsilon>0, \exists N, \forall n\geq N,\forall z\in E:\, |g(z)-g_n(z)|<\epsilon; \]
+\end{enumerate}
+\end{defin}
+
+\begin{defin}
+Digamos que 
+\begin{enumerate}
+\item o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{localmente uniforme} na $D$
+se ele é uniforme nos compactos;\footnote{Para as regiões $D\subset \C$ é suficiente pedir que é
+uniforme nos discos fechados $\{ z\in\C : |z-a|\leq r \} \subset D$.}
+\item a série $\sum_{n=0}^\infty f_n(z)$ \emph{converge localmente uniforme} na $D$,
+se ela converge uniforme nos compactos $K\subset D$.
+\end{enumerate}
+\end{defin}
+
+
+Lembra os seguintes teoremas da análise real.
+
+\begin{teorema}
+Qualquer função contínua $g : K \to \C$ no compacto é uniformemente contínua.
+\end{teorema}
+
+\begin{teorema}[sobre o limite uniforme]
+\label{t:limite-uniforme}
+\begin{enumerate}
+\item
+O limite uniforme $g(z)$ das funções contínuas $g_n(z)$ é uma função contínua.
+\item
+O limite localmente uniforme $g(z)$ das funções contínuas $g_n(z)$
+em uma região $D\subset \C$ é uma função contínua em $D$.
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Primeiro item:
+\begin{align*}
+\forall \epsilon>0, \exists N, \forall n\geq N, \forall z, |g_n(z)-g(z)|\leq\epsilon; \\
+\forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, |g_n(z)-g_n(w)|\leq\epsilon; \\
+\implies \forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, \\
+|g(z)-g(w)|\leq |g(z)-g_N(z)| + |g_N(z)-g_N(w)| + |g_N(w)-g(w)| \leq 3\epsilon.
+\end{align*}
+Para deduzir o segundo item, note que uma função $g : D\to\C$ é contínua
+se ela é contínua em cada ponto $z_0\in D$, e para um ponto $z_0\in D$
+ela é contínua em $z_0$ se e só se a restrição dela no
+disco compacto $\{z\in\C: |z-z_0|\leq r\} \subset D$ é contínua.
+Pela definição de uniformidade local a função $f$ restringida pelo disco fechado
+é o limite uniforme, então pelo primeiro item é contínua.
+\end{proof}
+
+
+\begin{problema}[Cauchy, critério de convergência uniforme]
+\label{criterio-cauchy-uniforme}
+Uma sequência $g_n(z)$ converge uniformemente em $E$
+se e só se
+\[ \forall \epsilon>0, \exists N, \forall z\in E,\forall m,n\geq N: \, |g_n(z)-g_m(z)|<\epsilon .\]
+\end{problema}
+
+Digamos que uma série de números reais positivas
+\[ a_0 + a_1 + \dots \]
+é uma \emph{majorante} de uma série de funções
+\[ f_0(z) + f_1(z) + \dots \]
+se existe uma constante $M>0$ tal que
+\[ |f_n(z)| \leq M a_n \]
+para todos $n$ suficiente grandes e todos $z\in E$.
+Neste caso também digamos que a série $f_0(z) + f_1(z) + \dots$ é uma \emph{minorante}
+da série $a_0 + a_1 + \dots$.
+
+\begin{prop}[teste $M$ de Weierstrass]
+\label{weierstrass-m}
+Se a majorante $a_0 + a_1 + \dots$ converge,
+então a minorante $f_0(z) + f_1(z) + \dots$ converge (absolutamente) uniformemente.
+\end{prop}
+\begin{proof}
+Para $m\geq n\geq n_0$ temos
+\[ |f_n(z) + \dots + f_m(z)| \leq |f_n(z)| + \dots + |f_m(z)| \leq  M(a_n + \dots + a_m). \]
+Pelo critério de convergência de Cauchy (\cref{cauchy-limite}), a convergência de $\sum a_n$ implica que
+\[ \forall \epsilon>0,\exists N,\forall m\geq n\geq N: \, a_n + \dots + a_m \leq \epsilon, \]
+logo
+\[ \forall \epsilon>0,\exists N,\forall m\geq n\geq N,\forall z\in E: \,
+ |f_n(z) + \dots + f_m(z)| \leq M \epsilon, \]
+então a série $f_0(z) + f_1(z) + \dots$ converge uniformemente pelo critério
+de Cauchy de convergência uniforme (\cref{criterio-cauchy-uniforme}).
+
+\end{proof}
 
 \section{Diferenciação complexa}
 
@@ -213,7 +377,7 @@ e
 \end{equation} 
 \end{problema}
 
-\section{Funções holomorfas}
+\section{Funções holomorfas e analíticas}
 
 \subsection{Holomorficidade}
 
@@ -248,69 +412,87 @@ Depois para $z \mapsto f(z)$ com $f(z) = 0$ e $f'(z)=1$ verifique que o ângulo 
 Se $f'(0)=0$, o ângulo não é preservado, mas multiplicado por ordem de zero. Vamos provar (mas ainda não provamos) que $f$ tem todas as derivadas. Para agora, verifique que $z\mapsto z^n$ multiplica os ângulos em $z=0$ em $n$ vezes
 (mas preserva os ângulos em outros pontos).
 
-\subsection{Séries}
-
-Todas as definições e teoremas sobre séries reais funcionam em caso complexo
-se usar valor absoluto complexo em vez de valor absoluto real:
-em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
 
 \begin{problema}
 \label{pre-weierstrass}
-Suponha que $\sum_{n=0}^\infty a_n'(z)$ é uniformemente convergente.
-Provar que se a série $\sum_{n=0}^\infty a_n(z)$ é convergente ao menos em um ponto,
-então ela é convergente uniformemente e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}^\infty a_n'$.
+Suponha que a série $\sum_{n=0}^\infty a_n'(z)$ converge uniformemente em região $D\subset \C$.
+Provar que se a série $\sum_{n=0}^\infty a_n(z)$ converge em um ponto,
+então ela converge uniformemente em $D$ e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}^\infty a_n'$.
 \end{problema}
 
-\begin{problema}[Fórmula de (Cauchy--)Hadamard]
+
+\subsection{Séries de potências, fórmula de Hadamard, teoremas de Abel}
+
+\begin{lema}[Fórmula de (Cauchy--)Hadamard]
 \label{cauchy-hadamard}
 Para a série $c_0,c_1,c_2,\dots \in \C$ de números complexos defina
 \begin{equation}
 \label{eq:hadamard}
 R := \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1} \in [0,+\infty]
 \end{equation}
-Provar que a série $f(z) = \sum_{n=0}^\infty c_n z^n$
-converge absolutamente no interior do disco $D := \{z\in\C: |z|<R \}$,
-e diverge fora do fecho dele,
-i.e. na região $\{ z\in\C: |z| > R \}$.
-Também provar que em qualquer compacto $K\subset D$ ela converge uniformemente.
-\marginnote{Use a progressão geométrica e teste $M$ de Weierstrass
-para provar convergência uniforme.
-Para divergência prove que se séries $\sum c_n$ então converge o limite dos termos $c_n$ é igual ao $0$.}
-\end{problema}
+A série $f(z) = \sum_{n=0}^\infty c_n z^n$
+\begin{enumerate}
+\item converge absolutamente localmente uniformemente no disco $D := \{z\in\C: |z|<R \}$,
+\item e diverge na região $\{ z\in\C: |z| > R \}$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Dado $\rho < R$ escolhemos $r \in (\rho,R)$ e denotamos $u=\frac{\rho}{r} \in (0,1)$.
+Pela definição de $\limsup$ sabemos que existe $N$
+tal que para $n\geq N$ temos uma cota $|c_n r^n| \leq 1$,
+então $|c_n \rho^n| \leq u^n$, logo $|c_n z^n| \leq u^n$ para todos $|z|\leq\rho$.
+Para $u\in(0,1)$ a progressão geométrica $1+u+u^2 + \dots$ converge a $(1-u)^{-1}$,
+logo pelo teste $M$ de Weierstrass (\cref{weierstrass-m})
+a série $c_0 + c_1 z + \dots$ converge absolutamente uniformemente em $|z|\leq\rho$.
+
+A divergência segue de \cref{pc-2} da \Cref{p:convergencia}.
+\end{proof}
 
 \begin{problema}
 \label{raio-derivada}
 Provar que
-\[ \limsup |n c_n|^{\frac1{n-1}} = \limsup |c_n|^{\frac{1}n} . \]
+\begin{enumerate}
+\item $\lim_{n\to\infty} n^{\frac1n} = 1,$
+\item $\limsup |c_n| = \exp(\limsup \log|c_n|),$
+\item  se existir $\lim_{n\to \infty} d_n =: d \in(0,+\infty)$, então $\limsup d_n c_n = d \limsup c_n$,
+\item \label{rd-4} $\limsup |n c_n|^{\frac1{n-1}} = \limsup |c_n|^{\frac{1}n}$.
+\end{enumerate}
 \end{problema}
+
+
 
 \begin{teorema}[Abel]
 \label{t:abel}
 Para qualquer série
-\[ c_0 + c_1 z + c_2 z^2 + \dots \]
+\[ c_0 + c_1 (z-a) + c_2 (z-a)^2 + \dots \]
 existe o número $0\leq R \leq \infty$,\footnote{
 E ele é explicitamente dado por fórmula \eqref{eq:hadamard} de Hadamard.}
 chamado o \emph{raio de convergência} de série tal que
 \begin{enumerate}
-\item \label{abel-1} a série converge absolutamente por qualquer $z$ em disco aberto $\{z\in \C : |z|<R\}$,
-e por qualquer $0\leq \rho < R$ a série converge uniforme em disco fechado
-$\{z\in\C : |z| \leq \rho \}$;
-\item \label{abel-2} para qualquer $|z|>R$ a série diverge desde que os termos dela não são limitados;
-\item \label{abel-3} a função $f(z) := \sum_{n=0}^\infty c_n z^n$ é holomorfa em disco aberto $\{z\in \C : |z|<R\}$,
-a derivada dela $f'(z)$ é igual a série $\sum_{n=1}^\infty n c_n z^{n-1}$
+\item \label{abel-1} a série converge localmente absolutamente uniformemente 
+em disco aberto $\{z\in \C : |z-a|<R\}$\footnote{Isso é:
+ela converge absolutamente para qualquer $|z-a|<R$
+e por qualquer $\rho < R$ a série converge uniformemente em disco fechado
+$\{z\in\C : |z-a| \leq \rho \}$.};
+\item \label{abel-2} para qualquer $z\in\C :\, |z-a| > R$ a série diverge desde que os termos dela não são limitados;
+\item \label{abel-3} a função $f(z) := \sum_{n=0}^\infty c_n (z-a)^n$
+é holomorfa em disco aberto $\{z\in \C : |z-a| < R\}$,
+a derivada dela $f'(z)$ é igual a série $\sum_{n=1}^\infty n c_n (z-a)^{n-1}$
 e tem o mesmo raio de convergência.
 \end{enumerate}
 \end{teorema}
 \begin{proof}
 Os itens \eqref{abel-1} e \eqref{abel-2} é \Cref{cauchy-hadamard}.
-Agora pelo \Cref{raio-derivada} os raios de convergência
-de série e série de derivadas coincidem,
+Agora pelo \Cref{raio-derivada}\eqref{rd-4} os raios de convergência
+da série original $\sum  c_n (z-a)^n$ e da série de derivadas $\sum n c_n (z-a)^n$ coincidem,
 então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
 \end{proof}
 
-O círculo $|z|=R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
-nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo.\footnote{Mas a gente vai provar
-e usar outros teoremas de Abel sobre estes assuntos.}
+O círculo $|z-a| = R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
+nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo.
+%\footnote{Mas a gente vai provar e usar outros teoremas de Abel sobre estes assuntos.}
+
+
 
 
 \subsection{Exponente e funções trigonométricas}
@@ -378,6 +560,8 @@ e tem as mesmas condições iniciais, elas são iguais.
 \sin(z+w) &= \cos(z)\sin(w) + \sin(z)\cos(w). 
 \end{align*}
 \end{cor}
+
+
 
 \section{Integração complexa}
 
@@ -808,8 +992,7 @@ sobre qualquer círculo com centro em $z_0$ dentro de $B$
 \[ \gamma_r = \{ z\in \C : |z-z_0|< r < R \}. \]
 Então as séries
 \[ \sum_{n=0}^\infty c_n (z-z_0)^n \]
-convergem absolutamente para $z\in B$
-\footnote{E uniformemente nos compactos.}
+convergem absolutamente e localmente uniforme para $z\in B$
 e a soma é igual à função $f(z)$:
 \[ f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n. \]
 \end{teorema}
@@ -861,7 +1044,7 @@ e é igual à série $g(z) = \sum_{n=1}^\infty n c_n (z-z_0)^{n-1}$.
 \end{teorema}
 \begin{proof}
 Desde que $\limsup \big(n|c_n|\big)^{\frac{1}{n-1}} = \limsup |c_n|^{\frac1n} = 1/R$,
-a função $g(z)$ é definida em $D$ e converge uniformemente em compactos lá,
+a função $g(z)$ é definida e converge localmente uniformemente em $D$,
 logo podemos trocar a ordem de soma e integral de séries $g$, e
 \begin{multline}
 F(z) := \int_{[z_0,z]} g(w) dw
@@ -993,9 +1176,11 @@ f^{(n)}(z) = \frac{n!}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}
 
 \section{Teorema de Weierstrass.}
 
-Vamos dizer que o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{localmente uniforme}
-se ele é uniforme nos compactos. Similarmente vamos dizer que a série $\sum_{n=0}^\infty f_n(z)$
-converge localmente uniforme, se ela converge uniforme nos compactos.
+
+O \Cref{l:uniforme} a provar as vezes é chamado
+o \emph{teorema sobre o limite uniforme da análise complexa}
+em contraste com \Cref{t:limite-uniforme} sobre o limite uniforme da análise real
+que vamos usar na demonstração.
 
 \begin{lema}
 \label{l:uniforme}
@@ -1014,19 +1199,8 @@ Então $g$ é holomorfa e $g'(z) = \lim_{n\to\infty} g_n'(z)$.
 É claro que os dois itens são equivalentes pelas fórmulas
 $g_n = \sum_{k=0}^n f_k$ e $f_n = g_n - g_{n-1}$.
 
-Lembra que qualquer função contínua no compacto é uniformemente contínua,
-e qualquer limite (localmente) \emph{uniforme} das funções contínuas
-é uma função contínua.\footnote{
-As vezes é chamado \emph{teorema sobre o limite uniforme} da análise real, a demonstração é:
-\begin{align*}
-\forall \epsilon>0, \exists N, \forall n\geq N, \forall z, |g_n(z)-g(z)|\leq\epsilon; \\
-\forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, |g_n(z)-g_n(w)|\leq\epsilon; \\
-\implies \forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, \\
-|g(z)-g(w)|\leq |g(z)-g_N(z)| + |g_N(z)-g_N(w)| + |g_N(w)-g(w)| \leq 3\epsilon.
-\end{align*}
-O teorema que estamos provando agora também as vezes é chamado
-teorema sobre o limite uniforme (da análise complexa).  }
-Então as funções $f(z)$ (resp. $g(z)$) são uniformemente contínuas em $\ol{B}(a,z)$.
+Pelo \Cref{t:limite-uniforme}
+as funções $f(z)$ (resp. $g(z)$) são uniformemente contínuas em $\ol{B}(a,z)$.
 
 Para qualquer triângulo $\Delta \subset D$ a convergência uniforme implica
 \[ \int_{\partial \Delta} f dz = \sum_{n=0}^\infty \int_{\partial \Delta} f_n dz, \]
