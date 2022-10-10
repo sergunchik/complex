@@ -1,6 +1,6 @@
 \section{Números complexos e plano euclidiano}
 
-Lembranças sobre os números complexos antes de começar a análise.
+Essa seção preliminária comtem as lembranças sobre os números complexos antes de começar a análise.
 
 Números complexos $\C$ são munidos com
 \marginnote{
@@ -20,8 +20,8 @@ parte real $\Re $, parte imaginária $\Im$,
 norma $N$, valor absoluto $|-|$,
 argumento $\arg$
 e valor principal de argumento $Arg$.
-\marginnote{
-\begin{align*}
+
+\begin{nalign}
 z &= x + y i, \\
 z &= r (\cos \phi + i \sin \phi) = r e^{i\phi}, \\
 \ol{z} &:= x - y i = r e^{-i\phi}, \\
@@ -30,21 +30,32 @@ z &= r (\cos \phi + i \sin \phi) = r e^{i\phi}, \\
 N(z)   &:= z \ol{z} = r^2 = x^2+y^2, \\
 |z|    &:= \sqrt{N(z)} = r, \\
 \arg z &:= \phi \mod 2\pi.
-\end{align*}
-}
+\end{nalign}
+
 A norma é multiplicativa:
-\[ N(z\cdot w) = N(z) \cdot N(w) \]
+\begin{equation}
+N(z\cdot w) = N(z) \cdot N(w).
+\end{equation}
 Podemos munir $\C$ com a função de \emph{distância}
-\[ d(z,w) := |z-w| \]
-Ele é uma métrica\footnote{Isso é: $d(z,w) \geq 0$, $d(z,w) = 0$ se e só se $z=w$,
-$d(z,w) = d(w,z)$ e $d(z,w) \leq d(z,s) + d(s,w)$ (desigualdade de triângulo).}
+\begin{equation}
+d(z,w) := |z-w|.
+\end{equation}
+Ele é uma métrica, isso é:
+\begin{enumerate}
+\item $d(z,w) \geq 0$,
+\item $d(z,w) = 0$ se e só se $z=w$,
+\item $d(z,w) = d(w,z)$,
+\item e $d(z,w) \leq d(z,s) + d(s,w)$ (\emph{desigualdade de triângulo} ou \emph{desigualdade triangular}).
+\end{enumerate}
 Pelo teorema de Pitágoras essa métrica coincide com a métrica euclidiana.
 
 Similarmente podemos munir $\C$ com uma \emph{orientação},
 declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
 
 Multiplicatividade de norma implica que 
-\[ d(a\cdot z + b,a\cdot w + b) = |a| \cdot d(z,w), \]
+\begin{equation}
+d(a\cdot z + b,a\cdot w + b) = |a| \cdot d(z,w),
+\end{equation}
 i.e. se $|a|=1$ a transformação $z\mapsto az+b$
 é uma isometria (preserva as distâncias) euclidiana.
 Então geometricamente\footnote{Primeira vez isso foi proposto por
@@ -61,7 +72,9 @@ em diferentes retas, elas preservam as distâncias, mas trocam a orientação.
 O subconjunto $U \subset \C$ é chamado \emph{aberto}
 \footnote{com respeito de topologia euclidiana}
 se ele é uma união de bolas/discos abertas
-\[ B(z,r) := \{w\in \C : |w-z|<r \} \]
+\begin{equation}
+B(z,r) := \{w\in \C : |w-z|<r \} 
+\end{equation}
 onde $z\in\C$ é um centro de disco e $r\in\R$ é o raio dele.
 I.e. 
 qualquer ponto de $U$ também tem uma vizinhança dele dentro de $U$:
@@ -84,10 +97,12 @@ a interpretação de $|z|$ acima.
 
 \section{Limites, séries, convergência, uniformidade, sequências de Cauchy}
 
-Todas as definições e teoremas sobre a convergência,
-os limites e as séries reais funcionam em caso complexo
+Todas (ou quase todas) as definições e teoremas sobre os limites, a continuidade,
+a convergência e as séries reais funcionam em caso complexo
 se usar valor absoluto complexo em vez de valor absoluto real:
 em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
+Nessa seção preliminária vejamos alguns deles, e lembramos algumas definições
+e alguns teoremas úteis da análise real, as vezes reformulando elas/eles em contexto complexo.
 
 \begin{defin}[Sequências de Cauchy e limites]
 \begin{enumerate}
@@ -124,17 +139,15 @@ A existência dos limites para as sequências de Cauchy de números reais
 \end{proof}
 
 \begin{defin}
+Digamos que uma série $\sum_{n=0}^\infty c_n = c_0 + c_1 + c_2 + \dots$ dos números complexos $c_n\in\C$
 \begin{enumerate}
-\item Digamos que a série $\sum_{n=0}^\infty c_n = c_0 + c_1 + c_2 + \dots$ dos números complexos $c_n\in\C$
-\emph{converge} (condicionalmente) a um número complexo $c\in \C$ se a sequência de somas parciais
-$s_n := c_0 + c_1 + \dots + c_n$ converge ao $c$.
-\item Digamos que a série $c_0 + c_1 + c_2 + \dots$ dos números complexos
-\emph{converge ao infinito} $\infty$ se a sequência de somas parciais
-converge ao infinito.
-\item Digamos que a série $c_0 + c_1 + \dots$ \emph{converge absolutamente} se
-a série $|c_0| + |c_1| + \dots$ converge (tem a soma finita).
-\item Digamos que a série \emph{diverge absolutamente} se ela não converge absolutamente,
-e que a série \emph{diverge}, se ela não converge condicionalmente.
+\item \emph{converge} (condicionalmente) a um número complexo $c\in \C$ se a sequência de somas parciais
+$s_n := c_0 + c_1 + \dots + c_n$ converge ao $c$;
+\item \emph{converge ao infinito} $\infty$ se a sequência de somas parciais $s_n$
+converge ao infinito;
+\item \emph{converge absolutamente} se a série $|c_0| + |c_1| + \dots$ converge (tem a soma finita);
+\item \emph{diverge absolutamente} se ela não converge absolutamente,
+\item \emph{diverge}, se ela não converge condicionalmente.
 \end{enumerate}
 \end{defin}
 
@@ -154,6 +167,60 @@ Para provar o terceiro item use a desigualdade triangular
 $|c_m + \dots + c_n| \leq |c_m| + \dots + |c_n|$
 e \eqref{pc-1} aplicado a série $|c_0| + |c_1| + \dots$.
 \end{proof}
+
+Em visto de \Cref{l:rearranjo-absoluto,t:riemann-dini,t:levy-steinitz}
+a ordem dos termos não é importante para convergência absoluta,
+mas é muito importante para convergência condicional.
+
+\begin{lema}
+\label{l:rearranjo-absoluto}
+Se uma série $c_0 + c_1 + \dots$ converge absolutamente então pela qualquer
+bijeção $\sigma: \{0,1,2,\dots\} \to \{0,1,2,\dots\}$\footnote{As bijeções
+de um conjunto com se mesmo as vezes são chamadas \emph{permutações} de conjunto.}
+a série $c_{\sigma 0} + c_{\sigma 1} + \dots$ também converge absolutamente.
+\end{lema}
+\begin{proof}
+A série dos números positivos $a_0 + a_1 + \dots$ converge se e só se
+o conjunto $\{s_0,s_1,\dots\}$ das somas parciais $s_n = a_0 + \dots + a_n$ é limitado.
+Por qualquer subconjunto finito $I \subset \{0,1,\dots\}$
+defina uma soma parcial
+\[ s_I = \sum_{k\in I} a_k. \]
+Desde que $a_l\geq 0$ temos uma soma
+\[ s_I \leq s_{\max \{n\in I\}}, \]
+logo se o conjunto $\{s_0,s_1,\dots\}$ é limitado,
+então o conjunto $\{s_I,\,I\subset\{0,1,\dots \}\}$ é limitado também,
+e o  conjunto de somas parciais $\{c_{\sigma(0)},c_{\sigma(0)} + c_{\sigma(1)},\dots\}$
+é limitado, sendo um subconjunto dele.
+\end{proof}
+
+\begin{teorema}[Riemann--Dini, teorema de rearranjo]
+\label{t:riemann-dini}
+Se a série $\sum_{n=0}^\infty a_n$ real (i.e. $a_n\in\R$)
+converge condicionalmente, mas não converge absolutamente,
+então rearranjando a ordem da somação podemos obter
+qualquer número real como a soma.
+Isso é pelo qualquer número real $C\in\R$ ou $C = \pm \infty$
+existe uma permutação $\sigma$ de $\{0,1,\dots\}$ tal que
+\[ \lim_{n\to\infty} a_{\sigma 0} + a_{\sigma 1} + \dots + a_{\sigma n} = C. \]
+\end{teorema}
+\begin{proof}
+Exercício.
+\end{proof}
+
+\begin{teorema}[Lévy--Steinitz, 1905--1913]
+\label{t:levy-steinitz}
+Se a série $\sum_{n=0}^\infty a_n$ complexa (i.e. $a_n\in\C$)
+converge condicionalmente ao $a\in C$, mas não converge absolutamente,
+o conjunto de todas a somas de todas os rearranjos é
+\begin{enumerate}
+\item todo o plano complexo $\C$,
+\item ou uma reta real no plano complexo, i.e. existe $b = \cos \phi + i \sin \phi$ tal que
+para qualquer $C\in\C$ exite uma permutação $\sigma$ de $\{0,1,\dots\}$ tal que
+\[ \lim_{n\to\infty} a_{\sigma 0} + a_{\sigma 1} + \dots + a_{\sigma n} = C \] 
+se e somente se $\frac{C-a} \in b \R$.
+\end{enumerate}
+\end{teorema}
+
 
 \begin{defin}
 Digamos que 
@@ -242,8 +309,15 @@ logo
  |f_n(z) + \dots + f_m(z)| \leq M \epsilon, \]
 então a série $f_0(z) + f_1(z) + \dots$ converge uniformemente pelo critério
 de Cauchy de convergência uniforme (\cref{criterio-cauchy-uniforme}).
-
 \end{proof}
+
+Para convergência condicional podemos aplicar o seguinte teste
+\begin{prop}
+Suponha uma sequência $a_n$ converge ao número complexo $a$,
+e além disso para uma uma constante $M>0$ e uma sequência de funções $g_n(z)$ temos uma cota
+\[\forall z,\forall n,m\geq n_0:\,  |g_n(z) - g_m(z)| \leq M |a_n-a_m|. \]
+Então a sequência $g_n(z)$ converge uniformemente a uma função $g(z)$.
+\end{prop}
 
 \section{Diferenciação complexa}
 
@@ -423,6 +497,20 @@ então ela converge uniformemente em $D$ e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0
 
 \subsection{Séries de potências, fórmula de Hadamard, teoremas de Abel}
 
+\begin{prop}[Série geométrica]
+Para um número real positivo $u\in(0,1)$ a série geométrica
+\[ 1 + u + u^2 + \dots = \sum_{n\geq 0} u^u \]
+converge absolutamente ao $\frac{1}{1-u}$.
+\end{prop}
+\begin{proof}
+A soma parcial $s = \sum_{n=0}^n u^n$ é igual ao
+\[ s_n = 1 + u + u^2 + \dots + u^n = \frac{1-u^{n+1}}{1-u}, \]
+logo
+\[ \lim_{n\to\infty} |s_n - \frac{1}{1-u}|
+ = \frac{u}{1-u} \cdot \lim_{n\to\infty} u^n
+ = \frac{u}{1-u} \cdot 0 = 0. \]
+\end{proof}
+
 \begin{lema}[Fórmula de (Cauchy--)Hadamard]
 \label{cauchy-hadamard}
 Para a série $c_0,c_1,c_2,\dots \in \C$ de números complexos defina
@@ -430,7 +518,7 @@ Para a série $c_0,c_1,c_2,\dots \in \C$ de números complexos defina
 \label{eq:hadamard}
 R := \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1} \in [0,+\infty]
 \end{equation}
-A série $f(z) = \sum_{n=0}^\infty c_n z^n$
+A \emph{série de potências} $f(z) = \sum_{n=0}^\infty c_n z^n$
 \begin{enumerate}
 \item converge absolutamente localmente uniformemente no disco $D := \{z\in\C: |z|<R \}$,
 \item e diverge na região $\{ z\in\C: |z| > R \}$.
@@ -458,7 +546,6 @@ Provar que
 \item \label{rd-4} $\limsup |n c_n|^{\frac1{n-1}} = \limsup |c_n|^{\frac{1}n}$.
 \end{enumerate}
 \end{problema}
-
 
 
 \begin{teorema}[Abel]
@@ -1266,13 +1353,9 @@ e o anel $A\subset \C$ pelo
 \begin{teorema}
 \label{t:laurent-anel}
 A série de Laurent $\sum_{n\in\Z} c_n (z-a)^n$
-converge absolutamente\footnote{
-Um dos teoremas de Riemann afirma que
-se a série $\sum_{n=0}^\infty a_n$ real
-converge condicionalmente só (converge, mas não converge absolutamente),
-então rearranjando a ordem da somação podemos obter
-qualquer número real como a soma. Então para ter algum
-sentido de séries $\sum_{n\in\Z} a_n$ que convergem
+converge absolutamente\footnote{Em visto de \Cref{t:riemann-dini,t:levy-steinitz}
+de Riemann--Dini--Lévy--Steinitz,
+para ter algum sentido de séries $\sum_{n\in\Z} a_n$ que convergem
 não absolutamente temos que dar alguma coleção padrão
 de somas parciais, i.e. $S_N := \sum_{n=-N}^N a_n$.}
 para qualquer $z\in A$ e uniforme nos compactos.
