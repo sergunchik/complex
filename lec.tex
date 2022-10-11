@@ -576,11 +576,86 @@ então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
 \end{proof}
 
 O círculo $|z-a| = R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
-nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo.
-%\footnote{Mas a gente vai provar e usar outros teoremas de Abel sobre estes assuntos.}
+nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo,
+mas o seguinte \Cref{t:abel-limite} implica que se a soma de séries converge
+então ela é igual ao limite da função definida por séries de potências
+em um região específico (raio, ângulo ou setor de Stolz).
+
+\begin{teorema}[Abel, sobre o limite]
+\label{t:abel-limite}
+Suponha que uma série $c_0 + c_1 + c_2 + \dots$ converge ao $c\in\C$.
+Considere uma função $f: B(0,1) \to \C$ definida
+por $f(z) := \sum_{n=0}^\infty c_n z^n$.
+\begin{enumerate}
+\item A função $f(z)$ é bem definida e holomorfa em $B(0,1) = \{z\in\C: |z|<1\}$
+\item O limite no raio $\lim_{t\in(0,1),t\to 1} f(t)$ existe e é igual ao $c$.
+\item Mais geralmente, defina os \emph{setores de Stolz}
+\[ S(M) := \{z\in \C: \frac{|1-z|}M + |z| \leq 1 \} \subset B(0,1) \]
+para todos $0 < M \leq 1$.
+Então o mesmo limite existe para $z\in S(M)$ e é igual ao $c$:
+\[ \lim_{z\in S(M),z\to 1} f(z) 
+:= \lim_{\frac{|1-z|}M + |z|<1,z\to 1} \sum_{n=0}^\infty c_n z^n = \sum_{n=0}^\infty c_n. \]
+\item Equivalentemente, podemos considerar os \emph{ângulos}
+\[ \widehat{A}(\alpha) := \{z\in \C: \arg(1-z) \in [-\alpha,\alpha], \quad \alpha < \frac{\pi}2. \]
+Então o mesmo limite com $z$ constringido ao qualquer ângulo $\widehat{A}(\alpha)$ existe e é igual ao $c$:
+\[ \lim_{z\in \widehat{A}(\alpha),z\to 1} \sum_{n=0}^\infty c_n z^n = \sum_{n=0}^\infty c_n. \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+O raio $(0,1)$ coincide com a setor de Stolz $S(1)$.
+Para ver a equivalência entre setores de Stolz e ângulos verifique
+\begin{problema}
+\begin{enumerate}
+\item $\forall M>0 \exists \alpha<\pi/2: S(M) \subset \widehat{A}(\alpha)$
+\item $\forall \alpha<\pi/2 \exists M>0,\exists \epsilon>0: \, \widehat{A}(\alpha) \bigcap B(1,\epsilon) \subset S(M)$.
+\end{enumerate}
+\end{problema}
+
+Vamos provar o item para setores de Stolz.
+Consideramos as somas parciais modificadas
+\[ s_n = -c + c_0 + c_1  + \dots + c_n .\]
+Eles satisfazem $\lim |s_n| = 0$, então a série $g(z) = s_0 + s_1 z + \dots$
+converge em disco $z\in B(0,1)$.
+Também $c_0 = c + s_0$ e $c_n = -s_{n-1} + s_n$ para $n\geq 1$, então
+\begin{multline*}
+            c_0  +         c_1 z +       c_2 z^2 + \dots +           c_n z^n  
+\\ = (c       + s_0) + (-s_0 + s_1)z + (-s_1+s_2)z^2 + \dots + (-s_{n-1}+s_n)z^n
+\\ =  c + (1-z)(s_0  +         s_1 z + \dot                 + s_{n-1} z^{n-1}) + s_n z^n,
+\end{multline*}
+logo para $|z|<1$ vejamos que
+\[ f(z) -c = -c + \sum c_n z^n = (1-z) \sum s_n zˆn, \]
+então para $z$ em setor $S(M) = \{z : |1-z|\leq M(1-|z|)\}$ temos
+\[ |f(z) - c| \leq |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M(1-|z|)\max_{m\geq n} |c_m| \sum_{m\geq n} z^m
+= |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M \max_{m\geq n} |c_m| \]
+Mas para qualquer $\epsilon>0$ existe $n$ tal que $M \max_{m\geq n} |c_m| < \epsilon/2$
+e $\delta$ tal que para $|1-z|<\delta$ temos $|s_0+\dots+s_{n-1}z^{n-1}|<2(|s_0+\dots+s_n|$,
+logo para $|1-z|<\frac{\epsilon}{1+4|s_0+\dots+s_n|}$ o lado direito é menor de que $\epsilon$,
+então obtemos que 
+\[ \lim_{\frac{|1-z|}M + |z|<1,z\to 1} |-c+\sum_{n=0}^\infty c_n z^n| = 0. \]
+\end{proof}
 
 
+\begin{remark}[somabilidade em sentido de Abel]
+Pode acontecer que a série $c_0 + c_1 + \dots$ é divergente,
+mas $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe. Neste caso o limite
+é chamado a \emph{somação de Abel} de série $c_0 + c_1 + \dots$.
+Por examplo
+\begin{nalign}
+\lim_{t\to 1-} 1-z+z^2-\dots = \frac12, \\
+\lim_{t\to 1-} 1-2z+3z^2-\dots = \lim_{t\to 1-} \big(\frac{-1}{1+t}\big)'
+= \lim_{t\to 1-} \frac{1}{(1+t)^2} = \frac{1}{(1+1)^2} = \frac14,\\
+\lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = \zeta(k),\quad \forall k\geq 2.
+\end{nalign}
+\end{remark}
 
+
+No \Cref{t:abel-limite} a condição sobre os ângulos (ou setores de Stolz) é importante.
+\begin{problema}
+Verifique que para a série $f(z) = \sum \frac{z^{3^n} - z^{2 3^n}}{n}$
+existe a sequência dos pontos $z_1,z_2,\dots$ tais que $|z_i|<1$
+e $\lim z_i = 1$, mas $\lim f(z_i) = \infty \neq 0 = f(0)$.\footnote{Dica:
+considere $f(r_n e^{\frac{i}{3^n}}$ para $r_n<1$ e $\lim r_n = 1$.}
+\end{problema}
 
 \subsection{Exponente e funções trigonométricas}
 
