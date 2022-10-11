@@ -634,19 +634,54 @@ então obtemos que
 \[ \lim_{\frac{|1-z|}M + |z|<1,z\to 1} |-c+\sum_{n=0}^\infty c_n z^n| = 0. \]
 \end{proof}
 
+Uma versão do mesmo teorema de Abel
+\begin{teorema}[Abel, sobre o limite]
+Suponha que séries $c_0 + c_1 w + c_2 w^2$ converge ao $C\in\C$.
+Então para qualquer $M\geq 1$
+\[ \lim_{z\in S(M),z\to 1} c_0 + c_1 zw + c_2 (zw)^2 + \dots = C. \]
+\end{teorema}
 
-\begin{remark}[somabilidade em sentido de Abel]
+
 Pode acontecer que a série $c_0 + c_1 + \dots$ é divergente,
-mas $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe. Neste caso o limite
-é chamado a \emph{somação de Abel} de série $c_0 + c_1 + \dots$.
-Por examplo
+mas apesar dísso o limite $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe e finito.
+Neste caso 
+\begin{defin}[somabilidade em sentido de Abel]
+Se existir, o limite
+\[ \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots \]
+é chamado a \emph{soma de Abel} da série $c_0 + c_1 + \dots$.
+\end{defin}
+
+\begin{problema}
+\label{pr:somas-abel}
+Verifique
 \begin{nalign}
-\lim_{t\to 1-} 1-z+z^2-\dots = \frac12, \\
-\lim_{t\to 1-} 1-2z+3z^2-\dots = \lim_{t\to 1-} \big(\frac{-1}{1+t}\big)'
-= \lim_{t\to 1-} \frac{1}{(1+t)^2} = \frac{1}{(1+1)^2} = \frac14,\\
+\lim_{t\to 1-} 1-t+t^2-t^3+t^4-\dots = \frac12, \\
+\lim_{t\to 1-} 1-2t+3t^2-\dots
+% = \lim_{t\to 1-} \big(\frac{-1}{1+t}\big)'
+% = \lim_{t\to 1-} \frac{1}{(1+t)^2} = \frac{1}{(1+1)^2} 
+= \frac14,\\
+\lim_{t\to 1-} t-\frac{t^2}{2}+\frac{t^3}{3}-\dots = \log 2,\\
+\lim_{t\to 1-} t+\frac{t^2}{4}+\frac{t^3}{9}+\dots = \frac{\pi^2}{6},\\
 \lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = \zeta(k),\quad \forall k\geq 2.
 \end{nalign}
-\end{remark}
+\end{problema}
+
+\begin{defin}[Soma de Cesàro]
+Para série $c_0 + c_1 + c_2 + \dots$ definindo as somas parciais
+$s_n = c_0 + \dots + c_n$. Digamos que a série $c_0 + c_1 + c_2 + \dots$
+tem a \emph{soma de Cesàro} igual ao número complexo $S\in\C$ se existe o limite finito
+\[ \lim_{n\to\infty} \frac{s_0 + \dots + s_n}{n+1} = S \in \C . \]
+Alternativamente digamos que a série $c_0 + \dots + c_n$ é \emph{somável em sentido de Cesàro}.
+\end{defin}
+
+\begin{problema}
+\begin{enumerate}
+\item Suponha que a série $\sum_{n=0}^\infty c_n$ converge ao número complexo finito $C\in \C$.
+Provar que neste caso ela também tem a soma de Cesàro igual ao $C$.
+\item Provar que qualquer série somável em sentido de Cesàro também é somável em sentido de Abel.
+\item Será que existe uma série somável em sentido de Abel, mas não somável em sentido de Cesàro?
+\end{enumerate}
+\end{problema}
 
 
 No \Cref{t:abel-limite} a condição sobre os ângulos (ou setores de Stolz) é importante.
