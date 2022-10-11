@@ -36,11 +36,11 @@ A norma é multiplicativa:
 \begin{equation}
 N(z\cdot w) = N(z) \cdot N(w).
 \end{equation}
-Podemos munir $\C$ com a função de \emph{distância}
+Podemos munir $\C$ com uma função de \emph{distância}
 \begin{equation}
 d(z,w) := |z-w|.
 \end{equation}
-Ele é uma métrica, isso é:
+Ela é uma \emph{métrica}, isso é:
 \begin{enumerate}
 \item $d(z,w) \geq 0$,
 \item $d(z,w) = 0$ se e só se $z=w$,
@@ -154,7 +154,7 @@ converge ao infinito;
 \begin{prop}
 \label{p:convergencia}
 \begin{enumerate}
-\item \label{pc-1} Uma série $\sum_{n=0}^\infty c_n$ converge se e somente se
+\item \label{pc-1} (critério de convergência de Cauchy) Uma série $\sum_{n=0}^\infty c_n$ converge se e somente se
 \[ \forall \epsilon>0, \exists N, \forall n\geq m\geq \epsilon:\, |c_m + \dots + c_n| < \epsilon .\]
 \item \label{pc-2} Se uma série converge então $\lim_{n\to\infty} |c_n| = 0$.
 \item \label{pc-3} Se uma série converge absolutamente ela converge.
@@ -162,8 +162,9 @@ converge ao infinito;
 \end{prop}
 \begin{proof}
 \eqref{pc-1} diz que a sequência das somas parciais $s_0,s_1,\dots$ é uma sequência de Cauchy,
-então é equivalente ao \Cref{cauchy-limite}. Tomando $n=m$ obtemos \eqref{2}.
-Para provar o terceiro item use a desigualdade triangular
+então é equivalente ao critério de Cauchy (\Cref{cauchy-limite}) para a existência de limite $\lim_{n\to\infty} s_n$.
+Tomando $n=m$ obtemos \eqref{pc-2}.
+Para provar \eqref{pc-3} use a desigualdade triangular
 $|c_m + \dots + c_n| \leq |c_m| + \dots + |c_n|$
 e \eqref{pc-1} aplicado a série $|c_0| + |c_1| + \dots$.
 \end{proof}
@@ -590,8 +591,8 @@ por $f(z) := \sum_{n=0}^\infty c_n z^n$.
 \item A função $f(z)$ é bem definida e holomorfa em $B(0,1) = \{z\in\C: |z|<1\}$
 \item O limite no raio $\lim_{t\in(0,1),t\to 1} f(t)$ existe e é igual ao $c$.
 \item Mais geralmente, defina os \emph{setores de Stolz}
-\[ S(M) := \{z\in \C: \frac{|1-z|}M + |z| \leq 1 \} \subset B(0,1) \]
-para todos $0 < M \leq 1$.
+\[ S(M) := \{z\in \C: \frac{|1-z|}M + |z| \leq 1 \}-\{1\} \subset B(0,1) \]
+para todos $M\geq1$.\footnote{Para $0<M<1$ os setores de Stolz são definidos, mas são conjuntos vazios.}
 Então o mesmo limite existe para $z\in S(M)$ e é igual ao $c$:
 \[ \lim_{z\in S(M),z\to 1} f(z) 
 := \lim_{\frac{|1-z|}M + |z|<1,z\to 1} \sum_{n=0}^\infty c_n z^n = \sum_{n=0}^\infty c_n. \]
@@ -602,16 +603,16 @@ Então o mesmo limite com $z$ constringido ao qualquer ângulo $\widehat{A}(\alp
 \end{enumerate}
 \end{teorema}
 \begin{proof}
-O raio $(0,1)$ coincide com a setor de Stolz $S(1)$.
-Para ver a equivalência entre setores de Stolz e ângulos verifique
+O raio $[0,1)$ coincide com o setor de Stolz $S(1)$.
+Para ver a equivalência entre os setores de Stolz e os ângulos verifique
 \begin{problema}
 \begin{enumerate}
-\item $\forall M>0 \exists \alpha<\pi/2: S(M) \subset \widehat{A}(\alpha)$
-\item $\forall \alpha<\pi/2 \exists M>0,\exists \epsilon>0: \, \widehat{A}(\alpha) \bigcap B(1,\epsilon) \subset S(M)$.
+\item $\forall M>0, \exists \alpha<\pi/2: \, S(M) \subset \widehat{A}(\alpha)$
+\item $\forall \alpha<\pi/2, \exists M>0,\exists \epsilon>0: \, \widehat{A}(\alpha) \bigcap B(1,\epsilon) \subset S(M)$.
 \end{enumerate}
 \end{problema}
 
-Vamos provar o item para setores de Stolz.
+Então basta computar os limites nos setores de Stolz.
 Consideramos as somas parciais modificadas
 \[ s_n = -c + c_0 + c_1  + \dots + c_n .\]
 Eles satisfazem $\lim |s_n| = 0$, então a série $g(z) = s_0 + s_1 z + \dots$
@@ -641,6 +642,37 @@ Então para qualquer $M\geq 1$
 \[ \lim_{z\in S(M),z\to 1} c_0 + c_1 zw + c_2 (zw)^2 + \dots = C. \]
 \end{teorema}
 
+No \Cref{t:abel-limite} a condição sobre os ângulos (ou setores de Stolz) é importante:
+o limite pode não existir dentro de disco aberto inteiro:
+
+\begin{problema}
+Seja $f(z) = \sum_{n=1}^\infty \frac{z^{3^n} - z^{2\cdot 3^n}}{n}$.
+Prove que
+\begin{enumerate}
+\item A série é convergente para $|z|<1$ e define função holomorfa no disco $B(0,1)$;
+\item para $z=1$ o limite $\lim_{t\to1-} f(t) = 0$;
+\item para $z=e^{i\pi\cdot 3^{-m}}$ o limite $\lim_{t\to1-} f(tz) = \infty$
+\item existe a sequência dos pontos $z_1,z_2,\dots\in B(0,1)$ (i.e. $|z_i|<1$)
+tais que $\lim z_i = 1$, mas $\lim f(z_i) = \infty$;
+\item o limite $\lim_{|z|<1,z\to 1} f(z)$ não existe.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $f(z) = \sum_{n=0}^\infty z^{2^n}$.
+Mostre que
+\begin{enumerate}
+\item $\lim_{t\to 1-} f(tw) = \infty$
+para qualquer $w=\exp(\pi i\cdot p\cdot 2^m)$
+com $p,m\in\Z$ inteiros;
+\item $\forall p,m\in\Z, \forall R>0,\exists\delta,\forall t>1-\delta: \, |f(t\cdot e^{\pi i \cdot p\cdot 2^m})|>R $;
+\item para qualquer $w$ no círculo $\{w\in\C:\,|w|=1\}$ existe uma sequência $z_n\in B(0,1)$ tais que
+$\lim z_n = w$ e $\lim f(z_n) = \infty$;
+\item para qualquer $w\in\C:\,|w|=1$ o limite $\lim_{|z|<1,z\to w} f(z)$ é infinito ou não existe,
+i.e. a função $f(z)$ não pode ser estendida como uma função contínua
+em qualquer ponto do seu círculo de convergência.
+\end{enumerate}
+\end{problema}
 
 Pode acontecer que a série $c_0 + c_1 + \dots$ é divergente,
 mas apesar dísso o limite $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe e finito.
@@ -649,20 +681,39 @@ Neste caso
 Se existir, o limite
 \[ \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots \]
 é chamado a \emph{soma de Abel} da série $c_0 + c_1 + \dots$.
+É conveniente usar alguma notação para somas de Abel,
+e.g. 
+\begin{equation}
+A(c) := \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots .
+\end{equation}
+Ou valor de $A(c)$ pode ser um número complexo se o limite finito existe,
+ou infinito se o limite infinito existe, ou pode não existir, se o limite não existe.
 \end{defin}
 
 \begin{problema}
+Define operador de translação $T$ no conjunto de sequências pelo
+\[ (Tc)_0 = 0,\quad\quad (Tc)_{n+1} = c_n. \]
+Verifique que $A(c) = A(Tc)$, i.e. a série $c_0 + c_1 + c_2 + \dots$ é somável em sentido de Abel
+se e somente se a série $0 + c_0 + c_1 + \dots$ é somável em sentido de Abel,
+e neste caso as duas somas abelianas são iguais.
+\end{problema}
+
+\begin{problema}
 \label{pr:somas-abel}
-Verifique
+Determine se as séries são somáveis em sentido de Abel ou não,
+e se sim, calcule as somas abelianas:
 \begin{nalign}
-\lim_{t\to 1-} 1-t+t^2-t^3+t^4-\dots = \frac12, \\
-\lim_{t\to 1-} 1-2t+3t^2-\dots
+A(c_n=1)        &= \lim_{t\to 1-} 1+t+t^2+t^3+t^4+\dots = ?,\\ % \lim_{t\to1-} 1/(1-t), \\
+A(c_n=(-1)^n)   &= \lim_{t\to 1-} 1-t+t^2-t^3+t^4-\dots = ?,\\ % \frac12, \\
+A(c_n=n)        &= \lim_{t\to 1-} 1-2t+3t^2-\dots = ?,\\
+A(c_n=(-1)^n n) &= \lim_{t\to 1-} 1-2t+3t^2-\dots = ?,\\
 % = \lim_{t\to 1-} \big(\frac{-1}{1+t}\big)'
 % = \lim_{t\to 1-} \frac{1}{(1+t)^2} = \frac{1}{(1+1)^2} 
-= \frac14,\\
-\lim_{t\to 1-} t-\frac{t^2}{2}+\frac{t^3}{3}-\dots = \log 2,\\
-\lim_{t\to 1-} t+\frac{t^2}{4}+\frac{t^3}{9}+\dots = \frac{\pi^2}{6},\\
-\lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = \zeta(k),\quad \forall k\geq 2.
+% = \frac14,\\
+A(c_n=\frac{1}{n})      &= \lim_{t\to 1-} t+\frac{t^2}{2}+\frac{t^3}{3}+\dots = ?, \\ % \lim_{t\to 1-} \log(1-t)
+A(c_n=\frac{(-1)^n}{n}) &= \lim_{t\to 1-} t-\frac{t^2}{2}+\frac{t^3}{3}-\dots = ?, \\ % \log 2,\\
+A(c_n=\frac{1}{n^2})    &= \lim_{t\to 1-} t+\frac{t^2}{4}+\frac{t^3}{9}+\dots = ?, \\ % \frac{\pi^2}{6},\\
+A(c_n=\frac{1}{n^k})    &= \lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = ?. %\zeta(k),\quad \forall k\geq 2.
 \end{nalign}
 \end{problema}
 
@@ -683,14 +734,28 @@ Provar que neste caso ela também tem a soma de Cesàro igual ao $C$.
 \end{enumerate}
 \end{problema}
 
+O ingênuo inverso do \Cref{t:abel-limite} abeliana não é verdadeiro:
+\begin{exem}
+Seja $f(z) = 1-z+z^2-z^3+\dots$.
+A série $1-1+1-1+\dots$ diverge, mas o limite $\lim_{z\to 1} f(z)$ existe e é igual $\frac12$ (cf. \Cref{pr:somas-abel}).
+A função $f(z) = \frac{1}{1+z}$ é holomorfa em $\C-{-1}$, em particular ela é contínua em $z=1$.
+\end{exem}
 
-No \Cref{t:abel-limite} a condição sobre os ângulos (ou setores de Stolz) é importante.
-\begin{problema}
-Verifique que para a série $f(z) = \sum \frac{z^{3^n} - z^{2 3^n}}{n}$
-existe a sequência dos pontos $z_1,z_2,\dots$ tais que $|z_i|<1$
-e $\lim z_i = 1$, mas $\lim f(z_i) = \infty \neq 0 = f(0)$.\footnote{Dica:
-considere $f(r_n e^{\frac{i}{3^n}}$ para $r_n<1$ e $\lim r_n = 1$.}
-\end{problema}
+Os \emph{teoremas tauberianos} é um inverso parcial: eles digam que se a série $c_0+c_1+\dots$ satisfazer algumas
+condições adicionais e é somável em sentido de Abel, então ela converge normalmente.
+O primeiro teorema deste tipo foi provado por Alfred Tauber em 1897, e uma versão mais forte
+foi provada por John Littlewood em 1911:
+\begin{teorema}[Tauber 1897, Littlewood 1911]
+\label{t:tauber}
+Suponha que $f(z) = c_0 + c_1 z + \dots$ converge para $|z|<1$
+e somável em sentido de Abel, i.e.
+\[ \exists \lim_{t\to1-} f(t) \in \C .\]
+Então a série $c_0 + c_1 + \dots$ converge se
+\begin{enumerate}
+\item \label{i-tauber} $c_n = o(1/n)$ (Tauber),
+\item \label{i-littlewod} $c_n = O(1/n)$ (Littlewood).
+\end{enumerate}
+\end{teorema}
 
 \subsection{Exponente e funções trigonométricas}
 
