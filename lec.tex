@@ -1555,8 +1555,8 @@ em um ``disco'' $\{ z\in\C : |z-a| > r \}$,
 mas é claro que a série e cado termo dela
 tem os limites $z\to\infty$ que são iguais ao zero,
 então podemos dizer que a série principal converge absolutamente
-em um disco verdadeiro $\{z\in\widehat{\C} : |z-a| > r \}$,
-na esfera de Riemann $\widehat{\C}$.}
+em um disco verdadeiro $\{z\in\Ch : |z-a| > r \}$,
+na esfera de Riemann $\Ch$.}
 então a série $\sum_{n\in\Z} c_n (z-a)^n$
 converge absolutamente e localmente uniforme 
 na interseção deles, i.e. no anel $A = \{ z\in\C : r < |z-a| < R \}$.
@@ -1696,19 +1696,19 @@ Também um \emph{disco perfurado em infinito} é
 e uma \emph{vizinhança perfurada do infinito} é qualquer conjunto (aberto) em $\C$
 que contem um disco perfurado em infinito.
 Podemos definir as \emph{vizinhanças do infinito} na esfera de Riemann
-$\widehat{\C} = \C \bigcup \{\infty\}$ como as uniões
+$\Ch = \C \bigcup \{\infty\}$ como as uniões
 das vizinhanças perfuradas com o ponto de infinito.
 \end{defin}
 
 \begin{defin}
 \label{d:isolado}
-Um ponto $a\in\widehat{C}$ na esfera de Riemann é um \emph{ponto singular isolado}
+Um ponto $a\in\Ch$ na esfera de Riemann é um \emph{ponto singular isolado}
 de uma função $f(z)$, se $f$ é holomorfa em uma
 vizinhança perfurada do $a$. O ponto singular isolado $a$ é chamado
 \begin{itemize}
 \item \label{d:removivel} \emph{removível} (ou \emph{aparente})
 se existe $\lim_{z\to a} f(z) = A \in \C$,
-\item \label{d:polo} um \emph{polo} de $f$ se $\lim_{z\to a} f(z) = \infty \in \widehat{\C}$,
+\item \label{d:polo} um \emph{polo} de $f$ se $\lim_{z\to a} f(z) = \infty \in \Ch$,
 \item \label{d:essencial} singularidade \emph{essencial} em todos os outros casos.
 \end{itemize}
 \end{defin}
@@ -1798,7 +1798,7 @@ que $f$ tem zero (ou polo) de ordem $N$ (ou $-N$) no ponto infinito.
 \end{defin}
 
 \begin{problema}
-Sejam $f$ e $g$ as funções meromorfas em um ponto $a\in\widehat{C}$
+Sejam $f$ e $g$ as funções meromorfas em um ponto $a\in\Ch$
 e não identicamente nulos.
 Provar que
 \begin{enumerate}
@@ -1819,7 +1819,7 @@ $ad\neq bc$ a função $\phi(f(z))$ é meromorfa no $a$.
 
 \begin{teorema}[Briot--Bouquet 1859, Sokhotski 1868, Casorati 1868, Weierstrass 1876]
 Seja $a$ um ponto isolado singular essencial de uma função $f$.
-Para qualquer $A\in\widehat{\C} = \C\bigcup\infty$ existe uma sequência
+Para qualquer $A\in\Ch = \C\bigcup\infty$ existe uma sequência
 $a_n$ com limite $\lim a_n = a$ tal que $\lim f(a_n) = A$.
 \end{teorema}
 \begin{proof}
@@ -1838,10 +1838,10 @@ Neste caso $\lim f(a_n) = \lim \big(A + \frac{1}{g(a_n)}\big) = A$.
 \end{proof}
 
 \begin{problema}
-Seja $D\subset\widehat{\C}$ uma região na esfera de Riemann.
+Seja $D\subset\Ch$ uma região na esfera de Riemann.
 Suponha que $f : D \to \C$ é holomorfa na $D$,
 tem polos em distintos pontos $a_1,a_2,\dots$,
-e existe o limite $\lim_{n\to\infty} a_n = a\in\widehat{\C}$.
+e existe o limite $\lim_{n\to\infty} a_n = a\in\Ch$.
 Provar que para qualquer $A\in\C\bigcup\infty$ existe uma sequência
 $b_1,b_2,\dots\in D$ tal que $\lim_{n\to\infty} b_n = a$
 e $\lim_{n\to\infty} f(b_n) = A$.
@@ -1853,13 +1853,13 @@ também são chamados de \emph{funções inteiras}.
 \end{defin}
 
 \begin{problema}
-Provar que qualquer função $f: \widehat{\C} \to \C$
+Provar que qualquer função $f: \Ch \to \C$
 holomorfa na esfera de Riemann (em particular, holomorfa em ponto $\infty$)
 com valores em $\C$ é constante.
 \end{problema}
 
 \begin{defin}[Funções meromorfas em uma região]
-Seja $D\subset\widehat{\C}$ uma região na esfera de Riemann,
+Seja $D\subset\Ch$ uma região na esfera de Riemann,
 e $S\subset D$ um subconjunto dela,
 e $f : D - S\to\C$ uma função holomorfa
 tal cada ponto $a\in S$ é um polo ou
@@ -1869,15 +1869,15 @@ tal que $f$ é definida e holomorfa nela.}
 Neste caso digamos que $f$ é meromorfa na região $D$.
 
 Um jeito mais agradável é definir as funções meromorfas em $D$
-como as funções $f: D\to \widehat{\C}$ com codomínio na esfera de Riemann
+como as funções $f: D\to \Ch$ com codomínio na esfera de Riemann
 que são holomorfas em cada ponto $a\in D$, onde
-em caso $f(a) = \infty$ digamos que $f : D\to\widehat{\C}$ é holomorfa em $a$
-(considerada como função com valores em $\widehat{\C}$)
+em caso $f(a) = \infty$ digamos que $f : D\to\Ch$ é holomorfa em $a$
+(considerada como função com valores em $\Ch$)
 se $\frac{1}{f}$ é holomorfa em $a$ (considerada como função com valores em $\C$).
 \end{defin}
 
 \begin{problema}
-Seja $f: \widehat{\C} \to \widehat{\C}$ uma função meromorfa na toda esfera de Riemann.
+Seja $f: \Ch \to \Ch$ uma função meromorfa na toda esfera de Riemann.
 Provar que $f$ é uma função racional, i.e. existe um par de polinómios
 $P(z) = p_0 + \dots + p_n z^n$ e $Q(z) = q_0 + \dots + q_m z^m \neq 0$
 tais que $f(z) = \frac{P(z)}{Q(z)}$.\footnote{Dica:
