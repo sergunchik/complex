@@ -1,3 +1,8 @@
+Como usar este texto: se um teorema não tem uma demonstração,
+considere ele como uma ilustração (desenho):
+ele é formulado para criar uma restrospetiva
+e complementar os teoremas em vizinhança perfurada dele.
+
 \section{Números complexos e plano euclidiano}
 
 Essa seção preliminária comtem as lembranças sobre os números complexos antes de começar a análise.
@@ -734,7 +739,7 @@ Provar que neste caso ela também tem a soma de Cesàro igual ao $C$.
 \end{enumerate}
 \end{problema}
 
-O ingênuo inverso do \Cref{t:abel-limite} abeliana não é verdadeiro:
+O ingênuo teorema inverso do \Cref{t:abel-limite} abeliana não é verdadeiro:
 \begin{exem}
 Seja $f(z) = 1-z+z^2-z^3+\dots$.
 A série $1-1+1-1+\dots$ diverge, mas o limite $\lim_{z\to 1} f(z)$ existe e é igual $\frac12$ (cf. \Cref{pr:somas-abel}).
@@ -1037,7 +1042,9 @@ i.e. $\forall w_0,w_1 : [0,1] \to D$ tais que $w_0(0) = w_1(0) = P$
 e $w_0(1) = w_1(1) = Q$ existe $w: [0,1]\times[0,1] \to D$ tal que
 $w(0,u) = w_0(u)$, $w(1,u) = w_1(u)$, $w(*,0) = P$, $w(*,1) = Q$, onde $w(*,0) = ...$ significa que valor de $*$ pode ser qualquer $t\in[0,1]$.}
 
-Por algumas outras regiões isso não é verdade, e.g. em disco perfurado ou num anel há mais ciclos de que fronteiras.
+Por algumas outras regiões isso não é verdade,
+e.g. em um disco perfurado $\{z\in\C: 0<|z-a|<R\}$.
+ou em um anel $\{z\in\C: r<|z-a|<R\}$ há mais ciclos de que fronteiras.
 
 
 Geralmente podemos medir essa diferença por grupo quociente
@@ -1668,6 +1675,220 @@ para todos $a\in \C$ e $R>0$. Logo $f'(a) = 0$ para todos $a\in \C$, então $f$ 
 \end{proof}
 
 \section{Pontos singulares isolados.}
+
+\begin{defin}[Discos perfurados e vizinhanças perfuradas]
+Um \emph{disco perfurado} (no seu centro $a\in\C$)
+$P(a,R)$ é um anel $A_{r,R}(a)$ com $r=0$:
+\begin{equation}
+\label{eq:perfurado}
+P(a,R) := \{z\in\C: 0<|z-a|<R\} = B(a,r) -\{a\} = A_{0,R}(a).
+\end{equation}
+Uma \emph{vizinhança perfurada} de um ponto $a$ é uma vizinhança de $a$
+menos o mesmo ponto $a$, i.e. é um conjunto (aberto) que contem
+um disco perfurado em $a$.
+Similarmente podemos definir os discos perfurados em outros pontos interiores
+como $B(c,R) - \{a\}$ para qualquer $a,c\in C: |a-c|<R$.
+Também um \emph{disco perfurado em infinito} é 
+\begin{equation}
+\label{eq:perfurado}
+\{z\in\C: |z-a|>r\} = A_{r,\infty}(a),
+\end{equation}
+e uma \emph{vizinhança perfurada do infinito} é qualquer conjunto (aberto) em $\C$
+que contem um disco perfurado em infinito.
+Podemos definir as \emph{vizinhanças do infinito} na esfera de Riemann
+$\widehat{\C} = \C \bigcup \{\infty\}$ como as uniões
+das vizinhanças perfuradas com o ponto de infinito.
+\end{defin}
+
+\begin{defin}
+\label{d:isolado}
+Um ponto $a\in\widehat{C}$ na esfera de Riemann é um \emph{ponto singular isolado}
+de uma função $f(z)$, se $f$ é holomorfa em uma
+vizinhança perfurada do $a$. O ponto singular isolado $a$ é chamado
+\begin{itemize}
+\item \label{d:removivel} \emph{removível} (ou \emph{aparente})
+se existe $\lim_{z\to a} f(z) = A \in \C$,
+\item \label{d:polo} um \emph{polo} de $f$ se $\lim_{z\to a} f(z) = \infty \in \widehat{\C}$,
+\item \label{d:essencial} singularidade \emph{essencial} em todos os outros casos.
+\end{itemize}
+\end{defin}
+
+\begin{problema}
+Provar que $\infty$ é um ponto singular isolado de uma função $f(z)$
+se e só se $0$ é um ponto singular isolado de $g(w) = f(w^{-1})$.
+\end{problema}
+
+\begin{problema}
+Seja $f(z)$ holomorfa em $a$ e $f(a)\neq 0$.
+\begin{enumerate}
+\item Provar que existe $R>0$
+tal que $f(z)\neq 0$ para qualquer $z\in B(a,R)$.
+\item Provar que $g(z) = \frac{1}{f(z)}$ é holomorfa em $B(a,R)$.
+\item Relacionar os coeficientes de Taylor de $f$ e $g$ em $a$.
+\end{enumerate}
+\end{problema}
+
+
+Lembra que 
+pelo \Cref{t:anel-laurent}
+uma função $f$ holomorfa em um disco perfurado $P(a,R)$
+tem a série de Laurent $f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n$.
+
+
+\begin{teorema}[Riemann]
+\label{t:riemann-isolados}
+Seja $a$ um ponto singular isolado de uma função
+$f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n$.
+Então
+\begin{enumerate}
+\item \label{i-removivel} a singularidade $a$ é removível
+$\iff |f(z)|\leq M$ em uma vizinhança de $a$
+$\iff c_n = 0$ para todos $n<0$ (i.e. a série de Laurent de $f$ é uma série de Taylor
+\[ f(z) = \sum_{n\geq 0} c_n (z-a)^n; \]
+\item \label{i-polo} a singularidade $a$ é um polo
+$\iff \exists N<0: \, c_{N}\neq 0 \,\textit{ e }\, \forall n<N\, c_n = 0$,
+i.e. a série de Laurent é finita no lado esquerda
+\[ f(z) = \sum_{n\geq N} c_n (z-a)^n . \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+\eqref{i-removivel}: Suponha que $|f(z)|<M$ no $P(a,R) = \{z\in\C: 0<|z-a|<R\}$.
+Pela desigualdade \eqref{eq:desigualdade-cauchy} de Cauchy temos
+$|c_n| \leq \frac{M}{\rho^n}$ para $0<\rho<R$,
+logo para $n<0$ temos $|c_n|=0$, então $\lim_{z\to a} f(z) = c_0$,
+e além disso se redefinimos $f(a)$ por $c_0$ a função $f$ é holomorfa em $a$.
+
+\eqref{i-polo}: Suponha que $|f(z)|>0$ em um disco perfurado $P(a,R)$.
+Então $g(z) = \frac{1}{f(z)}$ é holomorfa em $P(a,R)$,
+e um ponto $a$ é uma singularidade removível da função $g$.
+Logo $g(z) = (z-a)^N \cdot \tilde{g}(z)$ com
+$\tilde{g}(z) = \sum_{n=0}^\infty b_n (z-a)^n$ holomorfa e inversível ($b_0\neq 0$),
+seja $\tilde{f}(z) = \frac{1}{\tilde{g}(z)} = \sum_{n=0}^\infty \tilde{c}_n (z-a)^n$.
+Temos $\tilde{c}_0 = \frac{1}{b_0}\neq 0$ e em disco perfurado
+$\sum_{n=-\infty}^\infty c_n (z-a)^n =
+f(z) = (z-a)^{-N} \tilde{f}(z) = (z-a)^{-N}\cdot \sum_{m=0}^\infty \tilde{c}_m (z-a)^m$,
+logo $c_n = \tilde{c}_{n+N}$, e o enunciado segue. Outro lado é óbvio:
+$\lim f(z) = \lim \tilde{f}(z) (z-a)^{-N} = \tilde{f}(a) \lim_{z\to a} (z-a)^{-N} = \infty$ para qualquer $N>0$.
+\end{proof}
+
+\begin{defin}
+Digamos que $f$ é \emph{meromorfa} em $a\in\C$ se $f=0$ em uma vizinhança de $a$
+\emph{ou} $f$ é holomorfa em uma vizinhança perfurada de $a$ e tem a série de Laurent
+finita para esquerda, i.e. de tipo
+$f(z) = (z-a)^N \cdot \sum_{n=0}^\infty c_n (z-a)^N$
+com $c_0\neq 0$.
+Neste caso
+\begin{itemize}
+\item digamos que $f$ tem a \emph{valoração} igual ao $N\in\Z$ em $a$;
+notação $\nu_a(f) = N$;
+\item em caso $f=0$ podemos formalmente definir
+a valoração de nulo como $\nu_a(0) := +\infty$ (isso não é um número inteiro).
+\item se $N = \nu_a(f) > 0$ digamos que $f$ tem \emph{zero de ordem} $N>0$ no ponto $a$,
+ou que a \emph{ordem de zero} de $f$ em $a$ é igual ao $N$.
+\item se $N = \nu_a(f) < 0$ digamos que $f$ tem \emph{polo de ordem} $-N>0$ no ponto $a$,
+ou que a \emph{ordem de polo} de $f$ em $a$ é igual ao $-N$.
+\end{itemize}
+Similarmente digamos que $f$ é meromorfa em $\infty$ se ela é holomorfa
+em vizinhança perfurada de $\infty$ e tem série de Laurent finitos para direita
+$f(z) = z^{-N} \cdot \sum_{n=0}^\infty c_n z^{-n}$,
+equivalentemente $g(w) = f(w^{-1})$ é meromorfa em $w=0$.
+Definimos a valoraçã  $\nu_\infty(f(z))$ de $f$ em $\infty$ 
+como $\nu_\infty(f(z)) = \nu_{w=0}(g(w)) = N$, e similarmente digamos
+que $f$ tem zero (ou polo) de ordem $N$ (ou $-N$) no ponto infinito.
+\end{defin}
+
+\begin{problema}
+Sejam $f$ e $g$ as funções meromorfas em um ponto $a\in\widehat{C}$
+e não identicamente nulos.
+Provar que
+\begin{enumerate}
+\item $f$ é meromorfa em $a \iff \frac{1}{f}$ é meromorfa em $a$,
+\item $\nu_a(\frac{1}{f}) = -\nu_a(f)$,
+\item $f$ tem polo de ordem $N$ no $a \iff \frac{1}{f}$ tem zero de ordem $-N$ no $a$,
+\item a função $f\cdot g$ é meromorfa no ponto $a$,
+\item $\nu_a(f\cdot g) = \nu_a(f) + \nu_a(g)$,
+\item a função $f+g$ é meromorfa no ponto $a$,
+\item $\nu_a(f + g) \geq \max(\nu_a(f), \nu_a(g))$,
+\item $\nu_a(f)\geq 0 \iff f$ é holomorfa em $a$,
+\item $\nu_a(f) = 0 \iff f$ é holomorfa em $a$ e $f(a)\neq 0$,
+então em uma vizinhança de $a$ existe uma função holomorfa $\frac{1}{f}$,
+\item para qualquer transformada de Möbius $\phi(w) = \frac{aw+b}{cw+d}$ com
+$ad\neq bc$ a função $\phi(f(z))$ é meromorfa no $a$.
+\end{enumerate}
+\end{problema}
+
+\begin{teorema}[Briot--Bouquet 1859, Sokhotski 1868, Casorati 1868, Weierstrass 1876]
+Seja $a$ um ponto isolado singular essencial de uma função $a$.
+Para qualquer $A\in\widehat{\C} = \C\bigcup\infty$ existe uma sequência
+$a_n$ com limite $\lim a_n = a$ tal que $\lim f(a_n) = A$.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{t:riemann-isolados}\eqref{i-removivel} de Riemann
+a função $f(z)$ não é limitada \emph{em qualquer vizinhança perfurada} de $a$,
+logo $\forall m,\exists a_m: |a_m-a|<\frac{1}{m} \textit{e} |f(a_m)|>m$,
+então $\lim_{m\to\infty} a_m = a$ e $\lim_{m\to\infty} f(a_m) = \infty$,
+o que mostra o caso $A=\infty$.
+
+Para $A\in\C$ considere $g(z) = \frac{1}{f(z)-A}$.
+Se não existe $a_n$ tais que $\lim a_n = a$ e $f(a_n) = A$,
+então $a$ é um ponto singular isolado de $g$. Alem dísso,
+$a$ é uma singularidade essencial de $g$.\footnote{Verifique usando o última problema.}
+Então existe uma sequência $a_n$ tal que $\lim a_n = a$ e $\lim g(a_n) = \infty$.
+Neste caso $\lim f(a_n) = \lim \big(A + \frac{1}{g(a_n)}\big) = A$.
+\end{proof}
+
+\begin{problema}
+Seja $D\subset\widehat{\C}$ uma região na esfera de Riemann.
+Suponha que $f : D \to \C$ é holomorfa na $D$,
+tem polos em distintos pontos $a_1,a_2,\dots$,
+e existe o limite $\lim_{n\to\infty} a_n = a\in\widehat{\C}$.
+Provar que para qualquer $A\in\C\bigcup\infty$ existe uma sequência
+$b_1,b_2,\dots\in D$ tal que $\lim_{n\to\infty} b_n = a$
+e $\lim_{n\to\infty} f(b_n) = A$.
+\end{problema}
+
+\begin{defin}[Função inteira]
+A funções holomorfas $f: \C \to \C$ no todo plano comlpexo
+também chamados de \emph{funções inteiras}.
+\end{defin}
+
+\begin{problema}
+Provar que qualquer função $f: \widehat{\C} \to \C$
+holomorfa na esfera de Riemann (em particular, holomorfa em ponto $\infty$)
+com valores em $\C$ é constante.
+\end{problema}
+
+\begin{defin}[Funções meromorfas em uma região]
+Seja $D\subset\widehat{\C}$ uma região na esfera de Riemann,
+e $S\subset D$ um subconjunto dela,
+e $f : D - S\to\C$ uma função holomorfa
+tal cada ponto $a\in S$ é um polo ou
+um ponto singular removível.\footnote{Em particular,
+para cada $a\in D$ existe uma vizinhança perfurada de $a$
+tal que $f$ é definida e holomorfa nela.}
+Neste caso digamos que $f$ é meromorfa na região $D$.
+
+Um jeito mais agradável é definir as funções meromorfas em $D$
+como as funções $f: D\to \widehat{\C}$ com codomínio na esfera de Riemann
+que são holomorfas em cada ponto $a\in D$, onde
+em caso $f(a) = \infty$ digamos que $f : D\to\widehat{\C}$ é holomorfa em $a$
+(considerada como função com valores em $\widehat{\C}$)
+se $\frac{1}{f}$ é holomorfa em $a$ (considerada como função com valores em $\C$).
+\end{defin}
+
+\begin{problema}
+Seja $f: \widehat{\C} \to \widehat{\C}$ uma função meromorfa na toda esfera de Riemann.
+Provar que $f$ é uma função racional, i.e. existe um par de polinómios
+$P(z) = p_0 + \dots + p_n z^n$ e $Q(z) = q_0 + \dots + q_m z^m \neq 0$
+tais que $f(z) = \frac{P(z)}{Q(z)}$.\footnote{Dica:
+considere $g(z) = \prod_{a\in\C} (z-a)^{\nu_a(f)}$,
+define $h(z) = \frac{f(z)}{g(z)}$, compute $\nu_a(h)$,
+mostre que $h$ é inteira,
+mostre que $h$ é limitada,
+mostre que $h$ é constante.
+Se tem problemas com penúltimo passo use o teorema de resíduo da próxima seção
+(isso não é necessário e é possível fazer o problema).}
+\end{problema}
 
 \section{Resíduos. Valor principal de Cauchy.}
 
