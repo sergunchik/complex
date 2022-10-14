@@ -216,7 +216,7 @@ Exercício.
 \begin{teorema}[Lévy--Steinitz, 1905--1913]
 \label{t:levy-steinitz}
 Se a série $\sum_{n=0}^\infty a_n$ complexa (i.e. $a_n\in\C$)
-converge condicionalmente ao $a\in C$, mas não converge absolutamente,
+converge condicionalmente ao $a\in \C$, mas não converge absolutamente,
 o conjunto de todas a somas de todas os rearranjos é
 \begin{enumerate}
 \item todo o plano complexo $\C$,
@@ -480,9 +480,8 @@ Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a funçã
 
 \begin{problema}
 Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
-i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.
-\footnote{
-Dica: primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
+i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.\footnote{Dica:
+primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
 e translação por $b$, e então é conforme.
 Depois para $z \mapsto f(z)$ com $f(z) = 0$ e $f'(z)=1$ verifique que o ângulo entre um raio e a imagem dele
 é igual ao $0$ (se não saber a definição, use $\lim_{z\to 0} ang(z,0,f(z)) = \lim_{z\to 0} \arg \frac{f(z)}{z}$).
@@ -1419,7 +1418,7 @@ a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
 \end{itemize}
 \end{proof}
 
-\begin{remark}[Trindade e formul de Cauchy]
+\begin{remark}[Trindade e formula de Cauchy]
 Com uma função $f$ que satisfaz uma (então todas) das condições do \Cref{t:criterio}
 podemos associar três séries de funções:
 \begin{align*}
@@ -1442,6 +1441,12 @@ f^{(n)}(z) = \frac{n!}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}
 \end{equation}
 é também as vezes conhecida como uma \emph{fórmula de Cauchy} para derivadas.
 \end{remark}
+
+\begin{problema}
+Suponha que uma função $f(z)$ é holomorfa em $z=a$.
+Provar que uma função $g(z)$ definida como $g(a) = f'(a)$
+e $g(z) = \frac{f(z)-f(a)}{z-a}$ para $z\ne a$ é holomorfa em $a$.
+\end{problema}
 
 \section{Teorema de Weierstrass.}
 
@@ -1629,18 +1634,16 @@ e
 Somando, obtemos
 \[ f(z) = \frac{1}{2\pi i} \int_{\gamma_{R'}-\gamma_{r'}} \frac{f(w)dw}{w-z} 
         = \sum_{n\in\Z} c_n (z-a)^n. \]
-% finish the proof
-
 \end{proof}
 
 \begin{teorema}[Unicidade de séries de Laurent e desigualdade de Cauchy]
 Seja $f(z) = \sum_{n\in\Z} c_n (z-a)^n$ holomorfa em anel
 $A = \{ z\in\C : r < |z-a| < R \}$ e $\gamma_\rho = \{ z\in\C : |z-a|=\rho \} \subset A$.
-Então os coeficientes são determinados pela função,
+Então os coeficientes são determinados pelos valores da função no anel,
 \begin{equation}
 c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}},
 \end{equation}
-e respeitam a desigualdade
+e respeitam a \emph{desigualdade de Cauchy}
 \begin{equation}
 \label{eq:desigualdade-cauchy}
 |c_n| \leq \frac{\max_{z\in\gamma_\rho} |f(z)|}{\rho^n}.
@@ -1687,7 +1690,7 @@ Uma \emph{vizinhança perfurada} de um ponto $a$ é uma vizinhança de $a$
 menos o mesmo ponto $a$, i.e. um conjunto (aberto) que contem
 um disco perfurado no ponto $a$.
 Similarmente podemos definir os discos perfurados em outros pontos interiores
-como $B(c,R) - \{a\}$ para qualquer $a,c\in C: |a-c|<R$.
+como $B(c,R) - \{a\}$ para qualquer $a,c\in \C: |a-c|<R$.
 Também um \emph{disco perfurado em infinito} é 
 \begin{equation}
 \label{eq:perfurado}
@@ -1743,10 +1746,10 @@ Então
 \begin{enumerate}
 \item \label{i-removivel} a singularidade $a$ é removível
 $\iff |f(z)|\leq M$ em uma vizinhança de $a$
-$\iff c_n = 0$ para todos $n<0$ (i.e. a série de Laurent de $f$ é uma série de Taylor
+$\iff c_n = 0$ para todos $n<0$, i.e. a série de Laurent de $f$ é uma série de Taylor
 \[ f(z) = \sum_{n\geq 0} c_n (z-a)^n; \]
 \item \label{i-polo} a singularidade $a$ é um polo
-$\iff \exists N<0: \, c_{N}\neq 0 \,\textit{ e }\, \forall n<N\, c_n = 0$,
+$\iff \exists N<0: \, c_{N}\neq 0 \,\textit{ e }\, \forall n<N:\, c_n = 0$,
 i.e. a série de Laurent é finita no lado esquerda
 \[ f(z) = \sum_{n\geq N} c_n (z-a)^n . \]
 \end{enumerate}
@@ -1788,11 +1791,12 @@ ou que a \emph{ordem de zero} de $f$ em $a$ é igual ao $N$.
 \item se $N = \nu_a(f) < 0$ digamos que $f$ tem \emph{polo de ordem} $-N>0$ no ponto $a$,
 ou que a \emph{ordem de polo} de $f$ em $a$ é igual ao $-N$.
 \end{itemize}
-Similarmente digamos que $f$ é meromorfa em $\infty$ se ela é holomorfa
-em vizinhança perfurada de $\infty$ e tem série de Laurent finitos para direita
+As vezes usamos \emph{nulo} como um sinônimo de zero.
+Similarmente digamos que uma função $f(z)$ é meromorfa em um ponto $z=\infty$ se ela é holomorfa
+em vizinhança perfurada de $\infty$ e tem a série de Laurent finita para direita
 $f(z) = z^{-N} \cdot \sum_{n=0}^\infty c_n z^{-n}$,
 equivalentemente $g(w) = f(w^{-1})$ é meromorfa em $w=0$.
-Definimos a valoraçã  $\nu_\infty(f(z))$ de $f$ em $\infty$ 
+Definimos a valoração $\nu_\infty(f(z))$ da função $f$ no ponto $\infty$ 
 como $\nu_\infty(f(z)) = \nu_{w=0}(g(w)) = N$, e similarmente digamos
 que $f$ tem zero (ou polo) de ordem $N$ (ou $-N$) no ponto infinito.
 \end{defin}
@@ -1804,16 +1808,19 @@ Provar que
 \begin{enumerate}
 \item $f$ é meromorfa em $a \iff \frac{1}{f}$ é meromorfa em $a$,
 \item $\nu_a(\frac{1}{f}) = -\nu_a(f)$,
-\item $f$ tem polo de ordem $N$ no $a \iff \frac{1}{f}$ tem zero de ordem $-N$ no $a$,
+\item $f$ tem polo de ordem $N$ no $a \iff \frac{1}{f}$ tem nulo de ordem $N$ no $a$,
 \item a função $f\cdot g$ é meromorfa no ponto $a$,
 \item $\nu_a(f\cdot g) = \nu_a(f) + \nu_a(g)$,
 \item a função $f+g$ é meromorfa no ponto $a$,
-\item $\nu_a(f + g) \geq \max(\nu_a(f), \nu_a(g))$,
+\item $\nu_a(g)>\nu_a(f) \implies \nu_a(f + g) = \nu_a(f)$,
+\item $\nu_a(f + g) \geq \min(\nu_a(f), \nu_a(g))$,
 \item $\nu_a(f)\geq 0 \iff f$ é holomorfa em $a$,
 \item $\nu_a(f) = 0 \iff f$ é holomorfa em $a$ e $f(a)\neq 0$,
 então em uma vizinhança de $a$ existe uma função holomorfa $\frac{1}{f}$,
 \item para qualquer transformada de Möbius $\phi(w) = \frac{aw+b}{cw+d}$ com
-$ad\neq bc$ a função $\phi(f(z))$ é meromorfa no $a$.
+$ad\neq bc$ a função $\phi(f(z))$ é meromorfa no $a$.\footnote{Menos um caso de $f$
+a função constante igual ao $\frac{-d}{c}$: neste caso a imagém é uma função constante
+e igual ao $\infty$.}
 \end{enumerate}
 \end{problema}
 
@@ -1849,7 +1856,7 @@ e $\lim_{n\to\infty} f(b_n) = A$.
 
 \begin{defin}[Função inteira]
 As funções holomorfas $f: \C \to \C$ no todo plano comlpexo
-também são chamados de \emph{funções inteiras}.
+também são chamadas de \emph{funções inteiras}.
 \end{defin}
 
 \begin{problema}
@@ -1861,8 +1868,8 @@ com valores em $\C$ é constante.
 \begin{defin}[Funções meromorfas em uma região]
 Seja $D\subset\Ch$ uma região na esfera de Riemann,
 e $S\subset D$ um subconjunto dela,
-e $f : D - S\to\C$ uma função holomorfa
-tal cada ponto $a\in S$ é um polo ou
+e $f : D - S\to\C$ uma função holomorfa,
+tal que cada ponto $a\in S$ é um polo ou
 um ponto singular removível.\footnote{Em particular,
 para cada $a\in D$ existe uma vizinhança perfurada de $a$
 tal que $f$ é definida e holomorfa nela.}
@@ -1890,9 +1897,241 @@ Se tem problemas com penúltimo passo use o teorema de resíduo da próxima seç
 (isso não é necessário e é possível fazer o problema).}
 \end{problema}
 
-\section{Resíduos. Valor principal de Cauchy.}
 
-\section{Princípio do argumento.}
+\begin{problema}[Independência da coordenada local]
+\label{p:valoracao-independencia}
+Sejam
+$W(z)$ e $Z(w)$ umas funções meromorfas
+em pontos $z=a\in\Ch$ e $w=b\in\Ch$, respetivamente,
+tais que
+as funções $W(z),Z(w)$ (localmente) são reversas uma de outra:
+$W(a) = b$, $Z(b) = a$,
+$Z(W(z)) = z$ em vizinhança de $z=a$
+e $W(Z(w)) = w$ em vizinhança de $w=b$.
+Para uma função $f(z)$ define
+\[ g(w) := f(Z(w)). \]
+Mostre que
+\begin{enumerate}
+\item $a$ é um ponto singular isolado de $f(z)$ $\iff$ $b$ é um ponto singular isolado de $g(w)$,
+\item $f(z)$ tem singularidade removível em $z=a$ $\iff$ $g(w)$ tem singularidade removível em $w=b$,
+\item $f(z)$ é meromorfa em $z=a$ $\iff$ $g(w)$ é meromorfa em $w=b$,
+\item para $k\in\Z$ $f(z)^k$ é holomorfa em $z=a$ $\iff$ $g(w)^k$ é holomorfa em $w=b$,
+\item $\nu_{z=a}(f) = \nu_{w=b}(g)$, se $f(z)$ é meromorfa em $z=a$.\footnote{Dica:
+use os outros itens e aditividade das valorações ($\nu(h_1 h_2) = \nu(h_1) + \nu(h_2)$)
+para deduzir o problema de um caso $f(z) = z-a$ (ou $f(z) =z^{-1}$ se $a=\infty$) .
+Neste caso mostre que $Z'(a) \neq 0$ para verificar que $\nu_{w=b}(Z(w)-a) = 1$.
+Outro jeito de fazer o último e alguns outros itens é analítico:
+construa um ciclo $\gamma$ em vizinhança de $z=a$ tal que $W(\gamma)$ é
+um ciclo em vizinhança de $w=b$ e eles satisfazem $I(\gamma,z=a) = 1 = I(W(\gamma),w=b)$,
+depois use as fórmulas de Cauchy para coeficientes das séries de Laurent,
+e a fórmula de troca de variável em integráis.}
+\end{enumerate}
+\end{problema}
+
+\subsection{Generalização para diferenciais}
+Vamos dizer que uma forma diferencial $\omega$ tem um ponto singular isolado $a\in\C$
+se $\omega = f(z) dz$ e o ponto $a$ é um ponto singular isolado da função $f$.
+Neste caso digamos que a diferencial $\omega$ tem singularidade removível, polo ou essencial em $a$
+se a função $f$ a tem. 
+
+A diferencial $\omega = f(z) dz$ é meromorfa em $a\in\C$ se a funcão $f$ é, e neste caso definimos
+a valoração
+\[ \nu_a(\omega) := \nu_a(f),\]
+e a ordem de zero/polo como o valor absoluto da valoração dependente do sinal dela
+(positivo -- zero, negativo -- polo).
+
+Em caso $a=\infty\in\Ch$ os tipos de singularidade são definidos similarmente,
+mas preste atenção para a definição e a computação da valoração $\nu_\infty(\omega)$.
+Ad hoc, podemos definir 
+\begin{equation}
+\nu_{z=\infty}(f(z) dz) = -2 + \nu_{z=\infty}(f),
+\end{equation}
+mas vamos ver porque a definição é razoável.
+
+Neste caso não podemos usar $z$ como a coordenada,
+mas em vez dela podemos considerar $w = z^{-1}$. 
+Se $\omega = f(z) dz$ em vizinhança perfurade de $\infty$, então
+definimos $g(w) := f(w^{-1})$, e 
+subsituindo $z\mapsto w^-1$
+obtemos
+$dz = -\frac{dw}{w^2}$ e $\omega = f(z) dz = \frac{-g(w)}{w^2} dw$,
+logo 
+\[ \nu_{z=\infty} (f(z) dz) = \nu_{w=0} (\frac{-g(w)}{w^2} dw) 
+ = -2 + \nu_{w=0} (g(w)) = -2 + \nu_{z=\infty} (f(z)). \]
+Se $f(z)$ é meromorfa em $z = \infty$ então em um disco perfurado em $\infty$ temos a série de Laurent
+\[ f(z) = \sum_{n=-\infty}^N c_n z^n, \]
+com $\nu_\infty(f) = -N$
+logo
+\[ g(w) = \sum_{m=-N}^\infty c_{-m} z^m, \]
+então $\nu_{w=0} (g(w)) = -N = \nu_{z=0} (f(z))$.
+
+\begin{problema}
+Sejam $g$ uma função meromorfa em um ponto $a\in\Ch$
+e $\omega,\omega_1,\omega_2$ umas formas diferenciais meromorfas em $a\in\Ch$
+Provar que
+\begin{enumerate}
+\item a diferencial $f\cdot \omega$ é meromorfa no ponto $a$,
+\item $\nu_a(g\cdot \omega) = \nu_a(g) + \nu_a(\omega)$,
+\item a diferencial $\omega_1 + \omega_2$ é meromorfa no ponto $a$,
+\item $\nu_a(\omega_2) > \nu_a(\omega_1) \implies \nu_a(\omega_1+\omega_2) = \nu_a(\omega_1)$,
+\item $\nu_a(\omega_1 + \omega_2) \geq \min(\nu_a(\omega_1), \nu_a(\omega_2))$,
+\item $\nu_a(\omega) \geq 0 \iff \omega$ é holomorfa em $a$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}[Independência da coordenada para formas]
+\label{p:valoracao-forma-independencia}
+Sejam $a,b\in\Ch$ e $W(z),Z(w)$ como no \Cref{p:valoracao-independencia},
+e $\omega = f(z) dz$ uma forma diferencial com singularidade isolada em $z=a$.
+Define $g(w) = g(Z(w))$ e
+\[ \omega_2 := g(w) Z'(w) dw. \]
+Mostre que
+\begin{enumerate}
+\item $z=a$ é um ponto singular isolado de $\omega$ $\iff$ $w=b$ é um ponto singular isolado de $\omega_2$,
+\item $\omega$ tem singularidade removível em $z=a$ $\iff$ $\omega_2$ tem singularidade removível em $w=b$,
+\item $\omega$ é holomorfa em $z=a$ $\iff$ $\omega_2$ é holomorfa em $w=b$,
+\item $\omega$ é meromorfa em $z=a$ $\iff$ $\omega_2$ é meromorfa em $w=b$,
+\item se $a,b\neq\infty$, então
+as funções $Z'(w)^{\pm 1}$ são holomorfas em $z=a$
+e as funções $W'(z)^{\pm 1}$ são holomorfas em $w=b$,
+e $\nu_{z=a} (W'(z)) = 0 = \nu_{w=b} (Z'(w))$,
+\item $\nu_{z=a}(\omega) = \nu_{w=b}(\omega_2)$, se $\omega$ é meromorfa em $z=a$.\footnote{Dica:
+usando os outros itens e \Cref{p:valoracao-independencia}
+basta de provar-lhe para o caso $\omega = dz$. Neste caso substituindo $z = Z(w)$
+obtemos $\omega_2 = Z'(w) dw$, logo (para o subcaso $a,b\neq\infty$) obtemos
+$\nu_{z=a} (dz) = 0 = 0+0 = \nu_{w=b}(Z') + \nu_{w=b}(dw) = \nu_{w=b}(Z'(w)\cdot dw)$.
+Similarmente considere três mais subcasos quando $a=\infty$ ou $b=\infty$. }
+\end{enumerate}
+\end{problema}
+
+É comum considerar $\omega = f(z) dz$ e $\omega_2 = g(w) Z'(w) dw$ como uma forma diferencial só,
+mas escrita em diferentes coordenadas locais $z$ e $w$. 
+Similarmente $f(z)$ corresponde à $g(w) = f(Z(w))$
+e o ponto $z=a$ corresponde a $w=b (=W(a))$.
+Os \Cref{p:valoracao-independencia,valoracao-forma-independencia} mostre, que
+a valoração em um ponto não depende da escolha de coordenada local.
+
+
+\section{Resíduos.}
+
+\begin{defin}[Resíduos de funções e formas diferenciais]
+\begin{enumerate}
+\item Suponha que $Q = \{ z = a \} \in D \subset \Ch$ é um ponto singular isolado de uma forma diferencial $\omega$
+i.e. $\omega$ é holomorfa em uma vizinhança perfurada $P(a,R)$.
+O \emph{resíduo} $\res_Q \omega$ da forma diferencial $\omega$ em um ponto $Q = \{ z = a \}$
+é definido como a integral
+\begin{equation}
+\res_Q \omega := \frac{1}{2\pi i} \int_\gamma \omega,
+\end{equation}
+onde $\gamma$ é um círculo $\phi \mapsto a + \rho \exp(i\phi)$ com $\rho<R$ e a orientação antihorária
+(para $a=\infty$ escolhemos $\gamma$
+como $\phi \mapsto \frac{1}{\rho} \exp(-i\phi)$,
+então como uma volta em sentido antihorário através de $\infty$
+esolhemos uma volta em sentido horário através de zero).\footnote{
+Mais geralmente, podemos escolher qualquer ciclo $\gamma \in C_1(P(a,R))$
+no disco perfurado de holomorficidade $P(a,R)$
+de índice um, i.e.
+$I(\gamma,a) = \frac{1}{2\pi i} \int_\gamma \frac{dz}{z-a} = 1$ para $a\neq\infty$
+e $\frac{1}{2\pi i} \int_\gamma \frac{dz}{z} = -1$ para $a=\infty$. Lembra que
+se $w=z^{-1}$ então $\frac{dz}{z} = -\frac{dw}{w}$,
+e $w$ é uma coordenada local em vizinhança de $z=\infty$.
+A fórmula tem sentido se o ciclo $\gamma$ não passa de ponto $z=0$.
+Se passa podemos escolher $b\in\C$ tal que $\gamma$ não passa de $b$
+e computar o íncice em $\infty$ como $\frac{1}{2\pi i} \int_\gamma \frac{-dz}{z-b}$.}
+\item Seja $\omega = f(z) dz$ e para $a\neq\infty$
+considere a série de Laurent da $f$ no disco perfurado $P(a,R)$:
+\[ f(z) = \sum_{n\in\Z} c_n(a;f) (z-a)^n. \]
+Pelo \Cref{t:anel-laurent} o  resíduo da forma diferencial
+$\omega = f(z) dz$ em ponto $z=a$ (com respeito de coordenada $z$ ou $z-a$)
+é igual ao coeficiente $c_{-1}(a;f)$:
+\begin{equation}
+\res_Q \omega = \res_{z=a} f(z) dz =\frac{1}{2\pi i} \int_\gamma \frac{f(z)dz} = c_{-1}(a;f).
+\end{equation}
+\item É menos natural, mas comum considerar o \emph{o resíduo de uma função} $f(z)$
+\emph{com respeito de uma coordenada local} $z-a$ como $\res_{z-a} f = \res_{z=a} f(z) := \res_{z=a} f(z) dz$.
+\end{enumerate}
+\end{defin}
+
+\begin{problema}
+Compute
+\begin{enumerate}
+\item $\res_{z=0} \frac{1}{z} dz$,
+\item $\res_{z=0} \frac{1}{2z} dz$
+\item $\res_{z=0} \frac{1}{z^2} dz$, % = 0$,
+\item % $\res_{z=0} \frac{d(w-w^2)}{(w-w^2)^2} = 
+      $\res_{w=0} \frac{1-2w}{(w-w^2)^2} dw$, % = 0$,
+\item $\res_{w=0} \frac{1}{(w-w^2)^2} dw$. % = =2
+\end{enumerate}
+Veja que geralmente o resíduo de uma função depende da escolha de coordenada local,
+i.e. geralmente $\res_{z=a} f(z) dz \neq \res_{w=b} f(Z(w)) dw$ ainda
+para $a,b,Z,W$ como no \Cref{p:valoracao-independencia}.
+\end{problema}
+
+\begin{problema}[Independência de resíduo da coordenada local]
+Sejam $a,b,Z(w),W(z),f(z),g(w),\omega,\omega_2,$ como no \Cref{p:valoracao-forma-independencia},
+i.e. $b=W(a)$, $g(w) = f(Z(w))$ e $\omega_2 = g(Z(w)) Z'(w) dw$ para $\omega = f(z) dz$.
+Define pontos $Q = \{ z=a \}$ e $Q_2 = \{ w=b \}$.
+Verifique que
+\[ \res_Q \omega = \res_{Q_2} \omega_2, \]
+i.e. que \emph{o resíduo da forma diferencial não depende de escolha de uma coordenada local}
+(em contraste com ``o resíduo da função''').
+\end{problema}
+
+\begin{problema}
+\begin{enumerate}
+\item Provar que $\res_Q \omega = 0$ se $\omega$ é holomorfa em $Q$ (ou tem singularidade removível).
+\item Dar um exemplo de $\omega$ tal que $\res_Q \omega = 0$,
+mas a singularidade isolada $Q$ não é removível.
+\end{enumerate}
+\end{problema}
+
+\begin{teorema}[sobre resíduos]
+\label{t:residuos}
+Seja $\omega = f(z) dz$ holomorfa na região $D \subset \Ch$ exceto um subconjunto $S\subset D$
+de pontos singulares isolados, e $G\subset D$ um compacto tal que $\partial G$ não contém os pontos singulares.
+Então
+\begin{equation}
+\frac{1}{2\pi i} \int_{\partial G} \omega = \sum_{a\in G} \res_{z=a} \omega,
+\end{equation}
+onde a soma no lado direito é finita,
+i.e. a somante é zero fora de conjunto finito $S\bigcap G$.
+\end{teorema}
+\begin{proof}
+Primeiro veja que o conjunto $S\bigcap G$ é finito,
+porque ele é compacto e discreto.\footnote{Também uma das definições de compacto
+diz que qualquer sequência infinita não é discreta, i.e. tem um ponto de aglomeração.}
+Para cada ponto $a_j\in S\bigcap G$ escolha uma vizinhança $B(a_j,R_j)$ suficiente pequena
+in tal maneira que $\omega$ é holomorfa em vizinhança perfurada $P(a_j,R_j)$
+e todas as vizinhanças são disjuntas.\footnote{Para segundo basta de tomar $R_j$ menor de que
+mínimo de todas $|a_j-a_k|$ para $j\neq k$.}
+Agora considera o compacto $K = G - \bigcup_j B(a_j,R_j)$ e aplica \Cref{t:cauchy-k} para obter
+\[ \int_{\partial K} \omega = 0. \]
+Mas $\partial K = \partial G - \sum_j \gamma_j$, onde $\gamma_j \subset P(a_j,R_j)$
+são os círculos pequenos em sentido antihorário através dos pontos $a_i$.
+Logo
+\[ 0 = \frac{1}{2\pi i} \int_{\partial K} \omega = \frac{1}{2\pi i} \int_{\partial G - \sum \gamma_j} \omega
+= \frac{1}{2\pi i} \int_{\partial G} \omega - \sum \res_{z=a_j} \omega. \]
+\end{proof}
+
+\begin{cor}[Uma lei de reciprocidade para resíduos]
+\label{reciprocidade-residuos}
+Seja $\omega = g(z) dz$ uma forma diferencial holomorfa na esfera de Riemann $\Ch$
+exceto um conjunto finito de pontos singulares $S$. Então
+\begin{equation}
+\sum_{Q\in\Ch} \res_Q \omega = 0.
+\end{equation}
+\end{cor}
+\begin{proof}
+É o caso particular do \Cref{t:residuos} quando $D = \Ch$,
+desde que a esfera é compacta e a fronteira dela é vazia.
+\end{proof}
+
+\begin{problema}
+Seja $f : \C \to \C$ uma função inteira. Provar que
+$\res_\infty f(z) dz = 0$.
+\end{problema}
+
+\section{Derivada logaritmica. Princípio do argumento.}
 \begin{defin}
 \end{defin}
 \begin{teorema}
@@ -1901,6 +2140,8 @@ Se tem problemas com penúltimo passo use o teorema de resíduo da próxima seç
 \end{teorema}
 \begin{cor}[Teorema Fundamental de Álgebra]
 \end{cor}
+
+\section{Valor principal de Cauchy.}
 
 \section{Propriedades topológicas das funções meromorfas}
 
