@@ -458,19 +458,27 @@ e
 \end{problema}
 
 \section{Funções holomorfas e analíticas}
+Nessa seção vamos definir as funções holomorfas e analíticas
+e provar o teorema de Abel, que qualquer função analítica é holomorfa.
+Posteriormente no \Cref{t:hol-series} também probamos o reverso,
+que qualquer função holomorfa é analítica.
 
 \subsection{Holomorficidade}
 
-\begin{defin} Uma função é \emph{holomorfa} em região $D$ se ela tem derivada complexa em cada ponto de região.
-Uma função é holomorfa em ponto, se ela é holomorfa em alguma vizinhança dele.
+\begin{defin} 
+\begin{enumerate}
+\item Uma função é \emph{holomorfa} em uma região $D\subset\C$ se ela tem derivada complexa em cada ponto da região.
+\item Uma função é chamada \emph{holomorfa em ponto}, se ela é holomorfa em alguma vizinhança dele.
+\item Mais geralmente uma função é holomorfa em um conjunto qualquer, se ela é holomorfa em alguma vizinhança dele.
+\end{enumerate}
 \end{defin}
 
 \begin{exem}
-Constantes f(z) = a,
-identidade f(z) = z,
+Constantes $f(z) = a$,
+identidade $f(z) = z$,
 funções lineares $z \mapsto a z$,
 todos os polinômios com coeficientes complexos $f \in \C[z]$
-são holomorfas no todo $\C$ (tais funções são chamadas \emph{inteiras}).
+são holomorfas no todo $\C$.\footnote{Tais funções são chamadas \emph{inteiras}, cf. \Cref{d:inteira}.}
 \end{exem}
 
 \begin{problema}
@@ -479,7 +487,7 @@ Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a funçã
 \end{problema}
 
 \begin{problema}
-Provar que a função holomorfa com derivada não nula é uma aplicação conforme,
+Provar que uma função holomorfa com derivada não nula é uma aplicação conforme,
 i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.\footnote{Dica:
 primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
 e translação por $b$, e então é conforme.
@@ -585,6 +593,42 @@ nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste 
 mas outro \Cref{t:abel-limite} de Abel implica que se a soma de séries converge
 então ela é igual ao limite da função definida por séries de potências
 em um região específico (raio, ângulo ou setor de Stolz).
+
+\begin{defin}[Funções analiticas]
+Uma função $f: D\to \C$ é chamada \emph{analítica}
+se para cada ponto $z_0\in D$ existe
+uma vizinhança $B(z_0,r(z_0))$
+e uma série de potências $\sum_{n=0}^\infty c_n(z_0) (z-z_0)^n$
+convergente e igual à função $f$ nela:
+\[\forall |z-z_0|<r(z_0) \implies f(z) = \sum_{n=0}^\infty c_n(z_0) (z-z_0)^n .\]
+\end{defin}
+
+\begin{cor}[Funções analíticas são holomorfas]
+Qualquer função analítica $f: D\to\C$ é holomorfa.
+\end{cor}
+\begin{proof}
+Ambas as propriedades (de analiticidade e holomorficidade) são locais,
+e locamente é o \Cref{t:abel} de Abel.
+\end{proof}
+
+\begin{prop}[Zeros das funções analíticas são isolados]
+Seja $f: D\to\C$ uma função analítica e não igual ao zero identicamente.
+Provar que para qualquer ponto $a\in D$ existe $r>0$ tal que $f(z)\neq 0$ para qualquer $0<|z-a|<r$.
+\end{prop}
+\begin{proof}
+Temos $f(z) = \sum_{n=0}^\infty c_n (z-a)^n$ em um disco $B(a,r)$.
+
+Em caso $f(a)\neq 0$ a função $f(z)$ é analítica, logo holomorfa, logo contínua,
+então existe $0<\rho\leq r$ tal que $|z-a|<\rho \implies |f(z)-f(a)| < |f(a)|$,
+e a desigualdade triangular implica $f(z)\neq 0$ para todos $|z-a|<\rho$.
+
+Se $f(a)=0$ definimos $k = \min \{ n\geq 1: \, c_n\neq 0 \}$
+e $g(z) = \sum_{m=0}^\infty c_{m+k} (z-a)^m$. Note que pela construção $g(a)\neq 0$.
+A série que defina a função $g(z)$ tem o raio de convergência igual
+ao de $f(z)$ (cf. \Cref{raio-derivada}), então no $B(a,r)$ temos
+$f(z) = (z-a)^k g(z)$. Como em caso $f(a)=0$ existe $0<\rho<r$ tal que $g(z)\neq 0$
+para $|z-a|<\rho$, então também $f(z) = (z-a)^k g(z) \neq 0$ para qualquer $0<|z-a|<\rho$.
+\end{proof}
 
 \subsection{Exponente e funções trigonométricas}
 
@@ -1861,6 +1905,7 @@ e $\lim_{n\to\infty} f(b_n) = A$.
 \end{problema}
 
 \begin{defin}[Função inteira]
+\label{d:inteira}
 As funções holomorfas $f: \C \to \C$ no todo plano comlpexo
 também são chamadas de \emph{funções inteiras}.
 \end{defin}
@@ -2014,7 +2059,7 @@ Similarmente considere três mais subcasos quando $a=\infty$ ou $b=\infty$. }
 mas escrita em diferentes coordenadas locais $z$ e $w$. 
 Similarmente $f(z)$ corresponde à $g(w) = f(Z(w))$
 e o ponto $z=a$ corresponde a $w=b (=W(a))$.
-Os \Cref{p:valoracao-independencia,valoracao-forma-independencia} mostre, que
+Os \Cref{p:valoracao-independencia,p:valoracao-forma-independencia} mostre, que
 a valoração em um ponto não depende da escolha de coordenada local.
 
 
@@ -2138,7 +2183,9 @@ $\res_\infty f(z) dz = 0$.
 \end{problema}
 
 \section{Derivada logaritmica. Princípio do argumento.}
-\begin{defin}
+
+\begin{defin}[Derivada logarítmica]
+Seja $f : \D \to \C$ uma função.
 \end{defin}
 \begin{teorema}
 \end{teorema}
