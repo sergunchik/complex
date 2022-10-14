@@ -2185,14 +2185,182 @@ $\res_\infty f(z) dz = 0$.
 \section{Derivada logaritmica. Princípio do argumento.}
 
 \begin{defin}[Derivada logarítmica]
-Seja $f : \D \to \C$ uma função.
+Seja $f : \D \to \C$ uma função holomorfa
+e $S = Z(f) := \{ z\in D: f(z) = 0 \}$ o conjunto de nulos dela,
+então a função $\frac{1}{f}$ é holomorfa no $D-S$.
+Uma \emph{derivada logarítmica} de $f$ é uma forma diferencial
+\begin{equation}
+\dlog f := \frac{df}{f} = \frac{f'(z)}{f(z)} dz.
+\end{equation}
+As vezes a função $\frac{\dlog f}{dz} = \frac{f'(z)}{f(z)}$ também é chamada uma \emph{derivada logarítmica}
+\emph{com respeito de coordenada} $z$.
 \end{defin}
+
+\begin{problema}
+Suponha que existe uma função $g: D-S\to\C$ tal que $\exp(g(z)) = f(z)$.
+Provar que neste caso $\dlog f = dg$.
+\end{problema}
+
+A função $g=\log(f)$ pode não existir na região $D$, então $\dlog f$ existe em generalidade
+maior de que $\log f$.
+
+Um exemplo de utilidade de derivada logarítmica é a seguinte demonstração do
+\begin{teorema}[Gauss--Lucas]
+Provar que as raízes complexas da derivada $P'(z)$ de um polinómio não constante $P(z)\in\C[z]-\C$
+são localizados dentro
+do fecho convexo das raízes do polinómio $P$ mesmo.
+\end{teorema}
+\begin{proof}
+Como o primeiro passo, vamos usar o teorema fundamental de álgebra (\cref{teorema-fundamental-algebra})
+para derivar que existem $u_1,\dots,u_n \in \C$ e $\alpha \in \C^*$ tais que
+\[ P(z) = \alpha \cdot (z-u_1) \cdot \dots \cdot (z-u_n),\]
+logo
+\[ \frac{P'(z)}{P(z)} = \sum_{k=1}^n \frac{1}{z-u_k} . \]
+Seja $w$ uma raiz da derivada: $P'(w)=0$. Se $P(w)=0$ então existe $j$ tal que $w=u_j$,
+logo $w$ é no fecho convexo de $u_j$ só. Senão, o valor$\frac{P'(w)}{P(w)} = 0$
+da derivada logarítmica de $P$ com respeito de $z$ em $z=w$ é igual a zero, então
+$0 = \sum_{k=1}^n \frac{1}{w-u_k}$.
+Em seguida vamos dar duas demonstrações usando as duas duais definições do fecho convexo.
+
+Conjugando a equação obtemos $0 = \sum_{k=1}^n \frac{1}{\ol{w-u_k}}$,
+i.e. $0 = \sum_{k=1}^n |w-u_k|^{-2}\cdot (w-u_k)$,
+e regrupando os termos com $w$ temos
+\[ \big(\sum_{k=1}^n |w-u_k|^{-2}\big) \cdot w = \sum_{k=1}^n |w-u_k|^{-2} u_k. \]
+Logo $z = \sum_{k=1}^n p_k u_k$
+onde os coeficientes
+$p_k := \frac{|w-u_k|^{-2}}{\sum_{j=1}^n |w-u_j|^{-2}} \geq 0$
+são reais não negativos e satisfazem $\sum_{k=1}^n p_k = 1$.
+
+Outra definição de fecho convexo é a interseção de todos os semiplanos que conted o conjunto de raízes de $P$.
+Logo para provar que $w$ pertence nele baste de provar que $w$ pertence ao cada destes semiplanos.
+Escolhemor uma transformação $z\mapsto a z_2 + b$ tal que a imagem de semiplano é um semiplano superior
+$\{\Im(z_w)>0\}$.
+Ele também manda as raízes de $P(z)$ às raízes de $Q(z_2) = P(az+b)$ e as raízes da derivada
+$P'(z)$ às raízes de $Q'(z_2)$. Então basta de derivar uma contradição de $\forall j:\,\Im(u_j)>0$
+e $\Im(w)\leq 0$. Temos $\Im(w-u_j) = \Im(w)-\Im(u_j)<0$,
+logo $\Im((w-u_j)^{-1}) = \frac{-\Im(w-u_j)}{|w-u_j|^2} > 0$,
+então $0 = \Im(0) = \Im(\sum_{j=1}^n (w-u_j)^{-1}) = \sum_{j=1}^n \Im((w-u_j)^{-1}) > 0$, i.e. $0>0$,
+e o enunciado segue ex falso.
+\end{proof}
+
+\begin{problema}
+\label{p:dlog}
+Mostre que
+\begin{enumerate}
+\item $\dlog (fg) = \dlog f + \dlog g$,
+\item $\dlog f^k = k \dlog f$ para todos $k\in\Z$ (positivos ou negativos),
+\item se $f$ é meromorfa em $a$, então $\dlog f$ é meromorfa em $a$,
+\item $\dlog f$ é holomorfa em $a$ $\iff$ $f$ é holomorfa em $a$ e $f(a)\neq 0$.
+\end{enumerate}
+Suponha que $f$ é meromorfa em $a$. Mostre que
+\begin{enumerate}
+\item $\nu_a \dlog(z-a) = -1$,
+\item $\res_a \dlog(z-a) = 1$,
+\item $\res_a \dlog f = 0$ se $\nu_a(f) = 0$,
+\item $\res_a \dlog f = \nu_a(f)$.
+\end{enumerate}
+\end{problema}
+
 \begin{teorema}
+\label{t:dlog-val}
+Suponha que uma função $f$ é meromorfa na região $D$ e $G\subset D$
+é um compacto tal que a fronteira $\partial G$ dele não contem zeros ou polos de $f$. Então
+\begin{equation}
+\label{eq:dlog-val}
+\frac{1}{2\pi i} \int_{\partial G} \dlog f = \sum_{a\in G} \nu_a(f) = N-P
+\end{equation}
+onde $N = \sum_{a\in G} \max(0,\nu_a(f))$ é o número de nulos de $f$ em $G$ contado com multiplicidades
+e $Z = \sum_{a\in G} \max(0,-\nu_a(f))$ é o número de zeros de $f$ em $G$ contado com multiplicidades.
 \end{teorema}
-\begin{teorema}[Rouché]
-\end{teorema}
-\begin{cor}[Teorema Fundamental de Álgebra]
+\begin{proof}
+Aplicando \Cref{t:residuos} para o caso $\omega = \dlog f$ e usando \Cref{p:dlog} temos
+\[ \frac{1}{2\pi i} \int_{\partial G} \dlog f = \sum_{a\in G} \res_{z=a} \dlog f = \sum_{a\in G} \nu_a(f). \]
+\end{proof}
+
+\begin{cor}[Lei da reciprocidade para valorações de funções]
+Seja $f : \Ch \to \Ch$ uma função meromorfa na toda esfera de Riemann. Então
+\begin{equation}
+\sum_{P\in\Ch} \nu_P(f) = 0,
+\end{equation}
+i.e. número de nulos é igual ao número de zeros. Este número é chamado \emph{grau de uma função meromorfa}.
 \end{cor}
+
+\begin{problema}[Lei da reciprocidade para valorações de diferenciais]
+Seja $\omega = g(z) dz$ uma forma diferencial meromorfa na toda esfera de Riemann $\Ch$.
+Provar que
+\begin{equation}
+\sum_{P\in\Ch} \nu_P(\omega) = -2.
+\end{equation}
+\end{problema}
+
+Podemos reformular \Cref{t:dlog} em linguagem de argumento.
+\begin{teorema}[Princípio de argumento]
+Em presuposições de \Cref{t:dlog} o número $N-P = \sum_{a\in G} \nu_a(f)$
+é igual à soma de mudançãs de argumento $\arg f$ sobre todas as componentes de fronteira,
+e dividida por $2\pi$, chamarmos essas mudanças como $\Delta_{\partial G} \arg(f)$.
+\end{teorema}
+\begin{proof}
+Pela fórmula de Newton--Leibniz a integral de $\int_\gamma \omega$ atrvés de um ciclo é igual
+a mudança de primitiva $F(z) = \int_{z_0}^z \omega$ continuada através de $\gamma$.
+A primitiva de $\dlog f$ é $g=\log f$. Se $w=f(z)\neq0$ então $w = |w| e^{i\arg w}$
+e $\log(w) = \log(|w|) + i\cdot \arg(w)$,
+i.e. o argumento $\arg(w)$ é a parte imaginária do logaritmo $\log(w)$.
+A parte imaginária do logaritmo é uma função bem definida, então
+$\int_\gamma \dlog f(z)$ é igual à mudança de argumento de $f(z)$ através de $\gamma$.
+\end{proof}
+
+\begin{teorema}[Rouché]
+\label{t:rouche}
+Sejam $f$ e $g$ holomorfas na região fechada $G$ com fronteira $\partial G$.
+Suponha que $|f(z)| > |g(z)|$ para qualquer $z\in\partial G$ na fronteira.
+Então as funções $f$ e $f+g$ tem o igual número de zeros em $G$ (contando as multiplicidades), i.e.
+\[ \sum_{a\in G} \nu_a(f) = \sum_{a\in G} \nu_a(f+g) .\]
+\end{teorema}
+\begin{proof}
+Aplicando \Cref{eq:dlog-val} para $f$ e $f+g$ temos
+\begin{align*}
+N(f) = \sum_{a\in G} \nu_a(f)   &= \delta_{\partial G} \arg(f),\\
+N(f+g) =\sum_{a\in G} \nu_a(f+g) &= \delta_{\partial G} \arg(f+g).
+\end{align*}
+Logo
+\[ N(f+g)-N(f) = \delta_{\partial G} \arg(1+\frac{g}{f}), \]
+mas desde $|\frac{g}{f}| < 1$ implica $\Re(\frac{g}{f})>-1$,
+logo $\Re(1+\frac{g}{f}) > 0$, i.e. o ângulo fica no semiplano direito,
+e a mudança dele é igual zero. Analiticamente podemos dizer que a função $\frac{f+g}{f}$
+tem uma primitiva no $\partial G$.
+
+Outra demonstração. Considere $F_\lambda = f + \lambda g$ para $\lambda\in[0,1]$.
+Pela desigualdade $|f(z)| > |g(z)|$ e desigualdade triangulas
+vejamos que $F_\lambda$ não é zero na fronteira $\partial G$.
+Logo $\dlog F_\lambda$ é forma holomorfa na $\partial G$
+e $\psi(\lambda) = \frac{1}{2\pi i} \int_{\partial G} \dlog F_\lambda$ existe para qualquer $\lambda\in[0,1]$.
+Graças a representação como um integral e (equi)continuidade de $F_\lambda(z)$
+vejamos que $\psi(\lambda)$ é contínua como função de $\lambda$. Mas também ela toma só valores inteiros.
+Qualquer função contínua com valores discretos é localmente constante.
+\end{proof}
+
+\begin{cor}[Teorema Fundamental de Álgebra]
+\label{teorema-fundamental-algebra}
+Seja $P\in\C[z]$ um polinómio não nulo de grau $n$, i.e.
+$P(z) = c_0 + c_1 z + \dots + c_n z^n$ e $c_n\neq 0$.
+\begin{enumerate}
+\item se $n>0$ o polinómio $P$ tem uma raiz complexa,
+i.e. existe $w\in\C$ tal que $P(w) = 0$;
+\item $P(z) = c_n (z-u_1) \dots (z-u_n)$ para alguns números complexos $u_1,\dots,u_n\in\C$.
+\end{enumerate}
+\end{cor}
+\begin{proof}
+Aplique o \Cref{t:rouche} de Rouché com $f(z) = c_n z^n$,
+$g(z) = c_0 + c_1 z + \dots + c_{n-1} z^{n-1}$ e $G = B(0,R)$
+para o raio $R$ suficientemente grande\footnote{Precisamos
+$1 > \max_{|z|=R} |c_n|^{-1} |c_0/z^N + \dots + c_{n-1}/z|$,
+então é suficiente tomar $R>\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.}
+para obter
+\[ N_{<R}(P) = N_{<R}(c_n z^n), \]
+onde o lado direito é igual ao $n$:
+\[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
+Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
+\end{proof}
 
 \section{Valor principal de Cauchy.}
 
