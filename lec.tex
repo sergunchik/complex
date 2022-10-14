@@ -500,7 +500,7 @@ então ela converge uniformemente em $D$ e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0
 \end{problema}
 
 
-\subsection{Séries de potências, fórmula de Hadamard, teoremas de Abel}
+\subsection{Séries de potências: fórmula de Hadamard e teorema de Abel.}
 
 \begin{prop}[Série geométrica]
 Para um número real positivo $u\in(0,1)$ a série geométrica
@@ -582,9 +582,78 @@ então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
 
 O círculo $|z-a| = R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
 nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo,
-mas o seguinte \Cref{t:abel-limite} implica que se a soma de séries converge
+mas outro \Cref{t:abel-limite} de Abel implica que se a soma de séries converge
 então ela é igual ao limite da função definida por séries de potências
 em um região específico (raio, ângulo ou setor de Stolz).
+
+\subsection{Exponente e funções trigonométricas}
+
+\begin{problema}
+Provar que as séries para exponente, seno e cosseno
+\begin{nalign}
+\exp(z) &= \sum_{n=0}^\infty \frac{z^n}{n!}, \\
+\cos(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}     &= \frac{\exp(iz) + \exp(-iz)}{2}, \\
+\sin(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} &= \frac{\exp(iz) - \exp(-iz)}{2i},
+\end{nalign}
+convergem absolutamente no todo $\C$ e são holomorfas.
+Compute as derivadas delas:
+$\exp' = \exp$, $\cos' = -\sin$, $\sin' = \cos$.
+\end{problema}
+
+As séries $\sum a_n z^n$ e $\sum \ol{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
+$\overline{\sum a_n z^n} = \sum \ol{a_n} \cdot \ol{z}^n$.
+
+\begin{prop}
+Para todos $z,w\in \C$ temos
+\begin{equation}
+\exp(z+w) = \exp(z) \exp(w)
+\end{equation}
+\end{prop}
+\begin{proof}
+Para $w$ fixo a função em $z$ dada por
+$f(z) := \exp(z) \exp(w-z)$ é holomorfa (como o produto das composições de funções holomorfas).
+A derivada dela é igual $f'(z) = \exp'(z) \exp(w-z) + \exp(z) \exp'(w-z) = \exp(z) \exp(w-z) - \exp(z) \exp(w-z) = 0$
+(pela regra de Leibniz e regra de cadeias). Logo ela é constante e igual $f(0) = \exp(z)$.
+\end{proof}
+
+\begin{cor}[Fórmula de Euler]
+\begin{equation}
+\exp(u+iz) = \exp(u) \big( \cos(z) + i \sin(z) \big)
+\end{equation}
+\end{cor}
+\begin{proof}
+Se você já provou a relação entre funções $\cos$ e $\sin$ de origem geométrico e as séries acima,
+o corolário é óbvio. Senão agora podemos diretamente relacionar: veja que a derivada de
+$(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumento real e valor complexo
+onde as funções trigonométricas $\cos$ e $\sin$ são definidas geometricamente)
+existe e é igual $0$.
+\footnote{
+Outra demonstração mais geométrica é seguinte:
+desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \ol{i}$ temos
+$\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
+Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
+Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
+Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
+e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
+Exercício - terminar a demonstração.
+}
+\end{proof}
+
+\begin{remark}
+Acima são os casos do método geral:
+se as duas funções satisfazem a mesma equação diferencial ordinária sem singularidades,
+e tem as mesmas condições iniciais, elas são iguais.
+\end{remark}
+
+\begin{cor}[Fórmulas trigonométricas]
+\begin{align*}
+\cos(z+w) &= \cos(z)\cos(w) - \sin(z)\sin(w), \\
+\sin(z+w) &= \cos(z)\sin(w) + \sin(z)\cos(w). 
+\end{align*}
+\end{cor}
+
+
+\subsection{Teorema abeliano sobre o limite.}
 
 \begin{teorema}[Abel, sobre o limite]
 \label{t:abel-limite}
@@ -678,6 +747,8 @@ em qualquer ponto do seu círculo de convergência.
 \end{enumerate}
 \end{problema}
 
+\subsection{Somas de Cesàro e de Abel de séries divergentes. Teoremas tauberianos.}
+
 Pode acontecer que a série $c_0 + c_1 + \dots$ é divergente,
 mas apesar dísso o limite $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe e finito.
 Neste caso 
@@ -690,7 +761,7 @@ e.g.
 \begin{equation}
 A(c) := \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots .
 \end{equation}
-Ou valor de $A(c)$ pode ser um número complexo se o limite finito existe,
+O valor de $A(c)$ pode ser um número complexo se o limite finito existe,
 ou infinito se o limite infinito existe, ou pode não existir, se o limite não existe.
 \end{defin}
 
@@ -722,11 +793,13 @@ A(c_n=\frac{1}{n^k})    &= \lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = ?. %\
 \end{problema}
 
 \begin{defin}[Soma de Cesàro]
-Para série $c_0 + c_1 + c_2 + \dots$ definindo as somas parciais
-$s_n = c_0 + \dots + c_n$. Digamos que a série $c_0 + c_1 + c_2 + \dots$
-tem a \emph{soma de Cesàro} igual ao número complexo $S\in\C$ se existe o limite finito
-\[ \lim_{n\to\infty} \frac{s_0 + \dots + s_n}{n+1} = S \in \C . \]
-Alternativamente digamos que a série $c_0 + \dots + c_n$ é \emph{somável em sentido de Cesàro}.
+\label{d:cesaro}
+Para uma série $c_0 + c_1 + c_2 + \dots$ defina as somas parciais
+$s_n = c_0 + \dots + c_n$. Digamos que a série $\sum_{n=0}^\infty c_n$
+é \emph{somável em sentido de Cesàro}
+se existe o limite finito
+\[ \lim_{n\to\infty} \frac{s_0 + \dots + s_n}{n+1} = S \in \C, \]
+chamado a \emph{soma de Cesàro} da série $c$. Uma notação conveniente: $S =: C(c)$.
 \end{defin}
 
 \begin{problema}
@@ -760,73 +833,6 @@ Então a série $c_0 + c_1 + \dots$ converge se
 \item \label{i-littlewod} $c_n = O(1/n)$ (Littlewood).
 \end{enumerate}
 \end{teorema}
-
-\subsection{Exponente e funções trigonométricas}
-
-\begin{problema}
-Provar que as séries para exponente, seno e cosseno
-\begin{nalign}
-\exp(z) &= \sum_{n=0}^\infty \frac{z^n}{n!}, \\
-\cos(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}     &= \frac{\exp(iz) + \exp(-iz)}{2}, \\
-\sin(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} &= \frac{\exp(iz) - \exp(-iz)}{2i},
-\end{nalign}
-convergem absolutamente no todo $\C$ e são holomorfas.
-Compute as derivadas delas:
-$\exp' = \exp$, $\cos' = -\sin$, $\sin' = \cos$.
-\end{problema}
-
-As séries $\sum a_n z^n$ e $\sum \ol{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
-$\overline{\sum a_n z^n} = \sum \ol{a_n} \cdot \ol{z}^n$.
-
-\begin{prop}
-Para todos $z,w\in \C$ temos
-\begin{equation}
-\exp(z+w) = \exp(z) \exp(w)
-\end{equation}
-\end{prop}
-\begin{proof}
-Para $w$ fixo a função em $z$ dada por
-$f(z) := \exp(z) \exp(w-z)$ é holomorfa (como o produto das composições de funções holomorfas).
-A derivada dela é igual $f'(z) = \exp'(z) \exp(w-z) + \exp(z) \exp'(w-z) = \exp(z) \exp(w-z) - \exp(z) \exp(w-z) = 0$
-(pela regra de Leibniz e regra de cadeias). Logo ela é constante e igual $f(0) = \exp(z)$.
-\end{proof}
-
-\begin{cor}[Fórmula de Euler]
-\begin{equation}
-\exp(u+iz) = \exp(u) \big( \cos(z) + i \sin(z) \big)
-\end{equation}
-\end{cor}
-\begin{proof}
-Se você já provou a relação entre funções $\cos$ e $\sin$ de origem geométrico e as séries acima,
-o corolário é óbvio. Senão agora podemos diretamente relacionar: veja que a derivada de
-$(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumento real e valor complexo
-onde as funções trigonométricas $\cos$ e $\sin$ são definidas geometricamente)
-existe e é igual $0$.
-\footnote{
-Outra demonstração mais geométrica é seguinte:
-desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \ol{i}$ temos
-$\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
-Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
-Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
-Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
-e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
-Exercício - terminar a demonstração.
-}
-\end{proof}
-
-\begin{remark}
-Acima são os casos do método geral:
-se as duas funções satisfazem a mesma equação diferencial ordinária sem singularidades,
-e tem as mesmas condições iniciais, elas são iguais.
-\end{remark}
-
-\begin{cor}[Fórmulas trigonométricas]
-\begin{align*}
-\cos(z+w) &= \cos(z)\cos(w) - \sin(z)\sin(w), \\
-\sin(z+w) &= \cos(z)\sin(w) + \sin(z)\cos(w). 
-\end{align*}
-\end{cor}
-
 
 
 \section{Integração complexa}
