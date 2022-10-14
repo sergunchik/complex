@@ -741,7 +741,7 @@ Também $c_0 = c + s_0$ e $c_n = -s_{n-1} + s_n$ para $n\geq 1$, então
 \\ =  c + (1-z)(s_0  +         s_1 z + \dot                 + s_{n-1} z^{n-1}) + s_n z^n,
 \end{multline*}
 logo para $|z|<1$ vejamos que
-\[ f(z) -c = -c + \sum c_n z^n = (1-z) \sum s_n zˆn, \]
+\[ f(z) -c = -c + \sum c_n z^n = (1-z) \sum s_n z^n, \]
 então para $z$ em setor $S(M) = \{z : |1-z|\leq M(1-|z|)\}$ temos
 \[ |f(z) - c| \leq |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M(1-|z|)\max_{m\geq n} |c_m| \sum_{m\geq n} z^m
 = |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M \max_{m\geq n} |c_m| \]
@@ -1375,7 +1375,7 @@ Similarmente por qualquer triângulo $\Delta \subset D$ a integral de $g(w)dw$ s
 \[ \int_{\partial \Delta} g(w) dw = \int_{\partial \Delta} \sum n c_n (w-z_0)^{n-1} dw
 = \sum n c_n \int_{\partial \Delta} (w-z_0)^{n-1} dw = \sum n c_n \cdot 0 = 0. \]
 Também $g(w)$ é contínua em $D$:
-\[ g(z+h) - g(z) = \sum n c_n h \sum_{k=0}^{n-2} zˆk (z+h)^{n-2-k}
+\[ g(z+h) - g(z) = \sum n c_n h \sum_{k=0}^{n-2} z^k (z+h)^{n-2-k}
 \leq h C \]
 onde $C = \sum c_n n (n-1) \rho^{n-2} < \infty$ com $\rho = |z|+|h|<R$.
 Pelo \Cref{l:pre-morera} vejamos que $F(z)$ é uma primitiva de $g(z)$,
@@ -1493,6 +1493,7 @@ f^{(n)}(z) = \frac{n!}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}
 \end{remark}
 
 \begin{problema}
+\label{p:divide-holo}
 Suponha que uma função $f(z)$ é holomorfa em $z=a$.
 Provar que uma função $g(z)$ definida como $g(a) = f'(a)$
 e $g(z) = \frac{f(z)-f(a)}{z-a}$ para $z\ne a$ é holomorfa em $a$.
@@ -1561,7 +1562,7 @@ Então pelo qualquer ponto $a\in D$ escolha $R>0$ tal que $\ol{B}(a,R) \subset D
 e aplique \Cref{l:uniforme}.
 \end{proof}
 
-\section{Funções holomorfas em um anel. Séries de Laurent.}
+\section{Funções holomorfas em um anel. Séries de Laurent. Teorema de Liouville.}
 % setembro 13
 
 Em seguida os símbolos de soma $\sum_{n=-\infty}^\infty$
@@ -2182,10 +2183,12 @@ Seja $f : \C \to \C$ uma função inteira. Provar que
 $\res_\infty f(z) dz = 0$.
 \end{problema}
 
-\section{Derivada logaritmica. Princípio do argumento.}
+\section{Derivada logarítmica. Princípio do argumento.}
+
+\subsection{Derivada logarítmica. Teorema de Gauss--Lucas.}
 
 \begin{defin}[Derivada logarítmica]
-Seja $f : \D \to \C$ uma função holomorfa
+Seja $f : D \to \C$ uma função holomorfa
 e $S = Z(f) := \{ z\in D: f(z) = 0 \}$ o conjunto de nulos dela,
 então a função $\frac{1}{f}$ é holomorfa no $D-S$.
 Uma \emph{derivada logarítmica} de $f$ é uma forma diferencial
@@ -2206,8 +2209,8 @@ maior de que $\log f$.
 
 Um exemplo de utilidade de derivada logarítmica é a seguinte demonstração do
 \begin{teorema}[Gauss--Lucas]
-Provar que as raízes complexas da derivada $P'(z)$ de um polinómio não constante $P(z)\in\C[z]-\C$
-são localizados dentro
+As raízes complexas da derivada $P'(z)$ de um polinómio não constante $P(z)\in\C[z]-\C$
+são localizadas dentro
 do fecho convexo das raízes do polinómio $P$ mesmo.
 \end{teorema}
 \begin{proof}
@@ -2244,22 +2247,33 @@ e o enunciado segue ex falso.
 \end{proof}
 
 \begin{problema}
-\label{p:dlog}
+\label{p:dlog-homomorfismo}
 Mostre que
 \begin{enumerate}
 \item $\dlog (fg) = \dlog f + \dlog g$,
-\item $\dlog f^k = k \dlog f$ para todos $k\in\Z$ (positivos ou negativos),
-\item se $f$ é meromorfa em $a$, então $\dlog f$ é meromorfa em $a$,
-\item $\dlog f$ é holomorfa em $a$ $\iff$ $f$ é holomorfa em $a$ e $f(a)\neq 0$.
+\item $\dlog \frac{1}{f} = -\dlog f$,
+\item $\dlog \frac{f}{g} = \dlog f - \dlog g$,
+\item $\dlog f^k = k \dlog f$ para todos $k\in\Z$ (positivos ou negativos).
+\item $\dlog (f^a g^b) = a \dlog f + b \dlog g$ para todos inteiros $a,b,\in\Z$.
 \end{enumerate}
+\end{problema}
+
+\begin{problema}
+\label{p:dlog}
+Dar um exemplo de $g$ não meromorfa em $a$, tal que $\dlog g$ é meromorfa em $a$.
+
 Suponha que $f$ é meromorfa em $a$. Mostre que
 \begin{enumerate}
+\item $\dlog f$ é meromorfa em $a$,
+\item $\dlog f$ é holomorfa em $a$ $\iff$ $f$ é holomorfa em $a$ e $f(a)\neq 0$.
 \item $\nu_a \dlog(z-a) = -1$,
 \item $\res_a \dlog(z-a) = 1$,
 \item $\res_a \dlog f = 0$ se $\nu_a(f) = 0$,
 \item $\res_a \dlog f = \nu_a(f)$.
 \end{enumerate}
 \end{problema}
+
+\subsection{Número de nulos, leis da reciprocidade, princípio de argumento}
 
 \begin{teorema}
 \label{t:dlog-val}
@@ -2278,8 +2292,10 @@ Aplicando \Cref{t:residuos} para o caso $\omega = \dlog f$ e usando \Cref{p:dlog
 \end{proof}
 
 \begin{cor}[Lei da reciprocidade para valorações de funções]
+\label{reciprocidade-valoracoes}
 Seja $f : \Ch \to \Ch$ uma função meromorfa na toda esfera de Riemann. Então
 \begin{equation}
+\label{eq:reciprocidade-valoracoes}
 \sum_{P\in\Ch} \nu_P(f) = 0,
 \end{equation}
 i.e. número de nulos é igual ao número de zeros. Este número é chamado \emph{grau de uma função meromorfa}.
@@ -2289,25 +2305,50 @@ i.e. número de nulos é igual ao número de zeros. Este número é chamado \emp
 Seja $\omega = g(z) dz$ uma forma diferencial meromorfa na toda esfera de Riemann $\Ch$.
 Provar que
 \begin{equation}
+\label{eq:reciprocidade-valoracoes-formas}
 \sum_{P\in\Ch} \nu_P(\omega) = -2.
 \end{equation}
 \end{problema}
 
-Podemos reformular \Cref{t:dlog} em linguagem de argumento.
-\begin{teorema}[Princípio de argumento]
-Em presuposições de \Cref{t:dlog} o número $N-P = \sum_{a\in G} \nu_a(f)$
-é igual à soma de mudançãs de argumento $\arg f$ sobre todas as componentes de fronteira,
-e dividida por $2\pi$, chamarmos essas mudanças como $\Delta_{\partial G} \arg(f)$.
+\begin{prop}
+\label{p:dlog-indice}
+Sejam $f : D \to \Ch$ uma função meromorfa,
+$S\subset D$ um subconjunto isolado de polos e zeros dela,
+$\gamma \subset D - S$ um ciclo disjunto de zeros ou polos.
+Podemos considerar a imagem dele, um ciclo $f(\gamma) \subset \C^*$.
+Pela formula de troca nas integrais temos:
+\begin{equation}
+\frac{1}{2\pi i} \int_\gamma \dlog f = \frac{1}{2\pi i} \int_{f(\gamma)} \dlog w,
+\end{equation}
+ou seja
+\[ \int_\gamma \frac{f'(z)}{f(z)} dz = \int_{f(\gamma)} \frac{dw}{w} .\] 
+O número no lado direito é um invariante topológico do ciclo $f(\gamma)$
+conhecido como o \emph{índice} $I(f(\gamma),0)$ do ciclo $f(\gamma)$ com respeito do ponto $0\in\C$.
+Para o ciclo simples $C\subset\C^*$
+o índice $I(C,p)$ é igual ao número de voltas em sentido anti-horário
+que o cíclo $C$ faz ao redor do ponto $P$. Se um ciclo $C$ é uma união disjunta $C = \coprod C_i$
+dos ciclos simples $C_i$, o índice $I(C,p)$ é igual à soma $I(C,p) = \sum I(C_j,p)$.
+\end{prop}
+
+Graças a discussão do \Cref{p:dlog-indice}
+podemos reformular \Cref{t:dlog-val} da seguinte maneira ``visual'':
+\begin{teorema}[Princípio de argumento, Cauchy, 1831, 1855]
+Em presuposições de \Cref{t:dlog-val} o número $N-P = \sum_{a\in G} \nu_a(f)$
+é igual à soma das mudançãs de argumento $\arg f$ sobre todas as componentes de fronteira $\partial G$,
+dividida por $2\pi$, que notaremos por $\Delta_{\partial G} \arg(f)$.
 \end{teorema}
 \begin{proof}
-Pela fórmula de Newton--Leibniz a integral de $\int_\gamma \omega$ atrvés de um ciclo é igual
-a mudança de primitiva $F(z) = \int_{z_0}^z \omega$ continuada através de $\gamma$.
+Pela fórmula de Newton--Leibniz a integral de $\int_\gamma \omega$ ao redor de um ciclo $\gamma$ é igual
+a mudança de primitiva $F(z) = \int_{z_0}^z \omega$ continuada ao redor de caminhos de $\gamma$.
 A primitiva de $\dlog f$ é $g=\log f$. Se $w=f(z)\neq0$ então $w = |w| e^{i\arg w}$
 e $\log(w) = \log(|w|) + i\cdot \arg(w)$,
 i.e. o argumento $\arg(w)$ é a parte imaginária do logaritmo $\log(w)$.
 A parte imaginária do logaritmo é uma função bem definida, então
-$\int_\gamma \dlog f(z)$ é igual à mudança de argumento de $f(z)$ através de $\gamma$.
+$\int_\gamma \dlog f(z) = \int_{f(\gamma)} \dlog w$
+é igual à mudança de argumento de $w=f(z)$ ao redor de $f(\gamma)$.
 \end{proof}
+
+\subsection{Teorema de Rouché. Teorema fundamental de álgebra.}
 
 \begin{teorema}[Rouché]
 \label{t:rouche}
@@ -2319,11 +2360,11 @@ Então as funções $f$ e $f+g$ tem o igual número de zeros em $G$ (contando as
 \begin{proof}
 Aplicando \Cref{eq:dlog-val} para $f$ e $f+g$ temos
 \begin{align*}
-N(f) = \sum_{a\in G} \nu_a(f)   &= \delta_{\partial G} \arg(f),\\
-N(f+g) =\sum_{a\in G} \nu_a(f+g) &= \delta_{\partial G} \arg(f+g).
+N(f) = \sum_{a\in G} \nu_a(f)   &= \Delta_{\partial G} \arg(f),\\
+N(f+g) =\sum_{a\in G} \nu_a(f+g) &= \Delta_{\partial G} \arg(f+g).
 \end{align*}
 Logo
-\[ N(f+g)-N(f) = \delta_{\partial G} \arg(1+\frac{g}{f}), \]
+\[ N(f+g)-N(f) = \Delta_{\partial G} \arg(1+\frac{g}{f}), \]
 mas desde $|\frac{g}{f}| < 1$ implica $\Re(\frac{g}{f})>-1$,
 logo $\Re(1+\frac{g}{f}) > 0$, i.e. o ângulo fica no semiplano direito,
 e a mudança dele é igual zero. Analiticamente podemos dizer que a função $\frac{f+g}{f}$
@@ -2344,9 +2385,10 @@ Qualquer função contínua com valores discretos é localmente constante.
 Seja $P\in\C[z]$ um polinómio não nulo de grau $n$, i.e.
 $P(z) = c_0 + c_1 z + \dots + c_n z^n$ e $c_n\neq 0$.
 \begin{enumerate}
-\item se $n>0$ o polinómio $P$ tem uma raiz complexa,
+\item \label{tfa-1} se $n>0$ o polinómio $P$ tem uma raiz complexa,
 i.e. existe $w\in\C$ tal que $P(w) = 0$;
-\item $P(z) = c_n (z-u_1) \dots (z-u_n)$ para alguns números complexos $u_1,\dots,u_n\in\C$.
+\item \label{tfa-2} $P(z) = c_n \cdot (z-u_1) \cdot \dots \cdot (z-u_n)$
+para alguns números complexos $u_1,\dots,u_n\in\C$.
 \end{enumerate}
 \end{cor}
 \begin{proof}
@@ -2360,11 +2402,31 @@ para obter
 onde o lado direito é igual ao $n$:
 \[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
 Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
+
+Para a segunda parte\footnote{Na álgebra abstrata essa parte pode ser derivada algebricamente,
+usando o seguinte lema (análogo do \Cref{p:divide-holo} para polinómios):
+se $u$ é uma raiz de polinómio $P$ então $P$ é divisível pelo $(z-u)$ em $\C[z]$,
+i.e. existe $Q\in\C[z]$ tal que $P(z) = (z-u) Q(z)$, e depois usar a indução.}
+use o fato, que já provamos que existe só finito número de raízes complexos de $P$
+e todas elas são localizadas dentro da bola $B(0,R)$. Então a função $Q(z)$ definida por
+\[ Q(z) = \prod_{u\in\C} (z-u)^{\nu_u(P)} \]
+é um polinómio de grau $n$, e a função racional $f(z) = \frac{P(z)}{Q(z)}$
+satisfaz $\nu_P(f) = 0$ para todos $P\in\C$.
+Pela lei de reciprocidade (\cref{eq:reciprocidade-valoracoes})
+\[ 0 = \sum_{P\in\Ch} \nu_P(f) = \nu_\infty(f) + \sum_{P\in\C} \nu_P(f) = \nu_\infty(f), \]
+logo $f$ é uma função inteira e holomorfa em $\infty$ (então limitada),
+e pelo \Cref{t:liouville} a função $f$ é igual ao constante
+\[ \alpha = \lim_{z\to\infty} f(z) = \lim_{z\to\infty} \frac{P(z)}{Q(z)} = \lim_{z\to\infty} \frac{c_n + O(1/z)}{1+O(1/z)} = c_n, \]
+logo $P(z) = c_n Q(z) = c_n (z-u_1) \dots (z-u_n)$.
 \end{proof}
 
 \section{Valor principal de Cauchy.}
+É um tópico elementar, que é fácil discutir usando resíduos,
+mas ainda não o tocamos nas aulas. Logo vou expandir essa seção depois.
 
 \section{Propriedades topológicas das funções meromorfas}
+\subsection{Teorema da função aberta. Critério de univalência.}
+\subsection{Princípio de máximo de módulo. Lema de Schwartz.}
 
 \section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
 
