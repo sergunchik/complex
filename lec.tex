@@ -2431,12 +2431,13 @@ Se $f(z)$ tem um polo em $z_0$ podemos considerar uma função $\frac{1}{f}$ hol
 em vez de $f$, então vamos focar no caso $0\leq \nu_{z_0}(f) < \infty$.
 
 \begin{lema}
+\label{l:n-raizes}
 Sejam $w_0 =f(z_0)$,
 $0\leq n := \nu_{z=z_0}(f(z)-w_0) < \infty$ e $g(z) := \frac{(f(z)-w_0)}{(z-z_0)^n}$,
 i.e. 
 \[ f(z) = f(z_0) + (z-z_0)^n g(z) \]
  com $n\geq 1$ e $g(z_0)\neq 0$.
-Então existem as vizinhanças $z_0 \in U \in D$ e $w_0 \in V \in f(D)$
+Então existem as vizinhanças $z_0 \in U \in D$ e $w_0 \in W \in f(D)$
 tais que $W\subset\Ch$ é aberta e por qualquer $w\in W-\{w_0\}$
 a equação $f(z) = w$ tem exatamente $n$ soluções distintas em $U$.
 \end{lema}
@@ -2457,9 +2458,89 @@ $\forall z\in B(z_0,R),\,f(z)=0 \implies z=z_0$, então todos os $n$ nulos de $f
 \end{proof}
 
 \subsection{Teorema da função aberta. Critério de univalência.}
+Lembre que qualquer função $f: X\to Y$ é contínua se e só se
+todas a \emph{preimagens} $f^{-1}(V)$ dos conjuntos abertos $V\subset Y$ são abertos.
+Por exemplo, sabemos que qualquer função holomorfa é contínua.
 
+Uma função $f: X\to Y$ é chamada \emph{aberta} se todas as \emph{imagens} $f(U)$
+dos conjuntos abertos $U\subset X$ são abertos. Isso é, a imagem de qualquer bola $B(z_0,r)$
+contem uma bola $B(f(z_0),R)$ de algum raio $R(z_0,r)>0$.
+
+Claramente uma função $f(z) = 0$ de $\C$ para $\C$ não é aberta, como as outras funções contantes.
+Também a função $q: \R \to \R$ dada por $q(x) = x^2$ não é aberta,
+porque $q(\R) = [0,+\infty)$ não é um subconjunto aberto de $\R$.
+Em contraste,
+\begin{teorema}[sobre a função aberta]
+Qualquer função $f: D\to \Ch$ meromorfa não constante é aberta.
+Isso é se não constante $f$ é meromorfa na região $D$ então $f(D) \subset \Ch$ é uma região.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{l:n-raizes} por qualquer ponto $z_0\in D$ existe uma vizinhança $f(z_0) \in W \subset \Ch$
+tal que $W\subset f(D)$.
+\end{proof}
+
+\begin{defin}
+\begin{enumerate}
+\item Uma função $f: D\to\Ch$ é chamada \emph{univalente} se ela é injetiva, i.e.
+$\forall z_1,z_2\in D, f(z_1) = f(z_2) \implies z_1 = z_2$.
+\item Uma função é \emph{localmente univalente} em ponto $P$, se existe uma vizinhança
+do $P$ no qual a sua restrição é univalente.
+\item Uma função é \emph{localmente univalente na região} $D$ se para qualquer $P\in D$
+ela é localmente univalente em $P$.
+\end{enumerate}
+\end{defin}
+
+\begin{teorema}[Critério de univalência]
+\label{t:univalencia}
+Uma função holomorfa $f : D\to \C$ é localmente univalente em ponto $z_0$ se e somente se 
+$f'(z_0)\neq 0$, i.e. a derivada dela não é zero.
+\end{teorema}
+\begin{proof}
+Temos $f'(z_0)\neq 0$ se e só se $\nu_{z_0}(f-f(z_0) = 1$,
+então pelo \Cref{l:n-raizes} existe uma vizinhança $W$ de $w_0 = f(z_0)$
+tal que a equação $f(z) = w$ tem a única raiz em $U = f^{-1}(W)$
+para qualquer $w\in W$.
+\end{proof}
+
+\begin{problema}
+Provar que a função reversa $g$ de uma função univalente $f$ também é univalente,
+e que $g'(w_0) = \frac{1}{f'(z_0)}$.
+\end{problema}
 
 \subsection{Princípio de máximo de módulo. Lema de Schwartz.}
+
+\begin{teorema}[Princípio de máximo de módulo]
+\label{t:maximo}
+Seja $f$ holomorfa em $D$ e contínua no fecho $\ol{D}$.
+Se existe $z_0\in D$ tal que $f(z_0) = \max_{z\in\ol{D}} |f(z)|$ então $f$ é constante.
+Em particular, o máximo de módulo de $f$ é atingido na fronteira $\partial\ol{D}$.
+\end{teorema}
+\begin{proof}
+Suponha que $M = \max_{z\in\ol{D}} |f(z)|$ é atingido em $z_0\in D$ e $w_0 = f(z)$.
+Pelo \Cref{l:n-raizes} temos que $W = \{ w\in\C : |w-w_0|<r \}$
+é um subconjunto de $f(D)$ por algum $r>0$, mas logo
+$w_0 \cdot (1+\frac{r}{2|w_0|})$ é um elemento na imagem com o módulo maior
+de que $|w_0|$.
+
+Também podemos provar este teorema diretamente do \Cref{t:medio} de Cauchy,
+como fizemos nas aulas.
+\end{proof}
+
+\begin{lema}[Schwartz]
+Seja $f : \D \to \C$ holomorfa no disco unitário $\D := B(0,1)$,
+tal que $f(0) = 0$ e $|f(z)| \leq 1$. Então $|f(z)|\leq|z|$
+e se existir $z_0\neq 0$ tal que $|f(z_0)| = |z_0|$ então $f(z) = c z$ para algum contante $c$ com
+$|c|=1$.
+\end{lema}
+\begin{proof}
+Pelo \Cref{p:divide-holo} existe uma função i$g(z)$ tal que $f(z) = z g(z)$ e $g$ holomorfa no $B(0,1)$.
+Para qualquer $r<1$ pelo \Cref{t:maximo} temos
+$\max_{|z|\leq r} |g(z)| = \max_{|z|=r} \frac{|f(z)|}{|z|} \leq \frac1{r}$,
+então $\sup_{|z|<1} |g(z)|\leq 1$ logo $|f(z)|<|z|$ no $B(0,1)$.
+Se $|f(z_0)| = |z_0|$ pelo \Cref{t:maximo} temos que $g(z)$ é constante,
+então $g(z) = g(z_0) = \frac{f(z_0)}{z_0} =:c$ e $|c| = \frac{|f(z_0)|}{|z_0|} = 1$,
+i.e. $f(z) = c z$ com $|c|=1$.
+\end{proof}
 
 \section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
 
