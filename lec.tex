@@ -2425,7 +2425,40 @@ logo $P(z) = c_n Q(z) = c_n (z-u_1) \dots (z-u_n)$.
 mas ainda não o tocamos nas aulas. Logo vou expandir essa seção depois.
 
 \section{Propriedades topológicas das funções meromorfas}
+
+Em seguida a função $f$ geralmente não é constante.
+Se $f(z)$ tem um polo em $z_0$ podemos considerar uma função $\frac{1}{f}$ holomorfa em $z_0$
+em vez de $f$, então vamos focar no caso $0\leq \nu_{z_0}(f) < \infty$.
+
+\begin{lema}
+Sejam $w_0 =f(z_0)$,
+$0\leq n := \nu_{z=z_0}(f(z)-w_0) < \infty$ e $g(z) := \frac{(f(z)-w_0)}{(z-z_0)^n}$,
+i.e. 
+\[ f(z) = f(z_0) + (z-z_0)^n g(z) \]
+ com $n\geq 1$ e $g(z_0)\neq 0$.
+Então existem as vizinhanças $z_0 \in U \in D$ e $w_0 \in V \in f(D)$
+tais que $W\subset\Ch$ é aberta e por qualquer $w\in W-\{w_0\}$
+a equação $f(z) = w$ tem exatamente $n$ soluções distintas em $U$.
+\end{lema}
+\begin{proof}
+Pela holomorficidade de $f$ e $g$ existe $R>0$ tal que $g(z)\neq 0$
+e $f'(z)\neq 0$ para
+qualquer $0<|z-z_0|\leq R$. Seja $U = B(z_0,R)$ e 
+$\mu = \min_{|z-z_0|=R} |f(z)-w_0| > 0$. Considere $W = \{ w\in\C:\, |w-w_0|<\mu \}$.
+Para $w\in W - \{w_0\}$ temos
+\[ f(z) - w = (f(z) - w_0) + (w_0-w), \]
+onde $|w_0-w|$ é uma constante (não depende de $z$) menor de que $\mu$ ($|w_0-w|<\mu$),
+e na fronteira $|z-z_0|=R$ temos
+$|f(z) - w_0| \geq \mu$. Logo pelo \Cref{t:rouche} de Rouché
+as funções holomorfas $f(z)-w_0$ e $f(z)-w$ tem o mesmo número de nulos no $U$, contando as multiplicidades.
+Sabemos que $f(z)-w_0 = (z-z_0)^n g(z)$ tem o único nulo $z=z_0$ em $U$ com multiplicidade $n$.
+Se $\nu_{z=z_1}(f(z)-f(z_1))>1$ então $f'(z_1)=0$, mas escolhemos $R$ tal que 
+$\forall z\in B(z_0,R),\,f(z)=0 \implies z=z_0$, então todos os $n$ nulos de $f(z)-w$ são simples.
+\end{proof}
+
 \subsection{Teorema da função aberta. Critério de univalência.}
+
+
 \subsection{Princípio de máximo de módulo. Lema de Schwartz.}
 
 \section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
