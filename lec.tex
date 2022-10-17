@@ -1728,6 +1728,13 @@ e desigualdade \eqref{eq:desigualdade-cauchy} de Cauchy
 para todos $a\in \C$ e $R>0$. Logo $f'(a) = 0$ para todos $a\in \C$, então $f$ é constante.
 \end{proof}
 
+\begin{problema}
+\label{p:tfq-liouville}
+Provar que qualquer polinómio $P(z)$ de grau ao menos um tem uma raiz complexa.\footnote{Dica:
+suponha que não, considere $f(z) = \frac{1}{P(z)}$ e aplique o \cref{t:liouville} de Liouville.}
+\end{problema}
+
+
 \section{Pontos singulares isolados.}
 
 \begin{defin}[Discos perfurados e vizinhanças perfuradas]
@@ -2392,6 +2399,9 @@ para alguns números complexos $u_1,\dots,u_n\in\C$.
 \end{enumerate}
 \end{cor}
 \begin{proof}
+\eqref{tfq-1}: No \Cref{p:tfa-liouville} derivamos essa parte do \Cref{t:liouville} de Liouville,
+mas vamos dar outra demonstração utilizando \Cref{t:rouche} de Rouché.
+
 Aplique o \Cref{t:rouche} de Rouché com $f(z) = c_n z^n$,
 $g(z) = c_0 + c_1 z + \dots + c_{n-1} z^{n-1}$ e $G = B(0,R)$
 para o raio $R$ suficientemente grande\footnote{Precisamos
@@ -2403,7 +2413,7 @@ onde o lado direito é igual ao $n$:
 \[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
 Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
 
-Para a segunda parte\footnote{Na álgebra abstrata essa parte pode ser derivada algebricamente,
+\eqref{tfq-2} Para a segunda parte\footnote{Na álgebra abstrata essa parte pode ser derivada algebricamente,
 usando o seguinte lema (análogo do \Cref{p:divide-holo} para polinómios):
 se $u$ é uma raiz de polinómio $P$ então $P$ é divisível pelo $(z-u)$ em $\C[z]$,
 i.e. existe $Q\in\C[z]$ tal que $P(z) = (z-u) Q(z)$, e depois usar a indução.}
