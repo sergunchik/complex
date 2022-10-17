@@ -1525,13 +1525,43 @@ para todos $a\in \C$ e $R>0$. Então para cada $a\in\C$ temos $f'(a) = 0$,
 que significa que a função $f$ é constante pelo \Cref{p:derzero-constante}.
 \end{proof}
 
-\begin{problema}[teorema fundamental de álgebra, Argand 1806]
-\label{p:tfq-liouville}
-Provar que qualquer polinómio $P(z)$ de grau ao menos um tem uma raiz complexa.\footnote{Dica:
-suponha que não, prove que $\lim_{z\to\infty} |P(z)|=\infty$ e $\int_{z\in\C} |P(z)| = 1/M >0$,
-considere $f(z) = \frac{1}{P(z)}$ e aplique o \cref{t:liouville} de Liouville.}
-\end{problema}
+\begin{restatable}[Teorema fundamental de álgebra, Argand 1806]{cor}{tfa} \label{t:fundamental-algebra}
+\label{teorema-fundamental-algebra}
+Seja $P\in\C[z]$ um polinómio não nulo de grau $n$, i.e.
+$P(z) = c_0 + c_1 z + \dots + c_n z^n$ e $c_n\neq 0$.
+\begin{enumerate}
+\item \label{tfa-1} se $n>0$ o polinómio $P$ tem uma raiz complexa,
+i.e. existe $w\in\C$ tal que $P(w) = 0$;
+\item \label{tfa-2} $P(z) = c_n \cdot (z-u_1) \cdot \dots \cdot (z-u_n)$
+para alguns números complexos $u_1,\dots,u_n\in\C$.
+\end{enumerate}
+\end{restatable}
+\begin{proof}
+\eqref{tfa-1}: Suponha que um polinómio $P = c_0 + \dots + c_n z^n \in\C[z]$ não tem raízes.
+Então $f(z) = \frac{1}{P(z)}$ é uma função inteira $f: \C\to\C$.
+O limite $\lim_{z\to\infty} f(z) = \lim_{z\to\infty} z^{-n} \frac{1}{c_n + O(1/z)} = 0$ para $n>0$,
+logo $f$ é limitada, desde que ela é limitada em vizinhança de $\infty$,
+e o complemento de qualquer vizinhança de $\infty$ é compacto,
+e qualquer função contínua on compacto é limitada.
+Pelo \cref{t:liouville} de Liouville a função $f(z)$ é constante,
+logo $P(z) = \frac{1}{f(z)}$ também é, contradição.
 
+\eqref{tfa-2}: Na álgebra abstrata essa parte pode ser derivada algebricamente,
+usando o seguinte lema (análogo do \Cref{p:divide-holo} para polinómios):
+se $u$ é uma raiz de polinómio $P$ então $P$ é divisível pelo $(z-u)$ em $\C[z]$,
+i.e. existe $Q\in\C[z]$ tal que $P(z) = (z-u) Q(z)$. Depois usar a indução por grau de polinómio.
+\end{proof}
+
+\begin{remark}
+A primeira demonstração correta do \Cref{t:fundamental-algebra}
+foi dada por Argand em 1806, e aparece no livro texto de Cauchy em 1821
+(sem atribuição). Gauss deu uma demonstração em 1799 que contem uma omissão corrigida por Ostrowski em 1920.
+Também Gauss deu outra demonstração correta em 1816.
+Podemos usar diferentes propriedades das funções complexs para provar este teorema.
+Uma demonstração mais fácil é como o corolário do \Cref{t:rouche} de Rouché,
+que damos depois dele. Outras demonstrações usam o princípio de argumento de Cauchy (\cref{t:argumento})
+ou o princípio de máximo de módulo (\cref{t:maximo}).
+\end{remark}
 
 
 \section{Teorema de Weierstrass.}
@@ -2119,9 +2149,9 @@ Pelo \Cref{t:anel-laurent} o  resíduo da forma diferencial
 $\omega = f(z) dz$ em ponto $z=a$ (com respeito de coordenada $z$ ou $z-a$)
 é igual ao coeficiente $c_{-1}(a;f)$:
 \begin{equation}
-\res_Q \omega = \res_{z=a} f(z) dz =\frac{1}{2\pi i} \int_\gamma \frac{f(z)dz} = c_{-1}(a;f).
+\res_Q \omega = \res_{z=a} f(z) dz =\frac{1}{2\pi i} \int_\gamma f(z) dz = c_{-1}(a;f).
 \end{equation}
-\item É menos natural, mas comum considerar o \emph{o resíduo de uma função} $f(z)$
+\item É menos natural, mas comum considerar o \emph{resíduo de uma função} $f(z)$
 \emph{com respeito de uma coordenada local} $z-a$ como $\res_{z-a} f = \res_{z=a} f(z) := \res_{z=a} f(z) dz$.
 \end{enumerate}
 \end{defin}
@@ -2204,6 +2234,11 @@ desde que a esfera é compacta e a fronteira dela é vazia.
 Seja $f : \C \to \C$ uma função inteira. Provar que
 $\res_\infty f(z) dz = 0$.
 \end{problema}
+
+
+\subsection{Valor principal de Cauchy.}
+É um tópico elementar, que é fácil discutir usando resíduos,
+mas ainda não o tocamos nas aulas. Logo vou expandir essa seção depois.
 
 \section{Derivada logarítmica. Princípio do argumento.}
 
@@ -2355,6 +2390,7 @@ dos ciclos simples $C_i$, o índice $I(C,p)$ é igual à soma $I(C,p) = \sum I(C
 Graças a discussão do \Cref{p:dlog-indice}
 podemos reformular \Cref{t:dlog-val} da seguinte maneira ``visual'':
 \begin{teorema}[Princípio de argumento, Cauchy, 1831, 1855]
+\label{t:argumento}
 Em presuposições de \Cref{t:dlog-val} o número $N-P = \sum_{a\in G} \nu_a(f)$
 é igual à soma das mudançãs de argumento $\arg f$ sobre todas as componentes de fronteira $\partial G$,
 dividida por $2\pi$, que notaremos por $\Delta_{\partial G} \arg(f)$.
@@ -2402,21 +2438,14 @@ vejamos que $\psi(\lambda)$ é contínua como função de $\lambda$. Mas também
 Qualquer função contínua com valores discretos é localmente constante.
 \end{proof}
 
-\begin{cor}[Teorema Fundamental de Álgebra]
-\label{teorema-fundamental-algebra}
-Seja $P\in\C[z]$ um polinómio não nulo de grau $n$, i.e.
-$P(z) = c_0 + c_1 z + \dots + c_n z^n$ e $c_n\neq 0$.
-\begin{enumerate}
-\item \label{tfa-1} se $n>0$ o polinómio $P$ tem uma raiz complexa,
-i.e. existe $w\in\C$ tal que $P(w) = 0$;
-\item \label{tfa-2} $P(z) = c_n \cdot (z-u_1) \cdot \dots \cdot (z-u_n)$
-para alguns números complexos $u_1,\dots,u_n\in\C$.
-\end{enumerate}
-\end{cor}
+Já derivamos antes a primeira parte do teorema fundamental de álgebra (\cref{t:fundamental-algebra})
+do \Cref{t:liouville} de Liouville,
+mas vamos dar outra demonstração utilizando \Cref{t:rouche} de Rouché,
+também provando a segunda parte analiticamente e com mais informação sobre
+a localização das raízes.
+\tfa*
 \begin{proof}
-\eqref{tfq-1}: No \Cref{p:tfa-liouville} derivamos essa parte do \Cref{t:liouville} de Liouville,
-mas vamos dar outra demonstração utilizando \Cref{t:rouche} de Rouché.
-
+\eqref{tfa-1}: 
 Aplique o \Cref{t:rouche} de Rouché com $f(z) = c_n z^n$,
 $g(z) = c_0 + c_1 z + \dots + c_{n-1} z^{n-1}$ e $G = B(0,R)$
 para o raio $R$ suficientemente grande\footnote{Precisamos
@@ -2428,11 +2457,7 @@ onde o lado direito é igual ao $n$:
 \[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
 Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
 
-\eqref{tfq-2} Para a segunda parte\footnote{Na álgebra abstrata essa parte pode ser derivada algebricamente,
-usando o seguinte lema (análogo do \Cref{p:divide-holo} para polinómios):
-se $u$ é uma raiz de polinómio $P$ então $P$ é divisível pelo $(z-u)$ em $\C[z]$,
-i.e. existe $Q\in\C[z]$ tal que $P(z) = (z-u) Q(z)$, e depois usar a indução.}
-use o fato, que já provamos que existe só finito número de raízes complexos de $P$
+\eqref{tfa-2}: Use o fato, que já provamos que existe só finito número de raízes complexos de $P$
 e todas elas são localizadas dentro da bola $B(0,R)$. Então a função $Q(z)$ definida por
 \[ Q(z) = \prod_{u\in\C} (z-u)^{\nu_u(P)} \]
 é um polinómio de grau $n$, e a função racional $f(z) = \frac{P(z)}{Q(z)}$
@@ -2445,9 +2470,6 @@ e pelo \Cref{t:liouville} a função $f$ é igual ao constante
 logo $P(z) = c_n Q(z) = c_n (z-u_1) \dots (z-u_n)$.
 \end{proof}
 
-\section{Valor principal de Cauchy.}
-É um tópico elementar, que é fácil discutir usando resíduos,
-mas ainda não o tocamos nas aulas. Logo vou expandir essa seção depois.
 
 \section{Propriedades topológicas das funções meromorfas}
 
@@ -2563,7 +2585,7 @@ mas não é a demonstração original de Schwartz.
 Ela foi publicada por Carathéodory em 1905,
 e ele atribuiu-la ao Erhard Schmidt, também notando que Poincaré deu
 uma demonstração similar em 1884.}
-Pelo \Cref{p:divide-holo} existe uma função i$g(z)$ tal que $f(z) = z g(z)$ e $g$ holomorfa no $B(0,1)$.
+Pelo \Cref{p:divide-holo} existe uma função $g(z)$ tal que $f(z) = z g(z)$ e $g$ holomorfa no $B(0,1)$.
 Para qualquer $r<1$ pelo \Cref{t:maximo} temos
 $\max_{|z|\leq r} |g(z)| = \max_{|z|=r} \frac{|f(z)|}{|z|} \leq \frac1{r}$,
 então $\sup_{|z|<1} |g(z)|\leq 1$ logo $|f(z)|<|z|$ no $B(0,1)$.
