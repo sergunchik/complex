@@ -2522,17 +2522,22 @@ Pelo \Cref{l:n-raizes} temos que $W = \{ w\in\C : |w-w_0|<r \}$
 $w_0 \cdot (1+\frac{r}{2|w_0|})$ é um elemento na imagem com o módulo maior
 de que $|w_0|$.
 
-Também podemos provar este teorema diretamente do \Cref{t:medio} de Cauchy,
-como fizemos nas aulas.
+Também podemos derivar este teorema da \Cref{eq:l2} do \Cref{p:l2},
+ou diretamente do \Cref{t:medio} de Cauchy.\footnote{Como fizemos nas aulas.}
 \end{proof}
 
-\begin{lema}[Schwartz]
+
+\begin{lema}[Schwartz, 1869]
 Seja $f : \D \to \C$ holomorfa no disco unitário $\D := B(0,1)$,
 tal que $f(0) = 0$ e $|f(z)| \leq 1$. Então $|f(z)|\leq|z|$
 e se existir $z_0\neq 0$ tal que $|f(z_0)| = |z_0|$ então $f(z) = c z$ para algum contante $c$ com
 $|c|=1$.
 \end{lema}
-\begin{proof}
+\begin{proof}\footnote{Essa demonstração, agora padrão nos livros textos,
+mas não é a demonstração original de Schwartz.
+Ela foi publicada por Carathéodory em 1905,
+e ele atribuiu-la ao Erhard Schmidt, também notando que Poincaré deu
+uma demonstração similar em 1884.}
 Pelo \Cref{p:divide-holo} existe uma função i$g(z)$ tal que $f(z) = z g(z)$ e $g$ holomorfa no $B(0,1)$.
 Para qualquer $r<1$ pelo \Cref{t:maximo} temos
 $\max_{|z|\leq r} |g(z)| = \max_{|z|=r} \frac{|f(z)|}{|z|} \leq \frac1{r}$,
@@ -2541,6 +2546,28 @@ Se $|f(z_0)| = |z_0|$ pelo \Cref{t:maximo} temos que $g(z)$ é constante,
 então $g(z) = g(z_0) = \frac{f(z_0)}{z_0} =:c$ e $|c| = \frac{|f(z_0)|}{|z_0|} = 1$,
 i.e. $f(z) = c z$ com $|c|=1$.
 \end{proof}
+
+
+\begin{problema}
+Seja $P(z) = z^n + a_1 z^{n-1} + ... + a_n$.
+Provar que $\max_{|z|=1} |P(z)| \geq 1$,
+e se igual, então $P = z^n$.
+\end{problema}
+
+\begin{problema}
+\label{p:l2}
+Seja $f : D \to \C$ uma função holomorfa no disco $B(0,R) = \{z\in\C:\, |z|<R \}$
+com séries de Taylor $f(z) = \sum_{n=0}^\infty c_n z^n$.
+\begin{enumerate}
+\item Provar a igualdade
+\begin{equation}
+\label{eq:l2}
+\frac{1}{2\pi} \int_0^{2\pi} |f(r\cdot e^{i\phi})|^2 d\phi = \sum_{n=0}^\infty |c_n|^2 r^{2n} 
+\end{equation}
+ para qualquer $r < R$.
+\item Use \Cref{eq:l2} para provar o princípio de máximo módulo (\cref{t:maximo}).
+\end{enumerate}
+\end{problema}
 
 \section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
 
