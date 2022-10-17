@@ -465,7 +465,8 @@ que qualquer função holomorfa é analítica.
 
 \subsection{Holomorficidade}
 
-\begin{defin} 
+\begin{defin}[Funções holomorfas]
+\label{d:holomorfa}
 \begin{enumerate}
 \item Uma função é \emph{holomorfa} em uma região $D\subset\C$ se ela tem derivada complexa em cada ponto da região.
 \item Uma função é chamada \emph{holomorfa em ponto}, se ela é holomorfa em alguma vizinhança dele.
@@ -473,15 +474,22 @@ que qualquer função holomorfa é analítica.
 \end{enumerate}
 \end{defin}
 
+\begin{defin}[Funções inteiras]
+\label{d:inteira}
+As funções holomorfas $f: \C \to \C$ no todo plano comlpexo
+também são chamadas de \emph{funções inteiras}.
+\end{defin}
+
 \begin{exem}
-Constantes $f(z) = a$,
+As seguintes funções são inteiras:
+constantes $f(z) = a$,
 identidade $f(z) = z$,
 funções lineares $z \mapsto a z$,
-todos os polinômios com coeficientes complexos $f \in \C[z]$
-são holomorfas no todo $\C$.\footnote{Tais funções são chamadas \emph{inteiras}, cf. \Cref{d:inteira}.}
+todos os polinômios com coeficientes complexos $f \in \C[z]$.
 \end{exem}
 
 \begin{problema}
+\label{p:derzero-constante}
 Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a função $f$ é constante na $D$.
 (NB: você usou que $D$ é conexa?)
 \end{problema}
@@ -919,7 +927,11 @@ mas também podemos estender a definição de integral sobre as cadeias (somas f
 Se trocamos a orientação de $\gamma$, a integral troca a sinal.
 Também temos a desigualdade
 \[ \big|\int_\gamma f(z) dz\big| \leq \int_\gamma |f(z)| |dz|, \]
-em particular se $|f(z)|\leq M$ na $\gamma$ então $|\int_\gamma f dz| \leq M |\gamma|$,
+em particular se $|f(z)|\leq M$ na $\gamma$ então temos a \emph{desigualdade de Darboux}
+\begin{equation}
+\label{eq:darboux}
+|\int_\gamma f dz| \leq M |\gamma|,
+\end{equation}
 onde $|\gamma|$ é o cumprimento de $\gamma$.
 \end{teorema}
 
@@ -1239,7 +1251,7 @@ $F'(z) = f(z)$ e $\int_\gamma f dz = F(w(b)) - F(w(a))$.
 Achar o limite $\lim_{\rho \to +0} \int_\alpha^\beta f(\rho e^{i\phi}) d\phi$.
 \end{problema}
 
-\begin{teorema}[sobre o médio]
+\begin{teorema}[sobre o médio, Gauss]
 \label{t:medio}
 Seja $f : D \to \C$ holomorfa
 e $G = \{ z\in\C : |z-z_0| \leq r \} \subset D$. Então
@@ -1392,6 +1404,7 @@ Logo também existe a segunda derivada $f''(z)$, i.e. $f'(z)$ é holomorfa.
 Uma função holomorfa $f : D \to \C$ 
 tem as derivadas complexas das todas as ordens, eles são holomorfas e iguais às
 \begin{equation}
+\label{eq:formula-cauchy}
 f^{(k)}(z) = \frac{k!}{2\pi i} \int_{\partial \ol{B}(z,r)} \frac{f(w) dw}{(w-z)^{k+1}},
 \end{equation}
 para qualquer disco $\ol{B}(z,r) \subset D$ em qual a função é holomorfa.
@@ -1484,11 +1497,7 @@ i.e. temos uma trindade, os três pontos de vista alternativas para $c_n$:
 \item as derivadas,
 \item as integrais de Cauchy.
 \end{enumerate}
-A igualdade $d_n = i_n$, i.e.
-\begin{equation}
-\label{eq:formula-cauchy}
-f^{(n)}(z) = \frac{n!}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}
-\end{equation}
+A igualdade $d_n = i_n$ (i.e. \Cref{eq:formula-cauchy})
 é também as vezes conhecida como uma \emph{fórmula de Cauchy} para derivadas.
 \end{remark}
 
@@ -1498,6 +1507,32 @@ Suponha que uma função $f(z)$ é holomorfa em $z=a$.
 Provar que uma função $g(z)$ definida como $g(a) = f'(a)$
 e $g(z) = \frac{f(z)-f(a)}{z-a}$ para $z\ne a$ é holomorfa em $a$.
 \end{problema}
+
+\subsection{Teorema de Liouville. Teorema fundamental de álgebra.}
+
+Lembra (\cref{d:inteira}) que as funções holomorfas $f:\C\to\C$ são chamadas inteiras,
+e a função $f:D\to\C$ é chamada limitada se existe $M$ tal que $|f(z)\leq M$ para todos $z\in D$.
+\begin{restatable}[Liouville]{teorema}{liouville} \label{t:liouville}
+Uma função inteira limitada é constante.
+\end{restatable}
+\begin{proof}
+Usando a fórmula \eqref{eq:formula-cauchy} de Cauchy para derivada, por qualquer $a\in\C$ e $R>0$ obtemos
+\[ f'(a) = \frac{1}{2\pi i} \int_{z=a + R \exp(i\phi)} \frac{f(z)dz}{(z-a)^2} 
+= \frac{1}{2\pi} \int_0^{2\pi} \frac{f(a+R\cdot e^{i\phi})}{R\cdot e^{i\phi}} d\phi, \]
+logo se $\forall z\in\C:\, |f(z)|\leq M$ pelo desigualdade \eqref{eq:darboux} de Darboux temos
+\[ |f'(a)| \leq \frac{\max_{|z-a|=R} |f(z)|}{R} \leq \frac{M}{R}  \]
+para todos $a\in \C$ e $R>0$. Então para cada $a\in\C$ temos $f'(a) = 0$,
+que significa que a função $f$ é constante pelo \Cref{p:derzero-constante}.
+\end{proof}
+
+\begin{problema}[teorema fundamental de álgebra, Argand 1806]
+\label{p:tfq-liouville}
+Provar que qualquer polinómio $P(z)$ de grau ao menos um tem uma raiz complexa.\footnote{Dica:
+suponha que não, prove que $\lim_{z\to\infty} |P(z)|=\infty$ e $\int_{z\in\C} |P(z)| = 1/M >0$,
+considere $f(z) = \frac{1}{P(z)}$ e aplique o \cref{t:liouville} de Liouville.}
+\end{problema}
+
+
 
 \section{Teorema de Weierstrass.}
 
@@ -1562,7 +1597,7 @@ Então pelo qualquer ponto $a\in D$ escolha $R>0$ tal que $\ol{B}(a,R) \subset D
 e aplique \Cref{l:uniforme}.
 \end{proof}
 
-\section{Funções holomorfas em um anel. Séries de Laurent. Teorema de Liouville.}
+\section{Funções holomorfas em um anel. Séries de Laurent.}
 % setembro 13
 
 Em seguida os símbolos de soma $\sum_{n=-\infty}^\infty$
@@ -1710,10 +1745,8 @@ $n>0$ ou por $\gamma_{\rho-\epsilon}$ para $n<0$ com $\epsilon$ positivo e sufic
 e usamos a desigualdade de Cauchy já provada na demonstração de \Cref{t:anel-laurent}.
 \end{proof}
 
-\begin{teorema}[Liouville]
-\label{t:liouville}
-Uma função \emph{holomorfa} $f: \C \to \C$ que é limitada é constante.
-\end{teorema}
+Como uma aplicação de desigualdades de Cauhy, vamos dar mais uma demonstração do 
+\liouville*
 \begin{proof}
 Se $f$ é holomorfa em $z=0$ ela tem a expansão de Taylor
 \[ f = \sum_{n=0}^\infty c_n z^n, \]
@@ -1721,18 +1754,6 @@ mas pela desigualdade de Cauchy
 \[ |c_n| \leq  \frac{\sup_{z\in\gamma_\rho} |f(z)|}{\rho^n} \leq \frac{\sup_{z\in\C} |f(z)|}{\rho^n} \]
 por todos $\rho > 0$, logo se $\sup_{z\in\C} |f(z)| = M < \infty$ temos $c_n = 0$ para qualquer $n>0$.
 \end{proof}
-\begin{proof}
-Outra demonstração: pela fórmula \eqref{eq:formula-cauchy} de Cauchy
-e desigualdade \eqref{eq:desigualdade-cauchy} de Cauchy
-\[ f'(a) = \frac{1}{2\pi i} \int_{|z-a|=R} \frac{f(w)dw}{(z-a)^2} \leq \frac{M}{R} \]
-para todos $a\in \C$ e $R>0$. Logo $f'(a) = 0$ para todos $a\in \C$, então $f$ é constante.
-\end{proof}
-
-\begin{problema}
-\label{p:tfq-liouville}
-Provar que qualquer polinómio $P(z)$ de grau ao menos um tem uma raiz complexa.\footnote{Dica:
-suponha que não, considere $f(z) = \frac{1}{P(z)}$ e aplique o \cref{t:liouville} de Liouville.}
-\end{problema}
 
 
 \section{Pontos singulares isolados.}
@@ -1911,12 +1932,6 @@ Provar que para qualquer $A\in\C\bigcup\infty$ existe uma sequência
 $b_1,b_2,\dots\in D$ tal que $\lim_{n\to\infty} b_n = a$
 e $\lim_{n\to\infty} f(b_n) = A$.
 \end{problema}
-
-\begin{defin}[Função inteira]
-\label{d:inteira}
-As funções holomorfas $f: \C \to \C$ no todo plano comlpexo
-também são chamadas de \emph{funções inteiras}.
-\end{defin}
 
 \begin{problema}
 Provar que qualquer função $f: \Ch \to \C$
