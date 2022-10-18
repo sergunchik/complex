@@ -1,37 +1,119 @@
-\begin{problema}
-Construir um biholomorfismo elementar entre
-plano superior e complemento para intervalo $[x,1) \subset \R$
+\documentclass[brazilian,a4paper]{scrlttr2}
+\usepackage{babel}
+\usepackage{microtype}
+\pagestyle{empty}
+\newcounter{problema}
+\newenvironment{problema}[1][]
+{\refstepcounter{problema}
+\par\textbf{\theproblema. #1}\rmfamily}{}
+
+\def\R{\mathbf{R}}
+\def\C{\mathbf{C}}
+\def\Z{\mathbf{Z}}
+\def\Ch{\widehat{\C}}
+\def\O{\mathcal{O}}
+\begin{document}
+\emph{Notações.}
+As regiões comuns:
+\emph{esfera de Riemann} $\Ch = \C \bigcup \infty$,
+\emph{plano superior} $H = \{z\in\C: \Im(z)>0\}$,
+\emph{disco} $D_R = \{z\in\C: |z|<R\}$ para $R>0$,
+\emph{disco unitário} $D_1$,
+\emph{disco perfurado} $D^* = D_1 - \{0\}$,
+\emph{anel} $A_R := \{z\in\C: 1/R < |z| < R \}$ para $R\in(1,+\infty)$,
+uma região $D\subset \Ch$. Notamos por $\O(D)$ o anel/conjunto das funções holomorfas na $D$.
+Usamos $\phi : \Ch\to\Ch$ para \emph{transformações de Möbius} 
+$\phi(z) = \frac{az+b}{cz+d}$
+com $a,b,c,d\in\C$ e $ad\neq bc$.
+
+\bigskip
+\emph{Os problemas}.
+
+\begin{problema}%[1]
+Para $x\in(-1,1)$
+construir um biholomorfismo elementar entre
+o plano superior
+e o complemento para o intervalo $[x,1) \subset \R$
 no disco unitário.
 \end{problema}
 
-\begin{problema}
-Para círculo generalizado (círculo ou reta) $S \subset \Ch$ define uma refleção
+\begin{problema}%[2]
+Para círculo generalizado (círculo ou reta) $S \subset \Ch$ define
+uma \emph{refleção}
 $R_S : \Ch \to \Ch$ como a refleção em reta ou a inversão em círculo.
-Seja $\phi: \Ch \to \Ch$ uma transformação de Möbius, i.e. $\phi(z) = \frac{az+b}{cz+d}$
-com $ad\neq bc$. Provar que ela preserva as refleções, i.e. para qualquer
-círculo $S$ e imágem dela $\phi(S)$ temos
-\[ \phi(R_S z) = R_{\phi(S)} \phi(z) . \]
+% Seja $\phi: \Ch \to \Ch$ uma transformação de Möbius, i.e. $\phi(z) = \frac{az+b}{cz+d}$
+%com $ad\neq bc$.
+Provar que as transformações de Möbius $\phi : \Ch\to\Ch$
+preservam as refleções, i.e. para qualquer
+círculo $S$ e imágem dela $\phi(S)$ temos $\phi(R_S z) = R_{\phi(S)} \phi(z)$.
 \end{problema}
 
-\begin{problema}
+\begin{problema}%[3]
 Sejam $C_1,C_2 \subset \Ch$ um par de círculos disjuntos, i.e. $C_1 \bigcap C_2 = \emptyset$,
 e $D \subset \Ch$ uma região com fronteirs $\partial D = C_2 - C_1$.
-\begin{enumerate}
-\item Provar que existe $R>0$ e uma transformação de Möbius $\phi$ tal que
-$\phi(D)$ é um anel $A_R = \{ z\in\C: 1/R < |z| < R \}$.
-\item Qual é o lugar geométrico de círculos $S$, que tocam ambos $C_1$ e $C_2$?
-\end{enumerate}
+(a) Provar que existe $R>0$ e uma transformação de Möbius $\phi$ tal que
+$\phi(D)$ é um anel $A_R$. %  = \{ z\in\C: 1/R < |z| < R \}$.
+(b) Qual é o lugar geométrico de círculos $S$, que tocam ambos $C_1$ e $C_2$?
 \end{problema}
 
-\begin{problema}
-Define
-\[ Sf = \frac{f'''}{f'} - \frac{3}{2} \big(\frac{f''}{f'}\big)^2 .\]
+\begin{problema}%[4]
+Define $Sf = \frac{f'''}{f'} - \frac{3}{2} \big(\frac{f''}{f'}\big)^2$.
 Provar para qualquer funções $f,g$ com singularidades isoladas e qualquer
 transformação de Möbius $\phi$ que
-\begin{align}
-S \phi &= 0, \\
-S (\phi \circ f) = S f,\\
-S(f \circ \phi) = \big((Sf)\circ\phi\big) \cdot (\phi')^2, \\
-S(f\circ g) = \big((Sf)\circ f\big) \cdot (g')^2 + Sg.
-\end{align}
+(a) $S \phi = 0$,
+(b) $S (\phi \circ f) = S f$,
+(c) $S(f \circ \phi) = \big((Sf)\circ\phi\big) \cdot (\phi')^2$,
+(d) $S(f\circ g) = \big((Sf)\circ g\big) \cdot (g')^2 + Sg$.
 \end{problema}
+
+\begin{problema}%[5]
+Seja $f: D\to\C$ uma função contínua em vizinhança de $0\in D$.
+Achar $\lim_{\rho\to+0} \int_\alpha^\beta f(\rho\cdot e^{i\phi}) d\phi$.
+\end{problema}
+
+\begin{problema}%[6]
+Seja $\omega_t = \frac{e^{itz} dz}{(z+z^{-1})^3}$.
+(a) Classificar singularidades de $\omega_t$ na $\Ch$
+para cada $t\in\C$.
+(b) Calcular $I(t) = \int_\R \omega_t$.
+\end{problema}
+
+\begin{problema}%[7]
+Seja $f\in\O(D^*)$ uma função holomorfa no disco perfurado
+$D^*$. % = P(0,1) = \{z\in\C: 0<|z|<1\}$.
+Suponha que $\frac{f'(z)}{f(z)}$
+tem um polo simples em $0$. Provar que
+(a) a função $f$ é meromorfa em $0$,
+(b) e $f$ tem zero ou polo em $0$.
+\end{problema}
+
+\begin{problema}%[8]
+Seja $f(z) = \frac{P(z)}{Q(z)}$ para um par de polinómios $P,Q\in\C[z]-\{0\}$.
+Suponha que para qualquer $|z|=1$ temos $|f(z)|=1$. Classificar $f$,
+i.e. dar uma condição suficiente e necessária sobre os polos e nulos de $f$.
+\end{problema}
+
+\begin{problema}%[9]
+Quais podem ser as funções inteiras $f,g\in\O(\C)$ tais que
+$f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$?
+\end{problema}
+
+\begin{problema}%[10]
+Suponha que uma função $f \in \O(A_R)$ é holomorfa no anel $A_R$,
+% $A = \{z\in\C: 1 < |z| < R\}$ com $r<1<R$,
+e tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in A_R$.
+(a) Achar $g(z) := \frac{1}{2\pi i} \frac{f(w) dw}{w-z}$
+para $z\in A - \{|z|=1\}$.
+(b) Provar que existe um par de funções $F,G \in \O(A_R)$
+holomorfas no anel $A_R$,
+tais que par qualquer $|z|=1$ temos $f(z) = F(z) + G(\bar{z})$.
+\end{problema}
+
+\begin{problema}%[11]
+Para $z\in\C-\Z$
+(a) a série $\sum_{n\in\Z} \frac{1}{z+n}$ converge absolutamente?
+(b) existe $f(z) = \lim_{n\to\infty} S_n$ onde $S_n = \sum_{k=-n}^n \frac{1}{z+n}$?
+(c) é localmente uniforme em $\C-\Z$?
+(d) qual é o valor $f(1/4)$?
+\end{problema}
+\end{document}
