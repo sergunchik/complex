@@ -31,9 +31,8 @@ LMK = $(LATEXMK) $(LMK_ENGINE) $(LMK_OPTIONS)
 # All their dependencies are onamae-*.tex, but they will be handled automatically by latexmk.
 # ART = $(wildcard article-*.tex)
 
-ART = complex.tex
+ART = complex.tex pr.tex
 
-# pdf files will be named article-onamae.pdf, so just change .tex to .pdf
 # Importantíssimo: latexmk shall not run on other texfiles
 # (a common problem that happens when one runs 'latexmk' without arguments)
 PDF = $(ART:.tex=.pdf)
