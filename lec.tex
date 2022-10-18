@@ -518,9 +518,10 @@ então ela converge uniformemente em $D$ e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0
 
 \subsection{Séries de potências: fórmula de Hadamard e teorema de Abel.}
 
-\begin{prop}[Série geométrica]
+\begin{prop}[Série de progressão geométrica]
+\label{serie-geometrica}
 Para um número real positivo $u\in(0,1)$ a série geométrica
-\[ 1 + u + u^2 + \dots = \sum_{n\geq 0} u^u \]
+\[ 1 + u + u^2 + \dots = \sum_{n\geq 0} u^n \]
 converge absolutamente ao $\frac{1}{1-u}$.
 \end{prop}
 \begin{proof}
@@ -550,7 +551,8 @@ Dado $\rho < R$ escolhemos $r \in (\rho,R)$ e denotamos $u=\frac{\rho}{r} \in (0
 Pela definição de $\limsup$ sabemos que existe $N$
 tal que para $n\geq N$ temos uma cota $|c_n r^n| \leq 1$,
 então $|c_n \rho^n| \leq u^n$, logo $|c_n z^n| \leq u^n$ para todos $|z|\leq\rho$.
-Para $u\in(0,1)$ a progressão geométrica $1+u+u^2 + \dots$ converge a $(1-u)^{-1}$,
+Para $u\in(0,1)$ pelo \Cref{serie-geometrica}
+a progressão geométrica $1+u+u^2 + \dots$ converge a $(1-u)^{-1}$,
 logo pelo teste $M$ de Weierstrass (\cref{weierstrass-m})
 a série $c_0 + c_1 z + \dots$ converge absolutamente uniformemente em $|z|\leq\rho$.
 
@@ -595,6 +597,8 @@ Agora pelo \Cref{raio-derivada}\eqref{rd-4} os raios de convergência
 da série original $\sum  c_n (z-a)^n$ e da série de derivadas $\sum n c_n (z-a)^n$ coincidem,
 então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
 \end{proof}
+Este teorema de Abel vai reaparecer como \Cref{t:series-derhol},
+mas com a demonstração da última parte \eqref{abel-3} diferente.
 
 O círculo $|z-a| = R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
 nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo,
@@ -1332,8 +1336,9 @@ que definem os números $c_n$
 não dependem da escolha de raio $0<r<R$.\footnote{E em particular que os números $c_n$ são bem definidos.}
 
 Para um ponto $z\in B$ vamos escolher $r > |z-z_0|$, e denotamos $\rho = \frac{|z-z_0|}{r} < 1$.
-Lembra que a progressão geométrica $1 + u + u^2 + \dots$ converge a $\frac{1}{1-u}$ absolutamente para $0<u<1$,
-e as colas $u^k + u^{k+1} + \dots$ são majoradas por $\frac{u^k} \cdot C$ com constante $C = (1-u)^{-1}$.
+Pela \Cref{serie-geometrica}
+a progressão geométrica $1 + u + u^2 + \dots$ converge a $\frac{1}{1-u}$ absolutamente para $0<u<1$,
+e as colas $u^k + u^{k+1} + \dots$ são majoradas por $u^k \cdot C$ com constante $C = (1-u)^{-1}$.
 Logo 
 \begin{equation}
 \label{eq:series-geometrica}
@@ -1364,11 +1369,14 @@ e a última integral é igual ao valor $f(z)$ pelo \Cref{t:cauchy}.
 = \sum_{n=0}^\infty (z-z_0)^n \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{(w-z_0)^{n+1}} = \sum c_n (z-z_0)^n$}
 \end{proof}
 
-\begin{teorema}[Séries e derivadas delas são holomorfas]
+O seguinte \Cref{t:series-derhol} é o mesmo \Cref{t:abel} de Abel,
+mas nessa vez com diferente demonstração da parte \eqref{abel-3}.
+\begin{teorema}[Abel, séries e derivadas delas são holomorfas]
 \label{t:series-derhol}
-Suponha que $R = \big(\limsup |c_n|^{\frac1n}\big)^{-1} > 0$. Então a serie
-$f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n$ converge em disco
-$D = \{z\in\C : |z-z_0|<R\}$ de raio $R$ e a função $f(z)$ é holomorfa em $D$.
+Uma serie
+$f(z) := \sum_{n=0}^\infty c_n (z-z_0)^n$ converge em disco
+$D = \{z\in\C : |z-z_0|<R\}$ de raio $R = \big(\limsup |c_n|^{\frac1n}\big)^{-1}$,
+e a função $f(z)$ é holomorfa em $D$.
 Além disso a derivada $f'(z)$ também é holomorfa em $D$
 e é igual à série $g(z) = \sum_{n=1}^\infty n c_n (z-z_0)^{n-1}$.
 \end{teorema}
@@ -1477,7 +1485,8 @@ a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
 \item \eqref{f:hol} $\implies$ \eqref{f:intzero} é \Cref{l:goursat} de Goursat,
 \item \eqref{f:intzero} $\implies$ \eqref{f:hol} é \Cref{t:morera} de Morera,
 \item \eqref{f:hol} $\implies$ \eqref{f:anal} é \Cref{t:hol-series},
-\item \eqref{f:anal} $\implies$ \eqref{f:hol} é \Cref{t:series-derhol}.
+\item \eqref{f:anal} $\implies$ \eqref{f:hol} é \Cref{t:series-derhol}
+(equiv. \Cref{t:abel}) de Abel.
 \end{itemize}
 \end{proof}
 
@@ -1564,7 +1573,7 @@ ou o princípio de máximo de módulo (\cref{t:maximo}).
 \end{remark}
 
 
-\section{Teorema de Weierstrass.}
+\section{Séries de funções holomorfas. Teorema de Weierstrass.}
 
 
 O \Cref{l:uniforme} a provar as vezes é chamado
@@ -1998,7 +2007,11 @@ mostre que $h$ é inteira,
 mostre que $h$ é limitada,
 mostre que $h$ é constante.
 Se tem problemas com penúltimo passo use o teorema de resíduo da próxima seção
-(isso não é necessário e é possível fazer o problema).}
+(isso não é necessário e é possível fazer o problema).
+
+Outro jeito: considere a diferença entre $f$ e a soma
+das partes principais em todos os polos dela,
+mostre que é constante pelo \Cref{t:liouville}.}
 \end{problema}
 
 
