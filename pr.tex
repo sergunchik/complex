@@ -9,6 +9,8 @@
 
 \def\R{\mathbf{R}}
 \def\C{\mathbf{C}}
+\def\D{\mathbf{D}}
+\def\H{\mathbf{H}}
 \def\Z{\mathbf{Z}}
 \def\Ch{\widehat{\C}}
 \def\O{\mathcal{O}}
@@ -18,8 +20,8 @@ As regiões comuns:
 $\Ch = \C \bigcup \infty$ --- a \emph{esfera de Riemann},
 $H = \{z\in\C: \Im(z)>0\}$ --- o \emph{plano superior},
 $D_R = \{z\in\C: |z|<R\}$ --- o \emph{disco} de raio $R>0$,
-$D_1$ --- o \emph{disco unitário},
-$D^* = D_1 - \{0\}$ --- o \emph{disco perfurado},
+$\D$ --- o \emph{disco unitário},
+$\D^* = \D - \{0\}$ --- o \emph{disco perfurado},
 $A_R := \{z\in\C: 1/R < |z| < R \}$ o \emph{anel} para $R\in(1,+\infty)$,
 $D\subset \Ch$ --- uma região;
 $\O(D)$ --- o conjunto das funções holomorfas na $D$;
@@ -32,10 +34,11 @@ com $a,b,c,d\in\C$ e $ad\neq bc$.
 
 \begin{problema}%[1]
 Para $x\in(-1,1)$
-construir um biholomorfismo elementar entre
-o plano superior
-e o complemento para o intervalo $[x,1) \subset \R$
-no disco unitário.
+construir um biholomorfismo %elementar entre
+$\psi: \H \to \D - [x,1)$.
+% o plano superior
+% e o complemento para o intervalo $[x,1) \subset \R$
+% no disco unitário.
 \end{problema}
 
 \begin{problema}%[2]
@@ -52,8 +55,8 @@ círculo $S$ e imágem dela $\phi(S)$ temos $\phi(R_S z) = R_{\phi(S)} \phi(z)$.
 \begin{problema}%[3]
 Sejam $C_1,C_2 \subset \Ch$ um par de círculos disjuntos, i.e. $C_1 \bigcap C_2 = \emptyset$,
 e $D \subset \Ch$ uma região com fronteirs $\partial D = C_2 - C_1$.
-(a) Provar que existe $R>0$ e uma transformação de Möbius $\phi$ tal que
-$\phi(D)$ é um anel $A_R$. %  = \{ z\in\C: 1/R < |z| < R \}$.
+(a) Provar que existe uma transformação de Möbius $\phi$ tal que
+$\phi(D) = A_R$ para algum $R>1$. %  = \{ z\in\C: 1/R < |z| < R \}$.
 (b) Qual é o lugar geométrico de círculos $S$, que tocam ambos $C_1$ e $C_2$?
 \end{problema}
 
@@ -68,8 +71,8 @@ transformação de Möbius $\phi$ que
 \end{problema}
 
 \begin{problema}%[5]
-Seja $f: D\to\C$ uma função contínua em vizinhança de $0\in D$.
-Achar $\lim_{\rho\to+0} \int_\alpha^\beta f(\rho\cdot e^{i\phi}) d\phi$.
+Achar $\lim_{\rho\to+0} \int_\alpha^\beta f(\rho\cdot e^{i\phi}) d\phi$
+para $f : D_\epsilon\to\C$ contínua.
 \end{problema}
 
 \begin{problema}%[6]
@@ -80,9 +83,8 @@ para cada $t\in\C$.
 \end{problema}
 
 \begin{problema}%[7]
-Seja $f\in\O(D^*)$ uma função holomorfa no disco perfurado
-$D^*$. % = P(0,1) = \{z\in\C: 0<|z|<1\}$.
-Suponha que $\frac{f'(z)}{f(z)}$
+Para $f\in\O(\D^*)$ % uma função holomorfa no disco perfurado $D^*$. % = P(0,1) = \{z\in\C: 0<|z|<1\}$.
+suponha que $\frac{f'(z)}{f(z)}$
 tem um polo simples em $0$. Provar que
 (a) a função $f$ é meromorfa em $0$,
 (b) e $f$ tem zero ou polo em $0$.
@@ -95,19 +97,20 @@ i.e. dar uma condição suficiente e necessária sobre os polos e nulos de $f$.
 \end{problema}
 
 \begin{problema}%[9]
-Quais podem ser as funções inteiras $f,g\in\O(\C)$ tais que
-$f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$?
+%Quais podem ser as funções inteiras 
+Classificar $f,g\in\O(\C)$ tais que
+$f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$.
 \end{problema}
 
 \begin{problema}%[10]
-Suponha que uma função $f \in \O(A_R)$ é holomorfa no anel $A_R$,
+Suponha que $f \in \O(A_R)$ %é holomorfa no anel $A_R$,
 % $A = \{z\in\C: 1 < |z| < R\}$ com $r<1<R$,
-e tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in A_R$.
-(a) Achar $g(z) := \frac{1}{2\pi i} \int_{|w|=1} \frac{f(w) dw}{w-z}$
-para $z\in A - \{|z|=1\}$.
-(b) Provar que existe um par de funções $F,G \in \O(A_R)$
-holomorfas no anel $A_R$,
-tais que par qualquer $|z|=1$ temos $f(z) = F(z) + G(\bar{z})$.
+tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in A_R$.
+Define $F(z) = \sum_{n\geq 0} c_n z^n$ e $H(z) = \sum_{n>0} c_{-n} z^{-n}$ e $G(z) = H(z^{-1}) = \sum_{n>0} c_{-n} z^{n}$.
+(o) Verifique que $F,G,H$ são holomorfas em $A_R$.
+(a) Define $g(z) := \frac{1}{2\pi i} \int_{|w|=1} \frac{f(w) dw}{w-z}$
+para $z\in A - \{|z|=1\}$. Provar que $g(z) = F(z)$ para $|z|<1$ e $g(z)=H(z)$ para $|z|>1$.
+(b) Provar que para qualquer $|z|=1$ temos $f(z) = F(z) + H(\bar{z})$.
 \end{problema}
 
 \begin{problema}%[11]
@@ -115,6 +118,9 @@ Para $z\in\C-\Z$
 (a) a série $\sum_{n\in\Z} \frac{1}{z+n}$ converge absolutamente?
 (b) existe $f(z) = \lim_{n\to\infty} S_n$ onde $S_n = \sum_{k=-n}^n \frac{1}{z+n}$?
 (c) é localmente uniforme em $\C-\Z$?
+(e) a função $f$ tem polos em $\C$?
+(f) a função $f$ tem zeros?
+(g) $f(z+1) = f(z)$?
 (d) qual é o valor $f(1/4)$?
 \end{problema}
 \end{document}
