@@ -15,14 +15,15 @@
 \begin{document}
 \emph{Notações.}
 As regiões comuns:
-\emph{esfera de Riemann} $\Ch = \C \bigcup \infty$,
-\emph{plano superior} $H = \{z\in\C: \Im(z)>0\}$,
-\emph{disco} $D_R = \{z\in\C: |z|<R\}$ para $R>0$,
-\emph{disco unitário} $D_1$,
-\emph{disco perfurado} $D^* = D_1 - \{0\}$,
-\emph{anel} $A_R := \{z\in\C: 1/R < |z| < R \}$ para $R\in(1,+\infty)$,
-uma região $D\subset \Ch$. Notamos por $\O(D)$ o anel/conjunto das funções holomorfas na $D$.
-Usamos $\phi : \Ch\to\Ch$ para \emph{transformações de Möbius} 
+$\Ch = \C \bigcup \infty$ --- a \emph{esfera de Riemann},
+$H = \{z\in\C: \Im(z)>0\}$ --- o \emph{plano superior},
+$D_R = \{z\in\C: |z|<R\}$ --- o \emph{disco} de raio $R>0$,
+$D_1$ --- o \emph{disco unitário},
+$D^* = D_1 - \{0\}$ --- o \emph{disco perfurado},
+$A_R := \{z\in\C: 1/R < |z| < R \}$ o \emph{anel} para $R\in(1,+\infty)$,
+$D\subset \Ch$ --- uma região;
+$\O(D)$ --- o conjunto das funções holomorfas na $D$;
+$\phi : \Ch\to\Ch$ --- as \emph{transformações de Möbius} 
 $\phi(z) = \frac{az+b}{cz+d}$
 com $a,b,c,d\in\C$ e $ad\neq bc$.
 
@@ -102,7 +103,7 @@ $f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$?
 Suponha que uma função $f \in \O(A_R)$ é holomorfa no anel $A_R$,
 % $A = \{z\in\C: 1 < |z| < R\}$ com $r<1<R$,
 e tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in A_R$.
-(a) Achar $g(z) := \frac{1}{2\pi i} \frac{f(w) dw}{w-z}$
+(a) Achar $g(z) := \frac{1}{2\pi i} \int_{|w|=1} \frac{f(w) dw}{w-z}$
 para $z\in A - \{|z|=1\}$.
 (b) Provar que existe um par de funções $F,G \in \O(A_R)$
 holomorfas no anel $A_R$,
