@@ -1,0 +1,22 @@
+\emph{Soluções}
+
+\begin{proof}[\label{p9}]
+
+Uma solução óbvia é $f(z) = \sin(z)$ e $g(z) =\cos(z)$.
+Também as equações tem uma simetria no domínio:
+se $f(z),g(z)$ é uma solução, então $f_k(z) = f(kz), g_k(z) = g(kz)$
+também é uma solução para qualquer $k\in\C$.
+Fórmula trigonométrica do seno da soma
+$\sin(z+w) = \sin(z) \cos(w) + \cos(z) \sin(w)$
+tem uma versão para cosseno:
+\[ \cos(z+w) = \cos(z)\cos(w) - \sin(z)\sin(w). \]
+A priori a gente não sabe $g(z+w)$, mas podemos derivar o valor dele
+da equação $g(z+w)^2 = 1 - f(z+w)^2$ substituindo $f(z+w)$
+por $f(z)g(w)+g(z)f(w)$:
+\[ g(z+w)^2 = 1\cdot 1 - f(z+w)^2 = (f(z)^2+g(z)^2)(f(w)^2+g(w)^2) - (f(z)g(w)+g(z)f(w))^2
+= (g(z)g(w)-f(z)f(w)^2, \]
+então para todos $z,w\in\C$ temos
+\[ (g(z+w)-g(z)g(w)+f(z)f(w)) \cdot (g(z+w) + g(z)g(w)-f(z)f(w)) = 0. \]
+I.e. para todos $z,w\in\C$ ou
+$g(z+w)-g(z)g(w)+f(z)f(w)$ ou $g(z+w) + g(z)g(w)-f(z)f(w)) = 0$.
+\end{proof}
