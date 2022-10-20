@@ -1,16 +1,17 @@
 \documentclass[brazilian,a4paper]{scrlttr2}
-\usepackage{babel}
-\usepackage{microtype}
+\usepackage{babel,microtype,amsmath,enumitem}
 \pagestyle{empty}
+\setlist{nosep}
 \newcounter{problema}
 \newenvironment{problema}[1][]
 {\refstepcounter{problema}
 \par\textbf{\theproblema. #1}\rmfamily}{}
 
-\def\R{\mathbf{R}}
+\def\A{\mathbf{A}}
 \def\C{\mathbf{C}}
 \def\D{\mathbf{D}}
 \def\H{\mathbf{H}}
+\def\R{\mathbf{R}}
 \def\Z{\mathbf{Z}}
 \def\Ch{\widehat{\C}}
 \def\O{\mathcal{O}}
@@ -22,7 +23,7 @@ $H = \{z\in\C: \Im(z)>0\}$ --- o \emph{plano superior},
 $D_R = \{z\in\C: |z|<R\}$ --- o \emph{disco} de raio $R>0$,
 $\D$ --- o \emph{disco unitário},
 $\D^* = \D - \{0\}$ --- o \emph{disco perfurado},
-$A_R := \{z\in\C: 1/R < |z| < R \}$ o \emph{anel} para $R\in(1,+\infty)$,
+$\A_R := \{z\in\C: 1/R < |z| < R \}$ o \emph{anel} para $R\in(1,+\infty)$,
 $D\subset \Ch$ --- uma região;
 $\O(D)$ --- o conjunto das funções holomorfas na $D$;
 $\phi : \Ch\to\Ch$ --- as \emph{transformações de Möbius} 
@@ -30,7 +31,7 @@ $\phi(z) = \frac{az+b}{cz+d}$
 com $a,b,c,d\in\C$ e $ad\neq bc$.
 
 \bigskip
-\emph{Os problemas}.
+\emph{Os problemas} de outubro 18.
 
 \begin{problema}%[1]
 Para $x\in(-1,1)$
@@ -49,14 +50,14 @@ $R_S : \Ch \to \Ch$ como a refleção em reta ou a inversão em círculo.
 %com $ad\neq bc$.
 Provar que as transformações de Möbius $\phi : \Ch\to\Ch$
 preservam as refleções, i.e. para qualquer
-círculo $S$ e imágem dela $\phi(S)$ temos $\phi(R_S z) = R_{\phi(S)} \phi(z)$.
+círculo $S$ e a imágem dela $\phi(S)$ temos $\phi(R_S z) = R_{\phi(S)} \phi(z)$.
 \end{problema}
 
 \begin{problema}%[3]
 Sejam $C_1,C_2 \subset \Ch$ um par de círculos disjuntos, i.e. $C_1 \bigcap C_2 = \emptyset$,
-e $D \subset \Ch$ uma região com fronteirs $\partial D = C_2 - C_1$.
+e $D \subset \Ch$ uma região com a fronteira $\partial D = C_2 - C_1$.
 (a) Provar que existe uma transformação de Möbius $\phi$ tal que
-$\phi(D) = A_R$ para algum $R>1$. %  = \{ z\in\C: 1/R < |z| < R \}$.
+$\phi(D) = \A_R$ para algum $R>1$. %  = \{ z\in\C: 1/R < |z| < R \}$.
 (b) Qual é o lugar geométrico de círculos $S$, que tocam ambos $C_1$ e $C_2$?
 \end{problema}
 
@@ -103,11 +104,11 @@ $f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$.
 \end{problema}
 
 \begin{problema}%[10]
-Suponha que $f \in \O(A_R)$ %é holomorfa no anel $A_R$,
+Suponha que $f \in \O(\A_R)$ %é holomorfa no anel $\A_R$,
 % $A = \{z\in\C: 1 < |z| < R\}$ com $r<1<R$,
-tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in A_R$.
+tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in \A_R$.
 Define $F(z) = \sum_{n\geq 0} c_n z^n$ e $H(z) = \sum_{n>0} c_{-n} z^{-n}$ e $G(z) = H(z^{-1}) = \sum_{n>0} c_{-n} z^{n}$.
-(o) Verifique que $F,G,H$ são holomorfas em $A_R$.
+(o) Verifique que $F,G,H$ são holomorfas em $\A_R$.
 (a) Define $g(z) := \frac{1}{2\pi i} \int_{|w|=1} \frac{f(w) dw}{w-z}$
 para $z\in A - \{|z|=1\}$. Provar que $g(z) = F(z)$ para $|z|<1$ e $g(z)=H(z)$ para $|z|>1$.
 (b) Provar que para qualquer $|z|=1$ temos $f(z) = F(z) + H(\bar{z})$.
@@ -123,4 +124,91 @@ Para $z\in\C-\Z$
 (g) $f(z+1) = f(z)$?
 (d) qual é o valor $f(1/4)$?
 \end{problema}
+
+\emph{Os problemas bônus}.
+\begin{problema}[($i^i=?$)]
+Sejam $f,g,h \in \O(\C-(-\infty,0])$ tais que para $u\in\R$ e $x=e^u$
+temos $f(x) = x^x$, $g(x) = e^{ui}$, $h(x) = e^{\frac{\pi i}{2} x}$.
+Calcular $f(i)$, $g(i)$ e $h(i)$.
+\end{problema}
+
+\begin{problema}
+Mostre que $f(z) = \frac{z}{1-\exp(-z)}$ é uma função inteira
+e calcule $f^{(101)}(0)$ (cento-primeira derivada em zero).
+\end{problema}
+
+\newpage
+
+\emph{Os tipos de problemas}:
+\begin{enumerate}
+\item Determinar tipos de pontos singulares e calcular os resíduos.
+\item Calcular a integral.
+\item Construir biholomorfismo entre duas regiões.
+\item Calcular a soma de série.
+\item Decompor uma função em série de Laurent nos anéis com dado centro.
+\item Descrever a superfície de Riemann de dada função analítica.
+\end{enumerate}
+
+\setcounter{problema}{0}
+
+\medskip
+
+\emph{Os exemplos de problemas} (com dificuldade esperada)
+
+\begin{problema}[(17)]
+Sejam $u_0,\dots,u_n\in\C$ distintas,
+$P = \prod_{k=0}^n (z-u_k)$ ,
+$f(z)$ uma função, $Q \in \C[z]$ um polinómio de grau $n$ tal que
+$\forall k: Q(u_k) = f(u_k)$.
+Provar que
+$f(z) - Q(z) = \frac{1}{2\pi i} P(z) \int_{|w|=R} \frac{f(w) dw}{P(w) \cdot (w-z)}$
+para qualquer $R > \max(u_0,\dots,u_n,z)$.
+\end{problema}
+
+\begin{problema}[(20)]
+Provar que todas as raízes complexas de $\tan(z) = z$ são reais.
+\end{problema}
+
+\begin{problema}[(7)]
+Será que existe uma região $\R-\{0\} \subset D\subset \C$ e $f\in\O(D)$ tal que
+$f(x) = \log (x^2) \in \R$ para cada $x\in\R-\{0\}$?
+\end{problema}
+
+\begin{problema}[(9)(mestrado)]
+Provar que o cobrimento universal de um toro analítico com um ponto perfurado
+é $\D$.
+\end{problema}
+
+\begin{problema}[(11)]
+Provar que 
+$f,g\in\O(\C)$ t.q. $\exp(f(z)) + \exp(g(z)) = 1$
+são constantes.
+\end{problema}
+
+\begin{problema}[(13)]
+Provar que existe uma função $f$ meromorfa no $\C$ t.q. $f : \Delta \to \D$ é uma bijeção,
+onde $\Delta$ é um triângulo com ângulos $\frac{\pi}{6},\frac{\pi}{3},\frac{\pi}{2}$.
+\end{problema}
+
+\begin{problema}[(5)]
+Caraterizar os pontos singulares de $f(z) = \exp(\tan(1/z))$.
+\end{problema}
+
+\begin{problema}[(6)]
+Achar o número de raízes do polinómio $z^3-z^2+3z+5$ com $\Re(z)>0$.
+\end{problema}
+
+\begin{problema}[(3)]
+Provar que $f\in\O(\C)$ t.q. $|f(z)|\leq C |z|^k$ é um polinómio.
+\end{problema}
+
+\begin{problema}[(4)]
+Achar todas as séries de Laurent nos anéis com centro em zero da função $f(z) = \frac{7z-2}{(z+1)(z-2)}$.
+\end{problema}
+
+\begin{problema}[(5)]
+Provar que $u(x,y) = \Re f(x+iy)$ para $f\in\O(\D)$ $\iff$ 
+$\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$.
+\end{problema}
+
 \end{document}
