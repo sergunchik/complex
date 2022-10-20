@@ -1,19 +1,10 @@
 \documentclass[brazilian,a4paper]{scrlttr2}
-\usepackage{babel,microtype,enumitem,amsmath,amsthm,cleveref}
+% \usepackage{babel,microtype,enumitem,amsmath,amsthm,cleveref}
 \pagestyle{empty}
-\setlist{nosep}
-\newcounter{problema}
-\newenvironment{problema}{\refstepcounter{problema}\textbf{\theproblema.}\rmfamily}{}
-\crefname{problema}{problema}{problemas}
+\usepackage{import}
+\import{p}{p}
+% \input{p/macros}
 
-\def\A{\mathbf{A}}
-\def\C{\mathbf{C}}
-\def\D{\mathbf{D}}
-\def\H{\mathbf{H}}
-\def\R{\mathbf{R}}
-\def\Z{\mathbf{Z}}
-\def\Ch{\widehat{\C}}
-\def\O{\mathcal{O}}
 \begin{document}
 \emph{Notações.}
 As regiões comuns:
@@ -32,16 +23,16 @@ com $a,b,c,d\in\C$ e $ad\neq bc$.
 \bigskip
 \emph{Os problemas} de outubro 18.
 
-\begin{problema}\label{p1} % [1]
+\begin{prob}\label{p1} % [1]
 Para $x\in(-1,1)$
 construir um biholomorfismo %elementar entre
 $\psi: \H \to \D - [x,1)$.
 % o plano superior
 % e o complemento para o intervalo $[x,1) \subset \R$
 % no disco unitário.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p2} % [2]
+\begin{prob}\label{p2} % [2]
 Para círculo generalizado (círculo ou reta) $S \subset \Ch$ define
 uma \emph{refleção}
 $R_S : \Ch \to \Ch$ como a refleção em reta ou a inversão em círculo.
@@ -50,17 +41,17 @@ $R_S : \Ch \to \Ch$ como a refleção em reta ou a inversão em círculo.
 Provar que as transformações de Möbius $\phi : \Ch\to\Ch$
 preservam as refleções, i.e. para qualquer
 círculo $S$ e a imágem dela $\phi(S)$ temos $\phi(R_S z) = R_{\phi(S)} \phi(z)$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p3} % [3]
+\begin{prob}\label{p3} % [3]
 Sejam $C_1,C_2 \subset \Ch$ um par de círculos disjuntos, i.e. $C_1 \bigcap C_2 = \emptyset$,
 e $D \subset \Ch$ uma região com a fronteira $\partial D = C_2 - C_1$.
 (a) Provar que existe uma transformação de Möbius $\phi$ tal que
 $\phi(D) = \A_R$ para algum $R>1$. %  = \{ z\in\C: 1/R < |z| < R \}$.
 (b) Qual é o lugar geométrico de círculos $S$, que tocam ambos $C_1$ e $C_2$?
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p4} % [4]
+\begin{prob}\label{p4} % [4]
 Define $Sf = \frac{f'''}{f'} - \frac{3}{2} \big(\frac{f''}{f'}\big)^2$.
 Provar para qualquer funções $f,g$ com singularidades isoladas e qualquer
 transformação de Möbius $\phi$ que
@@ -68,41 +59,41 @@ transformação de Möbius $\phi$ que
 (b) $S (\phi \circ f) = S f$,
 (c) $S(f \circ \phi) = \big((Sf)\circ\phi\big) \cdot (\phi')^2$,
 (d) $S(f\circ g) = \big((Sf)\circ g\big) \cdot (g')^2 + Sg$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p5} % [5]
+\begin{prob}\label{p5} % [5]
 Achar $\lim_{\rho\to+0} \int_\alpha^\beta f(\rho\cdot e^{i\phi}) d\phi$
 para $f : D_\epsilon\to\C$ contínua.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p6} % [6]
+\begin{prob}\label{p6} % [6]
 Seja $\omega_t = \frac{e^{itz} dz}{(z+z^{-1})^3}$.
 (a) Classificar singularidades de $\omega_t$ na $\Ch$
 para cada $t\in\C$.
 (b) Calcular $I(t) = \int_\R \omega_t$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p7} % [7]
+\begin{prob}\label{p7} % [7]
 Para $f\in\O(\D^*)$ % uma função holomorfa no disco perfurado $D^*$. % = P(0,1) = \{z\in\C: 0<|z|<1\}$.
 suponha que $\frac{f'(z)}{f(z)}$
 tem um polo simples em $0$. Provar que
 (a) a função $f$ é meromorfa em $0$,
 (b) e $f$ tem zero ou polo em $0$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p8} % [8]
+\begin{prob}\label{p8} % [8]
 Seja $f(z) = \frac{P(z)}{Q(z)}$ para um par de polinómios $P,Q\in\C[z]-\{0\}$.
 Suponha que para qualquer $|z|=1$ temos $|f(z)|=1$. Classificar $f$,
 i.e. dar uma condição suficiente e necessária sobre os polos e nulos de $f$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p9} % [9]
+\begin{prob}\label{p9} % [9]
 %Quais podem ser as funções inteiras 
 Classificar $f,g\in\O(\C)$ tais que
 $f^2+g^2=1$ e $f(z+w) = f(z) g(w) + f(w) g(z)$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p10} % [10]
+\begin{prob}\label{p10} % [10]
 Suponha que $f \in \O(\A_R)$ %é holomorfa no anel $\A_R$,
 % $A = \{z\in\C: 1 < |z| < R\}$ com $r<1<R$,
 tem a série de Laurent $f(z) = \sum c_n z^n$ para $z\in \A_R$.
@@ -111,9 +102,9 @@ Define $F(z) = \sum_{n\geq 0} c_n z^n$ e $H(z) = \sum_{n>0} c_{-n} z^{-n}$ e $G(
 (a) Define $g(z) := \frac{1}{2\pi i} \int_{|w|=1} \frac{f(w) dw}{w-z}$
 para $z\in A - \{|z|=1\}$. Provar que $g(z) = F(z)$ para $|z|<1$ e $g(z)=H(z)$ para $|z|>1$.
 (b) Provar que para qualquer $|z|=1$ temos $f(z) = F(z) + H(\bar{z})$.
-\end{problema}
+\end{prob}
 
-\begin{problema}\label{p11} % [11]
+\begin{prob}\label{p11} % [11]
 Para $z\in\C-\Z$
 (a) a série $\sum_{n\in\Z} \frac{1}{z+n}$ converge absolutamente?
 (b) existe $f(z) = \lim_{n\to\infty} S_n$ onde $S_n = \sum_{k=-n}^n \frac{1}{z+n}$?
@@ -122,24 +113,25 @@ Para $z\in\C-\Z$
 (f) a função $f$ tem zeros?
 (g) $f(z+1) = f(z)$?
 (d) qual é o valor $f(1/4)$?
-\end{problema}
+\end{prob}
 
-\emph{Os problemas bônus}.
+\emph{Os probs bônus}.
 
-\begin{problema} ($i^i=?$)
+\begin{prob} ($i^i=?$)
 Sejam $f,g,h \in \O(\C-(-\infty,0])$ tais que para $u\in\R$ e $x=e^u$
 temos $f(x) = x^x$, $g(x) = e^{ui}$, $h(x) = e^{\frac{\pi i}{2} x}$.
 Calcular $f(i)$, $g(i)$ e $h(i)$.
-\end{problema}
+\end{prob}
 
-\begin{problema}
+\begin{prob}
 Mostre que $f(z) = \frac{z}{1-\exp(-z)}$ é uma função inteira
 e calcule $f^{(101)} (0)$ (cento-primeira derivada em zero).
-\end{problema}
+\end{prob}
 
-\newpage
+%\newpage
+\bigskip
 
-\emph{Os tipos de problemas}:
+\emph{Os tipos de probs}:
 \begin{enumerate}
 \item Determinar tipos de pontos singulares e calcular os resíduos.
 \item Calcular a integral.
@@ -149,13 +141,13 @@ e calcule $f^{(101)} (0)$ (cento-primeira derivada em zero).
 \item Descrever a superfície de Riemann de dada função analítica.
 \end{enumerate}
 
-\setcounter{problema}{0}
+\setcounter{prob}{0}
 
 \medskip
 
-\emph{Os exemplos de problemas} (com dificuldade esperada)
+\emph{Os exemplos de problemas finais} (com uma estimação do nível de dificuldade)
 
-\begin{problema} (17)
+\begin{prob} (17)
 Sejam $u_0,\dots,u_n\in\C$ distintas,
 $P = \prod_{k=0}^n (z-u_k)$ ,
 $f(z)$ uma função, $Q \in \C[z]$ um polinómio de grau $n$ tal que
@@ -163,53 +155,53 @@ $\forall k: Q(u_k) = f(u_k)$.
 Provar que
 $f(z) - Q(z) = \frac{1}{2\pi i} P(z) \int_{|w|=R} \frac{f(w) dw}{P(w) \cdot (w-z)}$
 para qualquer $R > \max(u_0,\dots,u_n,z)$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (20)
+\begin{prob} (20)
 Provar que todas as raízes complexas de $\tan(z) = z$ são reais.
-\end{problema}
+\end{prob}
 
-\begin{problema} (7)
+\begin{prob} (7)
 Será que existe uma região $\R-\{0\} \subset D\subset \C$ e $f\in\O(D)$ tal que
 $f(x) = \log (x^2) \in \R$ para cada $x\in\R-\{0\}$?
-\end{problema}
+\end{prob}
 
-\begin{problema}[(9)(mestrado)]
+\begin{prob}[(9)(mestrado)]
 Provar que o cobrimento universal de um toro analítico com um ponto perfurado
 é $\D$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (11)
+\begin{prob} (11)
 Provar que 
 $f,g\in\O(\C)$ t.q. $\exp(f(z)) + \exp(g(z)) = 1$
 são constantes.
-\end{problema}
+\end{prob}
 
-\begin{problema} (13)
+\begin{prob} (13)
 Provar que existe uma função $f$ meromorfa no $\C$ t.q. $f : \Delta \to \D$ é uma bijeção,
 onde $\Delta$ é um triângulo com ângulos $\frac{\pi}{6},\frac{\pi}{3},\frac{\pi}{2}$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (5)
+\begin{prob} (5)
 Caraterizar os pontos singulares de $f(z) = \exp(\tan(1/z))$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (6)
+\begin{prob} (6)
 Achar o número de raízes do polinómio $z^3-z^2+3z+5$ com $\Re(z)>0$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (3)
+\begin{prob} (3)
 Provar que $f\in\O(\C)$ t.q. $|f(z)|\leq C |z|^k$ é um polinómio.
-\end{problema}
+\end{prob}
 
-\begin{problema} (4)
+\begin{prob} (4)
 Achar todas as séries de Laurent nos anéis com centro em zero da função $f(z) = \frac{7z-2}{(z+1)(z-2)}$.
-\end{problema}
+\end{prob}
 
-\begin{problema} (5)
+\begin{prob} (5)
 Provar que $u(x,y) = \Re f(x+iy)$ para $f\in\O(\D)$ $\iff$ 
 $\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} = 0$.
-\end{problema}
+\end{prob}
 
 \input{sol}
 

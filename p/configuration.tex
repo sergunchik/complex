@@ -1,20 +1,18 @@
 \pagestyle{plain}
-% \geometry{a5paper,top=1cm,bottom=2cm,left=.5cm,right=.5cm}
-% \geometry{a4paper,top=1cm,bottom=2cm,left=.5cm,right=.5cm}
+\setlist{nosep}
 \sloppy
-%\renewcommand{\baselinestretch}{1.3}
 \iftutex\newfontfamily\DejaSans{DejaVu Sans}\fi
+\relpenalty=10000
+\binoppenalty=10000
+% \geometry{a4paper,top=1cm,bottom=2cm,left=.5cm,right=.5cm}
+%\renewcommand{\baselinestretch}{1.3}
 
 % mathtools option to transform := into \colonequals
 % \mathtoolsset{centercolon}
 
-\relpenalty=10000
-\binoppenalty=10000
-
 \input{restate-hyperlink}
 
-
-\numberwithin{equation}{section}
+% \numberwithin{equation}{section}
 \newcommand{\creflastconjunction}{ e~}
 \newcommand{\creflastgroupconjunction}{ e~}
 \crefname{equation}{equação}{equações}
@@ -35,16 +33,15 @@
 \crefname{exer}{exercício}{exercícios}
 \newtheorem{conjectura}[equation]{Conjectura}
 \crefname{conjectura}{conjectura}{conjecturas}
-
 \newtheorem{question}[equation]{Pergunta}
+\crefname{question}{pergunta}{perguntas}
 \newtheorem{remark}[equation]{Observação}
-
-%\newcounter{problema}[section]
-%\newenvironment{problema}[1][(Problema) ]
-%{\refstepcounter{problema}
-%\par\textbf{\theproblema. #1}\rmfamily}{}
+\crefname{remark}{observação}{observações}
 \newtheorem{problema}[equation]{Problema}
 \crefname{problema}{problema}{problemas}
+
+\newcounter{prob}\newenvironment{prob}{\refstepcounter{prob}\textbf{\theprob.}\rmfamily}{}
+\crefname{prob}{problema}{problemas}
 
 \newenvironment{nalign}{
     \begin{equation}

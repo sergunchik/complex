@@ -13,29 +13,27 @@
 \def \CC {\mathcal{C}}  % 
 
 %mathbf letras
-\def \D {\mathbf{D}}    % disco
+
+\def \A {\mathbf{A}}    % anel
 \def \C {\mathbf{C}}    % números complexos
-\def \Ch {\widehat{\C}}    % esfera de Riemann
+\def \Ch {\widehat{\C}} % esfera de Riemann
+\def \D {\mathbf{D}}    % disco
 \def \F {\mathbf{F}}    % corpos finitos F_q
-\def \H {\mathbf{H}}	% quatêrnios de Hamilton e outros quatêrnios 
+\def \H {\mathbf{H}}	% semiplano superior
 \def \P {\mathbf{P}}    % números primos
 \def \Q {\mathbf{Q}}    % números rationais
 \def \R {\mathbf{R}}    % números reais
 \def \Z {\mathbf{Z}}    % números inteiros
 
-\def \E  {\mathcal{E}}    % vector bundle
-\def \FF {\mathcal{F}}    % vector bundle or coherent sheaf
-\def \G  {\mathcal{G}}    % vector bundle
-\def \I  {\mathcal{I}}    % ideal sheaf
-\def \L  {\mathcal{L}}    % line bundle
-\def \M  {\mathcal{M}}    % line bundle
-\def \O  {\mathcal{O}}    % structure sheaf
+\def \M  {\mathcal{M}}    % meromorphic functions
+\def \O  {\mathcal{O}}    % holomorphic functions
 
 \newcommand\cat{\iftutex\DejaSans\text{😺}\else\mathcal{G}\fi}
-%\newcommand\cat{\text{😺}}
 
 \newcommand{\lra}{\longrightarrow}
-\newcommand\ii{\ensuremath{\mathrm{i}}}
+\newcommand\ii{\ensuremath{\mathrm{i}}}  % raiz quadrática de -1
+\newcommand\dpi{2\pi\ii}                 % 2πi = ∫ dz/z
+\newcommand\idpi{\frac{1}{\dpi}}         % 1/(2πi)
 \newcommand\ol{\overline}
 
 \DeclareMathOperator{\dlog}{dlog}
@@ -53,13 +51,8 @@
 \DeclareMathOperator{\Ker}{Núc}
 \DeclareMathOperator{\Coker}{Conúc}
 \DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\Gal}{Gal}
 \DeclareMathOperator{\Tr}{Tr}
 \DeclareMathOperator{\tr}{tr}
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\Proj}{Proj}
-\DeclareMathOperator{\Pic}{Pic}
-\DeclareMathOperator{\Bs}{Bs}
 %\DeclareMathOperator{\dim}{dim}
 \DeclareMathOperator{\PGL}{PGL}
 \DeclareMathOperator{\GL}{GL}
