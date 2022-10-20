@@ -1,0 +1,71 @@
+% usar \defcommand em vez de \newcommand ou \renewcommand
+% funciona como \def em tex - vai definir, se ainda não definida,
+% se já definida, vai redefinir
+\makeatletter\def\defcommand{\@ifstar\defcommand@S\defcommand@N} \def\defcommand@S#1{\let#1\outer\renewcommand*#1} \def\defcommand@N#1{\let#1\outer\renewcommand#1} \makeatother
+
+\mathchardef\mhyphen="2D
+\newcommand\dash{\nobreakdash-\hspace{0pt}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% mathcal e mathb letras
+\def \CC {\mathcal{C}}  % 
+
+%mathbf letras
+\def \D {\mathbf{D}}    % disco
+\def \C {\mathbf{C}}    % números complexos
+\def \Ch {\widehat{\C}}    % esfera de Riemann
+\def \F {\mathbf{F}}    % corpos finitos F_q
+\def \H {\mathbf{H}}	% quatêrnios de Hamilton e outros quatêrnios 
+\def \P {\mathbf{P}}    % números primos
+\def \Q {\mathbf{Q}}    % números rationais
+\def \R {\mathbf{R}}    % números reais
+\def \Z {\mathbf{Z}}    % números inteiros
+
+\def \E  {\mathcal{E}}    % vector bundle
+\def \FF {\mathcal{F}}    % vector bundle or coherent sheaf
+\def \G  {\mathcal{G}}    % vector bundle
+\def \I  {\mathcal{I}}    % ideal sheaf
+\def \L  {\mathcal{L}}    % line bundle
+\def \M  {\mathcal{M}}    % line bundle
+\def \O  {\mathcal{O}}    % structure sheaf
+
+\newcommand\cat{\iftutex\DejaSans\text{😺}\else\mathcal{G}\fi}
+%\newcommand\cat{\text{😺}}
+
+\newcommand{\lra}{\longrightarrow}
+\newcommand\ii{\ensuremath{\mathrm{i}}}
+\newcommand\ol{\overline}
+
+\DeclareMathOperator{\dlog}{dlog}
+\DeclareMathOperator{\res}{res}
+\DeclareMathOperator{\sinal}{sinal}
+\renewcommand{\ord}{ord}
+\DeclareMathOperator{\mdc}{mdc}
+\DeclareMathOperator{\mmc}{mmc}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\End}{End}
+%\defcommand{\Im}{\mathrm{Im} }
+\let\Im\relax
+\DeclareMathOperator{\Im}{Im}
+\DeclareMathOperator{\Ker}{Núc}
+\DeclareMathOperator{\Coker}{Conúc}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Proj}{Proj}
+\DeclareMathOperator{\Pic}{Pic}
+\DeclareMathOperator{\Bs}{Bs}
+%\DeclareMathOperator{\dim}{dim}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\GL}{GL}
+
+\defcommand{\mat}[1]{\big(\begin{smallmatrix} #1 \end{smallmatrix}\big)}
+
+\providecommand{\arxiv}[1]{\href{http://arxiv.org/abs/#1}{arXiv:#1}}
+\providecommand{\doi}[1]{\href{http://dx.doi.org/#1}{\texttt{doi:#1}}}
+

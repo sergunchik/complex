@@ -1,0 +1,16 @@
+% A style that Sergey uses to compile PDFs
+% for reading from the electronic devices
+% especially in dark environment (e.g. during the night)
+\ProvidesPackage{night}
+\RequirePackage[dvipsnames]{xcolor}
+\definecolor{bg}{rgb}{.1,.1,.1}
+\pagecolor{bg}
+\color[rgb]{.8,.8,.8}
+\RequirePackage{hyperref}
+\hypersetup{
+    linkcolor={red!50!gray},
+    citecolor={blue!50!gray},
+    urlcolor={Turquoise!50!gray}
+}
+\RequirePackage{tikz-cd}
+\tikzcdset{background color=bg}

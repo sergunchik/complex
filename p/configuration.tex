@@ -1,0 +1,67 @@
+\pagestyle{plain}
+% \geometry{a5paper,top=1cm,bottom=2cm,left=.5cm,right=.5cm}
+% \geometry{a4paper,top=1cm,bottom=2cm,left=.5cm,right=.5cm}
+\sloppy
+%\renewcommand{\baselinestretch}{1.3}
+\iftutex\newfontfamily\DejaSans{DejaVu Sans}\fi
+
+% mathtools option to transform := into \colonequals
+% \mathtoolsset{centercolon}
+
+\relpenalty=10000
+\binoppenalty=10000
+
+\input{restate-hyperlink}
+
+
+\numberwithin{equation}{section}
+\newcommand{\creflastconjunction}{ e~}
+\newcommand{\creflastgroupconjunction}{ e~}
+\crefname{equation}{equação}{equações}
+% \declaretheorem[name=Teorema,numberwithin=section]{teorema}
+\newtheorem{teorema}[equation]{Teorema}
+\crefname{teorema}{teorema}{teoremas}
+\newtheorem{lema}[equation]{Lema}
+\crefname{lema}{lema}{lemas}
+\newtheorem{cor}[equation]{Corolário}
+\crefname{cor}{corolário}{corolários}
+\newtheorem{prop}[equation]{Proposição}
+\crefname{prop}{proposição}{proposições}
+\newtheorem{defin}[equation]{Definição}
+\crefname{defin}{definição}{definições}
+\newtheorem{exem}[equation]{Exemplo}
+\crefname{exem}{exemplo}{exemplos}
+\newtheorem{exer}[equation]{Exercício}
+\crefname{exer}{exercício}{exercícios}
+\newtheorem{conjectura}[equation]{Conjectura}
+\crefname{conjectura}{conjectura}{conjecturas}
+
+\newtheorem{question}[equation]{Pergunta}
+\newtheorem{remark}[equation]{Observação}
+
+%\newcounter{problema}[section]
+%\newenvironment{problema}[1][(Problema) ]
+%{\refstepcounter{problema}
+%\par\textbf{\theproblema. #1}\rmfamily}{}
+\newtheorem{problema}[equation]{Problema}
+\crefname{problema}{problema}{problemas}
+
+\newenvironment{nalign}{
+    \begin{equation}
+    \begin{aligned}
+}{
+    \end{aligned}
+    \end{equation}
+    \ignorespacesafterend
+}
+
+\newenvironment{eqs}{
+    \begin{equation}
+    \begin{split}
+}{
+    \end{split}
+    \end{equation}
+    \ignorespacesafterend
+}
+
+
