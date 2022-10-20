@@ -1,3 +1,4 @@
+*.thm
 .z
 *.fls
 *.tex.bak
