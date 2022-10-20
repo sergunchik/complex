@@ -1,0 +1,16 @@
+% arara: lualatex
+\RequirePackage{import}
+% \documentclass[a4paper,nobib,sfsidenotes]{tufte-handout}
+\documentclass[brazilian,a4paper]{scrartcl}
+\newcommand{\marginnote}{\footnote}
+% Turn on numbering for section and subsection headings
+\setcounter{secnumdepth}{2}
+\import{p/}{p}  % packages + (night) + configuration + macros
+\author{Sergey}
+\title{Análise complexa}
+\date{\today}
+\begin{document} 
+\maketitle
+\tableofcontents
+\input{lec}
+\end{document}

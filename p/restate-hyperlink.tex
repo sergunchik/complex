@@ -1,0 +1,35 @@
+% From      https://tex.stackexchange.com/a/526403
+
+\makeatletter
+\xpatchcmd \thmt@restatable{\@xa\protected@edef\csname the#2\endcsname}
+                           {\def\thmt@tmp@restatename{#3}\@xa\protected@edef\csname the#2\endcsname}{}{\fail}
+
+
+\renewtheoremstyle{plain}%
+  {\item[
+   \ifcsname 
+        thmt@tmp@restatename\endcsname 
+        \ifthmt@thisistheone 
+            \hskip\labelsep \theorem@headerfont ##1\ ##2
+        \else
+            \mbox{\hyperref[thmt@@\thmt@tmp@restatename]{\theorem@headerfont ##1~##2}} 
+        \fi
+   \else 
+        \hskip\labelsep \theorem@headerfont ##1\ ##2
+    \fi
+   \theorem@separator]}%
+  {\item[
+   \ifcsname 
+        thmt@tmp@restatename\endcsname
+        \ifthmt@thisistheone 
+            \hskip\labelsep \theorem@headerfont ##1\ ##2
+        \else
+            \mbox{\hyperref[thmt@@\thmt@tmp@restatename]{\theorem@headerfont ##1~##2}}
+        \fi
+   \else 
+        \hskip\labelsep \theorem@headerfont ##1\ ##2
+   \fi
+   \  (##3)\theorem@separator]%
+  }
+
+\makeatother

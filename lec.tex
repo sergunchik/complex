@@ -1,0 +1,2671 @@
+Como usar este texto: se um teorema não tem uma demonstração,
+considere ele como uma ilustração (desenho):
+ele é formulado para criar uma restrospetiva
+e complementar os teoremas em vizinhança perfurada dele.
+
+\section{Números complexos e plano euclidiano}
+
+Essa seção preliminária contém algumas lembranças sobre os números complexos antes de começar a análise.
+
+Números complexos $\C$ são munidos com
+\marginnote{
+\begin{align*}
++,\cdot &: \C \times \C \to \C,\quad z,w \mapsto z+w,\quad z,w \mapsto z\cdot w, \\
+\ol{} &: \C \to \C, \quad z\mapsto \ol{z}, \\
+\Re,\Im &: \C \to \R, \quad z \mapsto \Re z,\quad z \mapsto \Im z, \\
+N,|-| &: \C \to \R_{\geq 0},\quad z \mapsto N(z),\quad z \mapsto |z|, \\
+\arg &: \C \to \R/2\pi\Z,\quad z \mapsto \arg z, \\
+Arg &: \C \to [0,2\pi),\quad z\mapsto Arg z.
+\end{align*}}
+as operações binárias
+de soma $+$ e produto $\cdot$,
+as funções de 
+conjugação complexa $\ol{-}$,
+parte real $\Re $, parte imaginária $\Im$,
+norma $N$, valor absoluto $|-|$,
+argumento $\arg$
+e valor principal de argumento $Arg$.
+
+\begin{nalign}
+z &= x + y i, \\
+z &= r (\cos \phi + i \sin \phi) = r e^{i\phi}, \\
+\ol{z} &:= x - y i = r e^{-i\phi}, \\
+\Re(z) &:= x = r \cos \phi,  \\
+\Im(z) &:= y = r \sin \phi, \\
+N(z)   &:= z \ol{z} = r^2 = x^2+y^2, \\
+|z|    &:= \sqrt{N(z)} = r, \\
+\arg z &:= \phi \mod 2\pi.
+\end{nalign}
+
+A norma é multiplicativa:
+\begin{equation}
+N(z\cdot w) = N(z) \cdot N(w).
+\end{equation}
+Podemos munir $\C$ com uma função de \emph{distância}
+\begin{equation}
+d(z,w) := |z-w|.
+\end{equation}
+Ela é uma \emph{métrica}, isso é:
+\begin{enumerate}
+\item $d(z,w) \geq 0$,
+\item $d(z,w) = 0$ se e só se $z=w$,
+\item $d(z,w) = d(w,z)$,
+\item e $d(z,w) \leq d(z,s) + d(s,w)$ (\emph{desigualdade de triângulo} ou \emph{desigualdade triangular}).
+\end{enumerate}
+Pelo teorema de Pitágoras essa métrica coincide com a métrica euclidiana.
+
+Similarmente podemos munir $\C$ com uma \emph{orientação},
+declarando que o vetor $i v$ é no lado esquerda de vetor $v$.
+
+Multiplicatividade de norma implica que 
+\begin{equation}
+d(a\cdot z + b,a\cdot w + b) = |a| \cdot d(z,w),
+\end{equation}
+i.e. se $|a|=1$ a transformação $z\mapsto az+b$
+é uma isometria (preserva as distâncias) euclidiana.
+Então geometricamente\footnote{Primeira vez isso foi proposto por
+Caspar Wessel 1798, e depois por Gauss e Argand.}
+podemos identificar $\C$ com $\R^2$ e com um plano euclidiano.
+As transformações $z \to z + b$ são translações,
+as transformações $z \to (\cos \phi + i \sin \phi) \cdot z$ são rotações com centro em $0$,
+as transformações $z \to r \cdot z$ ($r\in\R_{>0}$) são dilatações. 
+Todas elas preservam a orientação e também são conformes, i.e. preservam os ângulos.
+Também todas $z \to (\cos \phi + i \sin \phi) \cdot z + b$ preservam as distâncias euclidianas.
+As transformações $z \to (\cos \phi + i \sin \phi) \cdot \ol{z} + b$ coincidem com as reflexões
+em diferentes retas, elas preservam as distâncias, mas trocam a orientação.
+
+O subconjunto $U \subset \C$ é chamado \emph{aberto}
+\footnote{com respeito de topologia euclidiana}
+se ele é uma união de bolas/discos abertas
+\begin{equation}
+B(z,r) := \{w\in \C : |w-z|<r \} 
+\end{equation}
+onde $z\in\C$ é um centro de disco e $r\in\R$ é o raio dele.
+I.e. 
+qualquer ponto de $U$ também tem uma vizinhança dele dentro de $U$:
+\[ \forall z\in U \, \exists r>0 : \forall w\in\C \, |w-z|<r \implies w\in U. \]
+
+Na análise complexa as palavras \emph{região} ou \emph{domínio} significam um subconjunto aberto de $\C$.
+Também em seguida geralmente temos em mente subconjuntos \emph{conexos}, i.e. tais
+que não são uniões disjuntas de dois subconjuntos abertos não vazios.
+A propriedade que será mais útil para nós é a de \emph{conexidade em caminhos}:
+para qualquer par de pontos $P,Q\in U$ existe um \emph{caminho} em $U$ entre eles,
+i.e. existe uma função contínua $\gamma: [0,1] \to U$ tal que $\gamma(0) = P$
+e $\gamma(1)=Q$.
+\footnote{Se quiser pode se imaginar que essa função é linear em pedaços,
+ou ainda feita só de intervalos horizontais e verticais.}
+
+Muitas definições e teoremas básicas sobre as funções de variável real
+podem ser promovidas para as funções de variável complexa usando
+a interpretação de $|z|$ acima.
+
+
+\section{Limites, séries, convergência, uniformidade, sequências de Cauchy}
+
+Todas (ou quase todas) as definições e teoremas sobre os limites, a continuidade,
+a convergência e as séries reais funcionam em caso complexo
+se usar valor absoluto complexo em vez de valor absoluto real:
+em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
+Nessa seção preliminária vejamos alguns deles, e lembramos algumas definições
+e alguns teoremas úteis da análise real, as vezes reformulando elas/eles em contexto complexo.
+
+\begin{defin}[Sequências de Cauchy e limites]
+\begin{enumerate}
+\item Uma sequência de números complexos $a_n\in\C$ é uma \emph{sequência de Cauchy} se
+\[ \forall \epsilon>0, \exists N, \forall n,m\geq N:\, |a_n-a_m| <\epsilon; \]
+\item Digamos que uma sequência $a_0,a_1,\dots$ tem o \emph{limite finito} $a\in\C$ se
+\[ \forall \epsilon> 0, \exists N, \forall n\geq N: \, |a_n-a| < \epsilon. \]
+\item Digamos que uma sequência $a_0,a_1,\dots$ tem o \emph{limite infinito} $\infty$ se
+\[ \forall \epsilon> 0, \exists N, \forall n\geq N: \, |a_n| > 1/\epsilon. \]
+\end{enumerate}
+\end{defin}
+
+\begin{prop}[Cauchy, critério de existência de limite]
+\label{cauchy-limite}
+\begin{enumerate}
+\item Qualquer sequência $a_n$ com o limite finito $a\in\C$ é uma sequência de Cauchy.
+\item Qualquer sequência de Cauchy $a_n\in\C$ de números complexos tem o limite finito $a\in \C$.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+O primeiro item é uma propriedade geral dos espaços métricos e não depende da específica de números complexos.
+A existência de limite $a$ é
+\[ \forall \epsilon>0, \exists N(\epsilon), \forall n\geq N(\epsilon): \, |a_n-a| <\epsilon . \]
+Logo pelo desigualdade triangular
+\[ \forall n,m\geq N(\epsilon): \, |a_n-a_m| \leq |a_n-a| + |a-a_m| < 2\epsilon . \]
+O segundo item já depende da completude de números reais (e complexos)
+Uma sequência $a_n \in \C$ dos números complexos
+tem o limite se e só se as duas sequências $\Re(a_n)\in \R$ e $\Im(a_n)\in\R$
+dos números reais tem os limites, e neste caso $\lim a_n = (\lim \Re(a_n)) + i \cdot (\lim \Im(a_n))$.
+Similarmente uma sequência dos números complexos é uma sequência de Cauchy
+se e só se as partes reais e imaginárias dela são as sequências de Cauchy (de números reais). 
+A existência dos limites para as sequências de Cauchy de números reais
+é uma propriedade fundamental dos números reais, também as vezes usada como definição deles.
+\end{proof}
+
+\begin{defin}
+Digamos que uma série $\sum_{n=0}^\infty c_n = c_0 + c_1 + c_2 + \dots$ dos números complexos $c_n\in\C$
+\begin{enumerate}
+\item \emph{converge} (condicionalmente) a um número complexo $c\in \C$ se a sequência de somas parciais
+$s_n := c_0 + c_1 + \dots + c_n$ converge ao $c$;
+\item \emph{converge ao infinito} $\infty$ se a sequência de somas parciais $s_n$
+converge ao infinito;
+\item \emph{converge absolutamente} se a série $|c_0| + |c_1| + \dots$ converge (tem a soma finita);
+\item \emph{diverge absolutamente} se ela não converge absolutamente,
+\item \emph{diverge}, se ela não converge condicionalmente.
+\end{enumerate}
+\end{defin}
+
+\begin{prop}
+\label{p:convergencia}
+\begin{enumerate}
+\item \label{pc-1} (critério de convergência de Cauchy) Uma série $\sum_{n=0}^\infty c_n$ converge se e somente se
+\[ \forall \epsilon>0, \exists N, \forall n\geq m\geq \epsilon:\, |c_m + \dots + c_n| < \epsilon .\]
+\item \label{pc-2} Se uma série converge então $\lim_{n\to\infty} |c_n| = 0$.
+\item \label{pc-3} Se uma série converge absolutamente ela converge.
+\end{enumerate}
+\end{prop}
+\begin{proof}
+\eqref{pc-1} diz que a sequência das somas parciais $s_0,s_1,\dots$ é uma sequência de Cauchy,
+então é equivalente ao critério de Cauchy (\Cref{cauchy-limite}) para a existência de limite $\lim_{n\to\infty} s_n$.
+Tomando $n=m$ obtemos \eqref{pc-2}.
+Para provar \eqref{pc-3} use a desigualdade triangular
+$|c_m + \dots + c_n| \leq |c_m| + \dots + |c_n|$
+e \eqref{pc-1} aplicado a série $|c_0| + |c_1| + \dots$.
+\end{proof}
+
+Em visto de \Cref{l:rearranjo-absoluto,t:riemann-dini,t:levy-steinitz}
+a ordem dos termos não é importante para convergência absoluta,
+mas é muito importante para convergência condicional.
+
+\begin{lema}
+\label{l:rearranjo-absoluto}
+Se uma série $c_0 + c_1 + \dots$ converge absolutamente então pela qualquer
+bijeção $\sigma: \{0,1,2,\dots\} \to \{0,1,2,\dots\}$\footnote{As bijeções
+de um conjunto com se mesmo as vezes são chamadas \emph{permutações} de conjunto.}
+a série $c_{\sigma 0} + c_{\sigma 1} + \dots$ também converge absolutamente.
+\end{lema}
+\begin{proof}
+A série dos números positivos $a_0 + a_1 + \dots$ converge se e só se
+o conjunto $\{s_0,s_1,\dots\}$ das somas parciais $s_n = a_0 + \dots + a_n$ é limitado.
+Por qualquer subconjunto finito $I \subset \{0,1,\dots\}$
+defina uma soma parcial
+\[ s_I = \sum_{k\in I} a_k. \]
+Desde que $a_l\geq 0$ temos uma soma
+\[ s_I \leq s_{\max \{n\in I\}}, \]
+logo se o conjunto $\{s_0,s_1,\dots\}$ é limitado,
+então o conjunto $\{s_I,\,I\subset\{0,1,\dots \}\}$ é limitado também,
+e o  conjunto de somas parciais $\{c_{\sigma(0)},c_{\sigma(0)} + c_{\sigma(1)},\dots\}$
+é limitado, sendo um subconjunto dele.
+\end{proof}
+
+\begin{teorema}[Riemann--Dini, teorema de rearranjo]
+\label{t:riemann-dini}
+Se a série $\sum_{n=0}^\infty a_n$ real (i.e. $a_n\in\R$)
+converge condicionalmente, mas não converge absolutamente,
+então rearranjando a ordem da somação podemos obter
+qualquer número real como a soma.
+Isso é pelo qualquer número real $C\in\R$ ou $C = \pm \infty$
+existe uma permutação $\sigma$ de $\{0,1,\dots\}$ tal que
+\[ \lim_{n\to\infty} a_{\sigma 0} + a_{\sigma 1} + \dots + a_{\sigma n} = C. \]
+\end{teorema}
+\begin{proof}
+Exercício.
+\end{proof}
+
+\begin{teorema}[Lévy--Steinitz, 1905--1913]
+\label{t:levy-steinitz}
+Se a série $\sum_{n=0}^\infty a_n$ complexa (i.e. $a_n\in\C$)
+converge condicionalmente ao $a\in \C$, mas não converge absolutamente,
+o conjunto de todas a somas de todas os rearranjos é
+\begin{enumerate}
+\item todo o plano complexo $\C$,
+\item ou uma reta real no plano complexo, i.e. existe $b = \cos \phi + i \sin \phi$ tal que
+para qualquer $C\in\C$ exite uma permutação $\sigma$ de $\{0,1,\dots\}$ tal que
+\[ \lim_{n\to\infty} a_{\sigma 0} + a_{\sigma 1} + \dots + a_{\sigma n} = C \] 
+se e somente se $C-a \in b \cdot \R$.
+\end{enumerate}
+\end{teorema}
+
+
+\begin{defin}
+Digamos que 
+\begin{enumerate}
+\item uma função $g(z)$ é \emph{uniformemente contínua} se
+\[ \forall \epsilon>0, \exists \delta>0, \forall z,w: \, |z-w|<\delta \implies |g(z)-g(w)|<\epsilon; \]
+\item o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{uniforme} no conjunto $E$ se
+\[ \forall \epsilon>0, \exists N, \forall n\geq N,\forall z\in E:\, |g(z)-g_n(z)|<\epsilon; \]
+\end{enumerate}
+\end{defin}
+
+\begin{defin}
+Digamos que 
+\begin{enumerate}
+\item o limite $\lim_{n\to\infty} g_n(z) = g(z)$ é \emph{localmente uniforme} na $D$
+se ele é uniforme nos compactos;\footnote{Para as regiões $D\subset \C$ é suficiente pedir que é
+uniforme nos discos fechados $\{ z\in\C : |z-a|\leq r \} \subset D$.}
+\item a série $\sum_{n=0}^\infty f_n(z)$ \emph{converge localmente uniforme} na $D$,
+se ela converge uniforme nos compactos $K\subset D$.
+\end{enumerate}
+\end{defin}
+
+
+Lembra os seguintes teoremas da análise real.
+
+\begin{teorema}
+Qualquer função contínua $g : K \to \C$ no compacto é uniformemente contínua.
+\end{teorema}
+
+\begin{teorema}[sobre o limite uniforme]
+\label{t:limite-uniforme}
+\begin{enumerate}
+\item
+O limite uniforme $g(z)$ das funções contínuas $g_n(z)$ é uma função contínua.
+\item
+O limite localmente uniforme $g(z)$ das funções contínuas $g_n(z)$
+em uma região $D\subset \C$ é uma função contínua em $D$.
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Primeiro item:
+\begin{align*}
+\forall \epsilon>0, \exists N, \forall n\geq N, \forall z, |g_n(z)-g(z)|\leq\epsilon; \\
+\forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, |g_n(z)-g_n(w)|\leq\epsilon; \\
+\implies \forall \epsilon>0, \exists \delta>0, \forall |z-w|\leq\delta, \\
+|g(z)-g(w)|\leq |g(z)-g_N(z)| + |g_N(z)-g_N(w)| + |g_N(w)-g(w)| \leq 3\epsilon.
+\end{align*}
+Para deduzir o segundo item, note que uma função $g : D\to\C$ é contínua
+se ela é contínua em cada ponto $z_0\in D$, e para um ponto $z_0\in D$
+ela é contínua em $z_0$ se e só se a restrição dela no
+disco compacto $\{z\in\C: |z-z_0|\leq r\} \subset D$ é contínua.
+Pela definição de uniformidade local a função $f$ restringida pelo disco fechado
+é o limite uniforme, então pelo primeiro item é contínua.
+\end{proof}
+
+
+\begin{problema}[Cauchy, critério de convergência uniforme]
+\label{criterio-cauchy-uniforme}
+Uma sequência $g_n(z)$ converge uniformemente em $E$
+se e só se
+\[ \forall \epsilon>0, \exists N, \forall z\in E,\forall m,n\geq N: \, |g_n(z)-g_m(z)|<\epsilon .\]
+\end{problema}
+
+Digamos que uma série de números reais positivas
+\[ a_0 + a_1 + \dots \]
+é uma \emph{majorante} de uma série de funções
+\[ f_0(z) + f_1(z) + \dots \]
+se existe uma constante $M>0$ tal que
+\[ |f_n(z)| \leq M a_n \]
+para todos $n$ suficiente grandes e todos $z\in E$.
+Neste caso também digamos que a série $f_0(z) + f_1(z) + \dots$ é uma \emph{minorante}
+da série $a_0 + a_1 + \dots$.
+
+\begin{prop}[teste $M$ de Weierstrass]
+\label{weierstrass-m}
+Se a majorante $a_0 + a_1 + \dots$ converge,
+então a minorante $f_0(z) + f_1(z) + \dots$ converge (absolutamente) uniformemente.
+\end{prop}
+\begin{proof}
+Para $m\geq n\geq n_0$ temos
+\[ |f_n(z) + \dots + f_m(z)| \leq |f_n(z)| + \dots + |f_m(z)| \leq  M(a_n + \dots + a_m). \]
+Pelo critério de convergência de Cauchy (\cref{cauchy-limite}), a convergência de $\sum a_n$ implica que
+\[ \forall \epsilon>0,\exists N,\forall m\geq n\geq N: \, a_n + \dots + a_m \leq \epsilon, \]
+logo
+\[ \forall \epsilon>0,\exists N,\forall m\geq n\geq N,\forall z\in E: \,
+ |f_n(z) + \dots + f_m(z)| \leq M \epsilon, \]
+então a série $f_0(z) + f_1(z) + \dots$ converge uniformemente pelo critério
+de Cauchy de convergência uniforme (\cref{criterio-cauchy-uniforme}).
+\end{proof}
+
+Para convergência condicional podemos aplicar o seguinte teste
+\begin{prop}
+Suponha uma sequência $a_n$ converge ao número complexo $a$,
+e além disso para uma constante $M>0$ e uma sequência de funções $g_n(z)$ temos uma cota
+\[\forall z,\forall n,m\geq n_0:\,  |g_n(z) - g_m(z)| \leq M |a_n-a_m|. \]
+Então a sequência $g_n(z)$ converge uniformemente a uma função $g(z)$.
+\end{prop}
+
+\section{Diferenciação complexa}
+
+\subsection{Funções de variável complexa}
+
+Sejam $D\subset \C$ uma região e $f : D \to \C$ uma função,
+$D\supset z = x + yi$, $f(z) = w = u + v i$ para $x,y,u,v\in \R$, $z\in D\subset \C$, $w\in \C$.
+Podemos também interpretar $f$ como uma função de 1 variável complexa com um valor complexo,
+ou como uma função $u(x,y) + v(x,y) i : \R^2\supset D \to \C$ de $2$ variáveis reais com um valor complexo,
+ou como um par de funções de $2$ variáveis reais
+$u,v : D \to \R$, $u(x,y), v(x,y) \in \R$,
+i.e. $(x,y) \mapsto (u(x,y),v(x,y)) : \R^2 \supset D \to \R^2$.
+
+Para $z$ complexo o limite $\lim_{z\to 0}$ significa $\lim_{|z|\to 0}$.
+Similarmente $\lim_{z\to z'}$ é mesmo que $\lim_{|z-z'|\to 0}$.
+
+\subsection{Derivada complexa}
+Em seguinte definição o símbolo $\cdot$ é a multiplicação em $\C$.
+Geralmente omitimos este símbolo, mas neste caso quero enfatizar que essa definição depende
+de multiplicação (resp. divisão) de números complexos.
+\begin{defin}[Derivada complexa]
+\label{d:derivada-complexa}
+Suponha que existe $a\in \C$ tal que
+\[ f(z) = f(z_0) + a \cdot (z-z_0) + g(z) \cdot (z-z_0) \]
+tal que $\lim_{z\to z_0} g(z) = 0$,
+i.e. $\lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0} = a$.
+Neste caso digamos que $f$ tem a \emph{derivada complexa} em $z_0$ igual ao $a\in \C$
+e denotamos $f'(z_0) := a$, alternativamente usamos notação $\frac{df}{dz}(z_0) = f'(z_0)$.
+Em linguagem epsilon-delta:
+\[ \forall\epsilon>0 \, \exists\delta>0 \, : |z-z_0|<\delta  \implies
+|f(z) - f(z_0) - a \cdot (z-z_0)| \leq \epsilon |z-z_0|. \]
+\end{defin}
+
+\begin{defin}[Derivada real matricial]
+Para aplicação $F: \R^n \to \R^m$ a \emph{derivada} (real) em ponto $P_0$
+é a melhor aproximação \emph{linear} de $f$, i.e. ela é uma aplicação linear $A: \R^n \to \R^m$
+tal que $F(P) = F(P_0) + A (P-P_0) + G(P-P_0)$ e $\lim_{P\to P_0} \frac{|G(P-P_0)|}{|P-P_0|} = 0$,
+onde $A (P-P_0)$ é uma aplicação de operador linear $A$ ao vetor $P-P_0$
+e norma $|-|$ e.g. é a norma euclidiana. Em linguagem epsilon-delta:
+\[ \forall\epsilon>0 \, \exists\delta>0 \, : |P-P_0|<\delta  \implies
+|F(P) - F(P_0) - A \cdot (P-P_0)| \leq \epsilon |P-P_0|. \]
+\end{defin}
+
+\begin{defin}[Derivadas parciais]
+Para uma função $u(x,y)$ de dois argumentos reais $x,y\in\R$
+as \emph{derivadas parciais} são definidas pelo
+\begin{align*}
+u_x = \frac{\partial u(x,y)}{\partial x} &:= \lim_{\epsilon\to 0} \frac{u(x+\epsilon,y)-u(x,y)}{\epsilon},\\
+u_y = \frac{\partial u(x,y)}{\partial y} &:= \lim_{\epsilon\to 0} \frac{u(x,y+\epsilon)-u(x,y)}{\epsilon}.
+\end{align*}
+\end{defin}
+
+\begin{problema}
+Suponha que uma aplicação $x,y \mapsto u(x,y),v(x,y)$ de uma região em $\R^2$ para $\R^2$
+tem a derivada matricial $A$ em ponto $x_0,y_0$. Provar que neste caso
+as funções $u,v$ tem as derivadas parciais e neste caso
+\[ A = \mat{u_x & u_y \\ v_x & v_y}. \]
+Em contraste, dar um exemplo de uma função $u(x,y) : \R^2 \to \R$ que tem um par de derivadas parciais,
+mas não tem uma derivada matricial.
+\end{problema}
+
+\begin{lema}
+Se $f = u +v i$ tem derivada complexa $f'(z_0) = r (\cos\phi + i \sin \phi)$ em ponto $z_0$
+ela também tem derivada real como aplicação
+de $D \subset \R^2$ para $\R^2$, e ela é igual a
+\[
+ \mat{u_x & u_y \\ v_x & v_y}
+= r \cdot \mat{ \cos\phi & -\sin\phi \\ \sin\phi & \cos\phi } .
+\]
+\end{lema}
+\begin{proof}
+Comparando as duas definições e tendo em visto que a aplicação $z \to az : \C \to \C$
+é linear sobre $\R$, vejamos que existência de derivada complexa implica existência de derivada real.
+\end{proof}
+
+Então geralmente a existência de derivada complexa é mais forte de que
+existência de derivada real,
+e ela em sua vez é mais forte de que existência de derivadas parciais.
+
+\begin{cor}[Condições de Cauchy--Riemann]
+Sejam $u,v: D \to \R$ e suponha que
+$f(z) = u(x,y) + v(x,y) \cdot i$ tem a derivada complexa em ponto $z_0$.
+Então neste ponto 
+as derivadas parciais de parte real $u$ e parte imaginária $v$
+existem e são sujeitos às \emph{equações de Cauchy--Riemann}:
+\begin{nalign}
+\label{cauchy-riemann}
+u_x &=   v_y, \\
+u_y &= - v_x.
+\end{nalign}
+\end{cor}
+
+\emph{Diferenciais complexas} (formas diferenciais complexas).
+Em notação--definição $\frac{df}{dz}(z_0) = f'(z_0)$ podemos formalmente multiplicar pelo denominador para obter
+uma equação $(df)(z_0) = f'(z_0) (dz)(z_0)$.
+Por enquanto podemos formalmente definir um espaço vetorial complexo $1$-dimensional com um vetor-base $(dz)(z_0)$ e para cada função $f(z)$ com derivada complexa em ponto $z_0$ associar outro vetor $(df)(z_0) := f'(z_0) (dz)(z_0)$. Essa notação (de Leibniz)
+será útil ao menos para escrever as fórmulas mais convenientes.
+
+Notações $\partial_z$ e $\partial_{\ol{z}}$:
+\begin{align*}
+\partial_z f        &:= \frac{\partial f}{\partial x} - i \frac{\partial f}{\partial y}, \\
+\partial_{\ol{z}} f &:= \frac{\partial f}{\partial x} + i \frac{\partial f}{\partial y}, \\
+\end{align*}
+Equações de Cauchy--Riemann são equivalentes ao equação $\partial_{\ol{z}} f(z_0) = 0$,
+neste caso $\partial_z f(z_0) = f'(z_0)$.
+
+
+\begin{teorema}
+Uma função $f(z)$ tem uma derivada complexa em ponto $z_0$ se e somente se
+ela é diferenciável como $R^2\supset D \to \R^2$ e as derivadas parciais
+satisfazem as equações de Cauchy--Riemann.
+\end{teorema}
+
+\begin{problema}
+Suponha $f$ e $g$ têm as derivadas complexas em ponto $z_0$.
+Provar que $f+g$, $f\cdot g$ tem as derivadas complexas em ponto $z_0$
+e elas são
+\begin{gather}
+(f+g)'(z_0) = f'(z_0)+g'(z_0), \\
+(fg)'(z_0) = f(z_0) g'(z_0) + f'(z_0) g(z_0).
+\end{gather}
+\end{problema}
+
+\begin{problema}
+Suponha $f: D_0 \to D_1$ tem derivada complexa em $z_0$,
+e $g : D_1 \to D_2$ tem derivada complexa em $f(z_0)$.
+Provar que $g\circ f: D_0 \to D_2$ tem derivada complexa em $z_0$
+e
+\begin{equation}
+(g\circ f)'(z_0) = g'(f(z_0)) \cdot f'(z_0).
+\end{equation} 
+\end{problema}
+
+\section{Funções holomorfas e analíticas}
+Nessa seção vamos definir as funções holomorfas e analíticas
+e provar o teorema de Abel, que qualquer função analítica é holomorfa.
+Posteriormente no \Cref{t:hol-series} também probamos o reverso,
+que qualquer função holomorfa é analítica.
+
+\subsection{Holomorficidade}
+
+\begin{defin}[Funções holomorfas]
+\label{d:holomorfa}
+\begin{enumerate}
+\item Uma função é \emph{holomorfa} em uma região $D\subset\C$ se ela tem derivada complexa em cada ponto da região.
+\item Uma função é chamada \emph{holomorfa em ponto}, se ela é holomorfa em alguma vizinhança dele.
+\item Mais geralmente uma função é holomorfa em um conjunto qualquer, se ela é holomorfa em alguma vizinhança dele.
+\end{enumerate}
+\end{defin}
+
+\begin{defin}[Funções inteiras]
+\label{d:inteira}
+As funções holomorfas $f: \C \to \C$ no todo plano comlpexo
+também são chamadas de \emph{funções inteiras}.
+\end{defin}
+
+\begin{exem}
+As seguintes funções são inteiras:
+constantes $f(z) = a$,
+identidade $f(z) = z$,
+funções lineares $z \mapsto a z$,
+todos os polinômios com coeficientes complexos $f \in \C[z]$.
+\end{exem}
+
+\begin{problema}
+\label{p:derzero-constante}
+Provar que se $f'(z)=0$ para todo $z$ em região $D\subset \C$, então a função $f$ é constante na $D$.
+(NB: você usou que $D$ é conexa?)
+\end{problema}
+
+\begin{problema}
+Provar que uma função holomorfa com derivada não nula é uma aplicação conforme,
+i.e. ela preserve todos os ângulos entre as (retas tangentes das) curvas.\footnote{Dica:
+primeiro prove que $z \mapsto b+ a z$ é a composição de rotação por $\arg z$, dilatação em $|r|$
+e translação por $b$, e então é conforme.
+Depois para $z \mapsto f(z)$ com $f(z) = 0$ e $f'(z)=1$ verifique que o ângulo entre um raio e a imagem dele
+é igual ao $0$ (se não saber a definição, use $\lim_{z\to 0} ang(z,0,f(z)) = \lim_{z\to 0} \arg \frac{f(z)}{z}$).
+}
+\end{problema}
+
+Se $f'(0)=0$, o ângulo não é preservado, mas multiplicado por ordem de zero. Vamos provar (mas ainda não provamos) que $f$ tem todas as derivadas. Para agora, verifique que $z\mapsto z^n$ multiplica os ângulos em $z=0$ em $n$ vezes
+(mas preserva os ângulos em outros pontos).
+
+
+\begin{problema}
+\label{pre-weierstrass}
+Suponha que a série $\sum_{n=0}^\infty a_n'(z)$ converge uniformemente em região $D\subset \C$.
+Provar que se a série $\sum_{n=0}^\infty a_n(z)$ converge em um ponto,
+então ela converge uniformemente em $D$ e $(\sum_{n=0}^\infty a_n)' = \sum_{n=0}^\infty a_n'$.
+\end{problema}
+
+
+\subsection{Séries de potências: fórmula de Hadamard e teorema de Abel.}
+
+\begin{prop}[Série de progressão geométrica]
+\label{serie-geometrica}
+Para um número real positivo $u\in(0,1)$ a série geométrica
+\[ 1 + u + u^2 + \dots = \sum_{n\geq 0} u^n \]
+converge absolutamente ao $\frac{1}{1-u}$.
+\end{prop}
+\begin{proof}
+A soma parcial $s = \sum_{n=0}^n u^n$ é igual ao
+\[ s_n = 1 + u + u^2 + \dots + u^n = \frac{1-u^{n+1}}{1-u}, \]
+logo
+\[ \lim_{n\to\infty} |s_n - \frac{1}{1-u}|
+ = \frac{u}{1-u} \cdot \lim_{n\to\infty} u^n
+ = \frac{u}{1-u} \cdot 0 = 0. \]
+\end{proof}
+
+\begin{lema}[Fórmula de (Cauchy--)Hadamard]
+\label{cauchy-hadamard}
+Para a série $c_0,c_1,c_2,\dots \in \C$ de números complexos defina
+\begin{equation}
+\label{eq:hadamard}
+R := \big(\limsup_{n\to\infty} |c_n|^{1/n}\big)^{-1} \in [0,+\infty]
+\end{equation}
+A \emph{série de potências} $f(z) = \sum_{n=0}^\infty c_n z^n$
+\begin{enumerate}
+\item converge absolutamente localmente uniformemente no disco $D := \{z\in\C: |z|<R \}$,
+\item e diverge na região $\{ z\in\C: |z| > R \}$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+Dado $\rho < R$ escolhemos $r \in (\rho,R)$ e denotamos $u=\frac{\rho}{r} \in (0,1)$.
+Pela definição de $\limsup$ sabemos que existe $N$
+tal que para $n\geq N$ temos uma cota $|c_n r^n| \leq 1$,
+então $|c_n \rho^n| \leq u^n$, logo $|c_n z^n| \leq u^n$ para todos $|z|\leq\rho$.
+Para $u\in(0,1)$ pelo \Cref{serie-geometrica}
+a progressão geométrica $1+u+u^2 + \dots$ converge a $(1-u)^{-1}$,
+logo pelo teste $M$ de Weierstrass (\cref{weierstrass-m})
+a série $c_0 + c_1 z + \dots$ converge absolutamente uniformemente em $|z|\leq\rho$.
+
+A divergência segue de \cref{pc-2} da \Cref{p:convergencia}.
+\end{proof}
+
+\begin{problema}
+\label{raio-derivada}
+Provar que
+\begin{enumerate}
+\item $\lim_{n\to\infty} n^{\frac1n} = 1,$
+\item $\limsup |c_n| = \exp(\limsup \log|c_n|),$
+\item  se existir $\lim_{n\to \infty} d_n =: d \in(0,+\infty)$, então $\limsup d_n c_n = d \limsup c_n$,
+\item \label{rd-4} $\limsup |n c_n|^{\frac1{n-1}} = \limsup |c_n|^{\frac{1}n}$.
+\end{enumerate}
+\end{problema}
+
+
+\begin{teorema}[Abel]
+\label{t:abel}
+Para qualquer série
+\[ c_0 + c_1 (z-a) + c_2 (z-a)^2 + \dots \]
+existe o número $0\leq R \leq \infty$,\footnote{
+E ele é explicitamente dado por fórmula \eqref{eq:hadamard} de Hadamard.}
+chamado o \emph{raio de convergência} de série tal que
+\begin{enumerate}
+\item \label{abel-1} a série converge localmente absolutamente uniformemente 
+em disco aberto $\{z\in \C : |z-a|<R\}$\footnote{Isso é:
+ela converge absolutamente para qualquer $|z-a|<R$
+e por qualquer $\rho < R$ a série converge uniformemente em disco fechado
+$\{z\in\C : |z-a| \leq \rho \}$.};
+\item \label{abel-2} para qualquer $z\in\C :\, |z-a| > R$ a série diverge desde que os termos dela não são limitados;
+\item \label{abel-3} a função $f(z) := \sum_{n=0}^\infty c_n (z-a)^n$
+é holomorfa em disco aberto $\{z\in \C : |z-a| < R\}$,
+a derivada dela $f'(z)$ é igual a série $\sum_{n=1}^\infty n c_n (z-a)^{n-1}$
+e tem o mesmo raio de convergência.
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+Os itens \eqref{abel-1} e \eqref{abel-2} é \Cref{cauchy-hadamard}.
+Agora pelo \Cref{raio-derivada}\eqref{rd-4} os raios de convergência
+da série original $\sum  c_n (z-a)^n$ e da série de derivadas $\sum n c_n (z-a)^n$ coincidem,
+então pelo item \eqref{abel-1} e \Cref{pre-weierstrass} segue o enunciado.
+\end{proof}
+Este teorema de Abel vai reaparecer como \Cref{t:series-derhol},
+mas com a demonstração da última parte \eqref{abel-3} diferente.
+
+O círculo $|z-a| = R$ é chamado o \emph{círculo de convergência}, e o \Cref{t:abel} não especifica
+nada sobre convergência de séries ou limite da função $f(z)$ para $z$ neste círculo,
+mas outro \Cref{t:abel-limite} de Abel implica que se a soma de séries converge
+então ela é igual ao limite da função definida por séries de potências
+em um região específico (raio, ângulo ou setor de Stolz).
+
+\begin{defin}[Funções analiticas]
+Uma função $f: D\to \C$ é chamada \emph{analítica}
+se para cada ponto $z_0\in D$ existe
+uma vizinhança $B(z_0,r(z_0))$
+e uma série de potências $\sum_{n=0}^\infty c_n(z_0) (z-z_0)^n$
+convergente e igual à função $f$ nela:
+\[\forall |z-z_0|<r(z_0) \implies f(z) = \sum_{n=0}^\infty c_n(z_0) (z-z_0)^n .\]
+\end{defin}
+
+\begin{cor}[Funções analíticas são holomorfas]
+Qualquer função analítica $f: D\to\C$ é holomorfa.
+\end{cor}
+\begin{proof}
+Ambas as propriedades (de analiticidade e holomorficidade) são locais,
+e locamente é o \Cref{t:abel} de Abel.
+\end{proof}
+
+\begin{prop}[Zeros das funções analíticas são isolados]
+Seja $f: D\to\C$ uma função analítica e não igual ao zero identicamente.
+Provar que para qualquer ponto $a\in D$ existe $r>0$ tal que $f(z)\neq 0$ para qualquer $0<|z-a|<r$.
+\end{prop}
+\begin{proof}
+Temos $f(z) = \sum_{n=0}^\infty c_n (z-a)^n$ em um disco $B(a,r)$.
+
+Em caso $f(a)\neq 0$ a função $f(z)$ é analítica, logo holomorfa, logo contínua,
+então existe $0<\rho\leq r$ tal que $|z-a|<\rho \implies |f(z)-f(a)| < |f(a)|$,
+e a desigualdade triangular implica $f(z)\neq 0$ para todos $|z-a|<\rho$.
+
+Se $f(a)=0$ definimos $k = \min \{ n\geq 1: \, c_n\neq 0 \}$
+e $g(z) = \sum_{m=0}^\infty c_{m+k} (z-a)^m$. Note que pela construção $g(a)\neq 0$.
+A série que defina a função $g(z)$ tem o raio de convergência igual
+ao de $f(z)$ (cf. \Cref{raio-derivada}), então no $B(a,r)$ temos
+$f(z) = (z-a)^k g(z)$. Como em caso $f(a)=0$ existe $0<\rho<r$ tal que $g(z)\neq 0$
+para $|z-a|<\rho$, então também $f(z) = (z-a)^k g(z) \neq 0$ para qualquer $0<|z-a|<\rho$.
+\end{proof}
+
+\subsection{Exponente e funções trigonométricas}
+
+\begin{problema}
+Provar que as séries para exponente, seno e cosseno
+\begin{nalign}
+\exp(z) &= \sum_{n=0}^\infty \frac{z^n}{n!}, \\
+\cos(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n}}{(2n)!}     &= \frac{\exp(iz) + \exp(-iz)}{2}, \\
+\sin(z) &= \sum_{n=0}^\infty (-1)^n \frac{z^{2n+1}}{(2n+1)!} &= \frac{\exp(iz) - \exp(-iz)}{2i},
+\end{nalign}
+convergem absolutamente no todo $\C$ e são holomorfas.
+Compute as derivadas delas:
+$\exp' = \exp$, $\cos' = -\sin$, $\sin' = \cos$.
+\end{problema}
+
+As séries $\sum a_n z^n$ e $\sum \ol{a_n} w^n$ tem o mesmo raio de convergência e por qualquer $z$ com a série convergente temos
+$\overline{\sum a_n z^n} = \sum \ol{a_n} \cdot \ol{z}^n$.
+
+\begin{prop}
+Para todos $z,w\in \C$ temos
+\begin{equation}
+\exp(z+w) = \exp(z) \exp(w)
+\end{equation}
+\end{prop}
+\begin{proof}
+Para $w$ fixo a função em $z$ dada por
+$f(z) := \exp(z) \exp(w-z)$ é holomorfa (como o produto das composições de funções holomorfas).
+A derivada dela é igual $f'(z) = \exp'(z) \exp(w-z) + \exp(z) \exp'(w-z) = \exp(z) \exp(w-z) - \exp(z) \exp(w-z) = 0$
+(pela regra de Leibniz e regra de cadeias). Logo ela é constante e igual $f(0) = \exp(z)$.
+\end{proof}
+
+\begin{cor}[Fórmula de Euler]
+\begin{equation}
+\exp(u+iz) = \exp(u) \big( \cos(z) + i \sin(z) \big)
+\end{equation}
+\end{cor}
+\begin{proof}
+Se você já provou a relação entre funções $\cos$ e $\sin$ de origem geométrico e as séries acima,
+o corolário é óbvio. Senão agora podemos diretamente relacionar: veja que a derivada de
+$(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumento real e valor complexo
+onde as funções trigonométricas $\cos$ e $\sin$ são definidas geometricamente)
+existe e é igual $0$.
+\footnote{
+Outra demonstração mais geométrica é a seguinte:
+desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \ol{i}$ temos
+$\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
+Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
+Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
+Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
+e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
+Exercício - terminar a demonstração.
+}
+\end{proof}
+
+\begin{remark}
+Acima são os casos do método geral:
+se as duas funções satisfazem a mesma equação diferencial ordinária sem singularidades,
+e tem as mesmas condições iniciais, elas são iguais.
+\end{remark}
+
+\begin{cor}[Fórmulas trigonométricas]
+\begin{align*}
+\cos(z+w) &= \cos(z)\cos(w) - \sin(z)\sin(w), \\
+\sin(z+w) &= \cos(z)\sin(w) + \sin(z)\cos(w). 
+\end{align*}
+\end{cor}
+
+
+\subsection{Teorema abeliano sobre o limite.}
+
+\begin{teorema}[Abel, sobre o limite]
+\label{t:abel-limite}
+Suponha que uma série $c_0 + c_1 + c_2 + \dots$ converge ao $c\in\C$.
+Considere uma função $f: B(0,1) \to \C$ definida
+por $f(z) := \sum_{n=0}^\infty c_n z^n$.
+\begin{enumerate}
+\item A função $f(z)$ é bem definida e holomorfa em $B(0,1) = \{z\in\C: |z|<1\}$
+\item O limite no raio $\lim_{t\in(0,1),t\to 1} f(t)$ existe e é igual ao $c$.
+\item Mais geralmente, defina os \emph{setores de Stolz}
+\[ S(M) := \{z\in \C: \frac{|1-z|}M + |z| \leq 1 \}-\{1\} \subset B(0,1) \]
+para todos $M\geq1$.\footnote{Para $0<M<1$ os setores de Stolz são definidos, mas são conjuntos vazios.}
+Então o mesmo limite existe para $z\in S(M)$ e é igual ao $c$:
+\[ \lim_{z\in S(M),z\to 1} f(z) 
+:= \lim_{\frac{|1-z|}M + |z|<1,z\to 1} \sum_{n=0}^\infty c_n z^n = \sum_{n=0}^\infty c_n. \]
+\item Equivalentemente, podemos considerar os \emph{ângulos}
+\[ \widehat{A}(\alpha) := \{z\in \C: \arg(1-z) \in [-\alpha,\alpha], \quad \alpha < \frac{\pi}2. \]
+Então o mesmo limite com $z$ constringido ao qualquer ângulo $\widehat{A}(\alpha)$ existe e é igual ao $c$:
+\[ \lim_{z\in \widehat{A}(\alpha),z\to 1} \sum_{n=0}^\infty c_n z^n = \sum_{n=0}^\infty c_n. \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+O raio $[0,1)$ coincide com o setor de Stolz $S(1)$.
+Para ver a equivalência entre os setores de Stolz e os ângulos verifique
+\begin{problema}
+\begin{enumerate}
+\item $\forall M>0, \exists \alpha<\pi/2: \, S(M) \subset \widehat{A}(\alpha)$
+\item $\forall \alpha<\pi/2, \exists M>0,\exists \epsilon>0: \, \widehat{A}(\alpha) \bigcap B(1,\epsilon) \subset S(M)$.
+\end{enumerate}
+\end{problema}
+
+Então basta computar os limites nos setores de Stolz.
+Consideramos as somas parciais modificadas
+\[ s_n = -c + c_0 + c_1  + \dots + c_n .\]
+Eles satisfazem $\lim |s_n| = 0$, então a série $g(z) = s_0 + s_1 z + \dots$
+converge em disco $z\in B(0,1)$.
+Também $c_0 = c + s_0$ e $c_n = -s_{n-1} + s_n$ para $n\geq 1$, então
+\begin{multline*}
+            c_0  +         c_1 z +       c_2 z^2 + \dots +           c_n z^n  
+\\ = (c       + s_0) + (-s_0 + s_1)z + (-s_1+s_2)z^2 + \dots + (-s_{n-1}+s_n)z^n
+\\ =  c + (1-z)(s_0  +         s_1 z + \dot                 + s_{n-1} z^{n-1}) + s_n z^n,
+\end{multline*}
+logo para $|z|<1$ vejamos que
+\[ f(z) -c = -c + \sum c_n z^n = (1-z) \sum s_n z^n, \]
+então para $z$ em setor $S(M) = \{z : |1-z|\leq M(1-|z|)\}$ temos
+\[ |f(z) - c| \leq |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M(1-|z|)\max_{m\geq n} |c_m| \sum_{m\geq n} z^m
+= |1-z|\cdot|s_0+\dots+s_{n-1}z^{n-1}| + M \max_{m\geq n} |c_m| \]
+Mas para qualquer $\epsilon>0$ existe $n$ tal que $M \max_{m\geq n} |c_m| < \epsilon/2$
+e $\delta$ tal que para $|1-z|<\delta$ temos $|s_0+\dots+s_{n-1}z^{n-1}|<2(|s_0+\dots+s_n|$,
+logo para $|1-z|<\frac{\epsilon}{1+4|s_0+\dots+s_n|}$ o lado direito é menor de que $\epsilon$,
+então obtemos que 
+\[ \lim_{\frac{|1-z|}M + |z|<1,z\to 1} |-c+\sum_{n=0}^\infty c_n z^n| = 0. \]
+\end{proof}
+
+Uma versão do mesmo teorema de Abel
+\begin{teorema}[Abel, sobre o limite]
+Suponha que séries $c_0 + c_1 w + c_2 w^2$ converge ao $C\in\C$.
+Então para qualquer $M\geq 1$
+\[ \lim_{z\in S(M),z\to 1} c_0 + c_1 zw + c_2 (zw)^2 + \dots = C. \]
+\end{teorema}
+
+No \Cref{t:abel-limite} a condição sobre os ângulos (ou setores de Stolz) é importante:
+o limite pode não existir dentro de disco aberto inteiro:
+
+\begin{problema}
+Seja $f(z) = \sum_{n=1}^\infty \frac{z^{3^n} - z^{2\cdot 3^n}}{n}$.
+Prove que
+\begin{enumerate}
+\item A série é convergente para $|z|<1$ e define função holomorfa no disco $B(0,1)$;
+\item para $z=1$ o limite $\lim_{t\to1-} f(t) = 0$;
+\item para $z=e^{i\pi\cdot 3^{-m}}$ o limite $\lim_{t\to1-} f(tz) = \infty$
+\item existe a sequência dos pontos $z_1,z_2,\dots\in B(0,1)$ (i.e. $|z_i|<1$)
+tais que $\lim z_i = 1$, mas $\lim f(z_i) = \infty$;
+\item o limite $\lim_{|z|<1,z\to 1} f(z)$ não existe.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $f(z) = \sum_{n=0}^\infty z^{2^n}$.
+Mostre que
+\begin{enumerate}
+\item $\lim_{t\to 1-} f(tw) = \infty$
+para qualquer $w=\exp(\pi i\cdot p\cdot 2^m)$
+com $p,m\in\Z$ inteiros;
+\item $\forall p,m\in\Z, \forall R>0,\exists\delta,\forall t>1-\delta: \, |f(t\cdot e^{\pi i \cdot p\cdot 2^m})|>R $;
+\item para qualquer $w$ no círculo $\{w\in\C:\,|w|=1\}$ existe uma sequência $z_n\in B(0,1)$ tais que
+$\lim z_n = w$ e $\lim f(z_n) = \infty$;
+\item para qualquer $w\in\C:\,|w|=1$ o limite $\lim_{|z|<1,z\to w} f(z)$ é infinito ou não existe,
+i.e. a função $f(z)$ não pode ser estendida como uma função contínua
+em qualquer ponto do seu círculo de convergência.
+\end{enumerate}
+\end{problema}
+
+\subsection{Somas de Cesàro e de Abel de séries divergentes. Teoremas tauberianos.}
+
+Pode acontecer que a série $c_0 + c_1 + \dots$ é divergente,
+mas apesar dísso o limite $\lim_{t\to1-} c_0 + c_1 t + \dots$ existe e finito.
+Neste caso 
+\begin{defin}[somabilidade em sentido de Abel]
+Se existir, o limite
+\[ \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots \]
+é chamado a \emph{soma de Abel} da série $c_0 + c_1 + \dots$.
+É conveniente usar alguma notação para somas de Abel,
+e.g. 
+\begin{equation}
+A(c) := \lim_{t\to1-} c_0 + c_1 t + c_2 t^2 + \dots .
+\end{equation}
+O valor de $A(c)$ pode ser um número complexo se o limite finito existe,
+ou infinito se o limite infinito existe, ou pode não existir, se o limite não existe.
+\end{defin}
+
+\begin{problema}
+Define operador de translação $T$ no conjunto de sequências pelo
+\[ (Tc)_0 = 0,\quad\quad (Tc)_{n+1} = c_n. \]
+Verifique que $A(c) = A(Tc)$, i.e. a série $c_0 + c_1 + c_2 + \dots$ é somável em sentido de Abel
+se e somente se a série $0 + c_0 + c_1 + \dots$ é somável em sentido de Abel,
+e neste caso as duas somas abelianas são iguais.
+\end{problema}
+
+\begin{problema}
+\label{pr:somas-abel}
+Determine se as séries são somáveis em sentido de Abel ou não,
+e se sim, calcule as somas abelianas:
+\begin{nalign}
+A(c_n=1)        &= \lim_{t\to 1-} 1+t+t^2+t^3+t^4+\dots = ?,\\ % \lim_{t\to1-} 1/(1-t), \\
+A(c_n=(-1)^n)   &= \lim_{t\to 1-} 1-t+t^2-t^3+t^4-\dots = ?,\\ % \frac12, \\
+A(c_n=n)        &= \lim_{t\to 1-} 1-2t+3t^2-\dots = ?,\\
+A(c_n=(-1)^n n) &= \lim_{t\to 1-} 1-2t+3t^2-\dots = ?,\\
+% = \lim_{t\to 1-} \big(\frac{-1}{1+t}\big)'
+% = \lim_{t\to 1-} \frac{1}{(1+t)^2} = \frac{1}{(1+1)^2} 
+% = \frac14,\\
+A(c_n=\frac{1}{n})      &= \lim_{t\to 1-} t+\frac{t^2}{2}+\frac{t^3}{3}+\dots = ?, \\ % \lim_{t\to 1-} \log(1-t)
+A(c_n=\frac{(-1)^n}{n}) &= \lim_{t\to 1-} t-\frac{t^2}{2}+\frac{t^3}{3}-\dots = ?, \\ % \log 2,\\
+A(c_n=\frac{1}{n^2})    &= \lim_{t\to 1-} t+\frac{t^2}{4}+\frac{t^3}{9}+\dots = ?, \\ % \frac{\pi^2}{6},\\
+A(c_n=\frac{1}{n^k})    &= \lim_{t\to 1-} \sum_{n\geq 1} \frac{t^n}{n^k} = ?. %\zeta(k),\quad \forall k\geq 2.
+\end{nalign}
+\end{problema}
+
+\begin{defin}[Soma de Cesàro]
+\label{d:cesaro}
+Para uma série $c_0 + c_1 + c_2 + \dots$ defina as somas parciais
+$s_n = c_0 + \dots + c_n$. Digamos que a série $\sum_{n=0}^\infty c_n$
+é \emph{somável em sentido de Cesàro}
+se existe o limite finito
+\[ \lim_{n\to\infty} \frac{s_0 + \dots + s_n}{n+1} = S \in \C, \]
+chamado a \emph{soma de Cesàro} da série $c$. Uma notação conveniente: $S =: C(c)$.
+\end{defin}
+
+\begin{problema}
+\begin{enumerate}
+\item Suponha que a série $\sum_{n=0}^\infty c_n$ converge ao número complexo finito $C\in \C$.
+Provar que neste caso ela também tem a soma de Cesàro igual ao $C$.
+\item Provar que qualquer série somável em sentido de Cesàro também é somável em sentido de Abel.
+\item Será que existe uma série somável em sentido de Abel, mas não somável em sentido de Cesàro?
+\end{enumerate}
+\end{problema}
+
+O ingênuo teorema inverso do \Cref{t:abel-limite} abeliana não é verdadeiro:
+\begin{exem}
+Seja $f(z) = 1-z+z^2-z^3+\dots$.
+A série $1-1+1-1+\dots$ diverge, mas o limite $\lim_{z\to 1} f(z)$ existe e é igual $\frac12$ (cf. \Cref{pr:somas-abel}).
+A função $f(z) = \frac{1}{1+z}$ é holomorfa em $\C-{-1}$, em particular ela é contínua em $z=1$.
+\end{exem}
+
+Os \emph{teoremas tauberianos} é um inverso parcial: eles digam que se a série $c_0+c_1+\dots$ satisfazer algumas
+condições adicionais e é somável em sentido de Abel, então ela converge normalmente.
+O primeiro teorema deste tipo foi provado por Alfred Tauber em 1897, e uma versão mais forte
+foi provada por John Littlewood em 1911:
+\begin{teorema}[Tauber 1897, Littlewood 1911]
+\label{t:tauber}
+Suponha que $f(z) = c_0 + c_1 z + \dots$ converge para $|z|<1$
+e somável em sentido de Abel, i.e.
+\[ \exists \lim_{t\to1-} f(t) \in \C .\]
+Então a série $c_0 + c_1 + \dots$ converge se
+\begin{enumerate}
+\item \label{i-tauber} $c_n = o(1/n)$ (Tauber),
+\item \label{i-littlewod} $c_n = O(1/n)$ (Littlewood).
+\end{enumerate}
+\end{teorema}
+
+
+\section{Integração complexa}
+
+Se em soma integral $S = \sum f(\xi_k) \Delta z_k$ a variável e o valor são complexos
+obtemos uma definição de integral de Riemann de função sobre uma curva $\gamma \subset \C$
+(ou $\gamma \to \C$, não necessariamente injetora). Temos
+
+$$ S = \sum (u(\xi_k)+v(\xi_k)i) \Delta (x_k + y_k i) 
+= \sum (u(\xi_k) \Delta x_k - v(\xi_k) \Delta y_k) + (u(\xi_k) \Delta y_k + v(\xi_k) \Delta x_k)i $$
+
+\begin{defin}
+A integral de $f(z) = u(x,y) + v(x,y) i$ sobre a curva orientada $\gamma \subset D \subset \C$ é um número complexo
+\[ \int_\gamma f(z) dz := \int_\gamma (u dx - v dy) + i \int_\gamma (v dx + u dy) \]
+\end{defin}
+
+Se $w: [a,b] \to D$ é uma parametrização suave em pedaços da curva $\gamma \subset D$
+dada por $w(t) = x(t) + y(t) i$ temos
+\begin{multline}
+\int_\gamma f(z) dz \\ 
+  =       \int_a^b \big( u(w(t)) x'(t) - v(w(t)) y'(t) \big) dt 
++ i \cdot \int_a^b \big( u(w(t)) y'(t) + v(w(t)) x'(t) \big) dt
+\\ = \int_a^b f(w(t)) w'(t) dt,
+\end{multline}
+em particular o valor do lado direito não depende da parametrização $w$.
+
+\begin{exem}
+Compute $\int_{|z-z_0|=r} (z-z_0)^n dz$ por qualquer $z_0\in\C$, $r\in\R$ e $n \in \Z$.
+$$ \int_{|z|=1} z^n dz = \int_0^{2\pi} \exp(i(n+1)\phi) d\phi = 2\pi i \delta_{n,-1} $$
+i.e. a integral é $0$ para $n\neq -1$ e é $2\pi i$ para $n=-1$.
+\end{exem}
+
+\begin{teorema}
+A aplicação $\int_\gamma \cdot dz : f \mapsto \int_\gamma f(z) dz$ é $\C$-linear em $f$:
+$$ \int_\gamma (a f + b g) dz = a \int_\gamma f(z) dz + b \int_\gamma g(z) dz $$
+e também linear em $\gamma$:
+$$ \int_{\gamma_1 \cup \gamma_2} f(z) dz = \int_{\gamma_1} f(z) dz + \int_{\gamma_2} f(z) dz.$$
+Aqui pensamos em $\gamma_i$ orientadas tais que o fim de $\gamma_1$ é o início de $\gamma_2$,
+mas também podemos estender a definição de integral sobre as cadeias (somas formais de curvas orientadas).
+Se trocamos a orientação de $\gamma$, a integral troca a sinal.
+Também temos a desigualdade
+\[ \big|\int_\gamma f(z) dz\big| \leq \int_\gamma |f(z)| |dz|, \]
+em particular se $|f(z)|\leq M$ na $\gamma$ então temos a \emph{desigualdade de Darboux}
+\begin{equation}
+\label{eq:darboux}
+|\int_\gamma f dz| \leq M |\gamma|,
+\end{equation}
+onde $|\gamma|$ é o cumprimento de $\gamma$.
+\end{teorema}
+
+\section{Teorema de integral de Goursat--Cauchy.}
+
+\begin{remark}
+Usando a fórmula de Green,\footnote{
+A fórmula de Green 
+é um caso particular da fórmula de Stokes 
+$$\int_{\partial D} \omega = \int_D d\omega$$
+em qual $\omega = f(x,y) dx + g(x,y) dy$, e então
+$d\omega = (-\frac{\partial f(x,y)}{\partial y} + \frac{\partial g(x,y)}{\partial x}) dx\wedge dy$.
+Em caso quando $D = [a,b] \times [c,d]$ é um retângulo a fórmula de Green é
+\[ \int_{x=a}^b (f(x,c)-f(x,d)) dx + \int_{y=c}^d (g(b,y)-g(a,y)) dy
+ = \int_{x=a}^b \int_{y=c}^d \big(f_y - g_x) dx dy . \]
+}
+Cauchy provou que se $f(z)$ é uma função holomorfa em interior de uma região $D$
+tal que a derivada $f'(z)$ é contínua, então $\int_{\partial D} f(z) dz = 0$.
+Se $f(z) = u(x,y) + v(x,y) i$ então
+\begin{multline*}
+\int_{\partial D} f(z) dz = \int_{\partial D} (u(x,y) + i v(x,y)) (dx + i dy) \\
+= \int_{\partial D} (u(x,y) dx - v(x,y) dy) + i \int_{\partial D} v(x,y) dx + u(x,y) dy \\
+= \int_D (-u_y-v_x) dx dy + i \int_D (-v_y + u_x) dx dy = \int_D 0 + i \int_D 0 = 0,
+\end{multline*}
+onde usamos as equações de Cauchy--Riemann $u_x = v_y$ e $u_y = - v_x$.
+Mais geralmente pela função $f : D \to \C$ qualquer temos
+\[ \int_{\partial D} f(z) dz =  \int_D \big(\partial_{\ol{z}} f\big) d\bar{z} dz
+= 2i \int_D \big(\partial_{\ol{z}} f\big) dx dy. \]
+Depois em 1883 Goursat removeu a condição de continuidade de derivada ---
+a integral já é zero se somente suponhamos que $f$ é holomorfa
+(tem derivada complexa) no interior de região $D$ e contínua na fronteira $\partial D$,
+não precisa saber a continuidade de derivada.
+Nessa seção damos a demonstração essencialmente de Goursat.
+\end{remark}
+
+A demonstração do seguinte lema segue a ideia de Goursat (1883) com a diferença que ele usou
+os quadrados em vez de triângulos.
+\begin{lema}[Goursat, 1883]
+\label{l:goursat}
+Seja $f$ uma função continua no triângulo $\Delta$ e holomorfa no interior dele.
+Então $\int_{\partial\Delta} f(z) dz = 0$.
+\end{lema}
+\begin{proof}
+Suponha $|\int_{\partial\Delta} f(z) dz| = M > 0$.
+Decompomos um triangulo em $4$ triângulos de meio tamanho.\footnote{
+Se $\Delta = ABC$ e $AD$, $BE$, $CF$ são as três medianas do triangulo,
+considerar os triângulos $DFE$, $AFD$, $FBE$, $ECD$.}
+Para um dos triângulos (chama ele $\Delta_1$) temos
+$|\int_{\partial\Delta} f(z) dz| \geq \frac{M}{4}$.
+Similarmente construímos $\Delta = \Delta_0 \supset \Delta_1 \supset \Delta_2 \supset ...$.
+Seja $z_0$ um ponto no interseção de todos $\Delta_k$.\footnote{
+Este ponto é único desde os diâmetros de triângulos vai ao zero,
+e existe e.g. toma o limite dos centros, ou usa compacidade.}
+Temos $f(z) - f(z_0) - f'(z_0) (z-z_0) = \alpha(z) (z-z_0)$ t.q.
+$\lim_{z\to z_0} \alpha(z) = 0$. Então $\forall \epsilon \exists \delta$ tal que
+$|z-z_0|<\delta \implies |\alpha(z)|<\epsilon$. Escolhemos $k$ tal que
+$\Delta_k$ é dentro de $\{z: |z-z_0|<\delta\}$.
+Temos
+\begin{multline}
+\int_{\Delta_k} f(z) dz = \\
+(f(z_0)-f'(z_0)z_0) \int_{\Delta_k} dz + f'(z_0) \int_{\Delta_k} d\frac{z^2}{2}
++ \int_{\Delta_k} \alpha(z) (z-z_0) dz \\
+= 0 + 0 + \int_{\Delta_k} \alpha(z) (z-z_0) dz = \int_{\Delta_k} \alpha(z) (z-z_0) dz,
+\end{multline}
+Mas a última integral é pequena: $|z-z_0|$ é limitado por diâmetro de $\Delta_k$,
+que é $C_1 2^{-k}$, e $\int_{\Delta_k} |dz|$ é o perímetro de $\Delta_k$, também igual a $C_2 2^{-k}$,
+onde $C_1,C_2$ são constantes absolutas
+logo
+\begin{multline*}
+M 4^{-k} \leq |\int_{\Delta_k} f(z) dz| = |\int_{\Delta_k} \alpha(z) (z-z_0) dz| \\
+\leq \int_{\Delta_k} |\alpha(z)| |z-z_0| |dz| \leq \epsilon C_1 C_2 4^{-k},
+\end{multline*}
+então $M \leq C_1 C_2 \epsilon$ por qualquer $\epsilon>0$, i.e. $M=0$.
+\end{proof}
+
+\begin{teorema}[Cauchy(--Goursat, 1883)]
+\label{t:cauchy}
+Suponha que $C$ é uma curva fechada de cumprimento finito,
+\footnote{Goursat escreveu ``de cumprimento finito'', também está usada
+o término \emph{retificável}.}
+tal que $C = \partial D$,
+e que uma função $f(z)$ é contínua na $C$ e holomorfa no interior de $D$. Então
+$\int_C f(z) dz = 0$.
+\end{teorema}
+\begin{proof}
+Se $C$ é linear em pedaços, pela indução decompomos ela em soma de fronteiras orientadas de triângulos.
+Outras curvas de cumprimento finito aproximamos por curvas lineares em pedaços.
+\end{proof}
+
+\begin{teorema}
+\label{t:cauchy-k}
+Suponha que $f$ é holomorfa em $D\subset \C$ e $K \subset D$ é um compacto t.q.
+a fronteira dele $\partial K$ é finito número de curvas fechadas. Então $\int_{\partial K} f(z) dz = 0$,
+onde as orientações das componentes da fronteira são induzidas pela orientação de $\C$ e $K$.
+\end{teorema}
+\begin{proof}
+Introduzimos o compacto $G$ tais que a fronteira dele é união de fronteira de $K$
+com alguns pares de caminhos opostas, e é só um laço.  Aplicamos o teorema para ele.
+\end{proof}
+
+
+\subsection{Cadeias, fronteiras,  ciclos e número de Betti}
+
+Mais geralmente podemos definir os grupos de \emph{cadeias} ($0$-cadeias, $1$-cadeias e $2$-cadeias)
+como os grupos de combinações lineares finitas com coeficientes inteiros de pontos, intervalos orientados e triângulos em $D$.
+
+Formalmente, o grupo de $2$-cadeias $C_2(D)$ é o conjunto de todas as somas finitas formais $\sum_{k=1}^n c_k \Delta_k$ de triângulos,
+o grupo de $1$-cadeias $C_1(D)$ é o conjunto de todas somas formais $\sum_{k=1}^n b_k P_kQ_k$ de arestas orientadas,
+e o grupo de $0$-cadeias $C_0(D)$ é o conjunto de todas somas formais $\sum a_k P_k$ de pontos
+com coeficientes $a_k,b_k,c_k \in \Z$ inteiros. Soma e diferença de cadeias é definida formalmente, e.g.
+\[ \sum c_k \Delta_k - \sum c_k' \Delta_k = \sum (c_k - c_k') \Delta_k. \]
+
+Pela qualquer função $f(z)$ podemos definir a ``integral'' (ou o ``valor'') dela no $0$-cadeia pela linearidade
+\[ \int_{\sum a_k P_k} f := \sum a_k f(P_k). \]
+
+Similarmente pelo qualquer diferencial $f(z) dz$ podemos definir a integral dele sobre $1$-cadeia pela linearidade
+\[ \int_{\sum b_k P_kQ_k} f(z) dz := \sum b_k \int_{P_kQ_k} f(z) dz \]
+onde 
+\[ \int_{P_k Q_k} f(z) dz := \int_0^1 f(P_k + t(Q_k-P_k)) (Q_k-P_k) dt. \]
+
+Podemos definir aplicação linear de \emph{fronteira}
+\[ \partial: C_2(D) \to C_1(D) \]
+pelo
+\[ \partial \sum c_k \Delta_k = \sum c_k \partial \Delta_k, \]
+onde a fronteira de um triangulo orientado $ABC$ é definida como 
+\[ \partial ABC := AB + BC + CA, \]
+i.e. a fronteira de triângulo é a soma de 3 arestas dele orientadas em sentido anti-horário.
+
+Então como corolário do \Cref{l:goursat} de Goursat temos que
+\[ \int_{\partial S} f(z) dz = 0 \]
+por qualquer $2$-cadeia $S \in C_2(D)$.
+
+Também podemos definir aplicação de fronteira 
+\[ \partial : C_1(D) \to C_0(D) \]
+pela
+\[ \partial \sum b_k P_k Q_k = \sum b_k \partial  P_kQ_k = \sum b_k (Q_k - P_k). \]
+
+Uma $1$-cadeia $C = \sum b_k P_k Q_k$ é chamada \emph{$1$-ciclo} se a fronteira dela é zero, i.e. $\partial C = 0$.
+
+Para um triângulo $\Delta = ABC$ temos
+\[
+\partial \Delta = AB + BC + CA,
+\]
+então a fronteira de fronteira é igual ao zero:
+\[
+\partial \partial \Delta = \partial (AB + BC + CA)  = \partial AB + \partial BC + \partial CA = B-A + C-B + A-C = 0.
+\]
+
+Logo pela linearidade também temos que por qualquer $2$-cadeia $S = \sum c_k \Delta_k$
+\[ \partial \partial S = \sum c_k \partial \partial \Delta_k = \sum c_k \cdot 0 =  0. \]
+
+Isso implica que qualquer $1$-fronteira ($1$-cadeira que é uma fronteira de uma $2$-cadeia) é um $1$-ciclo.
+
+As vezes você pode encontrar as notações $Z_1(D)$ para o grupo de $1$-ciclos
+\[ Z_1(D) := \{ C \in C_1(D) \,|\, \partial C = 0 \} \subset C_1(D), \]
+e para o grupo de $1$-fronteiras
+\[ B_1(D) := \partial C_2(D) \subset C_1(D) \].
+Vejamos que há uma inclusão natural $B_1(D) \subset Z_1(D) \subset C_1(D)$,
+i.e. cada fronteira é um ciclo.
+
+Por algumas regiões acontece que todos os $1$-ciclos são $1$-fronteiras,
+por exemplo isso é o caso pelas regiões convexas.
+Similarmente podemos definir regiões \emph{estreladas} como regiões tais que existe um ponto $z_0 \in D$ tal que
+$\forall z\in D, \forall t \in [0,1] \implies z_0 + t (z-z_0) \in D$. Nas regiões estreladas também
+todos os $1$-ciclos são $1$-fronteiras.
+\marginnote{Mais geralmente isso é verdade em regiões \emph{simplesmente conexas},
+i.e. regiões em quais qualquer par de caminhos entre par de pontos $P$ e $Q$ pode ser deformados um doutro continuamente com fins fixos,
+i.e. $\forall w_0,w_1 : [0,1] \to D$ tais que $w_0(0) = w_1(0) = P$
+e $w_0(1) = w_1(1) = Q$ existe $w: [0,1]\times[0,1] \to D$ tal que
+$w(0,u) = w_0(u)$, $w(1,u) = w_1(u)$, $w(*,0) = P$, $w(*,1) = Q$, onde $w(*,0) = ...$ significa que valor de $*$ pode ser qualquer $t\in[0,1]$.}
+
+Por algumas outras regiões isso não é verdade,
+e.g. em um disco perfurado $\{z\in\C: 0<|z-a|<R\}$.
+ou em um anel $\{z\in\C: r<|z-a|<R\}$ há mais ciclos de que fronteiras.
+
+
+Geralmente podemos medir essa diferença por grupo quociente
+\[ H_1(D) := Z_1(D) / B_1(D), \] 
+chamado o grupo de \emph{homologia}.
+Os elementos deste grupo são as classes de equivalência de $1$-ciclos:
+digamos que par de $1$-ciclos $C$ e $C'$ são equivalentes se a diferença deles é uma $1$-fronteira,
+i.e. $C \simeq C' \iff \exists S \,|\, C-C' = \partial S$.
+
+O fato importante é que podemos computar este grupo, por exemplo $H_1(anel) = \Z$.
+Número de geradores dele é chamado \emph{número de Betti} $b_1(D)$.
+Para $D$ o disco com $b$ buracos e furações o número de Betti é igual ao $b$,
+i.e. ao número de buracos e furações. Isso significa que se somos interessados em integrais de formas holomorfas sobre
+diferentes ciclos em $D$ temos que computar $b$ integrais independentes, e todos outras
+já podem ser escritas como as combinações lineares (com coeficientes inteiros) de $b$ integrais básicas
+\[ \int_{a_1 C_1 + \dots + a_b C_b + \partial S} \omega = a_1 \int_{C_1} \omega + \dots + a_b \int_{C_b} \omega. \]
+Uma escolha padrão dessa base $C_1,\dots,C_b$ é escolher os ciclos que atravessam cada buraco em sentido antihorário com uma volta.
+
+\section{Primitiva.}
+
+\begin{defin}
+Uma \emph{primitiva} de uma função $f(z)$ em região $D$
+é uma função $F(z)$ holomorfa em $D$ tal que $F'(z) = f(z)$.
+\end{defin}
+
+\begin{problema}
+Sejam $F_1$ e $F_2$ um par de primitivas de uma função $f$.
+Provar que $F_2 - F_1$ é (localmente) constante.
+\end{problema}
+
+\begin{lema}
+\label{l:primitiva}
+Suponha que $f$ é holomorfa em disco
+$D = \{z \in \C \,|\, |z-a|<r\}$.
+Então $F(z) := \int_{[a,z]} f(w) dw$ é uma primitiva de $f$ em $D$,
+onde a integração é sobre intervalo de reta.
+\end{lema}
+\begin{proof}
+Suponha $z,z+h \in D$. Usando \Cref{l:goursat} de Goursat temos
+\begin{multline*}
+F(z+h) - F(z) = \int_{[a,z+h]} f(w) dw - \int_{[a,z]} f(w) dw = \int_{[z,z+h]} f(w) dw \\
+= \int_{[z,z+h]} f(z) dw  +  \int_{[z,z+h]} (f(w)-f(z)) dw 
+= f(z) \cdot h + \int_{[z,z+h]} (f(w)-f(z)) dw,
+\end{multline*}
+então para ver que $F'(z) = f(z)$ temos que mostrar que
+$\int_{[z,z+h]} (f(w)-f(z)) dw = o(h)$. Pela continuidade de $f$
+temos $f(w)-f(z) = o(1)$, logo $|\int_{[z,z+h]} (f(w)-f(z)) dw| \leq o(1) |h| = o(h)$.
+\marginnote{Por qualquer $\epsilon>0$ existe $\delta>0$ tal que $|z-w|<\delta$ implica que
+$|f(z)-f(w)|<\epsilon$. Então se $|h|<\delta$ temos
+\[ |\int_{[z,z+h]} (f(w)-f(z)) dw| \leq \int \epsilon |dw| = \epsilon |h| \]
+e \[ |\frac{F(z+h) - F(z)}{h} - f(z)| \leq \epsilon \]
+para $|h|\delta$, logo
+\[ \lim_{h\to 0} \frac{F(z+h) - F(z)}{h} = f(z). \]}
+\marginnote{Outro jeito é parametrizar o intervalo $[z,z+h]$ por $t\in[0,1]$ como
+$w(t) = z + t h$. Usando $w'(t) = h$ temos
+\[ \int_{[z,z+h]} f(w)-f(z) dw = \int_0^1 (f(z+th) - f(z)) h dt = h \int_0^1 (f(z+th)-f(z)) dt .\]
+Depois pela continuidade de $f$ vemos que $\int_0^1 (f(z+th)-f(z)) dt = o(1)$ quando $h\to 0$:
+para $|h|<\delta(\epsilon)$ temos $\int_0^1 |f(z+th)-f(z)| dt \leq \int_0^1 \epsilon dt = \epsilon$.
+}
+\end{proof}
+
+Na demonstração do \Cref{l:primitiva} usamos somente as duas propriedades de funções holomorfas:
+que elas são contínuas e que as integrais delas sobre os triângulos são nulos.
+Então também provamos o seguinte
+\begin{lema}
+\label{l:pre-morera}
+Seja $D$ uma região estrelada com centro $a$
+e $f : D \to \C$ uma função contínua
+tal que
+$\int_{\partial \Delta} f(z) dz = 0$ para qualquer triângulo em $D$
+com uma vértice sendo $a$. Então $F(z) := \int_{[a,z]} f(z) dz$ é uma primitiva de $f$ em $D$.
+\end{lema}
+
+\begin{defin}[Primitiva através de um camimho]
+Seja $f : D \to \C$ holomorfa.
+Uma \emph{primitiva} de $f$ \emph{através do caminho} $\gamma\subset D$
+é uma função contínua $\Phi : \gamma \to \C$
+tal que qualquer ponto $z_0 \in \gamma$ tem uma vizinhança
+$U \subset D$ em qual $\Phi$ coincide com a restrição para o caminho $\gamma$
+de uma primitiva $F: U\to \C$ de $f$ em região $U$.
+
+Em caso de caminho com interseções podemos modificar a definição:
+para uma parametrização $w: [a,b] \to \gamma \subset D$,
+consideramos uma função $\phi: [a,b] \to \C$ que tem papel de $\phi(t) = \Phi(w(t))$.
+Então digamos que $\phi$ é uma primitiva de $f$ através do caminho $w$
+se por qualquer $t_0 \in [a,b]$ existe $\epsilon>0$, uma vizinhança $U$ de
+$\phi((t_0-\epsilon,t_0+\epsilon))$ em $D$,
+e uma primitiva $F$ de $f$ em $D$ tal que $F(w(t)) = \phi(t)$ para todos $|t-t_0|<\epsilon$.
+\end{defin}
+
+\begin{teorema}
+\label{t:primitiva-caminho}
+Seja $f : D\to \C$ holomorfa e $w: [a,b] \to D$ contínua e retificável.
+Existe uma primitiva $\phi$ de $f$ através de caminho $w$,
+além disso
+\[ \phi(b) - \phi(a) = \int_\gamma f(z) dz \]
+onde $\gamma = w([a,b])$, e a última integral pode ser reescrito como
+$\int_a^b f(w(t)) w'(t) dt$ para $w\in C^1$.
+\end{teorema}
+\begin{proof}
+Para cada ponto $P \in \gamma$ escolha um disco aberto $P \in D_P \subset D$ que contem $P$.
+Pela compacidade de intervalo $[a,b]$ e imagem dela $\gamma = w([a,b])$
+podemos escolher finito número destes discos que cobrem $\gamma$.
+Reordenamos os discos e se necessário removemos alguns e diminuindo os raios podemos escolher
+o cobrimento de $\gamma$ por discos $D_1,D_2,\dots,D_n$ tais que
+$D_i \cap D_j = \emptyset$ para $|i-j| > 1$ em caso de $w$ injetivo.
+Em caso geral podemos escolher cobrimento de intervalo $[a,b]$ por finito número
+de intervalos abertos $J_1,\dots,J_n$ com $J_i \cap J_j = \emptyset$ para $|i-j|>1$
+e tais que para cada $j=1,.\dots,n$ existe um disco $w(J_j) \subset D_j \subset D$
+que cobre a imagem de intervalo $J_j$.
+Pelo \Cref{l:primitiva} $f$ tem primitivas $\tilde{F}_1,\dots,\tilde{F}_n$ em discos $D_1,\dots,D_n$.
+Vamos construir uma primitiva $\phi: [a,b] \to D$ passo a passo:
+primeiro denotamos $F_1 = \tilde{F}_1$ e no intervalo $J_1$ colocamos  e $\phi(t) = F_1(w(t))$.
+Depois sabemos que na interseção $D_1 \cap D_2$ a função $F_2 - F_1$ é constante $c_1$.
+Redefinimos $F_2 = \tilde{F}_2 - c_1$ e no intervalo $J_2$ definimos $\phi(t) = F_2(w(t))$,
+notando que na interseção $J_1 \cap J_2$ a nova definição coincide com antiga.
+Similarmente podemos atualizas as primitivas $F_3,\dots,F_n$ em tal jeito que
+$F_{k+1} - F_k = 0$ na interseção $D_{k+1} \cap D_k$ e definir $\phi(t) = F_k(w(t))$ no
+intervalo $J_k$, com as definições compatíveis nas interseções $J_k \cap J_l$:
+a interseção não é vazio só para $|k-l|\leq 1$ e nestes casos as nossas definições de primitivas $F_k,F_l$
+são consistentes.
+\Cref{l:primitiva} também implica que $\phi(b)-\phi(a) = \int_\gamma f(z) dz$ se $\gamma$
+é linear em pedaços. Caminho retificável geral pode ser aproximado por caminhos lineares em pedaços,
+então para caminho retificável geral também temos $\phi(b)-\phi(a) = \int_\gamma f  dz$.
+\end{proof}
+
+\begin{teorema}
+Suponha que $D\subset \C$ é uma região tal que $H_1(D) = 0$, i.e. cada ciclo é soma de fronteiras.
+Então qualquer função holomorfa $f : D \to \C$ tem uma primitiva $F : D\to \C$.
+Além disso para qualquer caminho $w : [a,b] \to \gamma \subset D$ temos
+$F(w(b)) - F(w(a)) = \int_\gamma f(z) dz$.
+\end{teorema}
+\begin{proof}
+Escolha um ponto $a\in D$ e defina $F(z) = \int_{\gamma_z} f(w) dw$ onde $\gamma_z$ é qualquer caminho
+entre $a$ e $z$. Pelo \Cref{t:cauchy} e assunção $H_1(D) = 0$ a função $F(z)$ não depende
+de escolha de caminho. Pelos \Cref{l:primitiva,t:primitiva-caminho} temos
+$F'(z) = f(z)$ e $\int_\gamma f dz = F(w(b)) - F(w(a))$.
+\end{proof}
+
+\section{Fórmula integral de Cauchy.}
+
+\begin{problema} Suponha que $f : D \to \C$ é contínua em vizinhança de $0$.
+Achar o limite $\lim_{\rho \to +0} \int_\alpha^\beta f(\rho e^{i\phi}) d\phi$.
+\end{problema}
+
+\begin{teorema}[sobre o médio, Gauss]
+\label{t:medio}
+Seja $f : D \to \C$ holomorfa
+e $G = \{ z\in\C : |z-z_0| \leq r \} \subset D$. Então
+\begin{equation}
+f(z_0) = \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} 
+= \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi,
+\end{equation}
+i.e. o valor de função holomorfa em um ponto é igual ao médio de valores dela
+no círculo ao redor do ponto em cujo fecho convexo a função é holomorfa.
+\end{teorema}
+\begin{proof}
+Escolhemos um subdisco $G_\rho = \{ z\in\C \,|\, |z-z_0| \leq \rho \} \subset G \subset D$.
+Pelo \Cref{t:cauchy} de Cauchy temos
+$\int_{\partial G} \frac{f(z) dz}{z-z_0} = \int_{\partial G_\rho} \frac{f(z) dz}{z-z_0}$,
+logo
+\begin{equation*}
+\frac1{2\pi i} \int_{\partial G} \frac{f(z)dz)}{z-z_0} - f(z_0) = 
+\lim_{\rho\to +0}   \frac1{2\pi i} \int_{\partial G_\rho} \frac{f(z)-f(z_0)}{z-z_0} dz. 
+\end{equation*}
+A continuidade de $f$ em $z_0$ implica que
+$\forall \epsilon > 0 \, \exists\delta >0 \,:\, \forall |z-z_0|\leq\delta \implies |f(z)-f(z_0)| < \epsilon$,
+logo para $\rho<\delta$ temos a desigualdade
+\[ |\frac1{2\pi i} \int_{\partial G_\rho} \frac{f(z)-f(z_0)}{z-z_0} dz| 
+\leq \frac1{2\pi} \int_{\partial G_\rho} \frac{\epsilon}{\rho} |dz| = \epsilon. \]
+Substituindo $z = z_0 + r e^{i\phi}$ obtemos
+\[ f(z_0) = \frac{1}{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} = 
+\frac{1}{2\pi i} \int_0^{2\pi} \frac{f(z_0 + r e^{i\phi})}{r e^{i\phi}} \frac{d(z_0+re^{i\phi})}{d\phi} d\phi
+= \frac1{2\pi} \int_0^{2\pi} f(z_0 + r e^{i\phi}) d\phi. \]
+\end{proof}
+
+\begin{problema}
+Provar que para $B(z_0,r)\subset D$ o valor de função $f(z_0)$ é igual ao médio de valores dela
+em disco:\footnote{Este problema é facultativo para os quem sabe integrar sobre o disco bidimensional.}
+\begin{equation}
+f(z_0) = \frac{1}{\pi r^2} \int_{B(z_0,r)} f(z) dx dy.
+\end{equation}
+\end{problema}
+
+\begin{teorema}[Fórmula de Cauchy]
+\label{formula-cauchy}
+Se função $f$ é holomorfa em região $D$ e $G\subset D$ um compacto t.q. a fronteira dele $\partial G$ é o finito número de curvas retificáveis
+\footnote{E.g. poligonal ou arcos de círculos.},
+então por qualquer $z_0 \in D \setminus \partial G$ a integral
+\[ \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} \]
+é igual ao $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
+\end{teorema}
+\begin{proof}
+Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy-k}.
+Se $z_0$ é dentro, consideremos uma bola fechada $\overline{B}(z_0,\rho)\subset G \setminus \partial G$.
+A diferença entre os ciclos $\partial \overline{B}(z_0,\rho)$ e $\partial G$ é uma fronteira,
+e.g. pode realizar a diferença como fronteira de compacto $K$ tais que $\frac{f(z)}{z-z_0}$ é holomorfa em $K$,
+e $\partial G - \partial \overline{B}(z_0,\rho) = \partial K$.
+Logo 
+\[ 2\pi i f(z_0) = \int_{\partial \overline{B}(z_0,\rho)} \frac{f(z)dz}{z-z_0} = \int_{\partial G} \frac{f(z)dz}{z-z_0}. \]
+\end{proof}
+
+\section{Decomposição em séries de Taylor.}
+
+\begin{teorema}
+\label{t:hol-series}
+Seja $f : D \to \C$ uma função holomorfa em região $D$.
+Em qualquer bola $B = B(z_0,R) \subset D$ dentro de região de holomorficidade
+defina os números complexos $c_0,c_1,\dots\in\C$ como as integrais
+\begin{equation}
+ c_n := \frac1{2\pi i} \int_{\gamma_r} \frac{f(z)dz}{(z-z_0)^{n+1}} 
+\end{equation}
+sobre qualquer círculo com centro em $z_0$ dentro de $B$  
+\[ \gamma_r = \{ z\in \C : |z-z_0|< r < R \}. \]
+Então as séries
+\[ \sum_{n=0}^\infty c_n (z-z_0)^n \]
+convergem absolutamente e localmente uniforme para $z\in B$
+e a soma é igual à função $f(z)$:
+\[ f(z) = \sum_{n=0}^\infty c_n (z-z_0)^n. \]
+\end{teorema}
+\begin{proof}
+\Cref{t:cauchy} de (Goursat-)Cauchy implica que as integrais sobre os ciclos $\gamma_r$
+que definem os números $c_n$
+não dependem da escolha de raio $0<r<R$.\footnote{E em particular que os números $c_n$ são bem definidos.}
+
+Para um ponto $z\in B$ vamos escolher $r > |z-z_0|$, e denotamos $\rho = \frac{|z-z_0|}{r} < 1$.
+Pela \Cref{serie-geometrica}
+a progressão geométrica $1 + u + u^2 + \dots$ converge a $\frac{1}{1-u}$ absolutamente para $0<u<1$,
+e as colas $u^k + u^{k+1} + \dots$ são majoradas por $u^k \cdot C$ com constante $C = (1-u)^{-1}$.
+Logo 
+\begin{equation}
+\label{eq:series-geometrica}
+ \frac{1}{w-z} = \frac{1}{(w-z_0)-(z-z_0)} = (w-z_0)^{-1} \frac1{1-\frac{z-z_0}{w-z_0}}
+= \sum_{n\geq 0} \frac{(z-z_0)^n}{(w-z_0)^{n+1}}
+\end{equation}
+converge absolutamente para todos $w\in\gamma_r$.
+\footnote{Para $w\in \gamma_r$ temos $|w-z_0| = r$ pela definição de $\gamma_r$.
+No outro lado $|z-z_0|<r$ pela escolha de raio $r$.}
+Temos as cotas
+\[ |\int_{\gamma_r} \sum_{n\geq k} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw|
+< 2\pi r \frac{\rho^k} C, \]
+onde $C = \max_{w\in\gamma_r} |f(z)| |w-z_0|^{-1} (1-\rho)^{-1}$ não depende de $k$.
+Logo o limite de
+\[ \int_{\gamma_r} \frac{f(w)dw}{w-z} - \sum_{n=0}^{k-1} \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw \]
+é igual ao $0$, i.e. a soma
+\[ \sum_{n=0}^\infty \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw \]
+converge absolutamente e é igual a $\int_{\gamma_r} \frac{f(w)dw}{w-z}$.
+Pela definição de $c_n$ temos que cado termo é igual
+\[ \int_{\gamma_r} \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw 
+= (z-z_0)^n (2\pi i) \int_{\gamma_r} \frac{f(w)dw}{(w-z_0)^{n+1}}
+= (2\pi i) c_n (z-z_0)^n, \]
+então a soma $\sum_{n=0}^\infty c_n (z-z_0)^n$ converge absolutamente
+e é igual a $\frac{1}{2\pi i} \int_{\gamma_r} \frac{f(w)dw}{w-z}$,
+e a última integral é igual ao valor $f(z)$ pelo \Cref{t:cauchy}.
+\marginnote{$f(z) = \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{w-z}
+= \frac{1}{2\pi i}\int_\gamma \sum_{n=0}^\infty \frac{(z-z_0)^n}{(w-z_0)^{n+1}} f(w) dw
+= \sum_{n=0}^\infty (z-z_0)^n \frac{1}{2\pi i}\int_\gamma \frac{f(w)dw}{(w-z_0)^{n+1}} = \sum c_n (z-z_0)^n$}
+\end{proof}
+
+O seguinte \Cref{t:series-derhol} é o mesmo \Cref{t:abel} de Abel,
+mas nessa vez com diferente demonstração da parte \eqref{abel-3}.
+\begin{teorema}[Abel, séries e derivadas delas são holomorfas]
+\label{t:series-derhol}
+Uma serie
+$f(z) := \sum_{n=0}^\infty c_n (z-z_0)^n$ converge em disco
+$D = \{z\in\C : |z-z_0|<R\}$ de raio $R = \big(\limsup |c_n|^{\frac1n}\big)^{-1}$,
+e a função $f(z)$ é holomorfa em $D$.
+Além disso a derivada $f'(z)$ também é holomorfa em $D$
+e é igual à série $g(z) = \sum_{n=1}^\infty n c_n (z-z_0)^{n-1}$.
+\end{teorema}
+\begin{proof}
+Desde que $\limsup \big(n|c_n|\big)^{\frac{1}{n-1}} = \limsup |c_n|^{\frac1n} = 1/R$,
+a função $g(z)$ é definida e converge localmente uniformemente em $D$,
+logo podemos trocar a ordem de soma e integral de séries $g$, e
+\begin{multline}
+F(z) := \int_{[z_0,z]} g(w) dw
+= \int_{[z_0,z]} \sum_{n=1}^\infty n c_n (w-z_0)^{n-1} dw
+\\
+= \sum_{n=1}^\infty n c_n \int_{[z_0,z]} (w-z_0)^{n-1} dw
+= \sum_{n=1}^\infty n c_n \frac1n (z-z_0)^n = f(z) - c_0.
+\end{multline}
+Similarmente por qualquer triângulo $\Delta \subset D$ a integral de $g(w)dw$ sobre a fronteira dele é nulo:
+\[ \int_{\partial \Delta} g(w) dw = \int_{\partial \Delta} \sum n c_n (w-z_0)^{n-1} dw
+= \sum n c_n \int_{\partial \Delta} (w-z_0)^{n-1} dw = \sum n c_n \cdot 0 = 0. \]
+Também $g(w)$ é contínua em $D$:
+\[ g(z+h) - g(z) = \sum n c_n h \sum_{k=0}^{n-2} z^k (z+h)^{n-2-k}
+\leq h C \]
+onde $C = \sum c_n n (n-1) \rho^{n-2} < \infty$ com $\rho = |z|+|h|<R$.
+Pelo \Cref{l:pre-morera} vejamos que $F(z)$ é uma primitiva de $g(z)$,
+logo $f'(z) = F'(z) = g(z)$.
+
+Então a derivada $f'(z) = g(z)$ existe e é igual a série com o mesmo raio de convergência.
+Logo também existe a segunda derivada $f''(z)$, i.e. $f'(z)$ é holomorfa.
+\end{proof}
+
+\section{Teorema de Morera. Critério de holomorficidade.}
+
+\begin{teorema}
+\label{t:hol-bihol}
+Uma função holomorfa $f : D \to \C$ 
+tem as derivadas complexas das todas as ordens, eles são holomorfas e iguais às
+\begin{equation}
+\label{eq:formula-cauchy}
+f^{(k)}(z) = \frac{k!}{2\pi i} \int_{\partial \ol{B}(z,r)} \frac{f(w) dw}{(w-z)^{k+1}},
+\end{equation}
+para qualquer disco $\ol{B}(z,r) \subset D$ em qual a função é holomorfa.
+\end{teorema}
+\begin{proof}
+Por qualquer $\ol{B}(z_0,r) \subset D$ pelo \Cref{t:hol-series} temos a igualdade para 
+todos $z\in \ol{B}(z_0,r)$:
+\[ f(z) = \sum_{n=0}^\infty c_n(z_0) \cdot (z-z_0)^n \]
+com
+\[ c_n(z_0) = \frac{1}{2\pi i} \int_{\partial \ol{B}(z_0,r)} \frac{f(w) dw}{(w-z_0)^{n+1}}. \]
+Então pelo \Cref{t:series-derhol} a função $f'(z)$ é holomorfa em $B(z_0,r)$
+e é igual à série
+\[ f'(z) = \sum_{n\geq 1} n \cdot c_n(z_0) \cdot (z-z_0)^{n-1}. \]
+Logo a derivada $f'(z)$ é holomorfa em $D$.
+Aplicando o mesmo argumento para $f'(z)$ e a indução, obtemos que todas as derivadas complexas $f^{(k)}(z)$
+existem, são holomorfas em $D$ e por qualquer disco $\ol{B}(z_0,r) \subset D$ e $z\in B(z_0,r)$
+são iguais às séries
+\[ f^{(k)}(z) = \sum_{n\geq k} \big(\prod_{j=0}^{k-1} (n-j)\big) \cdot c_n(z_0) \cdot (z-z_0)^{n-k} .\]
+Logo substituindo $z=z_0$ obtemos
+\[ f^{(k)}(z_0) = k! \cdot c_k(z_0) = \frac{k!}{2\pi i} \int_{\partial \ol{B}(z_0,r)} \frac{f(w) dw}{(w-z_0)^{k+1}} \]
+por qualquer $\ol{B}(z_0,r) \subset D$.
+\end{proof}
+
+\begin{teorema}[Morera]
+\label{t:morera}
+Se uma função $f: D \to \C$ é contínua e as integrais de $f(z) dz$ sobre
+fronteiras de triângulos $\Delta \subset D$ em região são zeros
+\[ \int_{\partial \Delta} f(z) dz = 0, \]
+então ela é holomorfa em $D$, i.e. $f(z)$ tem uma derivada complexa $f'(z)$ para todos $z\in D$.
+\end{teorema}
+\begin{proof}
+Holomorficidade é uma propriedade local,\footnote{Digamos que uma propriedade $P$ das funções é \emph{local},
+se para qualquer $f : D \to \C$ e para qualquer cobrimento por abertos $D = \bigcup U_i$
+a veracidade de $P$ para todas as restrições $f : U_i \to \C$
+é equivalente à veracidade de $P$ para $f : D \to \C$.
+Todas as propriedades que são formuladas como ``pelo qualquer ponto $z\in D$
+existe uma vizinhança $z \in U \subset D$ tal que $f$ restringida para $U$
+satisfaz alguma coisa'' são locais pela definição.}
+então é suficiente provar o teorema para o caso
+quando $D$ é um disco aberto $D = B(a,r)$. Neste caso pelo \Cref{l:pre-morera}
+sabemos que $F(z) := \int_{[a,z]} f(z) dz$ é uma primitiva de $f(z)$ i.e.
+$F(z)$ é holomorfa em $B(a,r)$ e $F'(z) = f(z)$.
+Logo pelo \Cref{t:hol-bihol} derivamos que $f(z) = F'(z)$ também é holomorfa,
+sendo uma derivada de uma função holomorfa.
+\end{proof}
+
+\begin{teorema}[Critério de holomorficidade]
+\label{t:criterio}
+Seja $f: D \to \C$ uma função definida em uma região $D\subset \C$. 
+As seguintes propriedades são equivalentes:
+\begin{enumerate}
+\item \label{f:hol}
+a função $f$ é holomorfa em $D$, i.e. ela tem a derivada complexa $f' : D \to \C$:
+% \[ f(z) = f(z_0) + f'(z_0) (z-z_0) + o(z-z_0) , \]
+\[ \lim_{z\to z_0} \frac{f(z)-f(z_0)}{z-z_0} = f'(z_0), \]
+\item \label{f:intzero}
+a função $f$ é contínua e as integrais da forma diferencial $f dz$
+sobre a fronteira $\partial \Delta$
+de qualquer triângulo $\Delta \subset D$ são zeros: 
+\[ \int_{\partial \Delta} f(z) dz = 0 , \]
+\item \label{f:anal}
+a função $f$ é analítica, i.e. existem as funções $c_0,c_1,\dots: D\to\C$ tais que
+a restrição da função $f(z)$ no qualquer disco $B(z_0,r) \subset D$
+é igual à série absolutamente convergente ali:
+\[ f(z) = \sum_{n=0}^\infty c_n(z_0) \cdot (z-z_0)^n. \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+\begin{itemize}
+\item \eqref{f:hol} $\implies$ \eqref{f:intzero} é \Cref{l:goursat} de Goursat,
+\item \eqref{f:intzero} $\implies$ \eqref{f:hol} é \Cref{t:morera} de Morera,
+\item \eqref{f:hol} $\implies$ \eqref{f:anal} é \Cref{t:hol-series},
+\item \eqref{f:anal} $\implies$ \eqref{f:hol} é \Cref{t:series-derhol}
+(equiv. \Cref{t:abel}) de Abel.
+\end{itemize}
+\end{proof}
+
+\begin{remark}[Trindade e formula de Cauchy]
+Com uma função $f$ que satisfaz uma (então todas) das condições do \Cref{t:criterio}
+podemos associar três séries de funções:
+\begin{align*}
+f(w) =: \sum_{n\geq 0} c_n(z) (w-z)^n,\\
+d_n(z) := \frac{f^{(n)}(z)}{n!},\\
+i_n(z) := \frac{1}{2\pi i} \int_{|w-z|=\epsilon} \frac{f(w)dw}{(w-z)^{n+1}}.
+\end{align*}
+Então
+\[ c_n(z) = d_n(z) = i_n(z), \]
+i.e. temos uma trindade, os três pontos de vista alternativas para $c_n$:
+\begin{enumerate}
+\item os coeficientes de Taylor,
+\item as derivadas,
+\item as integrais de Cauchy.
+\end{enumerate}
+A igualdade $d_n = i_n$ (i.e. \Cref{eq:formula-cauchy})
+é também as vezes conhecida como uma \emph{fórmula de Cauchy} para derivadas.
+\end{remark}
+
+\begin{problema}
+\label{p:divide-holo}
+Suponha que uma função $f(z)$ é holomorfa em $z=a$.
+Provar que uma função $g(z)$ definida como $g(a) = f'(a)$
+e $g(z) = \frac{f(z)-f(a)}{z-a}$ para $z\ne a$ é holomorfa em $a$.
+\end{problema}
+
+\subsection{Teorema de Liouville. Teorema fundamental de álgebra.}
+
+Lembra (\cref{d:inteira}) que as funções holomorfas $f:\C\to\C$ são chamadas inteiras,
+e a função $f:D\to\C$ é chamada limitada se existe $M$ tal que $|f(z)\leq M$ para todos $z\in D$.
+\begin{restatable}[Liouville]{teorema}{liouville} \label{t:liouville}
+Uma função inteira limitada é constante.
+\end{restatable}
+\begin{proof}
+Usando a fórmula \eqref{eq:formula-cauchy} de Cauchy para derivada, por qualquer $a\in\C$ e $R>0$ obtemos
+\[ f'(a) = \frac{1}{2\pi i} \int_{z=a + R \exp(i\phi)} \frac{f(z)dz}{(z-a)^2} 
+= \frac{1}{2\pi} \int_0^{2\pi} \frac{f(a+R\cdot e^{i\phi})}{R\cdot e^{i\phi}} d\phi, \]
+logo se $\forall z\in\C:\, |f(z)|\leq M$ pelo desigualdade \eqref{eq:darboux} de Darboux temos
+\[ |f'(a)| \leq \frac{\max_{|z-a|=R} |f(z)|}{R} \leq \frac{M}{R}  \]
+para todos $a\in \C$ e $R>0$. Então para cada $a\in\C$ temos $f'(a) = 0$,
+que significa que a função $f$ é constante pelo \Cref{p:derzero-constante}.
+\end{proof}
+
+\begin{restatable}[Teorema fundamental de álgebra, Argand 1806]{cor}{tfa} \label{t:fundamental-algebra}
+\label{teorema-fundamental-algebra}
+Seja $P\in\C[z]$ um polinómio não nulo de grau $n$, i.e.
+$P(z) = c_0 + c_1 z + \dots + c_n z^n$ e $c_n\neq 0$.
+\begin{enumerate}
+\item \label{tfa-1} se $n>0$ o polinómio $P$ tem uma raiz complexa,
+i.e. existe $w\in\C$ tal que $P(w) = 0$;
+\item \label{tfa-2} $P(z) = c_n \cdot (z-u_1) \cdot \dots \cdot (z-u_n)$
+para alguns números complexos $u_1,\dots,u_n\in\C$.
+\end{enumerate}
+\end{restatable}
+\begin{proof}
+\eqref{tfa-1}: Suponha que um polinómio $P = c_0 + \dots + c_n z^n \in\C[z]$ não tem raízes.
+Então $f(z) = \frac{1}{P(z)}$ é uma função inteira $f: \C\to\C$.
+O limite $\lim_{z\to\infty} f(z) = \lim_{z\to\infty} z^{-n} \frac{1}{c_n + O(1/z)} = 0$ para $n>0$,
+logo $f$ é limitada, desde que ela é limitada em vizinhança de $\infty$,
+e o complemento de qualquer vizinhança de $\infty$ é compacto,
+e qualquer função contínua on compacto é limitada.
+Pelo \cref{t:liouville} de Liouville a função $f(z)$ é constante,
+logo $P(z) = \frac{1}{f(z)}$ também é, contradição.
+
+\eqref{tfa-2}: Na álgebra abstrata essa parte pode ser derivada algebricamente,
+usando o seguinte lema (análogo do \Cref{p:divide-holo} para polinómios):
+se $u$ é uma raiz de polinómio $P$ então $P$ é divisível pelo $(z-u)$ em $\C[z]$,
+i.e. existe $Q\in\C[z]$ tal que $P(z) = (z-u) Q(z)$. Depois usar a indução por grau de polinómio.
+\end{proof}
+
+\begin{remark}
+A primeira demonstração correta do \Cref{t:fundamental-algebra}
+foi dada por Argand em 1806, e aparece no livro texto de Cauchy em 1821
+(sem atribuição). Gauss deu uma demonstração em 1799 que contem uma omissão corrigida por Ostrowski em 1920.
+Também Gauss deu outra demonstração correta em 1816.
+Podemos usar diferentes propriedades das funções complexs para provar este teorema.
+Uma demonstração mais fácil é como o corolário do \Cref{t:rouche} de Rouché,
+que damos depois dele. Outras demonstrações usam o princípio de argumento de Cauchy (\cref{t:argumento})
+ou o princípio de máximo de módulo (\cref{t:maximo}).
+\end{remark}
+
+
+\section{Séries de funções holomorfas. Teorema de Weierstrass.}
+
+
+O \Cref{l:uniforme} a provar as vezes é chamado
+o \emph{teorema sobre o limite uniforme da análise complexa}
+em contraste com \Cref{t:limite-uniforme} sobre o limite uniforme da análise real
+que vamos usar na demonstração.
+
+\begin{lema}
+\label{l:uniforme}
+\begin{enumerate}
+\item
+Sejam as funções $f_1(z),f_2(z),\dots$ holomorfas em disco fechado
+$D := \ol{B}(a,R)$ e a série $f(z) = \sum_{n=0}^\infty f_n(z)$ converge uniformemente lá.
+Então $f$ é holomorfa e $f'(z) = \sum f_n'(z)$.
+\item
+Sejam as funções $g_1(z),g_2(z),\dots$ holomorfas em disco fechado
+$D = \ol{B}(a,R)$ e o limite $g(z) = \lim_{n\to\infty} g_n(z)$ é uniforme lá.
+Então $g$ é holomorfa e $g'(z) = \lim_{n\to\infty} g_n'(z)$.
+\end{enumerate}
+\end{lema}
+\begin{proof}
+É claro que os dois itens são equivalentes pelas fórmulas
+$g_n = \sum_{k=0}^n f_k$ e $f_n = g_n - g_{n-1}$.
+
+Pelo \Cref{t:limite-uniforme}
+as funções $f(z)$ (resp. $g(z)$) são uniformemente contínuas em $\ol{B}(a,z)$.
+
+Para qualquer triângulo $\Delta \subset D$ a convergência uniforme implica
+\[ \int_{\partial \Delta} f dz = \sum_{n=0}^\infty \int_{\partial \Delta} f_n dz, \]
+mas pelo \Cref{l:goursat} de Goursat $\int_{\partial \Delta} f_n dz = 0$,
+logo $\sum_{n=0}^\infty \int_{\partial \Delta} f_n dz = \sum 0 = 0$,
+então $\int_{\partial \Delta} f dz = 0$,
+e pelo \Cref{t:morera} de Morera $f$ é holomorfa.
+
+Pelo \Cref{t:hol-bihol} para $\gamma := \partial D$ obtemos
+
+\[ f'(a) = \frac1{2\pi i} \int_{\gamma} \frac{f(z)dz}{(z-a)^2}
+= \frac1{2\pi i} \int_{\gamma} \sum_{n=0}^\infty \frac{f_n(z)dz}{(z-a)^2}
+= \frac1{2\pi i} \sum_{n=0}^\infty \int_{\gamma} \frac{f_n(z)dz}{(z-a)^2}
+= \sum_{n=0}^\infty f_n'(a). \]
+\end{proof}
+
+\begin{teorema}[Weierstrass]
+\label{t:weierstrass}
+Sejam $f_1,f_2,\dots \in \O(D)$ as funções holomorfas em uma região $D\subset \C$.
+\begin{enumerate}
+\item
+Suponha que $f(z) := \sum_{n=0}^\infty f_n(z)$ converge uniformemente
+nos compactos em $D$. Então a função $f$ é holomorfa e
+\[ f'(z) = \sum_{n=0}^\infty f_n'(z). \]
+\item
+Suponha que o limite $f(z) := \lim_{n\to\infty} f_n(z)$ é localmente uniforme.
+Então a função $f$ é holomorfa e
+\[ f'(z) = \lim_{n\to\infty} f_n'(z). \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+O enunciado é a propriedade local.
+Então pelo qualquer ponto $a\in D$ escolha $R>0$ tal que $\ol{B}(a,R) \subset D$
+e aplique \Cref{l:uniforme}.
+\end{proof}
+
+\section{Funções holomorfas em um anel. Séries de Laurent.}
+% setembro 13
+
+Em seguida os símbolos de soma $\sum_{n=-\infty}^\infty$
+e $\sum_{n\in\Z}$ são sinônimos.
+
+\begin{defin}
+A série $\sum_{n\in\Z} c_n (z-a)^n$ é chamada
+a \emph{série de Laurent},
+onde a subsérie $\sum_{n<0} c_n (z-a)^n = \sum_{n=1}^\infty c_{-n} (z-a)^{-n}$
+é a \emph{parte principal}
+e a subsérie $\sum_{n\geq 0} c_n (z-a)^n = \sum_{n=0}^\infty c_n (z-a)^n$
+é a \emph{parte regular}.
+\end{defin}
+
+A série $c_n$ dos números complexos indicados por $n\in\Z$
+defina uma série de Laurent
+\[ \sum_{n\in\Z} c_n (z-a)^n. \]
+Define $r$ e $R$ por
+\begin{align*}
+R = \frac1{\limsup_{n\to+\infty} |c_n|^{\frac1n}} \in [0,+\infty], \\
+r = \limsup_{n\to+\infty} |c_{-n}|^{\frac1n} \in [0,+\infty],
+\end{align*}
+e o anel $A\subset \C$ pelo
+\[ A = A_{r,R}(a) := \{ z\in\C : r < |z-a| < R \}. \]
+
+\begin{teorema}
+\label{t:laurent-anel}
+A série de Laurent $\sum_{n\in\Z} c_n (z-a)^n$
+converge absolutamente\footnote{Em visto de \Cref{t:riemann-dini,t:levy-steinitz}
+de Riemann--Dini--Lévy--Steinitz,
+para ter algum sentido de séries $\sum_{n\in\Z} a_n$ que convergem
+não absolutamente temos que dar alguma coleção padrão
+de somas parciais, i.e. $S_N := \sum_{n=-N}^N a_n$.}
+para qualquer $z\in A$ e uniforme nos compactos.
+A soma $\sum_{n=\infty}^\infty c_n (z-a)^n$ é uma função holomorfa em $A$.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{t:abel} de Abel e a fórmula \eqref{eq:hadamard} de Cauchy--Hadamard (\Cref{cauchy-hadamard})
+a parte regular $\sum_{n\geq 0} c_n (z-a)^n$
+converge absolutamente e localmente uniforme 
+em um disco $\{z\in\C : |z-a| < R \}$,
+e a parte principal $\sum_{n<0} c_n (z-a)^n = \sum_{n=1}^\infty c_{-n} (z-a)^{-n}$
+converge absolutamente e localmente uniforme 
+em um ``disco'' $\{ z\in\C : |z-a| > r \}$,
+\footnote{Formalmente é um disco perfurado em ponto $\infty$,
+mas é claro que a série e cado termo dela
+tem os limites $z\to\infty$ que são iguais ao zero,
+então podemos dizer que a série principal converge absolutamente
+em um disco verdadeiro $\{z\in\Ch : |z-a| > r \}$,
+na esfera de Riemann $\Ch$.}
+então a série $\sum_{n\in\Z} c_n (z-a)^n$
+converge absolutamente e localmente uniforme 
+na interseção deles, i.e. no anel $A = \{ z\in\C : r < |z-a| < R \}$.
+
+Pelo \Cref{t:weierstrass} de Weierstrass a soma é holomorfa.
+\end{proof}
+
+
+\begin{teorema}
+\label{t:anel-laurent}
+Seja $f$ uma função holomorfa em um anel $A = A_{r,R}(a) := \{ 0\leq r < |z-a| < R \leq \infty \}$.
+Então para todos $z\in A$ a função $f(z)$ é igual à série de Laurent
+\[ f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n, \]
+onde
+\[ c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}, \]
+\[ \gamma_\rho = \{ z\in\C \,|\, |z-a|=\rho \} \subset A, \]
+e a série converge absolutamente e uniforme nos compactos.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{t:cauchy-k} de Cauchy vejamos que a integral
+\[ \int_{\gamma_\rho} \frac{f(w)dw}{w-a}  \] 
+não depende da escolha de $r<\rho<R$.
+% Para $z\in A$ escolha um subanel fechado $A' = \{ r < r'\leq |w-a| \leq R' < R \}$.
+Por qualquer $r<\rho<R$ temos uma cota (chamada \emph{desigualdade de Cauchy})
+\[ \rho^n \cdot |c_n| = \big|\int_0^1 f(\rho e^{2\pi i t}) e^{-2\pi i t (n+1)} dt\big|
+\leq \max_{w\in\gamma_\rho} |f(w)|. \]
+Então
+\begin{align*}
+\limsup_{n\to\infty} |c_n|^{\frac1n} \leq \inf_{r<\rho<R} \frac1\rho = \frac1{R}, \\
+\limsup_{n\to\infty} |c_{-n}|^{\frac1n} \leq \inf_{r<\rho<R} \rho = r.
+\end{align*}
+Pelo \Cref{t:laurent-anel} a série de Laurent 
+\[ \sum_{n\in\Z} c_n (z-a)^n \]
+converge absolutamente e localmente uniforme em anel $A = \{ z\in\C : r < |z-a| < R \}$
+e a soma é uma função holomorfa lá.
+
+Agora vamos ver como a série $g(z) = \sum_{n\in\Z} c_n (z-a)^n$ é relacionada com a função original $f(z)$.
+Para $z\in A$ escolhemos $r<r'<|z-a|<R'<R$ e um subanel fechado
+$A \supset A'= \ol{A}_{r',R'}(a) := \{ z\in\C : r'\leq|z-a|\leq R\}$
+tal que $z$ é dentro interior dele.
+Pela fórmula de Cauchy (\cref{formula-cauchy}) temos
+\[ 2\pi i f(z) = \int_{\gamma_{R'}} \frac{f(w)dw}{w-z} - \int_{\gamma_{r'}} \frac{f(w)dw}{w-z}. \]
+A partir disso, para $w\in\gamma_{R'}$
+temos $|w-a| = R' > |z-a|$, então $|\frac{z-a}{w-a}|<1$
+e a série geométrica \eqref{eq:series-geometrica}:\footnote{
+Essa parte é similar a demonstração de séries de Taylor em \Cref{t:hol-series}.}
+\begin{equation*}
+ \frac{1}{w-z} = \frac{1}{(w-a)-(z-a)} = (w-a)^{-1} \frac1{1-\frac{z-a}{w-a}}
+= \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}}
+\end{equation*}
+converge absolutamente e uniforme no círculo $\gamma_{R'}$.
+Similarmente para $w\in\gamma_{r'}$
+temos $|w-a| = r' < |z-a|$, então $|\frac{w-a}{z-a}|<1$
+e a série geométrica 
+\begin{equation*}
+ \frac{1}{w-z} = \frac{1}{(w-a)-(z-a)} = -(z-a)^{-1} \frac1{1-\frac{w-a}{z-a}}
+= - \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}}
+\end{equation*}
+converge absolutamente e uniforme no círculo $\gamma_{r'}$.
+Então, podemos trocar a ordem de soma e integração nas integrais
+\[ \int_{\gamma_{R'}} \frac{f(w)dw}{w-z}
+  = \int_{\gamma_{R'}} \sum_{n\geq 0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
+  = \sum_{n\geq 0} (z-a)^n \int_{\gamma_{R'}} \frac{f(w)dw}{(w-a)^{n+1}}
+  = 2\pi i \sum_{n\geq 0} c_n (z-a)^n \]
+e
+\[ -\int_{\gamma_{r'}} \frac{f(w)dw}{w-z}
+  = \int_{\gamma_{r'}} \sum_{n<0} \frac{(z-a)^n}{(w-a)^{n+1}} f(w) dw
+  = \sum_{n<0} (z-a)^n \int_{\gamma_{r'}} \frac{f(w)dw}{(w-a)^{n+1}}
+  = 2\pi i \sum_{n<0} c_n (z-a)^n. \]
+Somando, obtemos
+\[ f(z) = \frac{1}{2\pi i} \int_{\gamma_{R'}-\gamma_{r'}} \frac{f(w)dw}{w-z} 
+        = \sum_{n\in\Z} c_n (z-a)^n. \]
+\end{proof}
+
+\begin{teorema}[Unicidade de séries de Laurent e desigualdade de Cauchy]
+Seja $f(z) = \sum_{n\in\Z} c_n (z-a)^n$ holomorfa em anel
+$A = \{ z\in\C : r < |z-a| < R \}$ e $\gamma_\rho = \{ z\in\C : |z-a|=\rho \} \subset A$.
+Então os coeficientes são determinados pelos valores da função no anel,
+\begin{equation}
+c_n = \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}},
+\end{equation}
+e respeitam a \emph{desigualdade de Cauchy}
+\begin{equation}
+\label{eq:desigualdade-cauchy}
+|c_n| \leq \frac{\max_{z\in\gamma_\rho} |f(z)|}{\rho^n}.
+\end{equation}
+\end{teorema}
+\begin{proof}
+\[ \frac1{2\pi i} \int_{\gamma_\rho} \frac{f(w) dw}{(w-a)^{n+1}}
+ = \frac1{2\pi i} \int_{\gamma_\rho} \sum_{m\in\Z} c_m (w-a)^{m-n-1} dw 
+ = c_n, 
+\]
+onde para a segunda igualdade trocamos $\gamma_\rho$ por $\gamma_{\rho+\epsilon}$ para
+$n>0$ ou por $\gamma_{\rho-\epsilon}$ para $n<0$ com $\epsilon$ positivo e suficientemente pequeno,
+e usamos a desigualdade de Cauchy já provada na demonstração de \Cref{t:anel-laurent}.
+\end{proof}
+
+Como uma aplicação de desigualdades de Cauhy, vamos dar mais uma demonstração do 
+\liouville*
+\begin{proof}
+Se $f$ é holomorfa em $z=0$ ela tem a expansão de Taylor
+\[ f = \sum_{n=0}^\infty c_n z^n, \]
+mas pela desigualdade de Cauchy
+\[ |c_n| \leq  \frac{\sup_{z\in\gamma_\rho} |f(z)|}{\rho^n} \leq \frac{\sup_{z\in\C} |f(z)|}{\rho^n} \]
+por todos $\rho > 0$, logo se $\sup_{z\in\C} |f(z)| = M < \infty$ temos $c_n = 0$ para qualquer $n>0$.
+\end{proof}
+
+
+\section{Pontos singulares isolados.}
+
+\begin{defin}[Discos perfurados e vizinhanças perfuradas]
+Um \emph{disco perfurado} (no seu centro $a\in\C$)
+$P(a,R)$ é um anel $A_{r,R}(a)$ com $r=0$:
+\begin{equation}
+\label{eq:perfurado}
+P(a,R) := \{z\in\C: 0<|z-a|<R\} = B(a,r) -\{a\} = A_{0,R}(a).
+\end{equation}
+Uma \emph{vizinhança perfurada} de um ponto $a$ é uma vizinhança de $a$
+menos o mesmo ponto $a$, i.e. um conjunto (aberto) que contem
+um disco perfurado no ponto $a$.
+Similarmente podemos definir os discos perfurados em outros pontos interiores
+como $B(c,R) - \{a\}$ para qualquer $a,c\in \C: |a-c|<R$.
+Também um \emph{disco perfurado em infinito} é 
+\begin{equation}
+\label{eq:perfurado-infty}
+\{z\in\C: |z-a|>r\} = A_{r,\infty}(a),
+\end{equation}
+e uma \emph{vizinhança perfurada do infinito} é qualquer conjunto (aberto) em $\C$
+que contem um disco perfurado em infinito.
+Podemos definir as \emph{vizinhanças do infinito} na esfera de Riemann
+$\Ch = \C \bigcup \{\infty\}$ como as uniões
+das vizinhanças perfuradas com o ponto de infinito.
+\end{defin}
+
+\begin{defin}
+\label{d:isolado}
+Um ponto $a\in\Ch$ na esfera de Riemann é um \emph{ponto singular isolado}
+de uma função $f(z)$, se $f$ é holomorfa em uma
+vizinhança perfurada do $a$. O ponto singular isolado $a$ é chamado
+\begin{itemize}
+\item \label{d:removivel} \emph{removível} (ou \emph{aparente})
+se existe $\lim_{z\to a} f(z) = A \in \C$,
+\item \label{d:polo} um \emph{polo} de $f$ se $\lim_{z\to a} f(z) = \infty \in \Ch$,
+\item \label{d:essencial} singularidade \emph{essencial} em todos os outros casos.
+\end{itemize}
+\end{defin}
+
+\begin{problema}
+Provar que $\infty$ é um ponto singular isolado de uma função $f(z)$
+se e só se $0$ é um ponto singular isolado de $g(w) = f(w^{-1})$.
+\end{problema}
+
+\begin{problema}
+Seja $f(z)$ holomorfa em $a$ e $f(a)\neq 0$.
+\begin{enumerate}
+\item Provar que existe $R>0$
+tal que $f(z)\neq 0$ para qualquer $z\in B(a,R)$.
+\item Provar que $g(z) = \frac{1}{f(z)}$ é holomorfa em $B(a,R)$.
+\item Relacionar os coeficientes de Taylor de $f$ e $g$ em $a$.
+\end{enumerate}
+\end{problema}
+
+
+Lembra que 
+pelo \Cref{t:anel-laurent}
+uma função $f$ holomorfa em um disco perfurado $P(a,R)$
+tem a série de Laurent $f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n$.
+
+
+\begin{teorema}[Riemann]
+\label{t:riemann-isolados}
+Seja $a$ um ponto singular isolado de uma função
+$f(z) = \sum_{n=-\infty}^\infty c_n (z-a)^n$.
+Então
+\begin{enumerate}
+\item \label{i-removivel} a singularidade $a$ é removível
+$\iff |f(z)|\leq M$ em uma vizinhança de $a$
+$\iff c_n = 0$ para todos $n<0$, i.e. a série de Laurent de $f$ é uma série de Taylor
+\[ f(z) = \sum_{n\geq 0} c_n (z-a)^n; \]
+\item \label{i-polo} a singularidade $a$ é um polo
+$\iff \exists N<0: \, c_{N}\neq 0 \,\textit{ e }\, \forall n<N:\, c_n = 0$,
+i.e. a série de Laurent é finita no lado esquerda
+\[ f(z) = \sum_{n\geq N} c_n (z-a)^n . \]
+\end{enumerate}
+\end{teorema}
+\begin{proof}
+\eqref{i-removivel}: Suponha que $|f(z)|<M$ no $P(a,R) = \{z\in\C: 0<|z-a|<R\}$.
+Pela desigualdade \eqref{eq:desigualdade-cauchy} de Cauchy temos
+$|c_n| \leq \frac{M}{\rho^n}$ para $0<\rho<R$,
+logo para $n<0$ temos $|c_n|=0$, então $\lim_{z\to a} f(z) = c_0$,
+e além disso se redefinimos $f(a)$ por $c_0$ a função $f$ é holomorfa em $a$.
+
+\eqref{i-polo}: Suponha que $|f(z)|>0$ em um disco perfurado $P(a,R)$.
+Então $g(z) = \frac{1}{f(z)}$ é holomorfa em $P(a,R)$,
+e um ponto $a$ é uma singularidade removível da função $g$.
+Logo $g(z) = (z-a)^N \cdot \tilde{g}(z)$ com
+$\tilde{g}(z) = \sum_{n=0}^\infty b_n (z-a)^n$ holomorfa e inversível ($b_0\neq 0$),
+seja $\tilde{f}(z) = \frac{1}{\tilde{g}(z)} = \sum_{n=0}^\infty \tilde{c}_n (z-a)^n$.
+Temos $\tilde{c}_0 = \frac{1}{b_0}\neq 0$ e em disco perfurado
+$\sum_{n=-\infty}^\infty c_n (z-a)^n =
+f(z) = (z-a)^{-N} \tilde{f}(z) = (z-a)^{-N}\cdot \sum_{m=0}^\infty \tilde{c}_m (z-a)^m$,
+logo $c_n = \tilde{c}_{n+N}$, e o enunciado segue. Outro lado é óbvio:
+$\lim f(z) = \lim \tilde{f}(z) (z-a)^{-N} = \tilde{f}(a) \lim_{z\to a} (z-a)^{-N} = \infty$ para qualquer $N>0$.
+\end{proof}
+
+\begin{defin}
+Digamos que $f$ é \emph{meromorfa} em $a\in\C$ se $f=0$ em uma vizinhança de $a$
+\emph{ou} $f$ é holomorfa em uma vizinhança perfurada de $a$ e tem a série de Laurent
+finita para esquerda, i.e. de tipo
+$f(z) = (z-a)^N \cdot \sum_{n=0}^\infty c_n (z-a)^N$
+com $c_0\neq 0$.
+Neste caso
+\begin{itemize}
+\item digamos que $f$ tem a \emph{valoração} igual ao $N\in\Z$ em $a$;
+notação $\nu_a(f) = N$;
+\item em caso $f=0$ podemos formalmente definir
+a valoração de nulo como $\nu_a(0) := +\infty$ (isso não é um número inteiro).
+\item se $N = \nu_a(f) > 0$ digamos que $f$ tem \emph{zero de ordem} $N>0$ no ponto $a$,
+ou que a \emph{ordem de zero} de $f$ em $a$ é igual ao $N$.
+\item se $N = \nu_a(f) < 0$ digamos que $f$ tem \emph{polo de ordem} $-N>0$ no ponto $a$,
+ou que a \emph{ordem de polo} de $f$ em $a$ é igual ao $-N$.
+\end{itemize}
+As vezes usamos \emph{nulo} como um sinônimo de zero.
+Similarmente digamos que uma função $f(z)$ é meromorfa em um ponto $z=\infty$ se ela é holomorfa
+em vizinhança perfurada de $\infty$ e tem a série de Laurent finita para direita
+$f(z) = z^{-N} \cdot \sum_{n=0}^\infty c_n z^{-n}$,
+equivalentemente $g(w) = f(w^{-1})$ é meromorfa em $w=0$.
+Definimos a valoração $\nu_\infty(f(z))$ da função $f$ no ponto $\infty$ 
+como $\nu_\infty(f(z)) = \nu_{w=0}(g(w)) = N$, e similarmente digamos
+que $f$ tem zero (ou polo) de ordem $N$ (ou $-N$) no ponto infinito.
+\end{defin}
+
+\begin{problema}
+Sejam $f$ e $g$ as funções meromorfas em um ponto $a\in\Ch$
+e não identicamente nulos.
+Provar que
+\begin{enumerate}
+\item $f$ é meromorfa em $a \iff \frac{1}{f}$ é meromorfa em $a$,
+\item $\nu_a(\frac{1}{f}) = -\nu_a(f)$,
+\item $f$ tem polo de ordem $N$ no $a \iff \frac{1}{f}$ tem nulo de ordem $N$ no $a$,
+\item a função $f\cdot g$ é meromorfa no ponto $a$,
+\item $\nu_a(f\cdot g) = \nu_a(f) + \nu_a(g)$,
+\item a função $f+g$ é meromorfa no ponto $a$,
+\item $\nu_a(g)>\nu_a(f) \implies \nu_a(f + g) = \nu_a(f)$,
+\item $\nu_a(f + g) \geq \min(\nu_a(f), \nu_a(g))$,
+\item $\nu_a(f)\geq 0 \iff f$ é holomorfa em $a$,
+\item $\nu_a(f) = 0 \iff f$ é holomorfa em $a$ e $f(a)\neq 0$,
+então em uma vizinhança de $a$ existe uma função holomorfa $\frac{1}{f}$,
+\item para qualquer transformada de Möbius $\phi(w) = \frac{aw+b}{cw+d}$ com
+$ad\neq bc$ a função $\phi(f(z))$ é meromorfa no $a$.\footnote{Menos um caso de $f$
+a função constante igual ao $\frac{-d}{c}$: neste caso a imagém é uma função constante
+e igual ao $\infty$.}
+\end{enumerate}
+\end{problema}
+
+\begin{teorema}[Briot--Bouquet 1859, Sokhotski 1868, Casorati 1868, Weierstrass 1876]
+Seja $a$ um ponto isolado singular essencial de uma função $f$.
+Para qualquer $A\in\Ch = \C\bigcup\infty$ existe uma sequência
+$a_n$ com limite $\lim a_n = a$ tal que $\lim f(a_n) = A$.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{t:riemann-isolados}\eqref{i-removivel} de Riemann
+a função $f(z)$ não é limitada \emph{em qualquer vizinhança perfurada} de $a$,
+logo $\forall m,\exists a_m: |a_m-a|<\frac{1}{m} \textit{e} |f(a_m)|>m$,
+então $\lim_{m\to\infty} a_m = a$ e $\lim_{m\to\infty} f(a_m) = \infty$,
+o que mostra o caso $A=\infty$.
+
+Para $A\in\C$ considere $g(z) = \frac{1}{f(z)-A}$.
+Se não existe $a_n$ tais que $\lim a_n = a$ e $f(a_n) = A$,
+então $a$ é um ponto singular isolado de $g$. Alem dísso,
+$a$ é uma singularidade essencial de $g$.\footnote{Verifique usando o última problema.}
+Então existe uma sequência $a_n$ tal que $\lim a_n = a$ e $\lim g(a_n) = \infty$.
+Neste caso $\lim f(a_n) = \lim \big(A + \frac{1}{g(a_n)}\big) = A$.
+\end{proof}
+
+\begin{problema}
+Seja $D\subset\Ch$ uma região na esfera de Riemann.
+Suponha que $f : D \to \C$ é holomorfa na $D$,
+tem polos em distintos pontos $a_1,a_2,\dots$,
+e existe o limite $\lim_{n\to\infty} a_n = a\in\Ch$.
+Provar que para qualquer $A\in\C\bigcup\infty$ existe uma sequência
+$b_1,b_2,\dots\in D$ tal que $\lim_{n\to\infty} b_n = a$
+e $\lim_{n\to\infty} f(b_n) = A$.
+\end{problema}
+
+\begin{problema}
+Provar que qualquer função $f: \Ch \to \C$
+holomorfa na esfera de Riemann (em particular, holomorfa em ponto $\infty$)
+com valores em $\C$ é constante.
+\end{problema}
+
+\begin{defin}[Funções meromorfas em uma região]
+Seja $D\subset\Ch$ uma região na esfera de Riemann,
+e $S\subset D$ um subconjunto dela,
+e $f : D - S\to\C$ uma função holomorfa,
+tal que cada ponto $a\in S$ é um polo ou
+um ponto singular removível.\footnote{Em particular,
+para cada $a\in D$ existe uma vizinhança perfurada de $a$
+tal que $f$ é definida e holomorfa nela.}
+Neste caso digamos que $f$ é meromorfa na região $D$.
+
+Um jeito mais agradável é definir as funções meromorfas em $D$
+como as funções $f: D\to \Ch$ com codomínio na esfera de Riemann
+que são holomorfas em cada ponto $a\in D$, onde
+em caso $f(a) = \infty$ digamos que $f : D\to\Ch$ é holomorfa em $a$
+(considerada como função com valores em $\Ch$)
+se $\frac{1}{f}$ é holomorfa em $a$ (considerada como função com valores em $\C$).
+\end{defin}
+
+\begin{problema}
+Seja $f: \Ch \to \Ch$ uma função meromorfa na toda esfera de Riemann.
+Provar que $f$ é uma função racional, i.e. existe um par de polinómios
+$P(z) = p_0 + \dots + p_n z^n$ e $Q(z) = q_0 + \dots + q_m z^m \neq 0$
+tais que $f(z) = \frac{P(z)}{Q(z)}$.\footnote{Dica:
+considere $g(z) = \prod_{a\in\C} (z-a)^{\nu_a(f)}$,
+define $h(z) = \frac{f(z)}{g(z)}$, compute $\nu_a(h)$,
+mostre que $h$ é inteira,
+mostre que $h$ é limitada,
+mostre que $h$ é constante.
+Se tem problemas com penúltimo passo use o teorema de resíduo da próxima seção
+(isso não é necessário e é possível fazer o problema).
+
+Outro jeito: considere a diferença entre $f$ e a soma
+das partes principais em todos os polos dela,
+mostre que é constante pelo \Cref{t:liouville}.}
+\end{problema}
+
+
+\begin{problema}[Independência da coordenada local]
+\label{p:valoracao-independencia}
+Sejam
+$W(z)$ e $Z(w)$ umas funções meromorfas
+em pontos $z=a\in\Ch$ e $w=b\in\Ch$, respetivamente,
+tais que
+as funções $W(z),Z(w)$ (localmente) são reversas uma de outra:
+$W(a) = b$, $Z(b) = a$,
+$Z(W(z)) = z$ em vizinhança de $z=a$
+e $W(Z(w)) = w$ em vizinhança de $w=b$.
+Para uma função $f(z)$ define
+\[ g(w) := f(Z(w)). \]
+Mostre que
+\begin{enumerate}
+\item $a$ é um ponto singular isolado de $f(z)$ $\iff$ $b$ é um ponto singular isolado de $g(w)$,
+\item $f(z)$ tem singularidade removível em $z=a$ $\iff$ $g(w)$ tem singularidade removível em $w=b$,
+\item $f(z)$ é meromorfa em $z=a$ $\iff$ $g(w)$ é meromorfa em $w=b$,
+\item para $k\in\Z$ $f(z)^k$ é holomorfa em $z=a$ $\iff$ $g(w)^k$ é holomorfa em $w=b$,
+\item $\nu_{z=a}(f) = \nu_{w=b}(g)$, se $f(z)$ é meromorfa em $z=a$.\footnote{Dica:
+use os outros itens e aditividade das valorações ($\nu(h_1 h_2) = \nu(h_1) + \nu(h_2)$)
+para deduzir o problema de um caso $f(z) = z-a$ (ou $f(z) =z^{-1}$ se $a=\infty$) .
+Neste caso mostre que $Z'(a) \neq 0$ para verificar que $\nu_{w=b}(Z(w)-a) = 1$.
+Outro jeito de fazer o último e alguns outros itens é analítico:
+construa um ciclo $\gamma$ em vizinhança de $z=a$ tal que $W(\gamma)$ é
+um ciclo em vizinhança de $w=b$ e eles satisfazem $I(\gamma,z=a) = 1 = I(W(\gamma),w=b)$,
+depois use as fórmulas de Cauchy para coeficientes das séries de Laurent,
+e a fórmula de troca de variável em integráis.}
+\end{enumerate}
+\end{problema}
+
+\subsection{Generalização para diferenciais}
+Vamos dizer que uma forma diferencial $\omega$ tem um ponto singular isolado $a\in\C$
+se $\omega = f(z) dz$ e o ponto $a$ é um ponto singular isolado da função $f$.
+Neste caso digamos que a diferencial $\omega$ tem singularidade removível, polo ou essencial em $a$
+se a função $f$ a tem. 
+
+A diferencial $\omega = f(z) dz$ é meromorfa em $a\in\C$ se a funcão $f$ é, e neste caso definimos
+a valoração
+\[ \nu_a(\omega) := \nu_a(f),\]
+e a ordem de zero/polo como o valor absoluto da valoração dependente do sinal dela
+(positivo -- zero, negativo -- polo).
+
+Em caso $a=\infty\in\Ch$ os tipos de singularidade são definidos similarmente,
+mas preste atenção para a definição e a computação da valoração $\nu_\infty(\omega)$.
+Ad hoc, podemos definir 
+\begin{equation}
+\nu_{z=\infty}(f(z) dz) = -2 + \nu_{z=\infty}(f),
+\end{equation}
+mas vamos ver porque a definição é razoável.
+
+Neste caso não podemos usar $z$ como a coordenada,
+mas em vez dela podemos considerar $w = z^{-1}$. 
+Se $\omega = f(z) dz$ em vizinhança perfurade de $\infty$, então
+definimos $g(w) := f(w^{-1})$, e 
+subsituindo $z\mapsto w^-1$
+obtemos
+$dz = -\frac{dw}{w^2}$ e $\omega = f(z) dz = \frac{-g(w)}{w^2} dw$,
+logo 
+\[ \nu_{z=\infty} (f(z) dz) = \nu_{w=0} (\frac{-g(w)}{w^2} dw) 
+ = -2 + \nu_{w=0} (g(w)) = -2 + \nu_{z=\infty} (f(z)). \]
+Se $f(z)$ é meromorfa em $z = \infty$ então em um disco perfurado em $\infty$ temos a série de Laurent
+\[ f(z) = \sum_{n=-\infty}^N c_n z^n, \]
+com $\nu_\infty(f) = -N$
+logo
+\[ g(w) = \sum_{m=-N}^\infty c_{-m} z^m, \]
+então $\nu_{w=0} (g(w)) = -N = \nu_{z=0} (f(z))$.
+
+\begin{problema}
+Sejam $g$ uma função meromorfa em um ponto $a\in\Ch$
+e $\omega,\omega_1,\omega_2$ umas formas diferenciais meromorfas em $a\in\Ch$
+Provar que
+\begin{enumerate}
+\item a diferencial $f\cdot \omega$ é meromorfa no ponto $a$,
+\item $\nu_a(g\cdot \omega) = \nu_a(g) + \nu_a(\omega)$,
+\item a diferencial $\omega_1 + \omega_2$ é meromorfa no ponto $a$,
+\item $\nu_a(\omega_2) > \nu_a(\omega_1) \implies \nu_a(\omega_1+\omega_2) = \nu_a(\omega_1)$,
+\item $\nu_a(\omega_1 + \omega_2) \geq \min(\nu_a(\omega_1), \nu_a(\omega_2))$,
+\item $\nu_a(\omega) \geq 0 \iff \omega$ é holomorfa em $a$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}[Independência da coordenada para formas]
+\label{p:valoracao-forma-independencia}
+Sejam $a,b\in\Ch$ e $W(z),Z(w)$ como no \Cref{p:valoracao-independencia},
+e $\omega = f(z) dz$ uma forma diferencial com singularidade isolada em $z=a$.
+Define $g(w) = g(Z(w))$ e
+\[ \omega_2 := g(w) Z'(w) dw. \]
+Mostre que
+\begin{enumerate}
+\item $z=a$ é um ponto singular isolado de $\omega$ $\iff$ $w=b$ é um ponto singular isolado de $\omega_2$,
+\item $\omega$ tem singularidade removível em $z=a$ $\iff$ $\omega_2$ tem singularidade removível em $w=b$,
+\item $\omega$ é holomorfa em $z=a$ $\iff$ $\omega_2$ é holomorfa em $w=b$,
+\item $\omega$ é meromorfa em $z=a$ $\iff$ $\omega_2$ é meromorfa em $w=b$,
+\item se $a,b\neq\infty$, então
+as funções $Z'(w)^{\pm 1}$ são holomorfas em $z=a$
+e as funções $W'(z)^{\pm 1}$ são holomorfas em $w=b$,
+e $\nu_{z=a} (W'(z)) = 0 = \nu_{w=b} (Z'(w))$,
+\item $\nu_{z=a}(\omega) = \nu_{w=b}(\omega_2)$, se $\omega$ é meromorfa em $z=a$.\footnote{Dica:
+usando os outros itens e \Cref{p:valoracao-independencia}
+basta de provar-lhe para o caso $\omega = dz$. Neste caso substituindo $z = Z(w)$
+obtemos $\omega_2 = Z'(w) dw$, logo (para o subcaso $a,b\neq\infty$) obtemos
+$\nu_{z=a} (dz) = 0 = 0+0 = \nu_{w=b}(Z') + \nu_{w=b}(dw) = \nu_{w=b}(Z'(w)\cdot dw)$.
+Similarmente considere três mais subcasos quando $a=\infty$ ou $b=\infty$. }
+\end{enumerate}
+\end{problema}
+
+É comum considerar $\omega = f(z) dz$ e $\omega_2 = g(w) Z'(w) dw$ como uma forma diferencial só,
+mas escrita em diferentes coordenadas locais $z$ e $w$. 
+Similarmente $f(z)$ corresponde à $g(w) = f(Z(w))$
+e o ponto $z=a$ corresponde a $w=b (=W(a))$.
+Os \Cref{p:valoracao-independencia,p:valoracao-forma-independencia} mostre, que
+a valoração em um ponto não depende da escolha de coordenada local.
+
+
+\section{Resíduos.}
+
+\begin{defin}[Resíduos de funções e formas diferenciais]
+\begin{enumerate}
+\item Suponha que $Q = \{ z = a \} \in D \subset \Ch$ é um ponto singular isolado de uma forma diferencial $\omega$
+i.e. $\omega$ é holomorfa em uma vizinhança perfurada $P(a,R)$.
+O \emph{resíduo} $\res_Q \omega$ da forma diferencial $\omega$ em um ponto $Q = \{ z = a \}$
+é definido como a integral
+\begin{equation}
+\res_Q \omega := \frac{1}{2\pi i} \int_\gamma \omega,
+\end{equation}
+onde $\gamma$ é um círculo $\phi \mapsto a + \rho \exp(i\phi)$ com $\rho<R$ e a orientação antihorária
+(para $a=\infty$ escolhemos $\gamma$
+como $\phi \mapsto \frac{1}{\rho} \exp(-i\phi)$,
+então como uma volta em sentido antihorário através de $\infty$
+esolhemos uma volta em sentido horário através de zero).\footnote{
+Mais geralmente, podemos escolher qualquer ciclo $\gamma \in C_1(P(a,R))$
+no disco perfurado de holomorficidade $P(a,R)$
+de índice um, i.e.
+$I(\gamma,a) = \frac{1}{2\pi i} \int_\gamma \frac{dz}{z-a} = 1$ para $a\neq\infty$
+e $\frac{1}{2\pi i} \int_\gamma \frac{dz}{z} = -1$ para $a=\infty$. Lembra que
+se $w=z^{-1}$ então $\frac{dz}{z} = -\frac{dw}{w}$,
+e $w$ é uma coordenada local em vizinhança de $z=\infty$.
+A fórmula tem sentido se o ciclo $\gamma$ não passa de ponto $z=0$.
+Se passa podemos escolher $b\in\C$ tal que $\gamma$ não passa de $b$
+e computar o íncice em $\infty$ como $\frac{1}{2\pi i} \int_\gamma \frac{-dz}{z-b}$.}
+\item Seja $\omega = f(z) dz$ e para $a\neq\infty$
+considere a série de Laurent da $f$ no disco perfurado $P(a,R)$:
+\[ f(z) = \sum_{n\in\Z} c_n(a;f) (z-a)^n. \]
+Pelo \Cref{t:anel-laurent} o  resíduo da forma diferencial
+$\omega = f(z) dz$ em ponto $z=a$ (com respeito de coordenada $z$ ou $z-a$)
+é igual ao coeficiente $c_{-1}(a;f)$:
+\begin{equation}
+\res_Q \omega = \res_{z=a} f(z) dz =\frac{1}{2\pi i} \int_\gamma f(z) dz = c_{-1}(a;f).
+\end{equation}
+\item É menos natural, mas comum considerar o \emph{resíduo de uma função} $f(z)$
+\emph{com respeito de uma coordenada local} $z-a$ como $\res_{z-a} f = \res_{z=a} f(z) := \res_{z=a} f(z) dz$.
+\end{enumerate}
+\end{defin}
+
+\begin{problema}
+Compute
+\begin{enumerate}
+\item $\res_{z=0} \frac{1}{z} dz$,
+\item $\res_{z=0} \frac{1}{2z} dz$
+\item $\res_{z=0} \frac{1}{z^2} dz$, % = 0$,
+\item % $\res_{z=0} \frac{d(w-w^2)}{(w-w^2)^2} = 
+      $\res_{w=0} \frac{1-2w}{(w-w^2)^2} dw$, % = 0$,
+\item $\res_{w=0} \frac{1}{(w-w^2)^2} dw$. % = =2
+\end{enumerate}
+Veja que geralmente o resíduo de uma função depende da escolha de coordenada local,
+i.e. geralmente $\res_{z=a} f(z) dz \neq \res_{w=b} f(Z(w)) dw$ ainda
+para $a,b,Z,W$ como no \Cref{p:valoracao-independencia}.
+\end{problema}
+
+\begin{problema}[Independência de resíduo da coordenada local]
+Sejam $a,b,Z(w),W(z),f(z),g(w),\omega,\omega_2,$ como no \Cref{p:valoracao-forma-independencia},
+i.e. $b=W(a)$, $g(w) = f(Z(w))$ e $\omega_2 = g(Z(w)) Z'(w) dw$ para $\omega = f(z) dz$.
+Define pontos $Q = \{ z=a \}$ e $Q_2 = \{ w=b \}$.
+Verifique que
+\[ \res_Q \omega = \res_{Q_2} \omega_2, \]
+i.e. que \emph{o resíduo da forma diferencial não depende de escolha de uma coordenada local}
+(em contraste com ``o resíduo da função''').
+\end{problema}
+
+\begin{problema}
+\begin{enumerate}
+\item Provar que $\res_Q \omega = 0$ se $\omega$ é holomorfa em $Q$ (ou tem singularidade removível).
+\item Dar um exemplo de $\omega$ tal que $\res_Q \omega = 0$,
+mas a singularidade isolada $Q$ não é removível.
+\end{enumerate}
+\end{problema}
+
+\begin{teorema}[sobre resíduos]
+\label{t:residuos}
+Seja $\omega = f(z) dz$ holomorfa na região $D \subset \Ch$ exceto um subconjunto $S\subset D$
+de pontos singulares isolados, e $G\subset D$ um compacto tal que $\partial G$ não contém os pontos singulares.
+Então
+\begin{equation}
+\frac{1}{2\pi i} \int_{\partial G} \omega = \sum_{a\in G} \res_{z=a} \omega,
+\end{equation}
+onde a soma no lado direito é finita,
+i.e. a somante é zero fora de conjunto finito $S\bigcap G$.
+\end{teorema}
+\begin{proof}
+Primeiro veja que o conjunto $S\bigcap G$ é finito,
+porque ele é compacto e discreto.\footnote{Também uma das definições de compacto
+diz que qualquer sequência infinita não é discreta, i.e. tem um ponto de aglomeração.}
+Para cada ponto $a_j\in S\bigcap G$ escolha uma vizinhança $B(a_j,R_j)$ suficiente pequena
+in tal maneira que $\omega$ é holomorfa em vizinhança perfurada $P(a_j,R_j)$
+e todas as vizinhanças são disjuntas.\footnote{Para segundo basta de tomar $R_j$ menor de que
+mínimo de todas $|a_j-a_k|$ para $j\neq k$.}
+Agora considera o compacto $K = G - \bigcup_j B(a_j,R_j)$ e aplica \Cref{t:cauchy-k} para obter
+\[ \int_{\partial K} \omega = 0. \]
+Mas $\partial K = \partial G - \sum_j \gamma_j$, onde $\gamma_j \subset P(a_j,R_j)$
+são os círculos pequenos em sentido antihorário através dos pontos $a_i$.
+Logo
+\[ 0 = \frac{1}{2\pi i} \int_{\partial K} \omega = \frac{1}{2\pi i} \int_{\partial G - \sum \gamma_j} \omega
+= \frac{1}{2\pi i} \int_{\partial G} \omega - \sum \res_{z=a_j} \omega. \]
+\end{proof}
+
+\begin{cor}[Uma lei de reciprocidade para resíduos]
+\label{reciprocidade-residuos}
+Seja $\omega = g(z) dz$ uma forma diferencial holomorfa na esfera de Riemann $\Ch$
+exceto um conjunto finito de pontos singulares $S$. Então
+\begin{equation}
+\sum_{Q\in\Ch} \res_Q \omega = 0.
+\end{equation}
+\end{cor}
+\begin{proof}
+É o caso particular do \Cref{t:residuos} quando $D = \Ch$,
+desde que a esfera é compacta e a fronteira dela é vazia.
+\end{proof}
+
+\begin{problema}
+Seja $f : \C \to \C$ uma função inteira. Provar que
+$\res_\infty f(z) dz = 0$.
+\end{problema}
+
+
+\subsection{Valor principal de Cauchy.}
+É um tópico elementar, que é fácil discutir usando resíduos,
+mas ainda não o tocamos nas aulas. Logo vou expandir essa seção depois.
+
+\section{Derivada logarítmica. Princípio do argumento.}
+
+\subsection{Derivada logarítmica. Teorema de Gauss--Lucas.}
+
+\begin{defin}[Derivada logarítmica]
+Seja $f : D \to \C$ uma função holomorfa
+e $S = Z(f) := \{ z\in D: f(z) = 0 \}$ o conjunto de nulos dela,
+então a função $\frac{1}{f}$ é holomorfa no $D-S$.
+Uma \emph{derivada logarítmica} de $f$ é uma forma diferencial
+\begin{equation}
+\dlog f := \frac{df}{f} = \frac{f'(z)}{f(z)} dz.
+\end{equation}
+As vezes a função $\frac{\dlog f}{dz} = \frac{f'(z)}{f(z)}$ também é chamada uma \emph{derivada logarítmica}
+\emph{com respeito de coordenada} $z$.
+\end{defin}
+
+\begin{problema}
+Suponha que existe uma função $g: D-S\to\C$ tal que $\exp(g(z)) = f(z)$.
+Provar que neste caso $\dlog f = dg$.
+\end{problema}
+
+A função $g=\log(f)$ pode não existir na região $D$, então $\dlog f$ existe em generalidade
+maior de que $\log f$.
+
+Um exemplo de utilidade de derivada logarítmica é a seguinte demonstração do
+\begin{teorema}[Gauss--Lucas]
+As raízes complexas da derivada $P'(z)$ de um polinómio não constante $P(z)\in\C[z]-\C$
+são localizadas dentro
+do fecho convexo das raízes do polinómio $P$ mesmo.
+\end{teorema}
+\begin{proof}
+Como o primeiro passo, vamos usar o teorema fundamental de álgebra (\cref{teorema-fundamental-algebra})
+para derivar que existem $u_1,\dots,u_n \in \C$ e $\alpha \in \C^*$ tais que
+\[ P(z) = \alpha \cdot (z-u_1) \cdot \dots \cdot (z-u_n),\]
+logo
+\[ \frac{P'(z)}{P(z)} = \sum_{k=1}^n \frac{1}{z-u_k} . \]
+Seja $w$ uma raiz da derivada: $P'(w)=0$. Se $P(w)=0$ então existe $j$ tal que $w=u_j$,
+logo $w$ é no fecho convexo de $u_j$ só. Senão, o valor$\frac{P'(w)}{P(w)} = 0$
+da derivada logarítmica de $P$ com respeito de $z$ em $z=w$ é igual a zero, então
+$0 = \sum_{k=1}^n \frac{1}{w-u_k}$.
+Em seguida vamos dar duas demonstrações usando as duas duais definições do fecho convexo.
+
+Conjugando a equação obtemos $0 = \sum_{k=1}^n \frac{1}{\ol{w-u_k}}$,
+i.e. $0 = \sum_{k=1}^n |w-u_k|^{-2}\cdot (w-u_k)$,
+e regrupando os termos com $w$ temos
+\[ \big(\sum_{k=1}^n |w-u_k|^{-2}\big) \cdot w = \sum_{k=1}^n |w-u_k|^{-2} u_k. \]
+Logo $z = \sum_{k=1}^n p_k u_k$
+onde os coeficientes
+$p_k := \frac{|w-u_k|^{-2}}{\sum_{j=1}^n |w-u_j|^{-2}} \geq 0$
+são reais não negativos e satisfazem $\sum_{k=1}^n p_k = 1$.
+
+Outra definição de fecho convexo é a interseção de todos os semiplanos que conted o conjunto de raízes de $P$.
+Logo para provar que $w$ pertence nele baste de provar que $w$ pertence ao cada destes semiplanos.
+Escolhemor uma transformação $z\mapsto a z_2 + b$ tal que a imagem de semiplano é um semiplano superior
+$\{\Im(z_w)>0\}$.
+Ele também manda as raízes de $P(z)$ às raízes de $Q(z_2) = P(az+b)$ e as raízes da derivada
+$P'(z)$ às raízes de $Q'(z_2)$. Então basta de derivar uma contradição de $\forall j:\,\Im(u_j)>0$
+e $\Im(w)\leq 0$. Temos $\Im(w-u_j) = \Im(w)-\Im(u_j)<0$,
+logo $\Im((w-u_j)^{-1}) = \frac{-\Im(w-u_j)}{|w-u_j|^2} > 0$,
+então $0 = \Im(0) = \Im(\sum_{j=1}^n (w-u_j)^{-1}) = \sum_{j=1}^n \Im((w-u_j)^{-1}) > 0$, i.e. $0>0$,
+e o enunciado segue ex falso.
+\end{proof}
+
+\begin{problema}
+\label{p:dlog-homomorfismo}
+Mostre que
+\begin{enumerate}
+\item $\dlog (fg) = \dlog f + \dlog g$,
+\item $\dlog \frac{1}{f} = -\dlog f$,
+\item $\dlog \frac{f}{g} = \dlog f - \dlog g$,
+\item $\dlog f^k = k \dlog f$ para todos $k\in\Z$ (positivos ou negativos).
+\item $\dlog (f^a g^b) = a \dlog f + b \dlog g$ para todos inteiros $a,b,\in\Z$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+\label{p:dlog}
+Dar um exemplo de $g$ não meromorfa em $a$, tal que $\dlog g$ é meromorfa em $a$.
+
+Suponha que $f$ é meromorfa em $a$. Mostre que
+\begin{enumerate}
+\item $\dlog f$ é meromorfa em $a$,
+\item $\dlog f$ é holomorfa em $a$ $\iff$ $f$ é holomorfa em $a$ e $f(a)\neq 0$.
+\item $\nu_a \dlog(z-a) = -1$,
+\item $\res_a \dlog(z-a) = 1$,
+\item $\res_a \dlog f = 0$ se $\nu_a(f) = 0$,
+\item $\res_a \dlog f = \nu_a(f)$.
+\end{enumerate}
+\end{problema}
+
+\subsection{Número de nulos, leis da reciprocidade, princípio de argumento}
+
+\begin{teorema}
+\label{t:dlog-val}
+Suponha que uma função $f$ é meromorfa na região $D$ e $G\subset D$
+é um compacto tal que a fronteira $\partial G$ dele não contem zeros ou polos de $f$. Então
+\begin{equation}
+\label{eq:dlog-val}
+\frac{1}{2\pi i} \int_{\partial G} \dlog f = \sum_{a\in G} \nu_a(f) = N-P
+\end{equation}
+onde $N = \sum_{a\in G} \max(0,\nu_a(f))$ é o número de nulos de $f$ em $G$ contado com multiplicidades
+e $Z = \sum_{a\in G} \max(0,-\nu_a(f))$ é o número de zeros de $f$ em $G$ contado com multiplicidades.
+\end{teorema}
+\begin{proof}
+Aplicando \Cref{t:residuos} para o caso $\omega = \dlog f$ e usando \Cref{p:dlog} temos
+\[ \frac{1}{2\pi i} \int_{\partial G} \dlog f = \sum_{a\in G} \res_{z=a} \dlog f = \sum_{a\in G} \nu_a(f). \]
+\end{proof}
+
+\begin{cor}[Lei da reciprocidade para valorações de funções]
+\label{reciprocidade-valoracoes}
+Seja $f : \Ch \to \Ch$ uma função meromorfa na toda esfera de Riemann. Então
+\begin{equation}
+\label{eq:reciprocidade-valoracoes}
+\sum_{P\in\Ch} \nu_P(f) = 0,
+\end{equation}
+i.e. número de nulos é igual ao número de zeros. Este número é chamado \emph{grau de uma função meromorfa}.
+\end{cor}
+
+\begin{problema}[Lei da reciprocidade para valorações de diferenciais]
+Seja $\omega = g(z) dz$ uma forma diferencial meromorfa na toda esfera de Riemann $\Ch$.
+Provar que
+\begin{equation}
+\label{eq:reciprocidade-valoracoes-formas}
+\sum_{P\in\Ch} \nu_P(\omega) = -2.
+\end{equation}
+\end{problema}
+
+\begin{prop}
+\label{p:dlog-indice}
+Sejam $f : D \to \Ch$ uma função meromorfa,
+$S\subset D$ um subconjunto isolado de polos e zeros dela,
+$\gamma \subset D - S$ um ciclo disjunto de zeros ou polos.
+Podemos considerar a imagem dele, um ciclo $f(\gamma) \subset \C^*$.
+Pela formula de troca nas integrais temos:
+\begin{equation}
+\frac{1}{2\pi i} \int_\gamma \dlog f = \frac{1}{2\pi i} \int_{f(\gamma)} \dlog w,
+\end{equation}
+ou seja
+\[ \int_\gamma \frac{f'(z)}{f(z)} dz = \int_{f(\gamma)} \frac{dw}{w} .\] 
+O número no lado direito é um invariante topológico do ciclo $f(\gamma)$
+conhecido como o \emph{índice} $I(f(\gamma),0)$ do ciclo $f(\gamma)$ com respeito do ponto $0\in\C$.
+Para o ciclo simples $C\subset\C^*$
+o índice $I(C,p)$ é igual ao número de voltas em sentido anti-horário
+que o cíclo $C$ faz ao redor do ponto $P$. Se um ciclo $C$ é uma união disjunta $C = \coprod C_i$
+dos ciclos simples $C_i$, o índice $I(C,p)$ é igual à soma $I(C,p) = \sum I(C_j,p)$.
+\end{prop}
+
+Graças a discussão do \Cref{p:dlog-indice}
+podemos reformular \Cref{t:dlog-val} da seguinte maneira ``visual'':
+\begin{teorema}[Princípio de argumento, Cauchy, 1831, 1855]
+\label{t:argumento}
+Em presuposições de \Cref{t:dlog-val} o número $N-P = \sum_{a\in G} \nu_a(f)$
+é igual à soma das mudançãs de argumento $\arg f$ sobre todas as componentes de fronteira $\partial G$,
+dividida por $2\pi$, que notaremos por $\Delta_{\partial G} \arg(f)$.
+\end{teorema}
+\begin{proof}
+Pela fórmula de Newton--Leibniz a integral de $\int_\gamma \omega$ ao redor de um ciclo $\gamma$ é igual
+a mudança de primitiva $F(z) = \int_{z_0}^z \omega$ continuada ao redor de caminhos de $\gamma$.
+A primitiva de $\dlog f$ é $g=\log f$. Se $w=f(z)\neq0$ então $w = |w| e^{i\arg w}$
+e $\log(w) = \log(|w|) + i\cdot \arg(w)$,
+i.e. o argumento $\arg(w)$ é a parte imaginária do logaritmo $\log(w)$.
+A parte imaginária do logaritmo é uma função bem definida, então
+$\int_\gamma \dlog f(z) = \int_{f(\gamma)} \dlog w$
+é igual à mudança de argumento de $w=f(z)$ ao redor de $f(\gamma)$.
+\end{proof}
+
+\subsection{Teorema de Rouché. Teorema fundamental de álgebra.}
+
+\begin{teorema}[Rouché]
+\label{t:rouche}
+Sejam $f$ e $g$ holomorfas na região fechada $G$ com fronteira $\partial G$.
+Suponha que $|f(z)| > |g(z)|$ para qualquer $z\in\partial G$ na fronteira.
+Então as funções $f$ e $f+g$ tem o igual número de zeros em $G$ (contando as multiplicidades), i.e.
+\[ \sum_{a\in G} \nu_a(f) = \sum_{a\in G} \nu_a(f+g) .\]
+\end{teorema}
+\begin{proof}
+Aplicando \Cref{eq:dlog-val} para $f$ e $f+g$ temos
+\begin{align*}
+N(f) = \sum_{a\in G} \nu_a(f)   &= \Delta_{\partial G} \arg(f),\\
+N(f+g) =\sum_{a\in G} \nu_a(f+g) &= \Delta_{\partial G} \arg(f+g).
+\end{align*}
+Logo
+\[ N(f+g)-N(f) = \Delta_{\partial G} \arg(1+\frac{g}{f}), \]
+mas desde $|\frac{g}{f}| < 1$ implica $\Re(\frac{g}{f})>-1$,
+logo $\Re(1+\frac{g}{f}) > 0$, i.e. o ângulo fica no semiplano direito,
+e a mudança dele é igual zero. Analiticamente podemos dizer que a função $\frac{f+g}{f}$
+tem uma primitiva no $\partial G$.
+
+Outra demonstração. Considere $F_\lambda = f + \lambda g$ para $\lambda\in[0,1]$.
+Pela desigualdade $|f(z)| > |g(z)|$ e desigualdade triangulas
+vejamos que $F_\lambda$ não é zero na fronteira $\partial G$.
+Logo $\dlog F_\lambda$ é forma holomorfa na $\partial G$
+e $\psi(\lambda) = \frac{1}{2\pi i} \int_{\partial G} \dlog F_\lambda$ existe para qualquer $\lambda\in[0,1]$.
+Graças a representação como um integral e (equi)continuidade de $F_\lambda(z)$
+vejamos que $\psi(\lambda)$ é contínua como função de $\lambda$. Mas também ela toma só valores inteiros.
+Qualquer função contínua com valores discretos é localmente constante.
+\end{proof}
+
+Já derivamos antes a primeira parte do teorema fundamental de álgebra (\cref{t:fundamental-algebra})
+do \Cref{t:liouville} de Liouville,
+mas vamos dar outra demonstração utilizando \Cref{t:rouche} de Rouché,
+também provando a segunda parte analiticamente e com mais informação sobre
+a localização das raízes.
+\tfa*
+\begin{proof}
+\eqref{tfa-1}: 
+Aplique o \Cref{t:rouche} de Rouché com $f(z) = c_n z^n$,
+$g(z) = c_0 + c_1 z + \dots + c_{n-1} z^{n-1}$ e $G = B(0,R)$
+para o raio $R$ suficientemente grande\footnote{Precisamos
+$1 > \max_{|z|=R} |c_n|^{-1} |c_0/z^N + \dots + c_{n-1}/z|$,
+então é suficiente tomar $R>\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.}
+para obter
+\[ N_{<R}(P) = N_{<R}(c_n z^n), \]
+onde o lado direito é igual ao $n$:
+\[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
+Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
+
+\eqref{tfa-2}: Use o fato, que já provamos que existe só finito número de raízes complexos de $P$
+e todas elas são localizadas dentro da bola $B(0,R)$. Então a função $Q(z)$ definida por
+\[ Q(z) = \prod_{u\in\C} (z-u)^{\nu_u(P)} \]
+é um polinómio de grau $n$, e a função racional $f(z) = \frac{P(z)}{Q(z)}$
+satisfaz $\nu_P(f) = 0$ para todos $P\in\C$.
+Pela lei de reciprocidade (\cref{eq:reciprocidade-valoracoes})
+\[ 0 = \sum_{P\in\Ch} \nu_P(f) = \nu_\infty(f) + \sum_{P\in\C} \nu_P(f) = \nu_\infty(f), \]
+logo $f$ é uma função inteira e holomorfa em $\infty$ (então limitada),
+e pelo \Cref{t:liouville} a função $f$ é igual ao constante
+\[ \alpha = \lim_{z\to\infty} f(z) = \lim_{z\to\infty} \frac{P(z)}{Q(z)} = \lim_{z\to\infty} \frac{c_n + O(1/z)}{1+O(1/z)} = c_n, \]
+logo $P(z) = c_n Q(z) = c_n (z-u_1) \dots (z-u_n)$.
+\end{proof}
+
+
+\section{Propriedades topológicas das funções meromorfas}
+
+Em seguida a função $f$ geralmente não é constante.
+Se $f(z)$ tem um polo em $z_0$ podemos considerar uma função $\frac{1}{f}$ holomorfa em $z_0$
+em vez de $f$, então vamos focar no caso $0\leq \nu_{z_0}(f) < \infty$.
+
+\begin{lema}
+\label{l:n-raizes}
+Sejam $w_0 =f(z_0)$,
+$0\leq n := \nu_{z=z_0}(f(z)-w_0) < \infty$ e $g(z) := \frac{(f(z)-w_0)}{(z-z_0)^n}$,
+i.e. 
+\[ f(z) = f(z_0) + (z-z_0)^n g(z) \]
+ com $n\geq 1$ e $g(z_0)\neq 0$.
+Então existem as vizinhanças $z_0 \in U \in D$ e $w_0 \in W \in f(D)$
+tais que $W\subset\Ch$ é aberta e por qualquer $w\in W-\{w_0\}$
+a equação $f(z) = w$ tem exatamente $n$ soluções distintas em $U$.
+\end{lema}
+\begin{proof}
+Pela holomorficidade de $f$ e $g$ existe $R>0$ tal que $g(z)\neq 0$
+e $f'(z)\neq 0$ para
+qualquer $0<|z-z_0|\leq R$. Seja $U = B(z_0,R)$ e 
+$\mu = \min_{|z-z_0|=R} |f(z)-w_0| > 0$. Considere $W = \{ w\in\C:\, |w-w_0|<\mu \}$.
+Para $w\in W - \{w_0\}$ temos
+\[ f(z) - w = (f(z) - w_0) + (w_0-w), \]
+onde $|w_0-w|$ é uma constante (não depende de $z$) menor de que $\mu$ ($|w_0-w|<\mu$),
+e na fronteira $|z-z_0|=R$ temos
+$|f(z) - w_0| \geq \mu$. Logo pelo \Cref{t:rouche} de Rouché
+as funções holomorfas $f(z)-w_0$ e $f(z)-w$ tem o mesmo número de nulos no $U$, contando as multiplicidades.
+Sabemos que $f(z)-w_0 = (z-z_0)^n g(z)$ tem o único nulo $z=z_0$ em $U$ com multiplicidade $n$.
+Se $\nu_{z=z_1}(f(z)-f(z_1))>1$ então $f'(z_1)=0$, mas escolhemos $R$ tal que 
+$\forall z\in B(z_0,R),\,f(z)=0 \implies z=z_0$, então todos os $n$ nulos de $f(z)-w$ são simples.
+\end{proof}
+
+\subsection{Teorema da função aberta. Critério de univalência.}
+Lembre que qualquer função $f: X\to Y$ é contínua se e só se
+todas a \emph{preimagens} $f^{-1}(V)$ dos conjuntos abertos $V\subset Y$ são abertos.
+Por exemplo, sabemos que qualquer função holomorfa é contínua.
+
+Uma função $f: X\to Y$ é chamada \emph{aberta} se todas as \emph{imagens} $f(U)$
+dos conjuntos abertos $U\subset X$ são abertos. Isso é, a imagem de qualquer bola $B(z_0,r)$
+contem uma bola $B(f(z_0),R)$ de algum raio $R(z_0,r)>0$.
+
+Claramente uma função $f(z) = 0$ de $\C$ para $\C$ não é aberta, como as outras funções contantes.
+Também a função $q: \R \to \R$ dada por $q(x) = x^2$ não é aberta,
+porque $q(\R) = [0,+\infty)$ não é um subconjunto aberto de $\R$.
+Em contraste,
+\begin{teorema}[sobre a função aberta]
+Qualquer função $f: D\to \Ch$ meromorfa não constante é aberta.
+Isso é se não constante $f$ é meromorfa na região $D$ então $f(D) \subset \Ch$ é uma região.
+\end{teorema}
+\begin{proof}
+Pelo \Cref{l:n-raizes} por qualquer ponto $z_0\in D$ existe uma vizinhança $f(z_0) \in W \subset \Ch$
+tal que $W\subset f(D)$.
+\end{proof}
+
+\begin{defin}
+\begin{enumerate}
+\item Uma função $f: D\to\Ch$ é chamada \emph{univalente} se ela é injetiva, i.e.
+$\forall z_1,z_2\in D, f(z_1) = f(z_2) \implies z_1 = z_2$.
+\item Uma função é \emph{localmente univalente} em ponto $P$, se existe uma vizinhança
+do $P$ no qual a sua restrição é univalente.
+\item Uma função é \emph{localmente univalente na região} $D$ se para qualquer $P\in D$
+ela é localmente univalente em $P$.
+\end{enumerate}
+\end{defin}
+
+\begin{teorema}[Critério de univalência]
+\label{t:univalencia}
+Uma função holomorfa $f : D\to \C$ é localmente univalente em ponto $z_0$ se e somente se 
+$f'(z_0)\neq 0$, i.e. a derivada dela não é zero.
+\end{teorema}
+\begin{proof}
+Temos $f'(z_0)\neq 0$ se e só se $\nu_{z_0}(f-f(z_0)) = 1$,
+então pelo \Cref{l:n-raizes} existe uma vizinhança $W$ de $w_0 = f(z_0)$
+tal que a equação $f(z) = w$ tem a única raiz em $U = f^{-1}(W)$
+para qualquer $w\in W$.
+\end{proof}
+
+\begin{problema}
+Provar que a função reversa $g$ de uma função univalente $f$ também é univalente,
+e que $g'(w_0) = \frac{1}{f'(z_0)}$.
+\end{problema}
+
+\subsection{Princípio de máximo de módulo. Lema de Schwartz.}
+
+\begin{teorema}[Princípio de máximo de módulo]
+\label{t:maximo}
+Seja $f$ holomorfa em $D$ e contínua no fecho $\ol{D}$.
+Se existe $z_0\in D$ tal que $f(z_0) = \max_{z\in\ol{D}} |f(z)|$ então $f$ é constante.
+Em particular, o máximo de módulo de $f$ é atingido na fronteira $\partial\ol{D}$.
+\end{teorema}
+\begin{proof}
+Suponha que $M = \max_{z\in\ol{D}} |f(z)|$ é atingido em $z_0\in D$ e $w_0 = f(z)$.
+Pelo \Cref{l:n-raizes} temos que $W = \{ w\in\C : |w-w_0|<r \}$
+é um subconjunto de $f(D)$ por algum $r>0$, mas logo
+$w_0 \cdot (1+\frac{r}{2|w_0|})$ é um elemento na imagem com o módulo maior
+de que $|w_0|$.
+
+Também podemos derivar este teorema da \Cref{eq:l2} do \Cref{p:l2},
+ou diretamente do \Cref{t:medio} de Cauchy.\footnote{Como fizemos nas aulas.}
+\end{proof}
+
+
+\begin{lema}[Schwartz, 1869]
+Seja $f : \D \to \C$ holomorfa no disco unitário $\D := B(0,1)$,
+tal que $f(0) = 0$ e $|f(z)| \leq 1$. Então $|f(z)|\leq|z|$
+e se existir $z_0\neq 0$ tal que $|f(z_0)| = |z_0|$ então $f(z) = c z$ para algum contante $c$ com
+$|c|=1$.
+\end{lema}
+\begin{proof}\footnote{Essa demonstração, agora padrão nos livros textos,
+mas não é a demonstração original de Schwartz.
+Ela foi publicada por Carathéodory em 1905,
+e ele atribuiu-la ao Erhard Schmidt, também notando que Poincaré deu
+uma demonstração similar em 1884.}
+Pelo \Cref{p:divide-holo} existe uma função $g(z)$ tal que $f(z) = z g(z)$ e $g$ holomorfa no $B(0,1)$.
+Para qualquer $r<1$ pelo \Cref{t:maximo} temos
+$\max_{|z|\leq r} |g(z)| = \max_{|z|=r} \frac{|f(z)|}{|z|} \leq \frac1{r}$,
+então $\sup_{|z|<1} |g(z)|\leq 1$ logo $|f(z)|<|z|$ no $B(0,1)$.
+Se $|f(z_0)| = |z_0|$ pelo \Cref{t:maximo} temos que $g(z)$ é constante,
+então $g(z) = g(z_0) = \frac{f(z_0)}{z_0} =:c$ e $|c| = \frac{|f(z_0)|}{|z_0|} = 1$,
+i.e. $f(z) = c z$ com $|c|=1$.
+\end{proof}
+
+
+\begin{problema}
+Seja $P(z) = z^n + a_1 z^{n-1} + ... + a_n$.
+Provar que $\max_{|z|=1} |P(z)| \geq 1$,
+e se igual, então $P = z^n$.
+\end{problema}
+
+\begin{problema}
+\label{p:l2}
+Seja $f : D \to \C$ uma função holomorfa no disco $B(0,R) = \{z\in\C:\, |z|<R \}$
+com séries de Taylor $f(z) = \sum_{n=0}^\infty c_n z^n$.
+\begin{enumerate}
+\item Provar a igualdade
+\begin{equation}
+\label{eq:l2}
+\frac{1}{2\pi} \int_0^{2\pi} |f(r\cdot e^{i\phi})|^2 d\phi = \sum_{n=0}^\infty |c_n|^2 r^{2n} 
+\end{equation}
+ para qualquer $r < R$.
+\item Use \Cref{eq:l2} para provar o princípio de máximo módulo (\cref{t:maximo}).
+\end{enumerate}
+\end{problema}
+
+\section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
+
+\section{Teorema de Hurwitz. Funções univalentes.}
+
+\section{Continuação analítica.}
+
+\section{Teorema de Riemann.}
+
+\section{Automorfismos de domínios simplesmente conexos.}
+
+\section{Superfícies de Riemann. Uniformização.}
+
+\begin{teorema}[Poincaré, Koebe 1907, foi 22o problema de Hilbert]
+Qualquer superfície de Riemann simplesmente conexa é biholomorfa a uma das três superfícies padrão:
+esfera de Riemann $\C\P^1 = \ol{C}$, reta/plano complexo $\C$ ou disco $D = \{z : |z|<1\}$.
+\end{teorema}
+Os métodos de demonstração deste teorema são fora deste curso - temos que construir alguns funções
+harmônicas, e para isso usamos EDP. Veja e.g. livro texto de Donaldson "Riemann Surfaces" (2011).
+
+\section{Grupos de Fuchs.}
+
+\begin{exem}[Grupo modular]
+$\Gamma = \{ z \mapsto \frac{az+b}{cz+d} \,|\, a,b,c,d\in\Z, \, ad-bc>0 \} = PSL(2,\Z)$
+\end{exem}
+
+\section{Espaço de módulos de toros complexos.}
+
+\begin{teorema}
+O espaço de módulos de toros complexos é identificado com o quociente $\H/\Gamma$
+do plano superior por grupo modular.
+\end{teorema}
+
+\section{Funções analíticas.}
+
+\section{Exemplos das superfícies de Riemann das funções analíticas.}
+
+% \newpage
+% \section{G1}
+% \input{pr}
+

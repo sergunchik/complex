@@ -1,0 +1,52 @@
+\usepackage{iftex}                      % check which engine is compiling this file
+\iftutex                                % xelatex or lualatex specific first
+ \usepackage{fontspec}                  % font selection in xelatex/lualatex
+ \defaultfontfeatures {Ligatures=TeX}
+ \usepackage{unicode-math}              % amssymb+amsmath equiv., to show $θ$ as θ
+ \unimathsetup{math-style=TeX}
+ \setmathfont{Stix Two Math}
+ \ifLuaTeX
+  % \usepackage{luatex85}               % compatibility of luatex with xy
+   \usepackage{lualatex-math}
+ \fi
+\else                                   % 8bit (e.g. pdflatex) specific
+\usepackage[T1]{fontenc}                % use 8-bit T1 fonts
+% \usepackage[utf8]{inputenc}           % allow utf-8 input, for texlive-2016 and older
+\fi
+\usepackage{alphabeta}                  % type αβγ directly, in LuaLaTeX use {unicode-math} (above)
+
+\usepackage{babel}
+%\usepackage{polyglossia}
+%\setdefaultlanguage{portuguese}
+
+\usepackage[babel]{microtype}
+%\usepackage{libertine}
+%\usepackage[default]{frcursive}
+%\usepackage[eulergreek,noplusnominus,noequal,nohbar,nolessnomore,noasterisk]{mathastext}
+
+\usepackage[dvipsnames]{xcolor}
+\usepackage[fleqn,leqno]{mathtools}
+\usepackage[fleqn,leqno]{amsmath}
+\usepackage[amsthm]{ntheorem}
+\usepackage{thmtools,xpatch}
+\usepackage{thm-restate}
+%\usepackage{amsthm}
+\usepackage{hyperref}
+\hypersetup{
+ unicode,
+ %pagebackref=true,
+ hypertexnames = false,
+ bookmarksdepth = 2, bookmarksopen = true, bookmarksnumbered, colorlinks,
+ linkcolor={red!50!black},
+ citecolor={blue!50!black},
+ urlcolor={blue!80!black},
+ pdfstartview={XYZ null null 1},
+}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+\usepackage[ocgcolorlinks]{ocgx2}[2017/03/30]   % linebreak links and uncolor in print
+
+\usepackage[mark]{gitinfo2}
+%\usepackage{graphicx}
+%\usepackage{longtable}
+%\usepackage{geometry}
+%\usepackage{ulem} % sout
