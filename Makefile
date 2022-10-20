@@ -77,7 +77,7 @@ cleanall:
 	$(LMK) -silent -C
 	$(RM) $(D)/*.run.xml
 	$(RM) $(D)/*.deps
-	$(RM) *.acn *.acr *.alg *.glg *.glo *.gls *.ist  *.synctex.gz
+	$(RM) *.acn *.acr *.alg *.glg *.glo *.gls *.ist *.synctex.gz *.thm
 
 # Include auto-generated dependencies
 -include *.deps
