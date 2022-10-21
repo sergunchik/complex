@@ -2,6 +2,20 @@
 \RequirePackage{import}
 \documentclass[brazilian,a4paper]{scrartcl}
 \import{p/}{p}                      % packages + (night) + configuration + macros
+
+%\documentclass{scrreprt} 
+
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\automark[subsection]{section}
+\ihead{\headmark}
+\ohead{\pagemark}
+\chead{}
+\ifoot{\textrm{\gitAbbrevHash}}
+\ofoot{\gitAuthorDate}
+\cfoot{}
+
+
 \newcommand{\marginnote}{\footnote}
 \setcounter{secnumdepth}{2}         % turn on numbering for section and subsection headings
 \author{\gitAuthorName}
