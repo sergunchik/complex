@@ -1,7 +1,7 @@
 % arara: lualatex
 \RequirePackage{import}
 \documentclass[brazilian,a4paper]{scrartcl}
-\import{p/}{p}                      % packages + (night) + configuration + macros
+\import{p/}{p}
 
 %\documentclass{scrreprt} 
 
@@ -15,9 +15,8 @@
 \ofoot{\gitAuthorDate}
 \cfoot{}
 
-
 \newcommand{\marginnote}{\footnote}
-\setcounter{secnumdepth}{2}         % turn on numbering for section and subsection headings
+\setcounter{secnumdepth}{2}
 \author{\gitAuthorName}
 \title{\gato  Análise complexa  \gato}
 \date{\textrm{\gitAbbrevHash} \quad (\gitAuthorDate)}
