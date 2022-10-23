@@ -1,9 +1,8 @@
 % arara: lualatex
 \RequirePackage{import}
 \documentclass[brazilian,a4paper]{scrartcl}
+%\documentclass[brazilian,a4paper]{scrreprt} 
 \import{p}{p}
-%\documentclass{scrreprt} 
-
 \usepackage[automark]{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \automark[subsection]{section}
@@ -17,7 +16,7 @@
 \newcommand{\marginnote}{\footnote}
 \setcounter{secnumdepth}{2}
 \author{\gitAuthorName}
-\title{\gato  Análise complexa  \gato}
+\title{\gato{   Análise complexa   }\gato}
 \date{\textrm{\gitAbbrevHash} \quad (\gitAuthorDate)}
 \begin{document}
 \maketitle
