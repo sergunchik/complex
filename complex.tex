@@ -1,16 +1,32 @@
 % arara: lualatex
 \RequirePackage{import}
-% \documentclass[a4paper,nobib,sfsidenotes]{tufte-handout}
 \documentclass[brazilian,a4paper]{scrartcl}
+%\documentclass[brazilian,a4paper]{scrreprt} 
+\import{p}{p}
+\usepackage[automark]{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\automark[subsection]{section}
+\ihead{\headmark}
+\ohead{\pagemark}
+\chead{}
+\ifoot{\textrm{\gitAbbrevHash}}
+\ofoot{\gitAuthorDate}
+\cfoot{}
+
 \newcommand{\marginnote}{\footnote}
-% Turn on numbering for section and subsection headings
 \setcounter{secnumdepth}{2}
-\import{p/}{p}  % packages + (night) + configuration + macros
-\author{Sergey}
-\title{Análise complexa}
-\date{\today}
-\begin{document} 
+\author{\gitAuthorName}
+\title{\gato{   Análise complexa   }\gato}
+\date{\textrm{\gitAbbrevHash} \quad (\gitAuthorDate)}
+\begin{document}
 \maketitle
 \tableofcontents
 \input{lec}
+\appendix
+\newpage
+\section{Problemas}
+\input{problemas}
+\newpage
+\section{Dicas e soluções}
+\input{sol}
 \end{document}

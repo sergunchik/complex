@@ -1,0 +1,58 @@
+\subsection{Função gama}
+
+\begin{defin}[Função gama de Euler e constante de Euler]
+\begin{enumerate}
+\item A \emph{função gama de Euler} $\Gamma(z)$ para $z>0$ é definida pela
+\begin{equation}
+\label{eq:gama}
+\Gamma(z) = \int_0^\infty t^z e^{-t} \frac{dt}{t}
+\end{equation}
+\item A \emph{constante de Euler} $C=0.57\dots\in\R$ é definida pela
+\begin{equation}
+C := \lim_{n\to\infty} \big(1+\frac12+\dots+\frac{1}{n} - \log(n)\big).
+\end{equation}
+\end{enumerate}
+\end{defin}
+
+\begin{restatable}{problema}{gama1}\label{gama1}
+Provar que
+\begin{enumerate}
+\item $\Gamma(z+1) = z \Gamma(z)$;
+\item $\Gamma(z+1+n) = (z+n)\cdot(z+n-1)\cdot\dots\cdot z\cdot\Gamma(z)$ para $n\geq 1$ inteiro;
+\item $\dlog \Gamma(z+1) - \dlog \Gamma(z) = \dlog z$,
+i.e. $\frac{\Gamma'(z+1)}{\Gamma(z+1)} - \frac{\Gamma'(z)}{\Gamma(z)} = \frac{1}{z}$;
+\item a função $\Gamma(z)$ tem uma continuação analítica para $\C-\{0,-1,-2,-3,\dots\}$;
+\item $\res_{z=-n} \Gamma(z) dz = \frac{(-1)^n}{n!}$ para $n=0,1,2,\dots$.
+\end{enumerate}
+\end{restatable}
+
+\begin{restatable}{problema}{gama2}[Hankel]\label{gama2}
+Provar que
+\begin{equation}
+\Gamma(z) = \frac{1}{1-\exp(\dpi z)} \int_C \zeta^{z} e^{-\zeta} \frac{d\zeta}{\zeta},
+\end{equation}
+onde $C$ é o contorno de Hankel:
+$C = [i+\infty,i] + S + [-i,-i+\infty]$, onde $S$ é o semicírculo unitário esquerda
+em sentido antihorário.
+% Verificar os diferentes contornos, etc
+\end{restatable}
+
+\begin{restatable}{problema}{gama3}\label{gama3}
+Provar que
+\begin{equation}
+\frac{\Gamma'(z)}{\Gamma(z)} = - C - \frac{1}{z} - \sum_{n=1}^\infty \big(\frac{1}{n+z} - \frac{1}{n}\big).
+\end{equation}
+\end{restatable}
+
+\begin{restatable}{problema}{gama4}\label{gama4}
+\begin{enumerate}
+\item Expressar a soma da série
+\[ \zeta(3) := 1 + \frac{1}{2^3} + \frac{1}{3^3} + \frac{1}{4^3} + \dots \]
+em termos dos valores $\Gamma'(1)$, $\Gamma''(1)$ e $\Gamma'''(1)$.
+\item Expressar os valores $C,\zeta(2),\zeta(3),\zeta(4),\zeta(5),\dots$
+em termos dos coeficientes de Taylor de $\Gamma(z)$ em $z=1$ e vice versa.
+\end{enumerate}
+\end{restatable}
+
+% 
+

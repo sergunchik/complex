@@ -1,7 +1,9 @@
-Como usar este texto: se um teorema não tem uma demonstração,
+\emph{Como usar este texto}: se um teorema não tem uma demonstração,
 considere ele como uma ilustração (desenho):
 ele é formulado para criar uma restrospetiva
 e complementar os teoremas em vizinhança perfurada dele.
+
+\bigskip
 
 \section{Números complexos e plano euclidiano}
 
@@ -684,13 +686,13 @@ $(\cos(\phi) + i \sin(\phi)) \exp(-i\phi)$ (considerada como função de argumen
 onde as funções trigonométricas $\cos$ e $\sin$ são definidas geometricamente)
 existe e é igual $0$.
 \footnote{
-Outra demonstração mais geométrica é seguinte:
+Outra demonstração mais geométrica é a seguinte:
 desde que a série $\exp(z) = \sum z^n / n!$ tem todos os coeficientes reais e $-i = \ol{i}$ temos
 $\exp(-i\phi) = \sum (-i)^n \phi^n = \overline{\exp(i\phi)}$ por qualquer $\phi \in \R$.
 Logo $|\exp(i\phi)|^2 = \exp(i\phi) \overline{\exp(i\phi)} = \exp(i\phi) \exp(-i\phi) = 1$.
 Logo $\exp(i\phi) = \cos_{geom}(\psi) + i \sin_{geom}(\psi)$ onde $\psi = \arg \exp(i\phi)$.
 Para qualquer número complexo $z$ a parte real dele é igual $\frac{z+\ol{z}}2$
-e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_{geom}(\psi)$ e similarmente para $\sin$.
+e a parte imaginária é $\frac{z-\ol{z}}2$, logo $\cos_\text{série}(\phi) = \frac{\exp(i\phi)+\exp(-i\phi)}2 = \Re \exp(i\phi) = \cos_\text{geom}(\psi)$ e similarmente para $\sin$.
 Exercício - terminar a demonstração.
 }
 \end{proof}
@@ -1300,7 +1302,7 @@ Se função $f$ é holomorfa em região $D$ e $G\subset D$ um compacto t.q. a fr
 \footnote{E.g. poligonal ou arcos de círculos.},
 então por qualquer $z_0 \in D \setminus \partial G$ a integral
 \[ \frac1{2\pi i} \int_{\partial G} \frac{f(z)dz}{z-z_0} \]
-é igual ao $0$ se $z_0 \notin \G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
+é igual ao $0$ se $z_0 \notin G$ e é igual ao $f(z_0)$ se $z_0 \in G \setminus \partial G$.
 \end{teorema}
 \begin{proof}
 Se $z_0$ é fora de $G$ então é o corolário do \Cref{t:cauchy-k}.

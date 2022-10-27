@@ -31,7 +31,8 @@ LMK = $(LATEXMK) $(LMK_ENGINE) $(LMK_OPTIONS)
 # All their dependencies are onamae-*.tex, but they will be handled automatically by latexmk.
 # ART = $(wildcard article-*.tex)
 
-ART = complex.tex pr.tex
+ART = complex.tex
+# pr.tex
 
 # Importantíssimo: latexmk shall not run on other texfiles
 # (a common problem that happens when one runs 'latexmk' without arguments)
@@ -76,7 +77,7 @@ cleanall:
 	$(LMK) -silent -C
 	$(RM) $(D)/*.run.xml
 	$(RM) $(D)/*.deps
-	$(RM) *.acn *.acr *.alg *.glg *.glo *.gls *.ist  *.synctex.gz
+	$(RM) *.acn *.acr *.alg *.glg *.glo *.gls *.ist *.synctex.gz *.thm
 
 # Include auto-generated dependencies
 -include *.deps
