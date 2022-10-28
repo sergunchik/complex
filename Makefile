@@ -74,13 +74,14 @@ clean:
 cleanall:
 	# maybe just the line below?
 	# $(RM) -r $(D)
-	$(LMK) -silent -C
+	$(LMK) -silent -c -C
+	latexmk -silent -c -C
 	$(RM) $(D)/*.run.xml
 	$(RM) $(D)/*.deps
 	$(RM) *.acn *.acr *.alg *.glg *.glo *.gls *.ist *.synctex.gz *.thm
 
 # Include auto-generated dependencies
--include *.deps
+-include $(D)/*.deps
 
 # You want latexmk to *always* run, because make does not have all the info.
 # Also, include non-file targets in .PHONY so they are run regardless of any
