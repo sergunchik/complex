@@ -1,0 +1,37 @@
+\begin{proof}[\Cref{p5}]
+Fixe $\epsilon>0$.
+Como $f$ é contínua em $0$, existe $\delta>0$ tal que $(\lvert z-0 \rvert < \delta)\rightarrow(\lvert f(z)-f(0)\rvert<\epsilon)$.
+
+Tome $\rho<\delta$.
+Assim,
+\begin{align*}
+\lvert \int_{\alpha}^{\beta}f(\rho\e^{i\phi})d\phi -(\beta-\alpha)f(0)\rvert &= \lvert \int_{\alpha}^{\beta}f(\rho\e^{i\phi})d\phi -\int_{\alpha}^{\beta}f(0)d\phi \rvert  \\
+&=\lvert \int_{\alpha}^{\beta}(f(\rho\e^{i\phi})-f(0))d\phi\rvert \\
+&\leq \int_{\alpha}^{\beta}\lvert (f(\rho\e^{i\phi})-f(0))\rvert d\phi \\
+&=\int_{\alpha}^{\beta}\epsilon d\phi \\
+&=(\beta -\alpha)\epsilon \\
+\end{align*}
+
+Portanto, fazendo $\epsilon$ tender a $0$, concluimos que o limite desejado é $(\beta - \alpha)f(0)$.
+
+
+
+
+\end{proof}
+
+
+\begin{proof}[\Cref{p7}]
+
+Como $\frac{f'(z)}{f(z)}$ tem polo simples em $0$, podemos escrever $$\frac{f'(z)}{f(z)}=\frac{\alpha}{z}+g(z),$$ onde $$g(z)=\sum_{n\geq 0}a_nz^n.$$
+
+Veja que $g$ possui uma primitiva $G(z)=\sum_{n\geq 0}a_n\frac{z^{n+1}}{n+1}$ no disco. Assim, podemos definir a função $h(z)=exp(G(z))$, que também é holomorfa (já que é a composição de duas funções holomorfas). Temos que $h(z)=\sum_{n\geq 0}b_nz^n$.
+
+Afirmamos que $\alpha$ deve ser inteiro. De fato, existe $\epsilon>0$ tal que $f(z)\neq 0$ para todo z com $\lvert z\rvert <\epsilon$. Assim, seja $\gamma$ a fronteira do disco de raio $\frac{\epsilon}{2}$ percorrida no sentido anti-horário, isto é, $\gamma(t)=\frac{\epsilon}{2}\cdot e^{i\cdot t}$, com $0\leq t\leq 2\pi$. Temos então que $$\alpha=\frac{1}{2\pi i}\int_{\gamma}\left(\frac{\alpha}{z}+g(z)\right) dz=\frac{1}{2\pi i}\int_{\gamma}\frac{f'(z)}{f(z)}dz=\frac{1}{2\pi i}\int_{f\circ\gamma}\frac{dw}{w}=I(f \circ \gamma, 0)\in Z.$$
+
+Temos $$0=\frac{f'}{f}-\frac{\alpha}{z}-g=\frac{f'}{f}-\frac{(z^{\alpha})'}{(z^{\alpha})}-\frac{h'}{h}=\frac{(\frac{f}{(z^{\alpha}h)})'}{\frac{f}{(z^{\alpha}h)}}$$ donde $(\frac{f}{(z^{\alpha}h)})'=0$, o que significa que $$f=cz^{\alpha}h=\sum_{n \geq 0}(cb_n)z^{n+\alpha}$$ para algum $c\in C-\{0\}$. Isso mostra que $f$ é meromorfa em $0$.
+
+Se $f$ não possui polo em $0$, então $f(z)=\sum_{n\geq 0}c_nz^n$.
+
+Suponha que $f$ não possui raiz em $0$, então $c_0\neq 0$. Assim, $$0=\frac{c_1}{c_0}\cdot 0=lim_{z\rightarrow 0}\left(\frac{f'(z)}{f(z)}z\right)=lim_{z\rightarrow 0}\left(\alpha+zg(z)\right)=\alpha,$$ o que significa que $\frac{f'}{f}$ não teria polo simples, absurdo! Logo, $f$ tem raiz em $0$.
+
+\end{proof}
