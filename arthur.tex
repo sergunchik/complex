@@ -1,4 +1,4 @@
-\def\e{e}
+%\def\e{e}
 
 \begin{proof}[\Cref{p5}]
 
@@ -8,14 +8,14 @@ Como $f$ é contínua em $0$, existe $\delta>0$ tal que $(\lvert z-0 \rvert < \d
 Tome $\rho<\delta$.
 Assim,
 \begin{align*}
-\lvert \int_{\alpha}^{\beta}f(\rho\e^{i\phi})d\phi -(\beta-\alpha)f(0)\rvert &= \lvert \int_{\alpha}^{\beta}f(\rho\e^{i\phi})d\phi -\int_{\alpha}^{\beta}f(0)d\phi \rvert  \\
-&=\lvert \int_{\alpha}^{\beta}(f(\rho\e^{i\phi})-f(0))d\phi\rvert \\
-&\leq \int_{\alpha}^{\beta}\lvert (f(\rho\e^{i\phi})-f(0))\rvert d\phi \\
+\lvert \int_{\alpha}^{\beta}f(\rho e^{i\phi})d\phi -(\beta-\alpha)f(0)\rvert &= \lvert \int_{\alpha}^{\beta}f(\rho e^{i\phi})d\phi -\int_{\alpha}^{\beta}f(0)d\phi \rvert  \\
+&=\lvert \int_{\alpha}^{\beta}(f(\rho e^{i\phi})-f(0))d\phi\rvert \\
+&\leq \int_{\alpha}^{\beta}\lvert (f(\rho e^{i\phi})-f(0))\rvert d\phi \\
 &=\int_{\alpha}^{\beta}\epsilon d\phi \\
 &=(\beta -\alpha)\epsilon \\
 \end{align*}
 
-Portanto, fazendo $\epsilon$ tender a $0$, concluimos que o limite desejado é $(\beta - \alpha)f(0)$.
+Portanto, fazendo $\epsilon$ tender a $0$, concluímos que o limite desejado é $(\beta - \alpha)f(0)$.
 
 \end{proof}
 
