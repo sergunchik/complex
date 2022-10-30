@@ -1,6 +1,7 @@
 \def\e{e}
 
 \begin{proof}[\Cref{p5}]
+
 Fixe $\epsilon>0$.
 Como $f$ é contínua em $0$, existe $\delta>0$ tal que $(\lvert z-0 \rvert < \delta)\rightarrow(\lvert f(z)-f(0)\rvert<\epsilon)$.
 
@@ -15,9 +16,6 @@ Assim,
 \end{align*}
 
 Portanto, fazendo $\epsilon$ tender a $0$, concluimos que o limite desejado é $(\beta - \alpha)f(0)$.
-
-
-
 
 \end{proof}
 
@@ -36,4 +34,27 @@ Se $f$ não possui polo em $0$, então $f(z)=\sum_{n\geq 0}c_nz^n$.
 
 Suponha que $f$ não possui raiz em $0$, então $c_0\neq 0$. Assim, $$0=\frac{c_1}{c_0}\cdot 0=lim_{z\rightarrow 0}\left(\frac{f'(z)}{f(z)}z\right)=lim_{z\rightarrow 0}\left(\alpha+zg(z)\right)=\alpha,$$ o que significa que $\frac{f'}{f}$ não teria polo simples, absurdo! Logo, $f$ tem raiz em $0$.
 
+\end{proof}
+
+\begin{proof}[\Cref{p8}] (Baseada na solução vista em aula)
+
+Chamaremos de \textit{supimpa} a função que satisfizer as condições do enunciado.
+
+Defina $\phi_a(z)=\frac{z-a}{1-\overline{a}z}$, para $a \in D$. Veja que $\phi_a$ é \textit{supimpa}.
+
+Suponha que $f_1$ e $f_2$ sejam \textit{supimpa}.
+
+Então, $\lvert f_1(z)f_2(z)\rvert=\lvert f_1(z)\rvert\lvert f_2(z)\rvert=1\cdot 1=1$ quando $\lvert z\rvert =1$. Isso significa que $f_1f_2$ também é \textit{supimpa}.
+
+Seja $e_a=-v_a(f)$. Temos que $v_a(f\cdot \phi_a^{e_a})=v_a(f)+e_av_a(\phi_a)=v_a(f)-v_a(f)=0$.
+
+Defina $$g(z)=f(z)\cdot \prod_{\lvert a \rvert < 1, e_a\neq 0}\phi_a(z)^{e_a}.$$
+
+Note que o produto acima é finito, já que $f$ é a razão de dois polinômios.
+
+Veja que $g$ é \textit{supimpa}, e que não possui nem zeros nem polos em $D$. Assim, $\frac{1}{g}$ também é \textit{supimpa}.
+
+Pelo Princípio do Módulo Máximo (\cref{t:maximo}), sabemos que $g$ atinge o máximo em $\partial D$, ou seja, $\lvert g(z) \rvert\leq 1$. Da mesma forma, sabemos que $\lvert \frac{1}{g(z)} \rvert \leq 1$. Assim, concluímos que $\lvert g(z) \rvert = 1$ para todo $z\in D$, o que implica, novamente pelo Princípio do Módulo Máximo, que $g$ é constante.
+
+Portanto, $$f(z)= c\cdot \prod_{\lvert a \rvert < 1, e_a\neq 0}\phi_a(z)^{-e_a}=\prod_{\lvert a \rvert < 1, v_a\neq 0}\phi_a(z)^{v_a}.$$
 \end{proof}
