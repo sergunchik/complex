@@ -105,8 +105,8 @@ a interpretação de $|z|$ acima.
 \section{Limites, séries, convergência, uniformidade, sequências de Cauchy}
 
 Todas (ou quase todas) as definições e teoremas sobre os limites, a continuidade,
-a convergência e as séries reais funcionam em caso complexo
-se usar valor absoluto complexo em vez de valor absoluto real:
+a convergência e as séries reais funcionam no caso complexo
+se usarmos o valor absoluto complexo ao invés do valor absoluto real:
 em vez de intervalos $\{x\in \R\,|\,|x-x_0|<r\}$ escreveremos $\{z\in \C\,|\,|z-z_0|<r\}$, etc.
 Nessa seção preliminária vejamos alguns deles, e lembramos algumas definições
 e alguns teoremas úteis da análise real, as vezes reformulando elas/eles em contexto complexo.
@@ -1898,7 +1898,7 @@ $\lim f(z) = \lim \tilde{f}(z) (z-a)^{-N} = \tilde{f}(a) \lim_{z\to a} (z-a)^{-N
 Digamos que $f$ é \emph{meromorfa} em $a\in\C$ se $f=0$ em uma vizinhança de $a$
 \emph{ou} $f$ é holomorfa em uma vizinhança perfurada de $a$ e tem a série de Laurent
 finita para esquerda, i.e. de tipo
-$f(z) = (z-a)^N \cdot \sum_{n=0}^\infty c_n (z-a)^N$
+$f(z) = (z-a)^N \cdot \sum_{n=0}^\infty c_n (z-a)^n$
 com $c_0\neq 0$.
 Neste caso
 \begin{itemize}
@@ -2306,9 +2306,9 @@ onde os coeficientes
 $p_k := \frac{|w-u_k|^{-2}}{\sum_{j=1}^n |w-u_j|^{-2}} \geq 0$
 são reais não negativos e satisfazem $\sum_{k=1}^n p_k = 1$.
 
-Outra definição de fecho convexo é a interseção de todos os semiplanos que conted o conjunto de raízes de $P$.
-Logo para provar que $w$ pertence nele baste de provar que $w$ pertence ao cada destes semiplanos.
-Escolhemor uma transformação $z\mapsto a z_2 + b$ tal que a imagem de semiplano é um semiplano superior
+Outra definição de fecho convexo é a interseção de todos os semiplanos que contêm o conjunto de raízes de $P$.
+Logo, para provar que $w$ pertence a ele basta provar que $w$ pertence a cada um desses semiplanos.
+Escolhemos uma transformação $z\mapsto a z_2 + b$ tal que a imagem de semiplano é um semiplano superior
 $\{\Im(z_w)>0\}$.
 Ele também manda as raízes de $P(z)$ às raízes de $Q(z_2) = P(az+b)$ e as raízes da derivada
 $P'(z)$ às raízes de $Q'(z_2)$. Então basta de derivar uma contradição de $\forall j:\,\Im(u_j)>0$
@@ -2421,7 +2421,7 @@ $\int_\gamma \dlog f(z) = \int_{f(\gamma)} \dlog w$
 é igual à mudança de argumento de $w=f(z)$ ao redor de $f(\gamma)$.
 \end{proof}
 
-\subsection{Teorema de Rouché. Teorema fundamental de álgebra.}
+\subsection{Teorema de Rouché. Teorema fundamental da álgebra.}
 
 \begin{teorema}[Rouché]
 \label{t:rouche}
@@ -2472,8 +2472,8 @@ onde o lado direito é igual ao $n$:
 \[ \sum_{|a|<R} \nu_a(c_n z^n) = n \nu_0(z) = n. \]
 Também provamos que o maior raiz de $P$ é ao máximo $\max(1,\frac{|c_0|+\dots+|c_{n-1}|}{|c_n|})$.
 
-\eqref{tfa-2}: Use o fato, que já provamos que existe só finito número de raízes complexos de $P$
-e todas elas são localizadas dentro da bola $B(0,R)$. Então a função $Q(z)$ definida por
+\eqref{tfa-2}: Use o fato, que já provamos que existe só um número finito de raízes complexas de $P$
+e todas elas estão localizadas dentro da bola $B(0,R)$. Então a função $Q(z)$ definida por
 \[ Q(z) = \prod_{u\in\C} (z-u)^{\nu_u(P)} \]
 é um polinómio de grau $n$, e a função racional $f(z) = \frac{P(z)}{Q(z)}$
 satisfaz $\nu_P(f) = 0$ para todos $P\in\C$.
@@ -2575,14 +2575,14 @@ e que $g'(w_0) = \frac{1}{f'(z_0)}$.
 \label{t:maximo}
 Seja $f$ holomorfa em $D$ e contínua no fecho $\ol{D}$.
 Se existe $z_0\in D$ tal que $f(z_0) = \max_{z\in\ol{D}} |f(z)|$ então $f$ é constante.
-Em particular, o máximo de módulo de $f$ é atingido na fronteira $\partial\ol{D}$.
+Em particular, o máximo do módulo de $f$ é atingido na fronteira $\partial\ol{D}$.
 \end{teorema}
 \begin{proof}
 Suponha que $M = \max_{z\in\ol{D}} |f(z)|$ é atingido em $z_0\in D$ e $w_0 = f(z)$.
 Pelo \Cref{l:n-raizes} temos que $W = \{ w\in\C : |w-w_0|<r \}$
-é um subconjunto de $f(D)$ por algum $r>0$, mas logo
+é um subconjunto de $f(D)$ para algum $r>0$, mas logo
 $w_0 \cdot (1+\frac{r}{2|w_0|})$ é um elemento na imagem com o módulo maior
-de que $|w_0|$.
+do que $|w_0|$.
 
 Também podemos derivar este teorema da \Cref{eq:l2} do \Cref{p:l2},
 ou diretamente do \Cref{t:medio} de Cauchy.\footnote{Como fizemos nas aulas.}
@@ -2613,7 +2613,7 @@ i.e. $f(z) = c z$ com $|c|=1$.
 \begin{problema}
 Seja $P(z) = z^n + a_1 z^{n-1} + ... + a_n$.
 Provar que $\max_{|z|=1} |P(z)| \geq 1$,
-e se igual, então $P = z^n$.
+e se ocorre a igualdade, então $P = z^n$.
 \end{problema}
 
 \begin{problema}
@@ -2627,7 +2627,7 @@ com séries de Taylor $f(z) = \sum_{n=0}^\infty c_n z^n$.
 \frac{1}{2\pi} \int_0^{2\pi} |f(r\cdot e^{i\phi})|^2 d\phi = \sum_{n=0}^\infty |c_n|^2 r^{2n} 
 \end{equation}
  para qualquer $r < R$.
-\item Use \Cref{eq:l2} para provar o princípio de máximo módulo (\cref{t:maximo}).
+\item Use \Cref{eq:l2} para provar o princípio do módulo máximo  (\cref{t:maximo}).
 \end{enumerate}
 \end{problema}
 
