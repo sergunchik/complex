@@ -1,0 +1,121 @@
+\subsection{Resíduos}
+
+Veja \Cref{d:residuo} para uma definição e discussão de resíduos.
+
+\begin{problema}
+Provar que
+\begin{enumerate}
+\item $\res_{z=z_0} f(z) = c_{-1}$ onde $f(z) = \sum_{n\in\Z} c_n (z-z_0)^n$
+em vizinhança perfurada de $z_0$;
+\item $\res_{z=\infty} f(z) = - c_{-1}$ onde $f(z) = \sum_{n\in\Z} c_n (z-a)^n$
+por algum/cada $a\in\C$ em vizinhança de $\infty$;
+\item $\res_{z=\infty} f(z) = \res_{w=0} \frac{-f(w)}{w^2}$;
+\item $\int_{\partial D} f(z) dz = \sum_{w\in D} \res_{z=w} f(z)$;
+\item $\res_{z=z_0} f(z) = \lim_{z\to z_0} (z-z_0) f(z)$ se $f$ tem um polo simples em $z_0\in\C$;
+\item Se $f(z) = \frac{\phi(z)}{\psi(z)}$ com $\psi(z_0)=0$ e $\psi'(z_0)\neq 0$
+então $\res_{z=z_0} f(z) = \frac{\phi(z_0)}{\psi'(z_0)}$;
+\item se $f(z)$ tem um polo de ordem $k$ em $z_0\in\C$ então
+$\res_{z=z_0} f(z) = \frac{1}{(k-1)!} g^{(k-1)}(z_0)$ onde $g(z)$ é uma função holomorfa em $z_0$
+tal que $g(z) = (z-z_0)^k f(z)$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Computar os resíduos
+\begin{enumerate}
+\item $\res_{z=\pm \pi/2} \frac{1}{\cos(z)}$;
+\item $\res_{z=w} \frac{1}{\sin(z)^3}$ para $w=0,\pi$;
+\item $\res_{z=ib} \frac{\exp(iaz) \cdot (z^2-b^2)}{z(z^2+b^2)}$;
+\item $\res_{z=w} \frac12 (z+z^{-1})$ para $w=0,\infty$;
+\item $\res_{z=0} (z-1)^2 \exp(-1/z^2)$;
+\item $\res_{z=\infty} z^2 \sin(\exp(1/z))$;
+\item $\res_{z=1} \frac{1}{1+\sqrt{z}}$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Calcular as integrais $\int_{\partial D} f(z) dz$ para
+\begin{enumerate}
+\item $\int_{|z-1-i|=2} \frac{dz}{(z-1)^2 (z^2+1)}$;
+\item $\int_{|z|=2} z \sin(\frac{z+1}{z-1}) dz$;
+\item $\int_{|z|=3} \sin(\frac{z}{z+1}) dz$.
+\end{enumerate}
+\end{problema}
+
+
+\begin{problema}
+Seja $R \in \C(x,y)$ uma função racional tal que o valor $R(\cos(t),\sin(t))\in\C$ é bem definido
+para qualquer $t\in\R$. Provar que
+\[ \int_0^{2\pi} R(\cos t,\sin t) dt 
+ = 2\pi \sum_{|w|<1} \res_{z=w} z^{-1} R(\frac{z+z^{-1}}{2},\frac{z-z^{-1}}{2i}) \]
+\end{problema}
+
+\begin{problema}
+Seja $R \in \C(x)$ uma função racional tal que $R(x)\in\C$ é bem definido para qualquer $x\in\R$
+e $\lim_{z\to\infty} zR(z) = 0$. Provar que
+\begin{enumerate}
+\item a integral $\int_{-M}^N R(x) dx$
+converge para $M,N\to+\infty$,
+\item  e \[ \int_{-\infty}^\infty R(x) dx = 2\pi i \sum_{\Im(w)>0} \res_{z=w} R(z). \]
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $f(z)$ uma função holomorfa em $\Im(z)\geq 0$ exceto um conjunto finito de pontos no interior,
+e tal que $\lim_{\Im(z)>0, |z|\to\infty} f(z) = 0$.
+\begin{enumerate}
+\item Para $\lambda>0$ provar que
+\[ \int_{-\infty}^\infty e^{i\lambda z} f(z) dz = 2\pi i \sum_{\Im(w)>0} \res_{z=w} e^{i\lambda z} f(z); \]
+\item Como calcular $\int_{-\infty}^\infty e^{i\lambda z} f(z) dz$ para $\lambda<0$?
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $R \in \C(x)$ uma função racional tal que $R(x)\in\C$ é bem definido para qualquer $x\in\R$
+e $\lim_{z\to\infty} R(z) = 0$. Provar que para $0<\alpha<1$
+\[ \int_{-\infty}^\infty \frac{R(z)}{z^\alpha} dz 
+ = \frac{2\pi i}{1-\exp(-2\pi i\alpha)} \sum_{w\in\C} \res{z=w} \frac{R(z)}{z^\alpha}. \]
+\end{problema}
+
+\begin{problema}
+Calcular as integrais
+\begin{enumerate}
+\item $\int_0^{2\pi i} \frac{\sin^2(x)}{5+3\cos(x)} dx$;
+\item $\int_{-\infty}^\infty \frac{x^2}{x^4 + 6 x^2 + 25} dx$;
+\item $\int_{0}^{\infty} \frac{x^2 - b^2 \sin(ax)}{x^2 + b^2} dx$;
+\item $\int_{0}^{\infty} \frac{x^\alpha}{1+x}  \frac{dx}{x}$ para $0<\alpha<1$;
+\item $\int_{0}^{\infty} \frac{\log(x)}{(x^2+1)^2} dx$;
+\item $\int_{0}^{\infty} \frac{\log(x)}{(x+a)^2+b^2} dx$;
+\item $\int_{0}^{\infty} \frac{\cos(x)}{x^2 + a^2}  dx$ (Laplace);
+\item $\int_{0}^{\infty} \frac{\sin(x)}{x}  dx$ (Euler);
+\item $\int_{-\infty}^{\infty} \frac{\exp(ax)}{1+\exp(x)} dx$ (Euler);
+\item $\int_{0}^{\infty} \exp(-a x^2) \cos(bx)  dx$ (Poisson);
+\item $\int_{0}^{\infty} \exp(-\pi x) \frac{\sin(ax)}{\sinh(\pi x)}  dx$ (Legendre).
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $f \in \C(z)$ uma função racional com polos $a_1,\dots,a_k \in \C -\Z$ tal
+que $f(z) = O(z^{-2})$ para $z\to\infty$. Provar que
+\[ \sum_{n\in\Z} f(n) = -\pi \sum \res_{z=a_j} f(z) \cot(\pi z) . \]
+\end{problema}
+
+\begin{problema}
+Seja uma função meromorfa no $\C$ com finito número de polos $a_1,\dots,a_m$
+que não são inteiros, e tal que em $\{z\in\C : |z-a_k|\geq r\}$ temos
+$|f(z)| < \exp(a|\Im(z)|) g(|z|)$ onde $0<a<\pi$ e $\lim_{t\to\infty} g(t) = 0$.
+Provar que 
+\[ \sum_{n\in\Z} (-1)^n f(n) =  -\pi \sum \res_{z=a_k} \frac{f(z)}{\sin(\pi z)} . \]
+\end{problema}
+
+
+\begin{problema}
+Calcular as somas
+\begin{enumerate}
+\item $\sum_{n\in\Z} \frac{1}{(n-a)^2}$,
+\item $\sum_{n=1}^\infty \frac{1}{n^2 + a^2}$,
+\item $\sum_{n=1}^\infty \frac{1}{n^2}$,
+\item $\sum_{n=1}^\infty \frac{(-1)^n}{(n^2+a^2)^2}$,
+\item $\sum_{n=1}^\infty \frac{(-1)^n}{n^3}$.
+\end{enumerate}
+\end{problema}
