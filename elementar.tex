@@ -1,0 +1,61 @@
+\subsection{Funções elementares}
+
+Lembra as definições das funções trigonométricas seno $\sin$, cosseno $\cos$,
+tangente $\tan$ e cotangente $\cot$,
+e as versões hiperbólicas $\sinh, \cosh, \tanh, \coth$ delas:
+\begin{align*}
+\cos(z) &:= \frac{\exp(iz) + \exp(-iz)}{2}, &
+\cosh(z) &:= \frac{\exp(z) + \exp(-z)}{2}, \\
+\sin(z) &:= \frac{\exp(iz) - \exp(-iz)}{2i}, &
+\sinh(z) &:= \frac{\exp(z) - \exp(-z)}{2}, \\
+\tan(z) &:= \frac{\sin(z)}{\cos(z)}, &
+\tanh(z) &:= \frac{\sinh(z)}{\cosh(z)}, \\
+\cot(z) &:= \frac{\cos(z)}{\sin(z)}, &
+\coth(z) &:= \frac{\cosh(z)}{\sinh(z)}.
+\end{align*}
+
+\begin{problema}
+Provar que
+\begin{enumerate}
+\item $\exp(z) = 1 \iff z\in 2\pi i\Z$,
+\item $\exp(z) = \exp(w) \iff z-w \in 2\pi i\Z$,
+\item $\cos(z) = \cos(w)$ se e só se $z-w \in 2\pi\Z$ ou $z+w \in 2\pi\Z$,
+\item $\sin(z) = \sin(w)$ se e só se $z-w \in 2\pi\Z$ ou $z+w \in \pi(1+2\Z)$,
+i.e. $w=z+\pi (2k)$ ou $w = -z+\pi(2k+1)$ para $k\in\Z$.
+\item $\tan(z) = \tan(w)$ (ou $\cot(z) = \cot(w)$)
+se e só se $z-w\in\pi\Z$,
+\item análogos para equação $f(z) = f(w)$ onde $f = \sinh, \cosh, \tanh, \coth$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Provar que existem $r,R>0$ e uma série $g(w) = w + \sum_{n>1} c_n w^n$ convergente em $B(0,R)$
+tal que para todos $w\in B(0,R)$ e $z\in B(0,r)$ a função $g(w)$ é resersa da função $f(z)$
+para $f\in \{\sin,\tan\}$, i.e.
+\begin{enumerate}
+\item $\sin(g(w)) = w$ e $g(\sin(z)) = z$,
+\item $\tan(g(w)) = w$ e $g(\tan(z)) = z$.
+\end{enumerate}
+Quais são os valores supremos de $r$ e $R$ tal que essa função reversa $g$ existe?\footnote{Dica:
+se uma função $f(z)$ tem um periodo $p\in\C$ (i.e. $f(z+p)=f(z)$),
+então a restrição dela no $B(0,r)$
+não pode ser injetora para $r>|p|/2$.}
+\end{problema}
+
+\begin{defin}
+No último problema a função reversa de $w=\sin(z)$ se chama \emph{arcseno} $z = \arcsin(w)$,
+e a função reversa de $w=\tan(z)$ se chama \emph{arctangente} $z = \arctan(w)$.
+A priori as funções $\arcsin(w)$ e $\arctan(w)$ só definidos em vizinhanças de $w=0$.
+\end{defin}
+
+\begin{problema}
+Quais são as séries de Taylor--Maclaurin (ou Laurent) em $0$ das funções
+\begin{enumerate}
+\item $\exp(z)$, $\sin(z)$, $\cos(z)$, $\sinh(z)$, $\cosh(z)$,
+\item $\tan(z)$ e $\tanh(z)$,
+\item $\arcsin(w)$,
+\item $\arctan(w)$,
+\item $\cot(z)$ e $\coth(z)$ (as séries de Laurent)?
+\end{enumerate}
+\end{problema}
+
