@@ -1,0 +1,39 @@
+\begin{proof}[\Cref{p1}]
+
+Queremos um biholomorfismo $ \varphi: H^{+} \to D(0,1)\backslash[x,1)$. Para isso, podemos usar \textit{Transformações de Cayley}, que mapeiam o plano superior para o disco unitário. Mais precisamente, tal transformação mapeia a reta real - $ \R \cup \{\infty\} $ - para o círculo unitário - $ C(0,1) = \partial D(0,1) $ - e o eixo imaginário para o intervalo real $ (-1,1) \subset D(0,1) $. Sua forma geral pode ser expressa por:
+
+\begin{align*}
+    g: H^{+} \to D(0,1) \implies g(z) = \frac{z-i}{z+i}
+\end{align*}
+
+Entretanto, como queremos excluir o intervalo real $[x,1)$ do disco unitário, com $x \in (-1,1)$, devemos primeiro alterar o intervalo do eixo imaginário de $H^{+}$. Para isso, basta encontrar um biholomorfismo $H^{+} \to H^{+}\backslash\{it: t \geq \alpha\}$, onde $\alpha$ é expresso por:
+
+\begin{align*}
+    g(i\alpha) = x \implies \alpha = \frac{1+x}{1-x}
+\end{align*}
+
+Passo 1) $H^{+}\backslash\{it: t \geq \alpha\} \to \C\backslash\{(-\infty,\alpha^2] \cup [0,\infty)\}$ 
+\[ z \to z^2 \]
+
+Passo 2) $\C\backslash\{(-\infty,\alpha^2] \cup [0,\infty)\} \to \C\backslash[0,\infty)$
+\[ z^2 \to \frac{z^2}{z^2+\alpha^2} \]
+
+Passo 3) $\C\backslash[0,\infty) \to H^{+}$
+\[ \frac{z^2}{z^2+\alpha^2} \to \sqrt{\frac{z^2}{z^2+\alpha^2}} \]
+
+Logo, podemos denotar a composição desses passos como a função $f$, que é uma função holomorfa, pois é composição de função elementares - por isso, holomorfas. Já que $f(z) \neq 0, \forall z \in H^{+}\backslash\{it: t\geq \alpha\}$, ela admite inversa. Assim, $f$ é o primeiro biholomorfismo procurado. Com isso, temos:
+
+\begin{align*}
+    \sqrt{\frac{z^2}{z^2+\alpha^2}} = w \implies f^{-1}(w)=\frac{w\alpha}{\sqrt{1-w^2}}
+\end{align*}
+
+onde $f^{-1}: H^{+} \to H^{+}\backslash\{it: t\geq\alpha\}$.
+
+Agora, basta compor $f^{-1}$ e $g$, do que segue:
+
+\[ \varphi: H^{+} \to D(0,1)\backslash[x,1) \]
+\[ z \to  \frac{w\alpha-i\sqrt{1-w^2}}{w\alpha+i\sqrt{1-w^2}}\]
+
+Sabemos que toda Transformação de Cayley é meromorfa, mas como nesse domínio ela não admite polos, podemos afirmar que $g$ é holomorfa. Com isso, vemos que $\varphi$ é uma composição de funções holomorfas e, portanto, holomorfa. De modo análogo, concluimos o mesmo sobre sua inversa. Logo, $\varphi$ é o biholomorfismo procurado entre $H^{+}$ e $D(0,1)\backslash[x,1)$.
+
+\end{proof}
