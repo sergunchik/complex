@@ -2636,14 +2636,27 @@ com séries de Taylor $f(z) = \sum_{n=0}^\infty c_n z^n$.
 Para um par de pontos $z,w\in \D$ no disco unitário $\D = \{z\in\C: |z|<1\}$
 a \emph{distância hiperbólica} $d(z,w)$ entre eles é dada por
 \begin{equation}
-\tanh\big(\frac{d(z,w)}{2}\big) = \lvert\frac{z-w}{1-zw}\rvert.
+\tanh\big(d(z,w)\big) = \lvert\frac{z-w}{1-\ol{z}w}\rvert.
 \end{equation}
-Em particular $d(z,0) = 2 arc\tanh(|z|)$.
+Em particular $d(z,0) = \tanh^{\circ-1}(|z|)$.
 \end{defin}
 
 \begin{problema}
-Verifique que $d(z,w)$ é uma métrica no $\D$ e que ela é invariante com respeito
-de transformações de Möbius que preservam o disco.
+Verifique que 
+\begin{enumerate}
+\item $\tanh: \R \to (-1,1)$ é monotona,\footnote{Dica:
+e.g compute a derivada de $\tanh(x)$, ou usa que $\tanh(x)$
+é uma composição de $x\mapsto \exp(2x)$ e uma transformação de Möbius.}
+\item $\tanh(x)\geq 0$ se e só se $x\geq 0$,
+\item então a função $d(z,w)$ é bem definida e não negativa,
+\item $d(z,w)$ é invariante com respeito
+de transformações de Möbius que preservam o disco,
+i.e. que $z\mapsto \zeta z$ e $\phi_a: z\mapsto \frac{z-a}{1-\ol{a} z}$ são isometrias,
+e.g. $d(\phi_a(z),\phi_a(w)) = d(z,w)$;
+\item $d(z,w)$ é uma métrica no $\D$.\footnote{Desigualdade triangular pode
+ser um pouco mais complicado com essa definição. Por enquanto não a usamos e depois
+vamos ver em jeito simples.}
+\end{enumerate}
 \end{problema}
 
 \begin{problema}[Teorema de Pick--Schwartz, 1912]
@@ -2655,14 +2668,26 @@ $z \mapsto \zeta \frac{z-a}{1-\ol{a} z}$.
 \begin{proof}
 Dicas:
 \begin{enumerate}
-\item compute derivada de $\tanh(x)$,
-\item verifique que $\tanh: \R \to \R$ é monotona,
-\item então $d(f(z),f(w) \leq d(z,w)$ se e só se $\lvert\frac{f(z)-f(w)}{1-f(z)f(w)}\rvert \leq \lvert\frac{z-w}{1-zw}\rvert$.
-\item verifique que $z\mapsto \zeta z$ e $\phi_a: z\mapsto \frac{z-a}{1-\ol{a} z}$ são isometrias,
-\item dado $z,w \in \D$ construi $g = \phi_a \circ f \circ \phi_b$ tal que
-$\phi_b(0) = w$ e $\phi_a(f(w)) = 0$ então $g(0) = 0$.
-\item seja $\phi_a(z') = z$; aplique o lema de Schwartz para $g$,
-e elimine $z'$ expresando ele em termos de $z$ e $w$.
+% \item $d(f(z),f(w) \leq d(z,w)$ se e só se 
+% $\lvert\frac{f(z)-f(w)}{1-\ol{f(z)}f(w)}\rvert \leq \lvert\frac{z-w}{1-\ol{z}w}\rvert$.
+\item dado $z,w \in \D$ construa um par
+de  transformações de Möbius $\phi,\psi\in\Aut(\D)$,\footnote{I.e.
+$\phi(z) = \frac{z-a}{1-\ol{a}z}$
+e $\psi(z) = \frac{z-b}{1-\ol{b}z}$ com $|a|,|b|<1$.}
+e considere a composição $g = \phi \circ f \circ \psi$ tais que
+$\psi(0) = w$ e $\phi(f(w)) = 0$, então $g(0) = 0$.
+\item seja $z'= \psi^{-1} z$; aplique o lema de Schwartz para $g$ e $z'$,
+depois elimine $z'$ expressando ele em termos de $z$ e $w$.
+\item i.e.
+\begin{align*}
+d(f(z),f(w)) \\
+&= d(\phi^{-1}(g(\psi^{-1}(z))), \phi^{-1}(g(\psi^{-1}(w)))) \\
+&= d(g(\psi^{-1}(z)), g(\psi^{-1}(w))) \\
+&= d(g(z'),0) \\
+&\leq d(z',0) \\
+&= d(\psi^{-1}(z), \psi^{-1}(w)) \\
+&= d(z,w)
+\end{align*}
 \end{enumerate}
 \end{proof}
 
