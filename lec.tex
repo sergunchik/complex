@@ -2632,6 +2632,40 @@ com séries de Taylor $f(z) = \sum_{n=0}^\infty c_n z^n$.
 \end{enumerate}
 \end{problema}
 
+\begin{defin}[Distância hiperbôlica no disco unitário]
+Para um par de pontos $z,w\in \D$ no disco unitário $\D = \{z\in\C: |z|<1\}$
+a \emph{distância hiperbólica} $d(z,w)$ entre eles é dada por
+\begin{equation}
+\tanh\big(\frac{d(z,w)}{2}\big) = \lvert\frac{z-w}{1-zw}\rvert.
+\end{equation}
+Em particular $d(z,0) = 2 arc\tanh(|z|)$.
+\end{defin}
+
+\begin{problema}
+Verifique que $d(z,w)$ é uma métrica no $\D$ e que ela é invariante com respeito
+de transformações de Möbius que preservam o disco.
+\end{problema}
+
+\begin{problema}[Teorema de Pick--Schwartz, 1912]
+Seja $f : \D \to \D$ uma aplicação holomorfa de um disco unitário para se mesmo.
+Provar que $d(f(z),f(w) \leq d(z,w)$ e se existir um par de pontos $z_0\neq w_0$ tais que
+$d(f(z_0),f(w_0) = d(z_0,w_0)$ então $f$ é uma transformação de Möbius
+$z \mapsto \zeta \frac{z-a}{1-\ol{a} z}$.
+\end{problema}
+\begin{proof}
+Dicas:
+\begin{enumerate}
+\item compute derivada de $\tanh(x)$,
+\item verifique que $\tanh: \R \to \R$ é monotona,
+\item então $d(f(z),f(w) \leq d(z,w)$ se e só se $\lvert\frac{f(z)-f(w)}{1-f(z)f(w)}\rvert \leq \lvert\frac{z-w}{1-zw}\rvert$.
+\item verifique que $z\mapsto \zeta z$ e $\phi_a: z\mapsto \frac{z-a}{1-\ol{a} z}$ são isometrias,
+\item dado $z,w \in \D$ construi $g = \phi_a \circ f \circ \phi_b$ tal que
+$\phi_b(0) = w$ e $\phi_a(f(w)) = 0$ então $g(0) = 0$.
+\item seja $\phi_a(z') = z$; aplique o lema de Schwartz para $g$,
+e elimine $z'$ expresando ele em termos de $z$ e $w$.
+\end{enumerate}
+\end{proof}
+
 \section{Teorema de Montel. Funcionais contínuos nas famílias compactas de funções.}
 
 \section{Teorema de Hurwitz. Funções univalentes.}
