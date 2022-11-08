@@ -1,0 +1,323 @@
+\section{Geometrias}
+
+Seja $\gamma: [a,b] \to \C$ contínua.
+Para qualquer $a\leq t_0 \leq t_1 \leq \dots \leq t_n \leq b$
+o comprimento da reta quebrada $\gamma(t_0),\dots,\gamma(t_n)$
+é igual $\sum_{i=1}^n d(\gamma(t_i),\gamma(t_{i-1})$,
+onde $d(z,w) = |z-w|$ é uma distância euclidiana.
+
+\begin{defin}
+O \emph{comprimento euclidiano} de um caminho $\gamma : [a,b] \to \C$
+é definido como o supremo dos cumprimentos das linhas quebradas
+\begin{equation}
+l(\gamma) := \sup_{a\leq t_0 \leq t_1 \leq \dots \leq t_n \leq b} \sum_{i=1}^n d(\gamma(t_i),\gamma(t_{i-1}) \in [0,+\infty] 
+\end{equation}
+
+Se $l(\gamma)<\infty$ digamos que o caminho $\gamma$ tem um comprimento finito,
+ou é \emph{retificável}.
+\end{defin}
+
+\begin{problema}
+Dados $a\leq b\leq c$ e $\gamma : [a,c] \to \C$,
+define $\gamma_1 : [a,b] \to \C$ e $\gamma_2 : [b,c] \to \C$ como as restrições de $\gamma$.
+Prove que $l(\gamma) = l(\gamma_1) + l(\gamma_2)$,
+em particular $\gamma$ é retificável se e só se $\gamma_1$ e $\gamma_2$ são.
+\end{problema}
+
+\begin{problema}
+Verifique que o cumprimento não depende de parametrização contínua, i.e.
+se $h: [a',b'] \to [a,b]$ é contínua e monotona, então para qualquer $\gamma: [a,b] \to \C$
+temos $l(\gamma) = l(\gamma\circ h)$.
+\end{problema}
+
+\begin{problema}
+Prove que se $\gamma \in C^1([a,b],\C)$ i.e. a derivada de $\gamma$ é continua,
+então $\gamma$ é retificável e
+\begin{equation}
+\label{eq:dist-integral}
+l(\gamma) = \int_a^b |\gamma'(t)| dt < \infty.
+\end{equation}
+Prove o mesmo para $\gamma$ suave em pedaços.
+\end{problema}
+
+Podemos modificar o lado direito de \Cref{eq:dist-integral} como o seguinte:
+em \Cref{eq:dist-integral} em vez da função $z \mapsto |z|$ podemos usar outras funções positivas de $\gamma'(t)$
+que podem depender também de valor de $\gamma(t)$.
+Em particular, dada uma função contínua positiva $C : D \to \R_{\geq 0}$,\footnote{I.e.
+$C(z) = \exp(c(z))$, uma exponente de uma função contínua real $c : D \to \R$.}
+para qualquer caminho $\gamma: [a,b] \to D$ podemos considerar $C$-comprimento\footnote{Nomenclatura não padrão.}
+\begin{equation}
+l_C(\gamma) := \int_a^b C(\gamma(t)) \cdot |\gamma'(t)| dt < \infty.
+\end{equation}
+
+Para um par de pontos $z,w \in D$ podemos considerar todos os caminhos $\gamma : [a,b] \to D$
+tais que $\gamma(a) = z$ e $\gamma(b) = w$ e procurar por um caminho $\gamma$ 
+tal que $l_C(\gamma)$ é mínimo. Se ele existe digamos que $C$-distância entre um par de pontos $z$ e $w$
+é igual a este mínimo. Senão podemos definir $C$-distância como o infimo de $C$-comprimentos
+$d_C(z,w) := \inf_{\gamma: [0,1] \to D} l_C(\gamma)$.
+
+\begin{problema}
+Seja $D\subset\Ch$ uma região conexa e $C : D \to R_{>0}$ uma função contínua positiva.
+Se $\infty \in D$ suponha adicionalmente que $\lim_{z\to\infty} C(z) \cdot |z|^2 < \infty$.
+Prove que neste caso para qualquer par de pontos $z,w \in D$ a $C$-distância é finita e satisfaz propriedades de métrica.
+\end{problema}
+
+\begin{defin}[Geodésicas]
+Digamos que um caminho $\gamma: [a,b] \to D$ é \emph{geodésico} se localmente é um caminho mais curto entre os seus pontos,
+i.e. para qualquer $t\in [a,b]$ existe $\epsilon>0$ tal que para qualquer $|t'-t|<\epsilon$ e $\gamma_2: [t,t'] \to D$
+tais que $\gamma_2(t) = \gamma(t)$ e $\gamma_2(t') = \gamma(t')$ temos que
+$l_C(\gamma_2) \geq l_C(\gamma)$. 
+\end{defin}
+
+
+\begin{problema}
+Provar que em seguintes casos o caminho mais $C$-curto entre $z,w\in D \subset \C$
+é dado por o segmento da reta.
+\begin{enumerate}
+\item $D = \C$, $C=1$;
+\item $D = \H$\footnote{$\H := \{z\in\C: \Im(z)>0\}$}, $C(z) = \frac{1}{\Im(z)}$ e $\Re(z) = \Re(w)$;
+\item $D = \D$\footnote{$\D := \{w\in\C: |w|<1\}$},    $C(w) = \frac{1}{1-|w|^2}$ e $\arg(z) = \arg(w)$;
+\item $D = \Ch$, $C(w) = \frac{R^2}{R^2+|w|^2}$ e $\arg(z) = \arg(w)$.
+\item $D = \D_R = \{w\in\C: |w|<R\}$, $C(w) = \frac{R^2}{R^2-|w|^2}$ e $\arg(z) = \arg(w)$;
+\end{enumerate}
+Computar o comprimento deste caminho.
+\end{problema}
+\begin{proof}
+Vamos fazer o caso $D=\H$.
+Seja $\gamma : [0,1] \to \H$ um caminho.
+Considere caminho $g: [a,b] \to \H$ dado por $g(t) = \gamma(0) + i \Im(\gamma(t))$.
+I.e. se $\gamma(t) = u(t) + i v(t)$ com $u,v: [a,b] \to \R$, então consideramos $g(t) = u(a) + i v(t)$.
+Para qualquer $t\in [a,b]$ temos
+\[ |g'(t)| = |v'(t)| \leq \sqrt{u'(t)^2 + v'(t)^2} = |\gamma'(t)|, \]
+\[ C(g(t)) = \frac{1}{\Im(iv(t))} = \frac{1}{v(t)} = \frac{1}{\Im(u(t)+iv(t))} = C(\gamma(t)), \]
+\[ C(g(t)) |g'(t)| \leq C(\gamma(t)) |\gamma'(t)|, \]
+então
+\[ l_C(g) = \int_0^1 C(g(t)) |g'(t)| dt \leq \int_0^1 C(\gamma(t)) |\gamma'(t)| dt = l_C(\gamma). \]
+Explicitamente para $g(t) = x + i t$ temos
+\[ l_C(g) = \int_a^b \frac{dt}{t} = |\log(b) - \log(a)| = |\log\frac{b}{a}| . \]
+\end{proof}
+
+
+
+Para $\kappa\in\R$ podemos definir $C_\kappa(w) = \frac{1}{1+\kappa |w|^2}$.
+Se $\kappa\geq0$ temos que $C_\kappa(w) > 0$ para qualquer $w\in\C$,
+mas se $\kappa<0$ temos que $C_\kappa(w) > 0 \iff |w|^2 < \frac{-1}{\kappa}$.
+Para $\kappa\in\R$ vamos definir 
+$D^\kappa = \Ch$ se $\kappa>0$,
+$D^\kappa = \C$ se $\kappa = 0$,
+e $D^\kappa = \{w\in\C: 1+\kappa|w|^2>0\} = B(0,\sqrt{\frac{-1}{\kappa}})$ se $\kappa\leq 0$.
+
+\begin{defin}[Isometrias]
+\begin{enumerate}
+\item Para um espaço métrico $(M,d)$ digamos que uma aplicação $f: M \to M$ é uma \emph{isometria}
+se por qualquer $z,w\in M$ temos
+\begin{equation*}
+d(f(z),f(w)) = d(z,w).
+\end{equation*}
+\item Para $D\subset\Ch$ e $C: D \to \R_{>0}$ como antes vamos dizer que $f: D \to D$ é $C$-isometria
+se $f^* \big( C(z) dz d\ol{z} \big) = C(z) dz d\ol{z}$, i.e.
+$C(f(z)) df(z) d\ol{f(z)} = C(z) dz d\ol{z}$.
+\item Mais geralmente dado par de espaços métricos $(M_1,d_1)$ e $(M_2,d_2)$ uma função $f: M_1 \to M_2$
+é chamada mergulhação isométrica se $d_2(f(z),f(w)) = d_1(z,w)$ para qualquer $z,w\in M_1$.
+\item Similarmente dados $(D_1,C_1)$ e $(D_2,C_2)$ uma função $f: D_1 \to D_2$ é $C$-isometria se
+\begin{equation*}
+C_2(f(z)) \cdot df(z) \cdot d\ol{f(z)} = C_1(z) \cdot dz \cdot d\ol{z}.
+\end{equation*}
+\end{enumerate}
+\end{defin}
+
+\begin{problema}
+\begin{enumerate}
+\item Seja $f: D \to D$ uma $C$-isometria. Verifique que $l_C(\gamma) = l_C(f\circ \gamma)$ para qualquer $\gamma: [a,b] \to D$.
+\item Veja que qualquer $C$-isometria é isometria de espaço métrico $(D,d_C)$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+\begin{enumerate}
+\item Verifique que qualquer isometria $f: M \to M$ é injetora.
+\item Construa uma isometria não sobrejetora, e.g. de uma translação na semireta munida com a métrica euclidiana.
+\end{enumerate}
+\end{problema}
+
+As isometrias que vamos considerar em seguinte todas são bijetoras, também para os espaços que vamos considerar é possível provar
+que qualquer isometria deles é sobrejetora.
+
+
+\begin{problema}
+Seja
+\begin{enumerate}
+\item $D = \C$ e $C=1$;
+\item $D = \H = \{z\in\C: \Im(z)>0\}$ e $C(z)=\frac{1}{\Im(z)}$;
+\item $D = \D = \{w\in\C: |w|<1\}$ e $C(w) = \frac{1}{1-|w|^2}$;
+\item $D = \Ch$ e $C(w) = \frac{1}{1+|w|^2}$;
+\item $D = D^\kappa$ e $C(w) = \frac{1}{1+\kappa|w|^2}$ para $\kappa\in\R$.
+\end{enumerate}
+Verifique que qualquer transformação 
+\begin{enumerate}
+\item $f(z) = b \cdot (z-a)$ com $|b|=1$ e $a\in\C$;
+\item $f(z) = \frac{\alpha z+\beta}{\gamma z+\delta}$ com $\alpha,\beta,\gamma,\delta\in\R$ e $\alpha\beta>\gamma\delta$;
+\item $f(z) = b \cdot \frac{z-a}{1-\ol{a}z}$ com $|b|=1$ e $|a|<1$;
+\item $f(z) = b \cdot \frac{z-a}{1+\ol{a}z}$ com $|b|=1$ e $a\in\C$;
+\item $f(z) = b \cdot \frac{z-a}{1+\kappa\ol{a}z}$ com $|b|=1$ e $1 + \kappa |a|^2 > 0$;
+\end{enumerate}
+é uma $C$-isometria que preserva as orientações.
+Também verifique que $g(z) = \ol{z}$ (ou $g(z) = -\ol{z}$ para $D=\H$) é uma $C$-isometria que inverta as orientações,
+e logo $f(\ol{z})$ (ou $f(-\ol{z})$) também são $C$-isometrias que invertam as orientações.
+\end{problema}
+
+\begin{problema}
+Seja $f: D_1 \to D_2$.
+Provar que
+\begin{enumerate}
+\item Se $f$ é holomorfa, então $df d\ol{f} = |f'(z)|^2 dz d\ol{z}$;
+\item se $f$ é antiholomorfa, então $df d\ol{f} = |f_{\ol{z}}(z)|^2 dz d\ol{z}$;
+\item se $df(z) d\ol{f(z)} = G(z,\ol{z}) dz d\ol{z}$ para algum $G(z,\ol{z})$,
+então ou $f$ é holomorfa ou $f$ é antiholomorfa e $G = |f_z|^2 + |f_{\ol{z}}|^2$.
+\end{enumerate}
+Derivar que $f : D_1 \to D_2$ é uma $C$-isometria se e só se ela é holomorfa
+e $|f'(z)|^2 = \frac{C_1(z)}{C_2(f(z))}$,
+ou ela é antiholomorfa e $|f_{\ol{z}}(z)|^2 = \frac{C_1(z)}{C_2(f(z))}$.
+Em particular, uma função holomorfa é $C$-isometria se e só se $|f'(z)|^2 = \frac{C(z)}{C(f(z))}$.
+\end{problema}
+
+\begin{defin}
+Para uma matriz $M = \mat{ a & b \\ c & d }$ a sua adjunta hermitiana $M^*$ é definida como
+uma complexa conjugada da transporsa dela, i.e. $\ol{M} := \mat{ \ol{a} & \ol{b} \\ \ol{c} & \ol{d} }$
+$M^t := \mat{ a & c \\ b & d }$ e $M^* := \ol{M^t} = \ol{M}^t = \mat{ \ol{a} & \ol{c} \\ \ol{b} & \ol{d} }$.
+Uma matriz é chamada \emph{unitária} se $M^* = M^{-1}$, i.e. $M M^* = 1$ e/ou $M M^* = 1$.
+Uma matriz $M$ e chamada \emph{projetivamente unitária} se $M M^*$ é uma matriz escalar.
+O grupo de matrizes projetivamente unitárias módulo escalares é chamado o \emph{grupo unitário projetivo} $PU(2)$.
+As vezes o mesmo grupo é chamado $PSU(2)$, onde $U(2)$ é o grupo de todas as matrizes unitárias,
+e $SU(2)$ é o grupo de todas matrizes unitárias com determinante $1$.
+\end{defin}
+\begin{problema}
+Verifique que a aplicação $SU(2) \to PSU(2) = PU(2)$ é $2:1$,
+i.e. para qualquer matriz $M$ tal que $M M^* = \lambda 1$ existe exatamente um par de matrizes $\pm N \in SU(2)$
+com determinante $\det N = \det (-N) = 1$ tais que $M = \pm \sqrt{\lambda} N$.
+\end{problema}
+\begin{problema}
+\begin{enumerate}
+\item Para $|b|=1$ e $a\in\C$ veja que a matriz $M = b\cdot \mat{1 & -a \\ \ol{a} & 1}$ é projetivamente unitária.
+\item Verifique que qualquer matriz projetivamente unitária é igual uma dessas vez um escalar.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $D = \Ch$ e $C(w) = \frac{1}{1+\kappa|w|^2}$ para $\kappa = \frac{1}{R^2} > 0$.
+Provar que qualquer geodésica entre $0$ e $\infty$ é um dos raios e compute o comprimento dela.
+\end{problema}
+\begin{proof}
+(Dica) Considere algum ponto intermediario. Por um problema interior a única geodésica entre $0$ e $P$ é um segmento de raio.
+Similarmente usando uma isometria $z\mapsto 1/z$ a única geodésica entre $P$ e $\infty$ é um segmento de raio
+Então qualquer geodésica entre $0$ e $\infty$ que passa de $P$ é um raio.
+\end{proof}
+
+\begin{problema}
+Seja $D = D^\kappa$ e $C = C^\kappa$.
+Para qualquer $z\neq w \in D$ 
+\begin{enumerate}
+\item se $D = \Ch$ e $zw=-1$ então para qualquer ponto $P\neq z,w$ prove que existe o único caminho
+mais $C$-curto entre $z$ e $w$, tais que ele também passa de $P$.
+\item nos outros casos prove que existe o único caminho mais $C$-curto entre $z$ e $w$;
+\item calcule a $C^\kappa$-distância $d^\kappa(z,w) := d_{C^\kappa}(z,w)$;
+% \item prove que
+% \begin{equation}
+% \tanh(d^\kappa(z,w)) = \lVert\frac{z-w}{1+\kappa\ol{z}w}\rVert.
+% \end{equation}
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Suponha $D = D^\kappa$ (ou $\H$) e $C = C^\kappa$ (ou $C = \frac{1}{\Im(z)}$).
+Provar que para qualquer $z,w,z',w'\in D$ existe uma $C$-isometria $f$ tal que
+$f(z) = z'$ e $f(w) = w'$ se e somente se $d_C(z,w) = d_C(z',w')$.
+\end{problema}
+
+\begin{problema}
+Seja $f : D^\kappa \to D^\kappa$ uma isometria que preserva (cada ponto em) uma geodésica $L$.
+\begin{enumerate}
+\item Provar que se $f$ preserva orientações ela é identidade,
+e se não então existe a única $f$, chamada a reflexão em $L$.
+\item Descreve as reflexões explicitamente.
+\item Em caso $\kappa>0$ verifique que as reflexões em geodésicas coincidem com reflexões em círculos
+definidos no \Cref{p2}.
+\end{enumerate}
+Mais geralmente para qualquer $\kappa\in\R$
+sejam $C$ um arco de algum círculo e $f$ uma isometria que preserva cada ponto de $C$.
+Prove que $f$ é uma identidade ou uma reflexão e decide para quais círculos $f$ pode ser uma reflexão.
+\end{problema}
+
+\begin{problema}
+Vamos dizer que um par de curvas $g_1 : [a_1,b_1] \to \C$ e $g_2 : [a_1,b_2] \to \C$
+tais que $g_1(c_1) = g_2(c_2) = z_0$ tem a mesma direção em $z_0$ se
+$\lim_{t_1\to c_1} 2\arg(g_1(t_1)-z_0) = \lim_{t_2\to c_2} 2\arg(g_2(t_2)-z_0)$.
+\begin{enumerate}
+\item Provar que para $D = D^\kappa$, qualquer ponto $P \in D$
+e qualquer direção existe a única $C^\kappa$-geodésica que passa de $P$ nessa direção.
+\item Seja $f : D \to D$ uma isometria holomorfa tal que $f(z_0) = z_0$ e $\arg f'(z_0) = 0$.
+Provar que $f$ é identidade.
+\item provar que para qualquer $z,w\in D$ e qualquer $\phi$ existe a única isometria holomorfa $f : D\to D$
+tal que $f(z) = w$ e $\arg f'(z) = \phi$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Descrever explicitamente todas as geodésicas de $D^\kappa$:
+\begin{enumerate}
+\item $\kappa = 0$: todas as retas;
+\item $\H$: todas as retas verticais e todos os semicírculos que intersetam a reta real em ângulos retos;
+\item $\kappa = -R^{-2} < 0$: todos os arcos de círculos que intersetam o círculo $|w|=R$ em ângulos retos;
+\item $\kappa = R^{-2} > 0$: formular e provar.
+\end{enumerate}
+\end{problema}
+
+
+\begin{problema}
+Provar que para $\kappa > 0$ a $C^\kappa$-distância na esfera de Riemann $\Ch = D^\kappa$
+coincide com a distância euclidiana na esfera redonda $S_R$ de raio $R = \kappa^{-1/2}$
+se identificarmos $\Ch$ e $S_R$ pela projeção estereográfica.
+\end{problema}
+
+
+\begin{defin}[Absoluto]
+Sejam $D$ um plano hiperbólico dado como $D^\kappa$ para $\kappa = -R^{-2} < 0$
+ou como semiplano superior $\H$.
+Defino o \emph{absoluto} (ou uma fronteira de $D$) como
+$\{w\in\C: |w| = R\}$ ou $\R\P^1 = \R \bigcup \{\infty\}$ respetivamente.
+\end{defin}
+
+\begin{problema}
+\begin{enumerate}
+\item Provar que qualquer geodésica no plano hiperbólico tem $2$ pontos limites no absoluto.
+\item Provar que por qualquer par de pontos distintos no absoluto existe a única geodésica
+com estes limites.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Seja $f \in PSL(2,\R)$ uma transformação de Möbius que preserva $\H$ (i.e. uma isometria de $\H$
+que preserva orientações), i.e. $a,b,c,d\in\R$ e $ad-bc=1$.
+A matriz $M = \mat{ a & b \\ c & d }$ que representa $f$ tem um par de autovalores complexos,
+e as suas autovetores (definidos módulo rescalamento) podem ser representados por pontos de $\Ch = \C\P^1$.
+Provar que $f$ cabe em um de quatro casos
+\begin{enumerate}
+\item $f(z) = z$, i.e. cada ponto é um autovetor com autovalor $1$ (ou $-1$ - há 2 matrizes representantes)
+\item Caso ``elítico'': um de autovalores é complexo (não real), segundo autovalor é conjugado dele.
+Um autovetor é no semiplano superior $\H$, outro é no semiplano inferior $\ol{\H}$.
+\item Caso ``hiperbólico'': há $2$ autovalores reais e distintos um de outro e $2$ respetivos autovetores
+que são os $2$ pontos no absoluto.
+\item Caso ``parabólico'': há só um autovalor, ele é real com multiplicidade $2$, mas matriz $M$ não é diagonal
+(i.e. $f(z) \neq z$). Neste caso há somente um autovetor e ele é real (com multiplicidade $2$).
+\end{enumerate}
+Suponha que escolhemos matriz $M$ em $SL(2,\R)$ i.e. $\det(M) = ad-bc = 1$.
+Considere o traço $\tr M = a+d$ e o polinómio característico $\lambda^2 - \tr(M) \lambda + 1$,
+e verifique que
+\begin{enumerate}
+\item $|\tr(M)|>2$ se e somente se $f$ é elítica,
+\item $|\tr(M)|<2$ se e somente se $f$ é hiperbólica,
+\item $|\tr(M)|=2$ se e só se $f$ é parabólica ou identidade.
+\end{enumerate}
+\end{problema}
+
+
