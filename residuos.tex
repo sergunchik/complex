@@ -73,8 +73,8 @@ e tal que $\lim_{\Im(z)>0, |z|\to\infty} f(z) = 0$.
 \begin{problema}
 Seja $R \in \C(x)$ uma função racional tal que $R(x)\in\C$ é bem definido para qualquer $x\in\R$
 e $\lim_{z\to\infty} R(z) = 0$. Provar que para $0<\alpha<1$
-\[ \int_{-\infty}^\infty \frac{R(z)}{z^\alpha} dz 
- = \frac{2\pi i}{1-\exp(-2\pi i\alpha)} \sum_{w\in\C} \res{z=w} \frac{R(z)}{z^\alpha}. \]
+\[ \int_{0}^\infty \frac{R(z)}{z^\alpha} dz 
+ = \frac{2\pi i}{1-\exp(-2\pi i\alpha)} \sum_{w\in\C-\R_{\geq0}} \res_{z=w} \frac{R(z)}{z^\alpha}. \]
 \end{problema}
 
 \begin{problema}
