@@ -1,0 +1,202 @@
+\section{Fórmula de Euler para cotangente e seus corolários}
+% novembro 17
+
+A seguinte discussão em particular resolva \Cref{p11}.
+
+
+As funções
+\begin{equation*}
+g_n(z) := \sum_{k=-n}^n (z+k)^{-1} 
+\end{equation*}
+são holomorfas em $\C - \Z$ e $g_n$ tem polos simples com resíduo $1$
+em $k=-n,\dots,n$.
+
+Podemos combinar os termos
+\[ \frac{1}{z-k} + \frac{1}{z+k} = \frac{-2z}{k^2-z^2} \]
+para ver que para qualquer compacto $K \subset \C-\Z$ com $M := \max_{z\in K} |z|$ temos
+para $n\geq M$
+\[ |g_{n+m}(z) - g_n(z)| \leq 2|z| \sum_{k=n}^\infty (k-|z|)^{-2}
+\leq 2 M \int_{n-1-M}^\infty x^{-2} dx = \frac{2 M}{n-1-M} = O(1/n), \]
+
+logo pelo critérios de Cauchy e Weierstrass a série
+$g_n(z)$ converge absolutamente e localmente uniformemente a uma função
+\[ g(z) := \lim_{n\to\infty} g_n(z) .\]
+
+A gente quer provar que $g(z) = \pi \cot(\pi z)$,
+e a nossa estrategia será mostrar que $g(z)$ e $h(z) = \pi \cot(\pi z)$
+satisfazem suficiente propriedades comuns para derivar que a diferença delas é zero.
+
+Primeiro vamos provar que $g$ é periodica: $g(z+1) = g(z)$.
+Temos
+\begin{multline*}
+g(z+1) - g(z) = \lim_{n\to\infty} g_n(z+1) - g_n(z) \\
+= \lim_{n\to \infty} \big((z+1-n)^{-1} + (z+2-n)^{-1} + \dots + (z+n)^{-1} + (z+n+1)^{-1}\big)
+\\ -\big((z-n)^{-1} + (z+1-n)^{-1} + \dots + (z+n-1)^{-1} + (z+n)^{-1}\big)
+\\  = (z+n+1)^{-1} - (z-n)^{-1} = \frac{-2n-1}{(z+n+1)(z-n)} = 2/n \cdot \frac{1+1/(2n)}{1+1/n+(z^2+z)/n^2} = O(1/n)
+\end{multline*}
+no qualquer compacto $z\in K \subset \C-\Z$.
+Similarmente
+\begin{equation}
+\cot(\pi z) = i \frac{\exp(2\pi i z)+1}{\exp(2\pi i z)-1}
+\end{equation}
+e $\exp(2\pi i(z+1) = \exp(2\pi i) \exp(2\pi i z) = \exp(2 \pi i z)$.
+
+Da mesma equação vejamos que $\pi \cot(\pi z)$ 
+é holomorfa em $\C-\Z$,
+tem polo simples em $n\in\Z$ com resíduos igual a $1$.
+
+As cotas que usamos para provar convergência de $g_n(z)$ para $g(z)$ também mostram
+que $\tilde{g}_n(z) = g_n(z) - \frac{1}{z}$ converge a função $\tilde{g}(z) = g(z)-\frac{1}{z}$
+holomorfa também em $z=0$, logo $g(z) = \tilde{g}(z) + \frac{1}{z}$ é meromorfa em $z$
+com polo simples e resíduo $1$. Desde que $g(z)$ é periodica ela também é meromorfa em outros inteiros
+com o mesmo resíduo $1$.
+
+Logo a função definida como a diferença
+
+\[ d(z) := g(z) - h(z) = g(z) - \pi \cot(\pi z) \]
+
+é uma função inteira, desde que as partes principais das funções meromorfas $g(z)$ e $h(z)$ se cancelam em cada ponto.
+
+
+Similarmente a demonstração de periodicidade podemos provar
+
+\[ 2 g(z) = g(\frac{z}{2}) + g(\frac{z+1}{2}). \]
+
+De fato,
+\begin{align*}
+g_n(z/2) &= \sum_{k=-n}^n (z/2+k)^{-1} = 2 \sum_{k=-n}^n (z+2k)^{-1}, \\
+g_n((z+1)/2) &= \sum_{k=-n}^n ((z+1)/2+k)^{-1} = 2 \sum_{k=-n}^n (z+2k+1)^{-1}, \\
+g_n(z/2) + g_n((z+1)/2) &= 2 \sum_{l=-2n}^{2n+1} (z+l)^{-1}, \\
+g_n(z/2) + g_n((z+1)/2) - 2 g_{2n}(z) &= 2 (z+2n+1)^{-1}  = O(1/n)
+\end{align*}
+no qualquer compacto.
+
+Denotando $q := \exp(\pi i z)$, temos
+\begin{align*}
+-i \cot(\pi z/2) &= \frac{\exp(\pi i z)+1}{\exp(\pi i z)-1} = \frac{q+1}{q-1}, \\
+-i \cot(\pi (z+1)/2) &= \frac{\exp(\pi i (z+1))+1}{\exp(\pi i (z+1))-1} = \frac{-q+1}{-q-1}, \\
+-i \cot(\pi z) &= \frac{\exp(2 \pi i z)+1}{\exp(2 \pi i z)-1} = \frac{2(q^2+1)}{q^2-1},
+\end{align*}
+logo
+\[ (\cot(\pi z/2) + \cot(\pi (z+1)/2)
+   = i \frac{q+1}{q-1} + i \frac{q-1}{q+1}
+   = i \frac{(q+1)^2+(q-1)^2}{(q-1)(q+1)}
+   = i 2 \frac{q^2+1}{q^2-1}
+   = 2 \cot(\pi z), \]
+
+Então a função $d(z) = g(z) - h(z)$ é
+\begin{enumerate}
+\item inteira $d(z) \in \O(\C)$,
+\item periodica $d(z+1) = d(z)$,
+\item satisfaz $d(\R) \subset \R$.
+\end{enumerate}
+
+Isso implica que existe o valor máximo $C := \max_{z\in [0,1]} d(z) = \max_{z\in\R} d(z)$
+e ele é atingido em algum ponto real $w$.
+Sem perda de generalidade podemos supor que $w\neq 0$, se $w=0$ usamos periodicidade $d(1) = d(0)$.
+A equação
+\[ d(w/2) + d((w+1)/2) = 2 d(w) \]
+e as desigualdades $d(w/2) \leq C = d(w)$ e $d((w+1)/2) \leq C = d(w)$ implicam
+que $d(w/2) = C$. Similarmente $d(w/4) = C$, etc. Então sabemos que
+$d(w/2^k)=0$. Pelo teorema de identidade obtemos que $d(w)$ é igual a constante $C$.
+Desde que $g(z)$ e $h(z)$, e logo $d(z)$, são funções impares temos $C = d(0) = 0$,
+isso é $g(z) = h(z)$:
+
+\begin{equation}
+\sum_{k\in\Z} (z+k)^{-1} = \pi \cot(\pi z),
+\end{equation}
+onde no lado direito a soma converge em sentido de Eisenstein
+(i.e. igual ao $\lim \sum_{k=-n}^n$).
+
+Logo $g(1/4) = \pi \cot(\pi/4) = \pi$.
+No outro lado
+$4 g(1/4) = 1 - 1/3 + 1/5 - \dots$,
+em particular obtemos a soma de Madhava--Gregory--Leibniz em outro jeito
+\[ 1 - 1/3 + 1/5 - 1/7 + \dots = \frac{\pi}{4}. \]
+
+O jeito de Madhava foi escrever a série de Taylor de função arctangente
+\[ \tan^{-1}(x) = x - \frac{x^3}3 + \frac{x^5}5 - \dots, \]
+e obter
+\[ 1 - 1/3 + 1/5 - 1/7 + \dots = \tan^{-1}(1) = \pi/4. \]
+
+
+Vamos considerar a série de Laurent da função $g(z)$. Temos
+\begin{equation}
+z g(z) = 1 - 2 \sum_{n=1}^\infty \frac{z^2}{n^2-z^2} = 1 - 2 \sum_{n,k=1^\infty} n^{-2k} z^{2k}
+= 1 - 2 \sum_{k=1}^\infty \zeta(2k) z^{2k}
+\end{equation}
+onde
+\begin{equation}
+\zeta(s) := \sum_{n=1}^\infty n^{-s}
+\end{equation}
+é a função zeta de Riemann.
+
+Logo
+\begin{equation}
+w \cot(w) = 1 - 2 \sum_{k=1}^\infty \frac{\zeta(2k)}{\pi^{2k}} z^{2k}.
+\end{equation}
+Mas no outro lado a série de Taylor $w \cot(w)$ tem os coeficientes racionais desde
+que $\cos(w) = 1 - w^2/2 + \dots$ e $\sin(w) = w - w^3/6 + \dots$ tem os coeficientes racionais.
+Então provamos que para qualquer $k\geq 1$ a razão $\frac{\zeta(2k)}{\pi^{2k}}$
+é um número racional, e este número essencialmente é o coeficiente de Laurent--Taylor--Maclaurin
+da função cotangente.
+
+Formalmente os \emph{números de Bernoulli} são definidos pelo
+\begin{align}
+\frac{z}{1-\exp(-z)} = z/2 \big(\coth(z/2)+1) &=: \sum_{m=0}^\infty \frac{B_m^+}{m!} t^m, \\
+\frac{z}{\exp(z)-1} = z/2 \big(\coth(z/2)-1) &=: \sum_{m=0}^\infty \frac{B_m^-}{m!} t^m. \\
+\end{align}
+Temos $B_1^+ = 1/2$, $B_1^- = -1/2$ e $B_m^+ = B_m^-$ para $m\neq 1$,
+em aplicações matemáticas $B_m^+$ é mais natural,
+mas as funções $\frac{z}{1-\exp(-z)}$ e $\frac{z}{\exp(z)-1}$ obtidas uma de outra
+pela suibstituição $z\mapsto -z$.
+Com essa normalização temos
+\begin{equation}
+B_{2n} = \frac{(-1)^{n+1} 2 (2n)!}{(2\pi)^{2n}} \zeta(2n).
+\end{equation}
+
+Em particular obtemos as fórmulas de Euler\footnote{
+O problema de computar a soma
+\[ \zeta(2) = \frac{1}{1^2} + \frac{1}{2^2} + \frac{1}{3^2} + \dots \]
+é conhecido como o \emph{problema de Baseleia},
+a cidade natal de Euler e família Bernoulli.
+Ele foi proposta por Pietro Mengoli em 1650 e resolvida
+por Leonhard Euler em 1734, sete anos desde que chegou a trabalhar
+em São Petersburgo, e é publicado em artigo ``De summis serierum reciprocarum''
+em 1734, conhecido como E41 (41o artigo de Euler).
+Série infinita para cotangente e produto infinito para seno
+também foram descobertas por Euler.
+
+O primeiro código fonte para computador é o programa para computar os números
+de Bernoulli escrito por Ada Lovelace em 1842 para a máquina de Babbage.}
+
+\[ \zeta(2) = \frac{\pi^2}{6}, \zeta(4) = \frac{\pi^4}{90}, \dots \]
+
+
+\begin{problema}[Séries de Eisenstein]
+Para inteiro $k\geq 2$ e $\Im(z)\neq 0$ define as \emph{séries de Eisenstein} pelo
+\begin{equation}
+E_k(z) := \sum_{c,d\in \Z, (c,d)\neq(0,0)} (cz+d)^{-k} .
+\end{equation}
+Provar que
+\begin{enumerate}
+\item a série $E_k(z)$ converge
+absolutamente e localmente uniformemente no semiplano superior
+$\H = \{z\in\C: \Im(z)>0\}$ para qualquer inteiro $k>2$;
+\item a série $E_2(z)$ converge em sentido de Eisenstein,
+i.e. existe o limite $E_2(z) = \lim_{n\to\infty} \sum_{c=-n}^n\sum_{d=-n}^n (cz+d)^{-2}$
+onde a soma não tem termo $(c,d)=(0,0)$;
+\item $E_{2l+1}(z) = 0$;
+\item a soma $E_k(z)$ é uma função holomorfa $E_k \in \O(\H)$;
+\item as funções $E_k(z)$ são periódicas, i.e. $E_k(z+1) = E_k(z)$;
+\item existe uma função holomorfa no disco unitário perfurado
+$G_k(q) \in \D^* := \{q\in\C: 0 < |q| < 1$ tal que $E_k(z) = G_k(\exp(2\pi i z))$;
+\item $G_k(q)$ tem singularidade removível em $q=0$.
+\end{enumerate}
+\end{problema}
+
+\begin{problema}
+Calcular as séries de Taylor das funções $G_k(z)$.
+\end{problema}
+
+
