@@ -193,27 +193,42 @@ de Bernoulli escrito por Ada Lovelace em 1842 para a máquina de Babbage.}
    \zeta(12) = \frac{691 \cdot \pi^{12}}{638512875},
 \dots \]
 
+\begin{problema}
+Provar que para qualquer inteiro $k>1$ as séries
+\[ \sum_{n\in\Z} (z+n)^{-k} \]
+convergem absolutamente localmente uniformemente em $\C-\Z$
+às funções meromorfas $(-1)^k (k-1)! g^{(n)}(z)$
+onde $g^{(n)}(z)$ são as derivadas da $g(z) = \pi \cot(\pi z)$.
+\end{problema}
+
 
 \begin{problema}[Séries de Eisenstein]
 Para inteiro $k\geq 2$ e $\Im(z)\neq 0$ define as \emph{séries de Eisenstein} pelo
 \begin{equation}
-E_k(z) := \sum_{c,d\in \Z, (c,d)\neq(0,0)} (cz+d)^{-k} .
+G_k(z) := \frac12 \sum_{c,d\in \Z, (c,d)\neq(0,0)} (cz+d)^{-k} .
 \end{equation}
 Provar que
 \begin{enumerate}
-\item a série $E_k(z)$ converge
+\item a série $G_k(z)$ converge
 absolutamente e localmente uniformemente no semiplano superior
 $\H = \{z\in\C: \Im(z)>0\}$ para qualquer inteiro $k>2$;
-\item a série $E_2(z)$ converge em sentido de Eisenstein,
-i.e. existe o limite $E_2(z) = \lim_{n\to\infty} \sum_{c=-n}^n\sum_{d=-n}^n (cz+d)^{-2}$
-onde a soma não tem termo $(c,d)=(0,0)$;
-\item $E_{2l+1}(z) = 0$;
-\item a soma $E_k(z)$ é uma função holomorfa $E_k \in \O(\H)$;
-\item as funções $E_k(z)$ são periódicas, i.e. $E_k(z+1) = E_k(z)$;
-\item existe uma função holomorfa no disco unitário perfurado
-$G_k(q) \in \D^* := \{q\in\C: 0 < |q| < 1 \}$ tal que $E_k(z) = G_k(\exp(2\pi i z))$;
-\item $G_k(q)$ tem singularidade removível em $q=0$.
+\item $G_{2l+1}(z) = 0$;
+\item a soma $G_k(z)$ é uma função holomorfa $G_k \in \O(\H)$;
+\item as funções $G_k(z)$ são periódicas, i.e. $G_k(z+1) = G_k(z)$;
+\item existe uma função holomorfa $\tilde{G}_k(q) \in \O(\D^*)$
+no disco unitário perfurado $\D^* := \{ q\in\C: 0 < |q| < 1 \}$
+tal que $G_k(z) = \tilde{G}_k(\exp(2\pi i z))$ para qualquer $z\in\H$;
+\item $\tilde{G}_k(q)$ tem singularidade removível em $q=0$.
 \end{enumerate}
+\end{problema}
+
+\begin{problema}
+Provar que a série $G_2(z)$ diverge absolutamente,
+mas converge localmente uniformemente em sentido de Eisenstein,
+i.e. existe o limite
+\begin{equation}
+G_2(z) = \lim_{N\to\infty} \zeta(2) + \sum_{m=1}^N \sum_{n\in\Z} (mz+n)^{-2}
+\end{equation}
 \end{problema}
 
 \begin{problema}
