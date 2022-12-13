@@ -5,7 +5,12 @@
 
 \textbf{Demonstração: } Supondo que $\mathcal{F}$ seja uma família normal de funções, então o Teorema de Arzelà-Ascoli garante que $\mathcal{F}$ é localmente uniformemente limitada.
 
-Reciprocamente, suponha que $\mathcal{F}$ seja localmente uniformemente limitada. O Teorema de Arzelà-Ascoli garante que neste caso, $\mathcal{F}$ é normal. Logo, basta provar que $\mathcal{F}$ é localmente uniformemente equicontínua
+Reciprocamente, suponha que $\mathcal{F}$ seja localmente uniformemente limitada. O Teorema de Arzelà-Ascoli garante que qualquer família $\mathcal{F}$ de funções localmente uniformemente limitada e localmente uniformemente equicontínua é normal. Logo, basta provar que $\mathcal{F}$ é localmente uniformemente equicontínua.
+
+Como uma família de funções Lipschitz com a mesma constante de Lipschitz é uniformemente equicontínua, vamos mostrar que para todo $z_0\in U$ existe uma vizinhança $V$ de $z_0$ tal que toda $f\in\mathcal{F}$ tenha a mesma constante de Lipschitz em $V$. 
+
+Fixe $z_0\in U$. Por hipótese, como $f$ é localmente uniformemente limitada, existem $R>0$ e $M>0$ tal que para todo $z \in D = \{z\in\mathbb{C}\,:\, |z|<R\}$ temos $|f(z)|< M$. Agora tomemos $0<r<R$ fixo e considere o disco $D'=\{z\in\mathbb{C}\,:\, |z|<r\}$. Assim, para quaisquer $z,z'\in D'$ e qualquer $w\in D$ temos que $|(w-z)(w-z')|\geq(R-r)^2$. Daí, usando a Fórmula Integral de Cauchy e as propriedades da integral, obtemos: $$\begin{array}{ccc}|f(z)-f(z')| & = & \left|\dfrac{1}{2\pi i}\displaystyle\oint_{\partial D}\dfrac{f(w)}{w-z}dw - \displaystyle\oint_{\partial D}\dfrac{f(w)}{w-z'}dw\right| \\ \\ & = & \left|\dfrac{1}{2\pi i}\displaystyle\oint_{\partial D}\left(\dfrac{f(w)}{w-z} - \dfrac{f(w)}{w-z'}\right)dw\right| \\ \\ & = &\left|\dfrac{1}{2\pi i}\displaystyle\oint_{\partial D}\dfrac{f(w)(w-z')-f(w)(w-z)}{(w-z)(w-z')}dw\right| \\ \\ & = & \dfrac{(z-z')}{2\pi i}\displaystyle\oint_{\partial D}\dfrac{f(w)}{(w-z)(w-z')}dw \\ \\ & \leq & \left|\dfrac{z-z'}{2\pi i}\dfrac{2M\pi}{(R-r)^2} \right| \\ \\ & = & \dfrac{M}{(R-r)^2}|z-z'| \end{array}$$
+Agora, tome $K = \dfrac{M}{(R-r)^2}$ e obtemos finalmente que: $$|f(z)-f(z')|\leq K|z-z'|,\,\forall f\in\mathcal{F}\,\textrm{em}\,D'$$Portanto, $f$ é uniformemente equicontínua, e daí concluímos pelo Teorema de Arzelà-Ascoli que $\mathcal{F}$ é normal, como queríamos.
 \end{proof}
 
 \begin{proof}[\Cref{p2}]
