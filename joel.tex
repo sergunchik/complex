@@ -1,0 +1,71 @@
+\textbf{Definição: }Sejam $U,V\subset\mathbb{C}$ abertos, e $\mathcal{F} = \{f\colon U\longrightarrow V\,:\, f\,\textrm{contínua}\}$. Dizemos que $\mathcal{F}$ é uma família normal de funções se toda sequência $(f_n)_{n\in\mathbb{N}}\in\mathcal{F}$ possui uma subsequência que converge uniformemente em subconjunto compacto de $U$ para uma função contínua $f\colon U\longrightarrow V$.
+
+\begin{proof}[\Cref{p1}]
+\textbf{Teorema de Montel: }Seja $U\subset\mathbb{C}$ e $\mathcal{H}(U)$ o conjunto das funções holomorfas definidas em $U$. A família $\mathcal{F}\subset\mathcal{H}(U)$ é normal se, e somente se, $\mathcal{F}$ é localmente uniformemente limitada.
+
+\textbf{Demonstração: } Supondo que $\mathcal{F}$ seja uma família normal de funções, então o Teorema de Arzelà-Ascoli garante que $\mathcal{F}$ é localmente uniformemente limitada.
+
+Reciprocamente, suponha que $\mathcal{F}$ seja localmente uniformemente limitada. O Teorema de Arzelà-Ascoli garante que neste caso, $\mathcal{F}$ é normal. Logo, basta provar que $\mathcal{F}$ é localmente uniformemente equicontínua
+\end{proof}
+
+\begin{proof}[\Cref{p2}]
+
+\textbf{Teorema de Riemann:} Seja $U\subset\mathbb{C}$ aberto e simplesmente conexo, tal que $U\neq\mathbb{C}$. Dado $z_0\in U$, existe único biholomorfismo $f\colon U\longrightarrow D$ tal que $f(z_0) = 0$ e $f'(z_0)\in (0,+\infty)$. Onde $D=\{z\in\mathbb{C}\,:\,|z|<1\}$.
+
+\textbf{Demonstração: } Primeiro, fixe $z_0\in U$, e considere a seguinte família de funções holomorfas: $$\mathcal{F}=\{f\in\mathcal{H}(U)\,:\,f(U)\subset D,\,f(z_0)=0,\,f'(z_0)\in(0,+\infty),\,\textrm{f injetiva}\}$$
+
+Mostraremos primeiro a existência. Para isso, vamos mostrar primeiro que $\mathcal{F}\neq\emptyset$.
+
+Como $U\neq\mathbb{C}$, fixe $z_1\in\mathbb{C}\setminus U$. Como $U$ é simplesmente conexo, podemos definir um ramo do logaritmo de $z-z_1$ em U. Assim, considere $L\colon U\longrightarrow \mathbb{C}$ tal ramo. Temos que $\exp({L(z)}) = z-z_1$, $\forall z\in U$.
+
+Afirmação (1): $L$ é injetiva e $\mathbb{C}\setminus L(U)$ tem interior não vazio. 
+
+De fato, dados $z,z'\in U$ tais que $L(z)=L(z')$, segue-se que: $$\exp({L(Z)}) = \exp({L(Z)})\Longrightarrow z-z_1 = z'-z_1\Longrightarrow z=z'$$
+
+ Para provar que $\mathbb{C}\setminus L(U)$ tem interior não vazio, considere $w=L(z)\in L(U)$ para algum $z\in U$. Observe que $w+2\pi i\notin L(U)$. De fato, se $w+2\pi i \in L(U)$, então teríamos que $w+2\pi i = L(z')$ para algum $z'\in U$, o que implicaria que: $$z'-z_1 = \exp({L(w+2\pi i)}) = \exp({L(w)}) = z - z_1\Longrightarrow z'=z$$
+ E daí, $$L(z')=L(z)\Longrightarrow w = w+2\pi i$$o que é uma contradição. Assim, se $D_1$ é um disco tal que $D_1\subset L(U)$, então $D_1+2\pi i = \{z+2\pi i\,:\, z\in D_1\}\subset \mathbb{C}\setminus L(U)$, o que prova a afirmação (1). 
+
+ Agora, considere um disco $D_r(w_0)\subset(\mathbb{C}\setminus L(U))$, para algum $r>0$. A transformação de Moebius dada por $h(w) = \dfrac{r}{w-w_0}$ é tal que $h(\hat{\mathbb{C}}\setminus D_r(w_0)) = D$. Como $L(U)\subset(\hat{\mathbb{C}}\setminus D_r(W_0))$, temos que $h(L(U))\subset h(\hat{\mathbb{C}}\setminus D_r(w_0)) = D$, e portanto, $h(L(U))\subset D$.
+ 
+Por outro lado, se $\xi_0 = h(L(z_0))$ para algum $z_0\in U$, então a transformação de Moebius $$g(\xi)=\dfrac{\xi -\xi_0}{1-\overline{\xi_0}\xi}$$ é tal que $g(D) = D$ e $g(\xi_0)=0$.
+
+Agora, basta tomar $f_1=g\circ h\circ L$. Por construção, $f_1$ é injetiva e $f_1(z_0) = g(h(L(z_0)) = g(\xi_0) = 0$ e $f_1(U) = g(h(L(U)))\subset D$. Podemos supor, além disso, que existe $\rho>0$ tal que $f'(z_0)=\rho\cdot\exp{(i\theta)}$. Daí, basta tomarmos $f(z)=\exp{-i\theta}f_1(z)$ e teremos que $f\in\mathcal{F}$, donde $\mathcal{F}\neq\emptyset$.
+
+Agora, vamos mostrar que existe $f\in\mathcal{F}$ tal que $f(U) = D$. Observe primeiro que como $|f(z)|<1,\,\forall z\in U,\,\forall f\in\mathcal{F}$, a família $\mathcal{F}$ é localmente uniformemente limitada.
+
+Pelo Teorema de Montel, $\mathcal{F}$ é uma família normal de funções, isto é, o seu fecho em $\mathcal{H}(U)$ é compacto.
+
+Afirmação (2): $\overline{\mathcal{F}} = \mathcal{F}\cup \{0\}$, onde $0(z)=0, \forall z\in U$. 
+
+De fato, sabemos que se uma sequência de funções injetivas $(f_n)_{n\geq 1}$ em $\mathcal{H}(U)$ converge uniformemente nas partes compactas para uma função $f$, então $f$ é injetiva ou constante. Por definição, se tomarmos $f\in\overline{\mathcal{F}}\setminus\mathcal{F}$, existe uma sequência $(f_n)_{n\geq 1}\in\mathcal{F}$ tal que $f\longrightarrow f$ uniformemente nas partes compactas. Veja que se $f$ for constante, então claramente $f\equiv 0$, pois $f_n(z_0)=0,\forall n\in\mathbb{N}$. Por outro lado, se $f$ não for constante, então $f$ é injetiva e além disso, $f(z_0)=\displaystyle\lim_{n\to\infty}f_n(z_0)=0$ e $f'(z_0)=\displaystyle\lim_{n\to\infty}f'(z_0)\geq 0$. Mas não podemos ter $f'(z_0)=0$ pois $f$ é injetiva. Logo, $f'(z_0)\in(0,+\infty)$. Para concluirmos a afirmação (2), basta mostrarmos que $f(U)\subset D$. De fato, se $f(U)\cap(\mathbb{C}\setminus D)\neq\emptyset$, então existe $z_1\in U$ tal que $f(z_1)=w_1$, com $|w_1|\geq 1$. 
+
+Existe um Corolário do Teorema de Hurwitz que afirma o seguinte: Seja $(f_n)_{n\geq 1}$ uma sequência em $\mathcal{M}(U)$ tal que $f_n\longrightarrow f\in\mathcal{M}(U)$ uniformemente nas partes compactas. Suponha que $z_0\in U$ seja um polo (ou zero) de ordem $k\geq 1$ de $f$. Para todo $r>0$ suficientemente pequeno, existe $n=n(r)\geq 1$ tal que se $n\geq n_0$ então $f_n$ possui $k$ polos (ou zeros) contados com multiplicidade em $D_r(z_0)$. 
+
+Pelo Corolário acima, existiria $n_0\geq 1$ tal que se $n\geq n_0$ então a equação $f_n(z)=w_1$ possuiria pelo menos uma solução em $U$, o que implicaria que $f_n(U)\cap(\mathbb{C\setminus D})\neq\emptyset$, e daí que $f_n\notin\mathcal{F}$, o que é uma contradição. Portanto, $\overline{\mathcal{F}}=\mathcal{F}\cup\{0\}$.
+
+Agora, defina $$\begin{array}{cccc}\varphi\colon & \overline{\mathcal{F}} & \longrightarrow & [0,+\infty) \\ & f & \longmapsto & f'(z_0)\end{array}$$ É claro que $\varphi$ é contínua, pois se $(f_n)_{n\geq 1}$ é uma sequência em $\overline{\mathcal{F}}$ tal que $f_n\longrightarrow f$ uniformemente nas partes compactas, então $f'_n\longrightarrow f'$, logo, $$\displaystyle\lim_{n\to\infty}\varphi(f_n) = \displaystyle\lim_{n\to\infty}f'(z_0) = f'(z_0) = \varphi(f)$$ Como $\overline{\mathcal{F}}$ é compacto, sua imagem por $\varphi$, $\varphi(\overline{\mathcal{F}})$, é um conjunto compacto também. Logo, existe $f_0\in\overline{\mathcal{F}}$ tal que $$\varphi(f_0) = sup{\{\varphi(f)\,:\,f\in\overline{\mathcal{F}}\}}$$ Note que $f_0$ não pode ser constante, pois $\mathcal{F}\neq\emptyset$ e portanto $f'(z_0)>0$. Assim, $f_0\in\mathcal{F}$.
+
+Afirmação (3): $f_0(U)=D$.
+
+A ideia será a seguinte: se $f\in\mathcal{F}$ é tal que $f(U)\neq D$, então vamos construir uma aplicação $g\in\mathcal{F}$ tal que $g'(z_0)>f'(z_0)$, o que será um absurdo.
+
+Para isso, fixemo então $f\in\mathcal{F}$ tal que $f(U)\neq D$, digamos $f(U)=V\subset D$ e considere $w_0\in D\setminus V$. Como $f\colon U\longrightarrow D$ é um homeomorfismo, então $f(z_0)\in V$ e $V$ é simplesmente conexo. Afirmamos então que existe $h\colon V\longrightarrow D$ holomorfa e injetiva tal que $h(0) = 0$ e $h'(0)\in(1,+\infty)$. De fato, considere a transformação de Moebius: $$T(z)=\dfrac{z-w_0}{1-\overline{w_0}z}$$
+
+Como $T(D) = D$ e $V\subset D$, é claro que $T(V)\subset D$. Por outro lado, como $T(V)$ é simplesmente conexo, e $0 = T(w_0)\notin T(V)$, podemos definir um ramo do logaritmo em $T(V)$, digamos $L$. Seja $h_1(z) = \exp{\left(\dfrac{1}{2}L(T(z))\right)}$. Observe que $h_1$ é um ramo da raiz quadrada de $T(z)$ em $V$, pois: $$(h_1(z))^2 = \left(\exp{\left(\dfrac{1}{2}L(T(z))\right)}\right)^2 = \exp{(L(T(z)))} = T(z)$$ Fica evidente que $h_1$ é injetiva, pois para todos $z_1,z_2\in V$ tais que, $$(h_1(z))^2 = (h_1(z_2))^2\Longrightarrow T(z_1)=T(z_2)\Longrightarrow z_1=z_2$$
+Note também que se $z\in V$, então $|(h_1(z))|^2 = |T(z)| < 1 $, donde $|h_1(z)|<1$, e por isso $h_1(V)\subset D$. Assim, tomemos então $h=S\circ h_1$, onde $$S(w) = \lambda\dfrac{w-h_1(0)}{1-\overline{h_1(0)}w}$$ onde $\lambda=-\dfrac{|h_1(0)}{h_1(0)}$. Como $|\lambda| = 1$, temos que $h(V) = (S\circ h_1)(V)\subset S(D) = D$. Além disso, $h$ é injetiva por construção e $$h(0) = S(h_1(0)) = \lambda\dfrac{h_1(0)-h_1(0)}{1-\overline{h_1(0)}h_1(0)} = 0$$ Por outro lado, $$h'(0) = S'(h_1(0))\cdot h'_1(0) = \dfrac{\lambda}{1-|h_1(0)|^2}\cdot\dfrac{1}{2}\cdot h_1(0)\cdot\dfrac{T'(0)}{T(0)} = \dfrac{1+|w_0|}{2\sqrt{|w_0|}}$$
+
+Como $|w_0|<1$, vem que $1+|w_0| > 2\sqrt{|w_0|}$ e daí, $h'(0) > 1$, como queríamos.
+
+Finalmente, obtemos $g$ da seguinte forma: $g=h\circ f$. Novamente fica evidente que $g\in\mathcal{F}$ e além disso, $$g'(z_0) = h'(f(z_0))\cdot f'(z_0) = h'(0)\cdot f'(z_0) > f'(z_0)$$ isto é, $g'(z_0)> f'(z_0) = $ pois $h'(0)>1$, o que é uma contradição, pois obtemos que $$g'(z_0) > \varphi(f_0) = sup{\{\varphi(f)\,:\,f\in\overline{\mathcal{F}}\}}$$
+Portanto, $f_0(U) = D$, como queríamos.
+
+Resta agora provarmos a unicidade.
+
+De fato, suponhamos que $f_0,f_1\in\mathcal{F}$ são tais que $f_0(U) = f_1(U) = D$. Podemos definir então a aplicação: $$T = f_1\circ f_0^{-1}\colon D\longrightarrow D$$
+que é um automorfismo holomorfo em $D$. Além disso, temos que: $$T(0) = (f_1\circ f_0^{-1})(0) = f_1(f_0^{-1}(0)) = f_1(z_0) = 0$$ E que: $$T'(0) = (f_1\circ f_0^{-1})'(0) = f'_1(f_0^{-1}(0))\cdot (f_0^{-1})'(0)=\dfrac{f'_1(z_0)}{f'_0(f_0^{-1}(0))} = \dfrac{f'_1(z_0)}{f'_0(z_0)}>0$$
+
+Como todo automorfismo holomorfo de $D$ é da forma $S(z) = \lambda\dfrac{z-z_0}{1-\overline{z_0}z}$ com $|\lambda|=1$ e $|z_0|<1$, temos então que: $$T(0) = S(0) = \lambda(-z_0) = 0$$ donde $$|T(0)| = |\lambda||z_0|=|z_0| = 0\Longrightarrow z_0 = 0$$ e logo, $T(z) = z$ é a transformação identidade. Portanto, $f_0 = f_1$, e segue a unicidade, como queríamos.
+Isto finaliza a prova o Teorema de Riemann.
+
+
+\end{proof}
