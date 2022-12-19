@@ -1,5 +1,12 @@
 \textbf{Definição: }Sejam $U,V\subset\mathbb{C}$ abertos, e $\mathcal{F} = \{f\colon U\longrightarrow V\,:\, f\,\textrm{contínua}\}$. Dizemos que $\mathcal{F}$ é uma família normal de funções se toda sequência $(f_n)_{n\in\mathbb{N}}\in\mathcal{F}$ possui uma subsequência que converge uniformemente em subconjunto compacto de $U$ para uma função contínua $f\colon U\longrightarrow V$.
 
+\textbf{Definição: }Sejam $X$ e $Y$ espaços métricos e $\mathcal{F}$ uma família de funções $f\colon X\longrightarrow Y$. Dizemos que a família $\mathcal{F}$ é equicontínua no ponto $x_0\in X$ quando para todo $\varepsilon>0$, existe $\delta>0$ tal que $d(f(x_0),f(x))<\varepsilon$ para todo $f\in\mathcal{F}$ e para todo $x$ tal que $d(x_o,x)<\delta$. 
+
+\textbf{Definição: }A família $\mathcal{F}$ é uniformemente equicontínua se para cada $\varepsilon>0$, existe $\delta>0$ tal que $d(f(x_1),f(x_2))<\varepsilon$, para todo $f\in\mathcal{F}$ e para todos $x_1,x_2\in X$ tal que $d(x_1,x_2)<\delta$.
+
+\textbf{Teorema (Arzelà-Ascoli): }Sejam $X$ um espaço compacto de Hausdroff, Y um espaço métrico, $\mathcal{F}$ o espaço métrico de todas as funções contínuas $f\colon X\longrightarrow Y$ com a métrica $d_{\infty}(f,g)=\displaystyle\sup_{x\in X}{d(f(x),g(x))}$. Então um conjunto $\mathcal{C}\subset\mathcal{F}$ é relativamente compacto se, e somente se, é pontualmente equicontínuo e pontualmente relativamente compacto.
+
+
 \begin{proof}[\Cref{p1}]
 \textbf{Teorema de Montel: }Seja $U\subset\mathbb{C}$ e $\mathcal{H}(U)$ o conjunto das funções holomorfas definidas em $U$. A família $\mathcal{F}\subset\mathcal{H}(U)$ é normal se, e somente se, $\mathcal{F}$ é localmente uniformemente limitada.
 
